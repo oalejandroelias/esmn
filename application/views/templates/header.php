@@ -16,12 +16,16 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/quill/dist/quill.snow.css">
     <link href="<?= base_url();?>Lib/matrix-admin-bt4/dist/css/style.min.css" rel="stylesheet">
-    
 
     <!-- ??? -->
     <link rel="stylesheet" type="text/css" href="<?= base_url();?>Lib/matrix-admin-bt4/assets/extra-libs/multicheck/multicheck.css">
     <link href="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
 
+    <?php if (isset($css)) : ?> <!-- aca se cargan estilos desde el controlador -->
+      <?php foreach ($css as $src) : ?>
+        <link rel="stylesheet" href="<?= base_url('Lib/'.$src);?>">
+      <?php endforeach; ?>
+    <?php endif; ?>
     <!-- ??? -->
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -215,5 +219,3 @@
             <!-- ============================================================== -->
             <div class="container-fluid">
               <!-- CONTENIDO DE LA PAGINA -->
-
-              

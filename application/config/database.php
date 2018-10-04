@@ -76,8 +76,8 @@ $query_builder = TRUE;
 $db['default'] = array( //con pdo
 	'dsn'	=> 'mysql:host=localhost;dbname=esmn',
 	'hostname' => '',
-	'username' => 'root',
-	'password' => '',
+	'username' => 'esmn',
+	'password' => 'esmn123',
 	'database' => '',
 	'dbdriver' => 'pdo',
 	'dbprefix' => '',

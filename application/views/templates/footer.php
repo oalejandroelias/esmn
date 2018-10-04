@@ -38,9 +38,20 @@
     <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
     <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/quill/dist/quill.min.js"></script>
-  
 
-<!--  Scripts cargados desde el controlador --> 
+
+    <!-- this page js -->
+    <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
+    <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/extra-libs/multicheck/jquery.multicheck.js"></script>
+    <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/extra-libs/DataTables/datatables.min.js"></script>
+    <script>
+    /****************************************
+    *       Basic Table                   *
+    ****************************************/
+    $('#zero_config').DataTable();
+  </script>
+  
+<!--  Scripts cargados desde el controlador -->
 <?php if (isset($js)) : ?>
   <?php foreach ($js as $src) : ?>
     <script src="<?= base_url('Lib/'.$src);?>"></script>
@@ -48,16 +59,6 @@
 <?php endif; ?>
 
 
-  <!-- this page js -->
-    <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
-    <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/extra-libs/multicheck/jquery.multicheck.js"></script>
-    <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/extra-libs/DataTables/datatables.min.js"></script>
-    <script>
-        /****************************************
-         *       Basic Table                   *
-         ****************************************/
-        $('#zero_config').DataTable();
-    </script>
 
 </body>
 

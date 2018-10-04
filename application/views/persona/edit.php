@@ -5,33 +5,16 @@
 		<div class="col-md-8">
 			<select name="id_tipo_documento" class="form-control">
 				<option value="">select tipo_documento</option>
-				<?php 
+				<?php
 				foreach($all_tipo_documento as $tipo_documento)
 				{
 					$selected = ($tipo_documento['id'] == $persona['id_tipo_documento']) ? ' selected="selected"' : "";
 
 					echo '<option value="'.$tipo_documento['id'].'" '.$selected.'>'.$tipo_documento['nombre'].'</option>';
-				} 
+				}
 				?>
 			</select>
 			<span class="text-danger"><?php echo form_error('id_tipo_documento');?></span>
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="id_ciudad" class="col-md-4 control-label">Ciudad</label>
-		<div class="col-md-8">
-			<select name="id_ciudad" class="form-control">
-				<option value="">select ciudad</option>
-				<?php 
-				foreach($all_ciudades as $ciudad)
-				{
-					$selected = ($ciudad['id'] == $persona['id_ciudad']) ? ' selected="selected"' : "";
-
-					echo '<option value="'.$ciudad['id'].'" '.$selected.'>'.$ciudad['nombre'].'</option>';
-				} 
-				?>
-			</select>
-			<span class="text-danger"><?php echo form_error('id_ciudad');?></span>
 		</div>
 	</div>
 	<div class="form-group">
@@ -39,6 +22,23 @@
 		<div class="col-md-8">
 			<input type="text" name="numero_documento" value="<?php echo ($this->input->post('numero_documento') ? $this->input->post('numero_documento') : $persona['numero_documento']); ?>" class="form-control" id="numero_documento" />
 			<span class="text-danger"><?php echo form_error('numero_documento');?></span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="id_ciudad" class="col-md-4 control-label">Ciudad</label>
+		<div class="col-md-8">
+			<select name="id_ciudad" class="form-control">
+				<option value="">select ciudad</option>
+				<?php
+				foreach($all_ciudades as $ciudad)
+				{
+					$selected = ($ciudad['id'] == $persona['id_ciudad']) ? ' selected="selected"' : "";
+
+					echo '<option value="'.$ciudad['id'].'" '.$selected.'>'.$ciudad['nombre'].'</option>';
+				}
+				?>
+			</select>
+			<span class="text-danger"><?php echo form_error('id_ciudad');?></span>
 		</div>
 	</div>
 	<div class="form-group">
@@ -82,11 +82,11 @@
 			<input type="text" name="fecha_nacimiento" value="<?php echo ($this->input->post('fecha_nacimiento') ? $this->input->post('fecha_nacimiento') : $persona['fecha_nacimiento']); ?>" class="form-control" id="fecha_nacimiento" />
 		</div>
 	</div>
-	
+
 	<div class="form-group">
 		<div class="col-sm-offset-4 col-sm-8">
 			<button type="submit" class="btn btn-success">Save</button>
         </div>
 	</div>
-	
+
 <?php echo form_close(); ?>
