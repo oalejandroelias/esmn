@@ -1,0 +1,22 @@
+/* CONTENIDO DE LAS PAGINAS*/
+.contenido {
+  /* background: url(../../img/bg-noise-clear.jpg) repeat; */
+  padding: 70px 35px 15px 50px;
+  min-height: 100vh;
+  /* transition: all 0.3s; */
+  width: 100%;
+  /*font-size: 14px;*/
+  display: flex;
+  /*-ms-flex-wrap: wrap;*/
+  flex-wrap: wrap;
+}
+@media only screen and (max-width:500px) {
+  .contenido{padding: 52px 0px 0px 19px;}
+}
+.container{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+/* mover elementos relativos o absolutos */
+.b-3{bottom: 3em;}
+.t-3{top: 3em;}
