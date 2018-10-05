@@ -31,7 +31,7 @@
     function initialize() {
       var marcadores = [
   
-        ['Escuela de musica', -38.952516, -68.059611]
+        ['Escuela de musica', -38.952516, -68.059611], ['Escuela de musica', -37.952516, -66.059611]
       ];
       var map = new google.maps.Map(document.getElementById('mapa'), {
         zoom: 14,

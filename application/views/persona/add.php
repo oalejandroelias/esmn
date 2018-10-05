@@ -76,17 +76,20 @@
 			<span class="text-danger"><?php echo form_error('email');?></span>
 		</div>
 	</div>
+	
 	<div class="form-group">
-		<label for="fecha_nacimiento" class="col-md-4 control-label">Fecha Nacimiento</label>
-		<div class="col-md-8">
-			<input type="text" name="fecha_nacimiento" value="<?php echo $this->input->post('fecha_nacimiento'); ?>" class="form-control" id="fecha_nacimiento" />
-		</div>
+		<div class="input-group col-md-8">
+	        <input type="text" class="form-control mydatepicker" placeholder="yyyy-mm-dd" name="fecha_nacimiento" value="<?php echo $this->input->post('fecha_nacimiento'); ?>" id="fecha_nacimiento" data-date-format="yyyy/mm/dd">
+	        <div class="input-group-append">
+	            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+	        </div>
+	    </div>
 	</div>
 
 	<div class="form-group">
 		<div class="form-check">
 	  		<label class="form-check-label">
-	    		<input type="checkbox" class="form-check-input" name="generar_usuario" value="0">Generar Usuario
+	    		<input type="checkbox" class="form-check-input" name="generar_usuario" value="0" >Generar Usuario
 
 	  		</label>
 		</div>

@@ -60,6 +60,7 @@ class Persona extends CI_Controller{
 
         if($this->form_validation->run())
         {
+            //print_r($_POST);exit;
             $params = array(
                 'id_tipo_documento' => $this->input->post('id_tipo_documento'),
                 'id_ciudad' => $this->input->post('id_ciudad'),
@@ -75,16 +76,17 @@ class Persona extends CI_Controller{
             $persona_id = $this->Persona_model->add_persona($params);
 
             //Creo el usuario
-            if($this->input->post('generar_usuario') == true)
+            if(isset($_POST['generar_usuario']))
             {
-            $username= substr($this->input->post('nombre'),0,1).$this->input->post('apellido');
+            $username= strtolower(substr($this->input->post('nombre'),0,1).$this->input->post('apellido'));
 
 
 
+            $password = hash('sha512',$username.$this->input->post('numero_documento'));
             $params_usuario= array(
                 'id_persona' => $this->input->post('id_tipo_documento'),
                 'username' => $username,
-                'password' => $this->input->post('numero_documento'),
+                'password' => $password,
             );
 
             $usuario_id = $this->Usuario_model->add_usuario($params_usuario);
@@ -130,6 +132,7 @@ class Persona extends CI_Controller{
 
 			if($this->form_validation->run())
             {
+
                 $params = array(
 					'id_tipo_documento' => $this->input->post('id_tipo_documento'),
 					'id_ciudad' => $this->input->post('id_ciudad'),
