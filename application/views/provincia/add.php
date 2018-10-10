@@ -2,7 +2,7 @@
 	<div class="col-6">
 		<div class="card">
 			<div class="card-body">
-				<h5 class="card-title"><?=$page_title?></h5>
+				<!-- <h5 class="card-title"><?=$page_title?></h5> -->
 				<?php echo form_open('provincia/add',array("class"=>"form-horizontal")); ?>
 
 				<div class="form-group">
@@ -15,7 +15,7 @@
 
 				<div class="form-group">
 					<div class="col-sm-offset-4 col-sm-8">
-						<button type="submit" class="btn btn-success">Save</button>
+						<button type="submit" class="btn btn-success">Guardar</button>
 					</div>
 				</div>
 

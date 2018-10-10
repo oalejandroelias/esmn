@@ -33,12 +33,16 @@ class Ciudad_model extends CI_Model
      */
     function get_all_ciudades($params = array())
     {
-        $this->db->order_by('id', 'desc');
-        if(isset($params) && !empty($params))
-        {
-            $this->db->limit($params['limit'], $params['offset']);
-        }
-        return $this->db->get('ciudad')->result_array();
+      $this->db->select('ciudad.id AS "ciudad_id",id_provincia,ciudad.nombre AS "ciudad",provincia.nombre AS "provincia"');
+      $this->db->from('ciudad');
+      $this->db->join('provincia', 'ciudad.id_provincia = provincia.id', 'join');
+      $this->db->order_by('ciudad_id', 'desc');
+      if(isset($params) && !empty($params))
+      {
+        $this->db->limit($params['limit'], $params['offset']);
+      }
+      $query = $this->db->get();
+      return $query->result_array();
     }
 
     /*

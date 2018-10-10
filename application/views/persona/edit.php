@@ -28,13 +28,13 @@
 		<label for="id_ciudad" class="col-md-4 control-label">Ciudad</label>
 		<div class="col-md-8">
 			<select name="id_ciudad" class="form-control">
-				<option value="">select ciudad</option>
+				<option value="">Seleccionar Ciudad</option>
 				<?php
 				foreach($all_ciudades as $ciudad)
 				{
-					$selected = ($ciudad['id'] == $persona['id_ciudad']) ? ' selected="selected"' : "";
+					$selected = ($ciudad['ciudad_id'] == $persona['id_ciudad']) ? ' selected="selected"' : "";
 
-					echo '<option value="'.$ciudad['id'].'" '.$selected.'>'.$ciudad['nombre'].'</option>';
+					echo '<option value="'.$ciudad['ciudad_id'].'" '.$selected.'>'.$ciudad['ciudad'].'</option>';
 				}
 				?>
 			</select>

@@ -79,7 +79,7 @@ class Inicio extends CI_Controller {
 			)
 		);
 		echo '<a href="https://drive.google.com/open?id='.$result->id.'" target="_blank">'.$result->name.'></a></br>';
-		echo '<a href="https://drive.google.com/open?id='.$result2->id.'" target="_blank">'.$result2->name.'></a>';
+		echo '<a href="https://drive.google.com/open?id='.$result2->id.'" target="_blank">'.$result2->name.'></a></br>';
 	}
 
 }

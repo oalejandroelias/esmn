@@ -4,7 +4,7 @@
 		<label for="id_tipo_documento" class="col-md-4 control-label"><span class="text-danger">*</span>Tipo Documento</label>
 		<div class="col-md-8">
 			<select name="id_tipo_documento" class="form-control">
-				<option value="">select tipo_documento</option>
+				<option value="">Seleccionar tipo de documento</option>
 				<?php
 				foreach($all_tipo_documento as $tipo_documento)
 				{
@@ -28,7 +28,7 @@
 		<label for="id_ciudad" class="col-md-4 control-label">Ciudad</label>
 		<div class="col-md-8">
 			<select name="id_ciudad" class="form-control">
-				<option value="">select ciudad</option>
+				<option value="">Seleccionar Ciudad</option>
 				<?php
 				foreach($all_ciudades as $ciudad)
 				{
@@ -76,7 +76,7 @@
 			<span class="text-danger"><?php echo form_error('email');?></span>
 		</div>
 	</div>
-	
+
 	<div class="form-group">
 		<div class="input-group col-md-8">
 	        <input type="text" class="form-control mydatepicker" placeholder="yyyy-mm-dd" name="fecha_nacimiento" value="<?php echo $this->input->post('fecha_nacimiento'); ?>" id="fecha_nacimiento" data-date-format="yyyy/mm/dd">

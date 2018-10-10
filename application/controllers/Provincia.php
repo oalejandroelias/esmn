@@ -16,7 +16,8 @@ class Provincia extends CI_Controller{
   */
   function index()
   {
-    $data['page_title'] = 'Provincias - ESMN';
+    $data['title'] = 'Provincias - ESMN';
+    $data['page_title'] = 'Provincias';
     $params['limit'] = RECORDS_PER_PAGE;
     $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
 
@@ -51,6 +52,7 @@ class Provincia extends CI_Controller{
     else
     {
       $data['title'] = 'Nueva Provincia - ESMN';
+      $data['page_title'] = 'Nueva Provincia';
       $this->load->view('templates/header',$data);
       $this->load->view('provincia/add');
       $this->load->view('templates/footer');
@@ -82,8 +84,11 @@ class Provincia extends CI_Controller{
       }
       else
       {
-        $data['_view'] = 'provincia/edit';
-        $this->load->view('layouts/main',$data);
+        $data['title'] = 'Editar Provincia - ESMN';
+        $data['page_title'] = 'Editar Provincia';
+        $this->load->view('templates/header',$data);
+        $this->load->view('provincia/edit',$data);
+        $this->load->view('templates/footer',$data);
       }
     }
     else
