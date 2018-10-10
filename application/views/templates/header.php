@@ -97,9 +97,11 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="<?php echo base_url('Perfil')?>">Perfiles</a>
-                                <a class="dropdown-item" href="<?php echo base_url('Persona')?>">Persona</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                                <a class="dropdown-item" href="<?php echo base_url('Persona')?>">Personas</a>
+                                <a class="dropdown-item" href="<?php echo base_url('Provincia')?>">Provincias</a>
+                                <a class="dropdown-item" href="<?php echo base_url('Ciudad')?>">Ciudades</a>
+                                <!-- <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a> -->
                             </div>
                         </li>
                         <!-- ============================================================== -->
@@ -175,7 +177,7 @@
                             <i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Inicio</span>
                           </a>
                         </li>
-                        <li class="sidebar-item">
+                        <!-- <li class="sidebar-item">
                           <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                             <i class="mdi mdi-receipt"></i><span class="hide-menu">Provincias </span>
                           </a>
@@ -185,7 +187,7 @@
                                 <li class="sidebar-item"><a href="<?=base_url('provincia/add')?>" class="sidebar-link">
                                   <i class="mdi mdi-note-plus"></i><span class="hide-menu"> Nuevo </span></a></li>
                             </ul>
-                        </li>
+                        </li> -->
                     </ul>
                 </nav>
             </div>
@@ -204,10 +206,15 @@
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">Esto</a></li>
-                                    <li class="breadcrumb-item"><a href="#">deberia</a></li>
-                                    <li class="breadcrumb-item"><a href="#">ser</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">dinámico</li>
+                                  <?php $segs = $this->uri->rsegment_array();?>
+                                    <?php for ($i=1; $i <= count($segs); $i++) : ?>
+                                      <?php if ($i!=count($segs)): ?>
+                                        <li class="breadcrumb-item"><a href="#"><?= $segs[$i] ?></a></li>
+                                        <?php else: ?>
+                                          <li class="breadcrumb-item active" aria-current="page"><?= $segs[$i] ?></li>
+                                        <?php endif; ?>
+                                    <?php endfor; ?>
+
                                 </ol>
                             </nav>
                         </div>
