@@ -112,12 +112,17 @@ class Perfil extends CI_Controller{
     show_error('The perfil you are trying to delete does not exist.');
   }
 
+  // editar permisos del rol $id
   public function edit_permission($id){
     $data['perfil'] = $this->Perfil_model->get_perfil($id);
 
     if(isset($data['perfil']['id'])){
+      // permisos del rol en array()
+      $permisos_rol = json_decode($data['perfil']['permisos'],true);
+
+      // se crea un arreglo asociativo con todos los controladores y sus respectivos metodos
       $this->load->helper('file');
-      // obtener nombres de controladores
+      // obtener nombres de controladores (clases)
       $controllers = get_filenames( APPPATH . 'controllers/' );
       foreach( $controllers as $k => $v ){
         if( strpos( $v, '.php' ) === FALSE) {
@@ -132,21 +137,38 @@ class Perfil extends CI_Controller{
 
         foreach( $methods as $method ){
           if ($method!='__construct' && $method!='get_instance') {
-            $permisos[str_replace('.php', '', $controller)][$method] = 'valor';
+            $class = str_replace('.php', '', $controller); //nombre de la clase
+
+            $key='0';
+            // machea clase y metodo con los permisos del rol,
+            // si existe y el valor de la clave es igual a 1, corresponde un checked
+            if (isset($permisos_rol[$class]) && array_key_exists($method,$permisos_rol[$class])) {
+              $key = $permisos_rol[$class][$method];
+            }
+            $checked = ($key=='1' ? 'checked' : '');
+            $permisos[$class][$method] = $checked;
           }
         }
       }
 
+      // si $_POST no esta vacio, se actualizan los permisos del rol
+      if (!empty($_POST) && isset($_POST['permisos'])) {
+        $params = array(
+          'permisos' => json_encode($this->input->post('permisos')),
+        );
+        // guardar permisos en formato json
+        $this->Perfil_model->update_perfil($id,$params);
+        redirect('perfil/index');
 
-      $data['permisos'] = $permisos;
-      $data['title'] = 'Editar permisos - CeciliaESMN';
-      $data['page_title'] = "Editar permisos de ".$data['perfil']['nombre'];
-      // echo '<pre>';
-      //         print_r($permisos);
-      //         echo  '</pre>';
-      $this->load->view('templates/header',$data);
-      $this->load->view('perfil/edit_permission',$data);
-      $this->load->view('templates/footer',$data);
+      }else {
+        $data['permisos'] = $permisos;
+        $data['title'] = 'Editar permisos - CeciliaESMN';
+        $data['page_title'] = "Editar permisos de ".$data['perfil']['nombre'];
+
+        $this->load->view('templates/header',$data);
+        $this->load->view('perfil/edit_permission',$data);
+        $this->load->view('templates/footer',$data);
+      }
 
     }
     else

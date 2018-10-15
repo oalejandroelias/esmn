@@ -33,12 +33,22 @@ class Usuario_model extends CI_Model
   */
   function get_all_usuarios($params = array())
   {
-    $this->db->order_by('id', 'desc');
+    $this->db->select('persona.id AS "persona_id",tipo_documento.nombre AS "tipo_documento",
+                      numero_documento,persona.nombre,apellido,usuario.id AS "usuario_id",
+                      username,id_perfil,perfil_usuario.permisos AS "permisos_usuario",
+                      perfil.nombre AS "rol",perfil.permisos AS "permisos_perfil"');
+    $this->db->from('usuario');
+    $this->db->join('persona', 'persona.id = usuario.id_persona', 'inner');
+    $this->db->join('tipo_documento', 'tipo_documento.id = persona.id_tipo_documento', 'inner');
+    $this->db->join('perfil_usuario', 'usuario.id = perfil_usuario.id_usuario', 'inner');
+    $this->db->join('perfil', 'perfil.id = perfil_usuario.id_perfil', 'inner');
+    $this->db->order_by('usuario_id', 'desc');
     if(isset($params) && !empty($params))
     {
       $this->db->limit($params['limit'], $params['offset']);
     }
-    return $this->db->get('usuario')->result_array();
+    $query = $this->db->get();
+    return $query->result_array();
   }
 
   /*

@@ -6,12 +6,14 @@
     <tr>
 		<!-- <th>ID</th> -->
 		<th>Nombre</th>
-		<th>Actions</th>
+		<th>Permisos</th>
+		<th>Acciones</th>
     </tr>
 	<?php foreach($perfiles as $p){ ?>
     <tr>
 		<!-- <td><?php echo $p['id']; ?></td> -->
 		<td><?php echo $p['nombre']; ?></td>
+		<td><?php echo $p['permisos']; ?></td>
 		<td>
             <a href="<?php echo site_url('perfil/edit/'.$p['id']); ?>" class="btn btn-info btn-sm">Editar</a>
             <a href="<?php echo site_url('perfil/remove/'.$p['id']); ?>" class="btn btn-danger btn-sm">Eliminar</a>

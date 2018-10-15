@@ -7,10 +7,10 @@
 			<span class="text-danger"><?php echo form_error('nombre');?></span>
 		</div>
 	</div>
-	
+
 	<div class="form-group">
 		<div class="col-sm-offset-4 col-sm-8">
-			<button type="submit" class="btn btn-success">Save</button>
+			<button type="submit" class="btn btn-success">Guardar</button>
         </div>
 	</div>
 
