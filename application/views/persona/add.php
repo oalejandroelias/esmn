@@ -32,9 +32,9 @@
 				<?php
 				foreach($all_ciudades as $ciudad)
 				{
-					$selected = ($ciudad['id'] == $this->input->post('id_ciudad')) ? ' selected="selected"' : "";
+					$selected = ($ciudad['ciudad_id'] == $this->input->post('id_ciudad')) ? ' selected="selected"' : "";
 
-					echo '<option value="'.$ciudad['id'].'" '.$selected.'>'.$ciudad['nombre'].'</option>';
+					echo '<option value="'.$ciudad['ciudad_id'].'" '.$selected.'>'.$ciudad['ciudad'].'</option>';
 				}
 				?>
 			</select>
