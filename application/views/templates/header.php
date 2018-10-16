@@ -23,7 +23,7 @@
 
     <?php if (isset($css)) : ?> <!-- aca se cargan estilos desde el controlador -->
       <?php foreach ($css as $src) : ?>
-        <link rel="stylesheet" href="<?= base_url('Lib/'.$src);?>">
+        <link rel="stylesheet" href="<?= base_url('Lib/css/'.$src);?>">
       <?php endforeach; ?>
     <?php endif; ?>
     <!-- ??? -->

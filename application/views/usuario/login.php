@@ -13,10 +13,10 @@
   <link rel="icon" type="image/png" sizes="16x16" href="">
   <title><?= $title ?></title>
   <!-- Custom CSS -->
-  <link href="<?= base_url('Lib/css/style.min.css');?>" rel="stylesheet">
+  <link href="<?= base_url();?>Lib/matrix-admin-bt4/dist/css/style.min.css" rel="stylesheet">
   <?php if (isset($css)) : ?> <!-- aca se cargan estilos desde el controlador -->
     <?php foreach ($css as $src) : ?>
-      <link rel="stylesheet" href="<?= base_url('Lib/'.$src);?>">
+      <link rel="stylesheet" href="<?= base_url('Lib/css/'.$src);?>">
     <?php endforeach; ?>
   <?php endif; ?>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -57,8 +57,8 @@
 
 </div>
 
-<script src="<?= base_url('Lib/jquery/dist/jquery.min.js');?>"></script>
-<script src="<?= base_url('Lib/bootstrap/dist/js/bootstrap.min.js');?>"></script>
+<script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/jquery/dist/jquery.min.js"></script>
+<script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
 
 <?php if (isset($js)) : ?>
   <?php foreach ($js as $src) : ?>

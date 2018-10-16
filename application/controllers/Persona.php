@@ -12,6 +12,8 @@ class Persona extends CI_Controller{
         $this->load->model('Usuario_model');
         $this->load->model('Tipo_documento_model');
         $this->load->model('Ciudad_model');
+        $this->load->model('Perfil_model');
+        $this->load->model('Perfil_usuario_model');
     }
 
     /*
@@ -60,7 +62,7 @@ class Persona extends CI_Controller{
 
         if($this->form_validation->run())
         {
-            //print_r($_POST);exit;
+
             $params = array(
                 'id_tipo_documento' => $this->input->post('id_tipo_documento'),
                 'id_ciudad' => $this->input->post('id_ciudad'),
@@ -72,6 +74,7 @@ class Persona extends CI_Controller{
                 'email' => $this->input->post('email'),
                 'fecha_nacimiento' => $this->input->post('fecha_nacimiento'),
             );
+            if ($params['id_ciudad']=='') {$params['id_ciudad']=NULL;}
 
             $persona_id = $this->Persona_model->add_persona($params);
 
@@ -82,14 +85,24 @@ class Persona extends CI_Controller{
 
 
 
-            $password = hash('sha512',$username.$this->input->post('numero_documento'));
+            $password = hash('sha512',$username.html_escape($this->input->post('numero_documento',TRUE)));
             $params_usuario= array(
-                'id_persona' => $this->input->post('id_tipo_documento'),
+                'id_persona' => $persona_id,
                 'username' => $username,
                 'password' => $password,
             );
 
             $usuario_id = $this->Usuario_model->add_usuario($params_usuario);
+
+            $id_perfil = $this->input->post('id_perfil');
+            $permisos = $this->Perfil_model->get_perfil($id_perfil)['permisos'];
+            $params_perfil_usuario=array(
+              'id_usuario' => $usuario_id,
+              'id_perfil' => $this->input->post('id_perfil'),
+              'permisos' => $permisos,
+            );
+
+            $this->Perfil_usuario_model->add_perfil_usuario($params_perfil_usuario);
             }
 
 
@@ -100,8 +113,10 @@ class Persona extends CI_Controller{
 
             $data['all_tipo_documento'] = $this->Tipo_documento_model->get_all_tipo_documento();
             $data['all_ciudades'] = $this->Ciudad_model->get_all_ciudades();
+            $data['all_roles'] = $this->Perfil_model->get_all_perfiles();
 
-            $data['_view'] = 'persona/add';
+            $data['js'] = array('persona_add.js');
+
             $this->load->view('templates/header',$data);
             $this->load->view('persona/add',$data);
             $this->load->view('templates/footer',$data);
