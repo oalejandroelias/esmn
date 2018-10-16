@@ -62,7 +62,6 @@ class Usuario extends CI_Controller{
 			$this->load->model('Persona_model');
 			$data['all_personas'] = $this->Persona_model->get_all_personas();
 
-            $data['_view'] = 'usuario/add';
             $this->load->view('templates/header',$data);
             $this->load->view('usuario/add',$data);
             $this->load->view('templates/footer',$data);
@@ -77,7 +76,7 @@ class Usuario extends CI_Controller{
         // check if the usuario exists before trying to edit it
         $data['usuario'] = $this->Usuario_model->get_usuario($id);
 
-        if(isset($data['usuario']['id']))
+        if(isset($data['usuario']['usuario_id']))
         {
             $this->load->library('form_validation');
 
@@ -101,8 +100,12 @@ class Usuario extends CI_Controller{
 				$this->load->model('Persona_model');
 				$data['all_personas'] = $this->Persona_model->get_all_personas();
 
-                $data['_view'] = 'usuario/edit';
-                $this->load->view('layouts/main',$data);
+        $data['title']='Editar usuario - ESMN';
+        $data['page_title']='Editar usuario -> '.$data['usuario']['nombre'].' '.$data['usuario']['apellido'];
+
+        $this->load->view('templates/header',$data);
+        $this->load->view('usuario/edit',$data);
+        $this->load->view('templates/footer',$data);
             }
         }
         else

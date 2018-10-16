@@ -1,4 +1,4 @@
-<?php echo form_open('perfil/edit_permission/'.$perfil['id'],array("class"=>"form-horizontal")); ?>
+<?php echo form_open('perfil_usuario/edit_permission/'.$perfil_usuario['id_usuario'].'/'.$perfil_usuario['id_perfil'],array("class"=>"form-horizontal")); ?>
 <div class="row">
 
   <?php foreach ($permisos as $class => $methods): ?>

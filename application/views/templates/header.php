@@ -98,6 +98,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="<?php echo base_url('Perfil')?>">Perfiles</a>
                                 <a class="dropdown-item" href="<?php echo base_url('Persona')?>">Personas</a>
+                                <a class="dropdown-item" href="<?php echo base_url('Usuario')?>">Usuarios</a>
                                 <a class="dropdown-item" href="<?php echo base_url('Provincia')?>">Provincias</a>
                                 <a class="dropdown-item" href="<?php echo base_url('Ciudad')?>">Ciudades</a>
                                 <!-- <div class="dropdown-divider"></div>
