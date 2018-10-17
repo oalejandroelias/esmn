@@ -9,6 +9,7 @@ class Usuario extends CI_Controller{
   function __construct()
   {
     parent::__construct();
+    is_logged_in();
     $this->load->model('Usuario_model');
     $this->load->model('Persona_model');
     $this->load->model('Perfil_model');

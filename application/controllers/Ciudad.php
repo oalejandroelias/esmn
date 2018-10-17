@@ -8,6 +8,7 @@ class Ciudad extends CI_Controller{
   function __construct()
   {
     parent::__construct();
+    is_logged_in();
     $this->load->model('Ciudad_model');
     $this->load->model('Provincia_model');
   }
