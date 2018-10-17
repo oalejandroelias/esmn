@@ -6,6 +6,7 @@
         <?php
         echo "<pre>";
         print_r($this->session->userdata());
+        print "Otro test de resolución de conflictos";
         echo "</pre>";
         ?>
       </div>
