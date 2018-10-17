@@ -11,6 +11,15 @@ class Usuario_model extends CI_Model
     parent::__construct();
   }
 
+
+  /*
+  * Get usuario by id_persona
+  */
+  function get_usuario_by_persona($id_persona)
+  {
+    return $this->db->get_where('usuario',array('id_persona'=>$id_persona))->row_array();
+  }
+
   /*
   * Get usuario by id
   */

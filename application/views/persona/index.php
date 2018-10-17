@@ -33,6 +33,11 @@
 								<td>
 									<a href="<?php echo site_url('persona/edit/'.$p['persona_id']); ?>" class="btn btn-info btn-sm">Editar</a>
 									<a href="<?php echo site_url('persona/remove/'.$p['persona_id']); ?>" class="btn btn-danger btn-sm">Eliminar</a>
+									<?php if (empty($this->Usuario_model->get_usuario_by_persona($p['persona_id']))): ?>
+										<a href="<?php echo site_url('usuario/add/'.$p['persona_id']); ?>" class="btn btn-primary btn-sm">Crear usuario</a>
+									<?php else: ?>
+										<span title="Ya tiene un usuario creado"><a href="#" class="btn btn-primary btn-sm disabled"  tabindex="-1" role="button" aria-disabled="true">Crear usuario</a></span>
+									<?php endif; ?>
 								</td>
 							</tr>
 						<?php } ?>

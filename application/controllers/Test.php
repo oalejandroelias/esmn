@@ -7,7 +7,8 @@ class Test extends CI_Controller {
 	{
 		$data['title']='test';
 		// $this->load->view('templates/header',$data);
-		$this->load->view('test',$data);
+		// $this->load->view('test',$data);
+		print_r($_SESSION);
 		// $this->load->view('templates/footer',$data);
 	}
 

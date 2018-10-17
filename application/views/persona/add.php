@@ -117,7 +117,7 @@
 				}
 				?>
 			</select>
-			<span class="text-danger"><?php echo form_error('id_ciudad');?></span>
+			<span class="text-danger"><?php echo form_error('id_perfil');?></span>
 		</div>
 	</div>
 
