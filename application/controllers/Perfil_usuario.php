@@ -8,10 +8,10 @@ class Perfil_usuario extends CI_Controller{
     function __construct()
     {
         parent::__construct();
+        
         is_logged_in();
         $this->load->model('Perfil_usuario_model');
     }
-
     /*
      * Listing of perfil_usuario
      */
@@ -91,7 +91,9 @@ class Perfil_usuario extends CI_Controller{
     }
 
     // editar permisos del rol $id
-    public function edit_permission($id_usuario,$id_perfil){
+    public function edit_permission($id_usuario,$id_perfil)
+    {
+      //validar_acceso();
       $data['perfil_usuario'] = $this->Perfil_usuario_model->get_perfil_usuario($id_usuario,$id_perfil);
 
       if(isset($data['perfil_usuario']['id_usuario']) && isset($data['perfil_usuario']['id_perfil'])){

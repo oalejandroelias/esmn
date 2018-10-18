@@ -18,6 +18,7 @@ class Ciudad extends CI_Controller{
   */
   function index()
   {
+    validar_acceso();
     $data['title'] = 'Ciudades - ESMN';
     $data['page_title'] = 'Ciudades';
     $params['limit'] = RECORDS_PER_PAGE;
@@ -30,10 +31,16 @@ class Ciudad extends CI_Controller{
 
     $data['ciudades'] = $this->Ciudad_model->get_all_ciudades($params);
     $data['all_provincias'] = $this->Provincia_model->get_all_provincias();
+    
+    //Botones de acciones
+    $data['boton_edit']=validar_botones('edit');
+    $data['boton_add']=validar_botones('add');
+    $data['boton_remove']=validar_botones('remove');
 
     $this->load->view('templates/header',$data);
     $this->load->view('ciudad/index',$data);
     $this->load->view('templates/footer');
+     
   }
 
   /*
@@ -41,7 +48,7 @@ class Ciudad extends CI_Controller{
   */
   function add()
   {
-
+    validar_acceso();
     $this->form_validation->set_rules('id_provincia','Provincia','required');
     $this->form_validation->set_rules('nombre','Nombre','required|max_length[64]');
 
@@ -71,6 +78,7 @@ class Ciudad extends CI_Controller{
   */
   function edit($id)
   {
+    validar_acceso();
     // check if the ciudad exists before trying to edit it
     $data['ciudad'] = $this->Ciudad_model->get_ciudad($id);
     $data['all_provincias'] = $this->Provincia_model->get_all_provincias();
@@ -109,6 +117,7 @@ class Ciudad extends CI_Controller{
   */
   function remove($id)
   {
+    validar_acceso();
     $ciudad = $this->Ciudad_model->get_ciudad($id);
 
     // check if the ciudad exists before trying to delete it

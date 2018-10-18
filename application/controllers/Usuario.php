@@ -10,6 +10,7 @@ class Usuario extends CI_Controller{
   {
     parent::__construct();
     is_logged_in();
+    validar_acceso();
     $this->load->model('Usuario_model');
     $this->load->model('Persona_model');
     $this->load->model('Perfil_model');
@@ -22,7 +23,7 @@ class Usuario extends CI_Controller{
   function index()
   {
     $data['title']='Usuarios - ESMN';
-    $data['page_title']='Usuarios';
+    $data['page_title']='<span class="m-r-10 mdi mdi-account">Usuarios </span>';
     $params['limit'] = RECORDS_PER_PAGE;
     $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
 
@@ -32,6 +33,10 @@ class Usuario extends CI_Controller{
     $this->pagination->initialize($config);
 
     $data['usuarios'] = $this->Usuario_model->get_all_usuarios($params);
+    
+    $data['boton_edit']=validar_botones('edit');
+    $data['boton_add']=validar_botones('add');
+    $data['boton_remove']=validar_botones('remove');
 
     $this->load->view('templates/header',$data);
     $this->load->view('usuario/index',$data);
@@ -43,7 +48,6 @@ class Usuario extends CI_Controller{
   */
   function add($id_persona)
   {
-
     $data['persona'] = $this->Persona_model->get_persona($id_persona);
 
     if(isset($data['persona']['id']) && empty($this->Usuario_model->get_usuario_by_persona($id_persona)))

@@ -8,6 +8,7 @@ class Perfil extends CI_Controller{
   function __construct()
   {
     parent::__construct();
+    validar_acceso();
     is_logged_in();
     $this->load->model('Perfil_model');
   }
@@ -18,8 +19,13 @@ class Perfil extends CI_Controller{
   function index()
   {
     $data['title']='Perfiles - CeciliaESMN';
-    $data['page_title']='Perfiles';
+    $data['page_title']='<span class="m-r-10 mdi mdi-account-convert"> Perfiles</span>';
     $data['perfiles'] = $this->Perfil_model->get_all_perfiles();
+    
+    //Botones de acciones
+    $data['boton_edit']=validar_botones('edit');
+    $data['boton_add']=validar_botones('add');
+    $data['boton_remove']=validar_botones('remove');
 
     //$data['_view'] = 'perfil/index';
     $this->load->view('templates/header',$data);
@@ -33,7 +39,7 @@ class Perfil extends CI_Controller{
   function add()
   {
     $this->load->library('form_validation');
-
+    
     $this->form_validation->set_rules('nombre','Nombre','required|max_length[64]');
 
     if($this->form_validation->run())
@@ -62,6 +68,7 @@ class Perfil extends CI_Controller{
   */
   function edit($id)
   {
+    //validar_acceso();
     // check if the perfil exists before trying to edit it
     $data['perfil'] = $this->Perfil_model->get_perfil($id);
 
@@ -100,6 +107,7 @@ class Perfil extends CI_Controller{
   */
   function remove($id)
   {
+    //validar_acceso();
     //$id = $this->input->get('id');
     $perfil = $this->Perfil_model->get_perfil($id);
 
@@ -115,6 +123,8 @@ class Perfil extends CI_Controller{
 
   // editar permisos del rol $id
   public function edit_permission($id){
+      
+    //validar_acceso();
     $data['perfil'] = $this->Perfil_model->get_perfil($id);
 
     if(isset($data['perfil']['id'])){

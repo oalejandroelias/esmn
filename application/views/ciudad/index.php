@@ -23,8 +23,13 @@
                     <td class="sorting_1"><?php echo $c['ciudad']; ?></td>
                     <td class="sorting_1"><?php echo $c['provincia']; ?></td>
                     <td>
-                      <a href="<?php echo site_url('ciudad/edit/'.$c['ciudad_id']); ?>" class="btn btn-info btn-sm">Editar</a>
-                      <a href="<?php echo site_url('ciudad/remove/'.$c['ciudad_id']); ?>" class="btn btn-danger btn-sm">Eliminar</a>
+                    <?php if($boton_edit){?>
+                      <a href="<?php echo site_url('Ciudad/edit/'.$c['ciudad_id']); ?>" class="btn btn-info btn-sm">Editar</a>
+                     <?php }?>
+                     
+                     <?php if($boton_edit){?>
+                      <a href="<?php echo site_url('Ciudad/remove/'.$c['ciudad_id']); ?>" class="btn btn-danger btn-sm">Eliminar</a>
+                      <?php }?>
                     </td>
                   </tr>
                 <?php } ?>
@@ -40,7 +45,7 @@
             </table>
 
             <div class="float-left position b-3">
-              <a href="<?php echo site_url('ciudad/add'); ?>" class="btn btn-success">Nueva</a>
+              <a href="<?php echo site_url('Ciudad/add'); ?>" class="btn btn-success">Nueva</a>
             </div>
           </div>
         </div>

@@ -8,6 +8,7 @@ class Tipo_documento extends CI_Controller{
     function __construct()
     {
         parent::__construct();
+        validar_acceso();
         is_logged_in();
         $this->load->model('Tipo_documento_model');
     }
@@ -17,7 +18,7 @@ class Tipo_documento extends CI_Controller{
      */
     function index()
     {
-        $data['tipo_documento'] = $this->Tipo_documento_model->get_all_tipo_documento();
+        $data['tipo_documento'] = $this->Tipo_documento_model->get_all_tipo_documento();    
 
         $data['_view'] = 'tipo_documento/index';
         $this->load->view('layouts/main',$data);

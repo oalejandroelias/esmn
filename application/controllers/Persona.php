@@ -8,6 +8,7 @@ class Persona extends CI_Controller{
     function __construct()
     {
         parent::__construct();
+        validar_acceso();
         is_logged_in();
         $this->load->model('Persona_model');
         $this->load->model('Usuario_model');
@@ -21,10 +22,10 @@ class Persona extends CI_Controller{
      * Listing of personas
      */
     function index()
-    {
+    { 
         $data['title']='Personas - CeciliaESMN';
         $data['page_title']='Personas';
-
+        
         $params['limit'] = RECORDS_PER_PAGE;
         $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
 
@@ -36,6 +37,14 @@ class Persona extends CI_Controller{
         $data['personas'] = $this->Persona_model->get_all_personas($params);
         $data['all_tipo_documento'] = $this->Tipo_documento_model->get_all_tipo_documento();
         $data['all_ciudades'] = $this->Ciudad_model->get_all_ciudades();
+        
+        //Botones de acciones
+        $data['boton_edit']=validar_botones('edit');
+        $data['boton_add']=validar_botones('add');
+        $data['boton_remove']=validar_botones('remove');
+        
+        
+        
 
         $data['_view'] = 'persona/index';
         $this->load->view('templates/header',$data);
