@@ -51,13 +51,13 @@ class Usuario_model extends CI_Model
   {
     $this->db->select('persona.id AS "persona_id",tipo_documento.nombre AS "tipo_documento",
                       numero_documento,persona.nombre,apellido,usuario.id AS "usuario_id",
-                      username,id_perfil,perfil_usuario.id_usuario AS "id_usuario_perfil",
-                      perfil_usuario.permisos,perfil.nombre AS "rol"');
+                      username,id_perfil,permisos,perfil.nombre AS "rol"');
     $this->db->from('usuario');
     $this->db->join('persona', 'persona.id = usuario.id_persona', 'inner');
     $this->db->join('tipo_documento', 'tipo_documento.id = persona.id_tipo_documento', 'inner');
     $this->db->join('perfil_usuario', 'usuario.id = perfil_usuario.id_usuario', 'inner');
     $this->db->join('perfil', 'perfil.id = perfil_usuario.id_perfil', 'inner');
+    
     $this->db->order_by('usuario_id', 'desc');
     if(isset($params) && !empty($params))
     {
@@ -95,11 +95,14 @@ class Usuario_model extends CI_Model
 
   // funcion comprobar usuario y contraseña
   public function login($username,$password){
-    $this->db->select('persona.id AS "persona_id",tipo_documento.nombre AS "tipo_documento",numero_documento,persona.nombre,apellido,usuario.id AS "usuario_id",email,username,id_perfil,permisos');
+    $this->db->select('persona.id AS "persona_id",tipo_documento.nombre AS "tipo_documento",
+                       numero_documento,persona.nombre,apellido,usuario.id AS "usuario_id",
+                       email,username,id_perfil,perfil.nombre AS "nombre_perfil",permisos');
     $this->db->from('persona');
     $this->db->join('tipo_documento','tipo_documento.id=persona.id_tipo_documento','inner');
     $this->db->join('usuario','usuario.id_persona=persona.id','inner');
     $this->db->join('perfil_usuario','perfil_usuario.id_usuario=usuario.id','inner');
+    $this->db->join('perfil','perfil.id=perfil_usuario.id_perfil','inner');
     $this->db->where('username',$username);
     $this->db->where('password',$password);
     $query = $this->db->get();

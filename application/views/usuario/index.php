@@ -17,7 +17,7 @@
 							<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending";">Apellido</th>
 							<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending";">Username</th>
 							<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending";">Rol</th>
-							<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending";">Permisos</th>
+							<!--<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending";">Permisos</th> -->
 							<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending";">Acciones</th>
 					</tr>
 						
@@ -31,7 +31,7 @@
 								<td><?= $u['apellido']; ?></td>
 								<td><?= $u['username']; ?></td>
 								<td><?= $u['rol']; ?></td>
-								<td><?= $u['permisos']?></td>
+								<!--<td><?= $u['permisos']?></td> -->
 								<td>
 								
 								
@@ -43,7 +43,7 @@
 									<a href="<?= site_url('Usuario/remove/'.$u['usuario_id']); ?>" class="btn btn-danger btn-sm">Eliminar</a>
 								<?php } ?>
 									
-									<a href="<?php echo site_url('Perfil_usuario/edit_permission/'.$u['id_usuario_perfil'].'/'.$u['id_perfil']); ?>" class="btn btn-warning btn-sm">Editar permisos</a>
+									
 								</td>
 							</tr>
 						<?php } ?>
@@ -58,7 +58,7 @@
                           	<th rowspan="1" colspan="1">Apellido</th>
                           	<th rowspan="1" colspan="1">Username</th>
                           	<th rowspan="1" colspan="1">Rol</th>
-                          	<th rowspan="1" colspan="1">Permisos</th>
+                          	<!--<th rowspan="1" colspan="1">Permisos</th>-->
                           	<th rowspan="1" colspan="1">Acciones</th>
                         </tr>
                   	</tfoot>
