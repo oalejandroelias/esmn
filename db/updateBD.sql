@@ -1,0 +1,8 @@
+--Scripts para actualizar la base
+
+ALTER TABLE `perfil` ADD `permisos` TEXT NULL AFTER `nombre`;
+
+
+UPDATE `perfil` SET `permisos` = '{\"Provincia\":{\"index\":\"1\",\"add\":\"1\",\"edit\":\"1\",\"remove\":\"1\"},\"Inicio\":{\"index\":\"1\",\"subir_archivos\":\"1\"},\"Perfil\":{\"index\":\"1\",\"add\":\"1\",\"edit\":\"1\",\"remove\":\"1\",\"edit_permission\":\"1\"},\"Persona\":{\"index\":\"1\",\"add\":\"1\",\"edit\":\"1\",\"remove\":\"1\"},\"Ciudad\":{\"index\":\"1\",\"add\":\"1\",\"edit\":\"1\",\"remove\":\"1\"},\"Perfil_usuario\":{\"index\":\"1\",\"add\":\"1\",\"edit\":\"1\",\"remove\":\"1\"},\"Tipo_documento\":{\"index\":\"1\",\"add\":\"1\",\"edit\":\"1\",\"remove\":\"1\"},\"Usuario\":{\"index\":\"1\",\"add\":\"1\",\"edit\":\"1\",\"remove\":\"1\"},\"Login\":{\"index\":\"1\",\"oauth2callback\":\"1\",\"login\":\"1\",\"token\":\"1\",\"logout\":\"1\"}}\r\n' WHERE `perfil`.`id` = 1;
+
+UPDATE `perfil_usuario` SET `permisos` = '{\"Provincia\":{\"index\":\"1\",\"add\":\"1\",\"edit\":\"1\",\"remove\":\"1\"},\"Inicio\":{\"index\":\"1\",\"subir_archivos\":\"1\"},\"Perfil\":{\"index\":\"1\",\"add\":\"1\",\"edit\":\"1\",\"remove\":\"1\",\"edit_permission\":\"1\"},\"Persona\":{\"index\":\"1\",\"add\":\"1\",\"edit\":\"1\",\"remove\":\"1\"},\"Ciudad\":{\"index\":\"1\",\"add\":\"1\",\"edit\":\"1\",\"remove\":\"1\"},\"Perfil_usuario\":{\"index\":\"1\",\"add\":\"1\",\"edit\":\"1\",\"remove\":\"1\"},\"Tipo_documento\":{\"index\":\"1\",\"add\":\"1\",\"edit\":\"1\",\"remove\":\"1\"},\"Usuario\":{\"index\":\"1\",\"add\":\"1\",\"edit\":\"1\",\"remove\":\"1\"},\"Login\":{\"index\":\"1\",\"oauth2callback\":\"1\",\"login\":\"1\",\"token\":\"1\",\"logout\":\"1\"}}\r\n' WHERE `perfil_usuario`.`id_usuario` = 1 AND `perfil_usuario`.`id_perfil` = 1;
