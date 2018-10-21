@@ -23,7 +23,7 @@
 
     <?php if (isset($css)) : ?> <!-- aca se cargan estilos desde el controlador -->
       <?php foreach ($css as $src) : ?>
-        <link rel="stylesheet" href="<?= base_url('Lib/'.$src);?>">
+        <link rel="stylesheet" href="<?= base_url('Lib/css/'.$src);?>">
       <?php endforeach; ?>
     <?php endif; ?>
     <!-- ??? -->
@@ -98,8 +98,11 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="<?php echo base_url('Perfil')?>">Perfiles</a>
                                 <a class="dropdown-item" href="<?php echo base_url('Persona')?>">Personas</a>
+                                <a class="dropdown-item" href="<?php echo base_url('Usuario')?>">Usuarios</a>
                                 <a class="dropdown-item" href="<?php echo base_url('Provincia')?>">Provincias</a>
                                 <a class="dropdown-item" href="<?php echo base_url('Ciudad')?>">Ciudades</a>
+                                <a class="dropdown-item" href="<?php echo base_url('Nivel')?>">Niveles</a>
+                                <a class="dropdown-item" href="<?php echo base_url('Carrera')?>">Carreras</a>
                                 <!-- <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">Something else here</a> -->
                             </div>

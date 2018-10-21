@@ -78,8 +78,9 @@
 	</div>
 
 	<div class="form-group">
+		<label for="fecha" class="col-md-4 control-label">Fecha de Nacimiento</label>
 		<div class="input-group col-md-8">
-	        <input type="text" class="form-control mydatepicker" placeholder="yyyy-mm-dd" name="fecha_nacimiento" value="<?php echo $this->input->post('fecha_nacimiento'); ?>" id="fecha_nacimiento" data-date-format="yyyy/mm/dd">
+	        <input type="text" class="form-control mydatepicker" placeholder="yyyy-mm-dd" name="fecha_nacimiento" value="<?php echo $this->input->post('fecha_nacimiento'); ?>" id="fecha_nacimiento">
 	        <div class="input-group-append">
 	            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
 	        </div>
@@ -87,19 +88,43 @@
 	</div>
 
 	<div class="form-group">
-		<div class="form-check">
+		<!-- <div class="form-check">
 	  		<label class="form-check-label">
 	    		<input type="checkbox" class="form-check-input" name="generar_usuario" value="0" >Generar Usuario
 
 	  		</label>
+		</div> -->
+		<label class="col-md-3"></label>
+		<div class="col-md-9">
+				<div class="custom-control custom-checkbox mr-sm-2">
+					<input class="custom-control-input" name="generar_usuario"
+						id="checkbox_generar_usuario" type="checkbox" value="0">
+					<label class="custom-control-label" for="checkbox_generar_usuario">Generar Usuario</label>
+				</div>
+		</div>
+	</div>
+
+	<div class="form-group d-none" id="copiar_permisos_de">
+		<label for="id_ciudad" class="col-md-4 control-label"><span class="text-danger">*</span>Copiar permisos de</label>
+		<div class="col-md-8">
+			<select name="id_perfil" class="form-control">
+				<option value="">Seleccionar Rol</option>
+				<?php
+				foreach($all_roles as $rol)
+				{
+					$selected = ($rol['id'] == $this->input->post('id_perfil')) ? ' selected="selected"' : "";
+
+					echo '<option value="'.$rol['id'].'" '.$selected.'>'.$rol['nombre'].'</option>';
+				}
+				?>
+			</select>
+			<span class="text-danger"><?php echo form_error('id_ciudad');?></span>
 		</div>
 	</div>
 
 	<div class="form-group">
 		<div class="col-sm-offset-4 col-sm-8">
-			<button type="submit" class="btn btn-success">Guardar y crear Usuario</button>
-        </div>
-        <div class="col-sm-offset-4 col-sm-8">
+			<button type="submit" class="btn btn-success">Guardar</button>
 			<button type="submit" formaction="index" class="btn btn-danger">Cancelar</button>
         </div>
 	</div>

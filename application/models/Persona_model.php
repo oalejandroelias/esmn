@@ -36,7 +36,7 @@ class Persona_model extends CI_Model
       $this->db->select('persona.id AS "persona_id",tipo_documento.nombre AS "tipo_documento",ciudad.nombre AS "ciudad",numero_documento,persona.nombre,apellido,domicilio,telefono,email,fecha_nacimiento');
       $this->db->from('persona');
       $this->db->join('tipo_documento', 'tipo_documento.id = persona.id_tipo_documento', 'join');
-      $this->db->join('ciudad', 'ciudad.id = persona.id_ciudad', 'join');
+      $this->db->join('ciudad', 'ciudad.id = persona.id_ciudad', 'left');
       $this->db->order_by('persona_id', 'desc');
       if(isset($params) && !empty($params))
       {

@@ -33,7 +33,7 @@ class Login extends CI_Controller {
 
     $data['title'] = 'Login - ESMN';
     $data['token'] = $this->token(); //token para form de usuario registrado
-    $data['css'] = array('css/login.css');
+    $data['css'] = array('login.css');
     $data['request_uri'] = $request_uri;
     $this->load->view('usuario/login',$data);
   }
