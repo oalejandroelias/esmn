@@ -98,8 +98,9 @@ class Login extends CI_Controller {
             'apellido' => $check_user->apellido,
             'tipo_documento' => $check_user->tipo_documento,
             'numero_documento' => $check_user->numero_documento,
-            'id_perfil' => $check_user->id_perfil,
             'email' => $check_user->email,
+            'id_perfil' => $check_user->id_perfil,
+            'nombre_perfil' => $check_user->nombre_perfil,
             'permisos' => $check_user->permisos,
           );
           $this->session->set_userdata($data);

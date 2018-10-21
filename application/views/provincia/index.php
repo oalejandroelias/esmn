@@ -21,8 +21,14 @@
                   <tr role="row" class="odd">
                     <td class="sorting_1"><?php echo $p['nombre']; ?></td>
                     <td>
-                      <a href="<?php echo site_url('provincia/edit/'.$p['id']); ?>" class="btn btn-info btn-sm">Editar</a>
-                      <a href="<?php echo site_url('provincia/remove/'.$p['id']); ?>" class="btn btn-danger btn-sm">Eliminar</a>
+                    
+                    <?php if($boton_edit){?>
+                      <a href="<?php echo site_url('Provincia/edit/'.$p['id']); ?>" class="btn btn-info btn-sm">Editar</a>
+                    <?php } ?>
+                    
+                    <?php if($boton_remove){?>
+                      <a href="<?php echo site_url('Provincia/remove/'.$p['id']); ?>" class="btn btn-danger btn-sm">Eliminar</a>
+                      <?php } ?>
                     </td>
                   </tr>
                 <?php } ?>
@@ -37,7 +43,7 @@
             </table>
 
             <div class="float-left position b-3">
-              <a href="<?php echo site_url('provincia/add'); ?>" class="btn btn-success">Nuevo</a>
+              <a href="<?php echo site_url('Provincia/add'); ?>" class="btn btn-success">Nuevo</a>
             </div>
           </div>
         </div>

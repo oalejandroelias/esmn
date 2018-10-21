@@ -22,3 +22,57 @@ function is_logged_in_login(){
         redirect(base_url('inicio'));
     }
 }
+
+function validar_acceso()
+{
+    $CI =& get_instance();
+    
+    
+    //$clase=$CI->uri->segments[1];
+    $clase=$CI->uri->rsegments[1];
+    $accion2=$CI->uri->rsegments[2];
+
+    $permisos=json_decode($_SESSION['permisos']);
+
+    //$existe_permiso=$permisos->$clase->$accion;
+    $existe_permiso=$permisos->$clase->$accion2;
+
+    if(!isset($existe_permiso))
+    {
+        //Si existe segments[2] es porque viene de un edit, add, etc.
+        if(!isset($CI->uri->segments[2]))
+        {
+            redirect('inicio');
+            exit;
+        }
+        else {
+            redirect($clase);
+            exit;
+        }
+        
+    }
+}
+
+
+function validar_botones($accion)
+{
+    $CI =& get_instance();
+    
+    
+    //$clase=$CI->uri->segments[1];
+    $clase=$CI->uri->rsegments[1];
+    //$accion2=$CI->uri->rsegments[2];
+    
+    $permisos=json_decode($_SESSION['permisos']);
+    
+    //$existe_permiso=$permisos->$clase->$accion;
+    if (isset($permisos->$clase->$accion))
+    {
+        return true;
+    }
+    else {
+        return false;
+    }
+    
+    
+}

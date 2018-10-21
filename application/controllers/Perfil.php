@@ -8,6 +8,8 @@ class Perfil extends CI_Controller{
   function __construct()
   {
     parent::__construct();
+    validar_acceso();
+    is_logged_in();
     $this->load->model('Perfil_model');
   }
 
@@ -17,12 +19,17 @@ class Perfil extends CI_Controller{
   function index()
   {
     $data['title']='Perfiles - CeciliaESMN';
-    $data['page_title']='Perfiles';
+    $data['page_title']='<span class="m-r-10 mdi mdi-account-convert"> Perfiles</span>';
     $data['perfiles'] = $this->Perfil_model->get_all_perfiles();
+    
+    //Botones de acciones
+    $data['boton_edit']=validar_botones('edit');
+    $data['boton_add']=validar_botones('add');
+    $data['boton_remove']=validar_botones('remove');
 
     //$data['_view'] = 'perfil/index';
     $this->load->view('templates/header',$data);
-    $this->load->view('perfil/index',$data);
+    $this->load->view('Perfil/index',$data);
     $this->load->view('templates/footer',$data);
   }
 
@@ -32,7 +39,7 @@ class Perfil extends CI_Controller{
   function add()
   {
     $this->load->library('form_validation');
-
+    
     $this->form_validation->set_rules('nombre','Nombre','required|max_length[64]');
 
     if($this->form_validation->run())
@@ -43,7 +50,7 @@ class Perfil extends CI_Controller{
       );
 
       $perfil_id = $this->Perfil_model->add_perfil($params);
-      redirect('perfil/index');
+      redirect('Perfil/index');
     }
     else
     {
@@ -51,7 +58,7 @@ class Perfil extends CI_Controller{
       $data['page_title'] = 'Agregar perfil';
 
       $this->load->view('templates/header',$data);
-      $this->load->view('perfil/add',$data);
+      $this->load->view('Perfil/add',$data);
       $this->load->view('templates/footer',$data);
     }
   }
@@ -61,6 +68,7 @@ class Perfil extends CI_Controller{
   */
   function edit($id)
   {
+    //validar_acceso();
     // check if the perfil exists before trying to edit it
     $data['perfil'] = $this->Perfil_model->get_perfil($id);
 
@@ -78,7 +86,7 @@ class Perfil extends CI_Controller{
         );
 
         $this->Perfil_model->update_perfil($id,$params);
-        redirect('perfil/index');
+        redirect('Perfil/index');
       }
       else
       {
@@ -86,7 +94,7 @@ class Perfil extends CI_Controller{
         $data['page_title'] = 'Editar perfil';
 
         $this->load->view('templates/header',$data);
-        $this->load->view('perfil/edit',$data);
+        $this->load->view('Perfil/edit',$data);
         $this->load->view('templates/footer',$data);
       }
     }
@@ -99,6 +107,7 @@ class Perfil extends CI_Controller{
   */
   function remove($id)
   {
+    //validar_acceso();
     //$id = $this->input->get('id');
     $perfil = $this->Perfil_model->get_perfil($id);
 
@@ -106,7 +115,7 @@ class Perfil extends CI_Controller{
     if(isset($perfil['id']))
     {
       $this->Perfil_model->delete_perfil($id);
-      redirect('perfil/index');
+      redirect('Perfil/index');
     }
     else
     show_error('The perfil you are trying to delete does not exist.');
@@ -114,6 +123,8 @@ class Perfil extends CI_Controller{
 
   // editar permisos del rol $id
   public function edit_permission($id){
+      
+    //validar_acceso();
     $data['perfil'] = $this->Perfil_model->get_perfil($id);
 
     if(isset($data['perfil']['id'])){
