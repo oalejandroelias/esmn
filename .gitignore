@@ -19,3 +19,4 @@ application/config/database.php
 
 #config de google
 application/config/google.php
+/.project
