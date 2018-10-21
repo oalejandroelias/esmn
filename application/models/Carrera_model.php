@@ -6,13 +6,15 @@
 
 class Carrera_model extends CI_Model
 {
+
+  //metodo contructor del modelo
   function __construct()
   {
     parent::__construct();
   }
 
   /*
-  * Get carrera by id
+  * obtener carrera a partir del id que ingresa como parametro
   */
   function get_carrera($id)
   {
@@ -20,7 +22,7 @@ class Carrera_model extends CI_Model
   }
 
   /*
-  * Get all carreras count
+  * cuenta el listado total de carreras
   */
   function get_all_carreras_count()
   {
@@ -29,7 +31,7 @@ class Carrera_model extends CI_Model
   }
 
   /*
-  * Get all carreras
+  * obtiene todas las carreras
   */
   function get_all_carreras($params = array(),$where = array())
   {
@@ -38,9 +40,6 @@ class Carrera_model extends CI_Model
     id_nivel,nivel.nombre AS "nivel",acta,fecha');
     $this->db->from('carrera');
     $this->db->join('nivel', 'nivel.id = carrera.id_nivel', 'inner');
-    // $this->db->select('nivel.nombre AS "nivel_nombre"');
-    // $this->db->from('nivel');
-
     $this->db->order_by('carrera_id', 'desc');
     if(isset($params) && !empty($params))
     {
@@ -57,7 +56,7 @@ class Carrera_model extends CI_Model
   }
 
   /*
-  * function to add new carrera
+  * funcion que agrega una nueva carrera
   */
   function add_carrera($params)
   {
@@ -66,7 +65,7 @@ class Carrera_model extends CI_Model
   }
 
   /*
-  * function to update carrera
+  * funcion que actualiza los datos de la carrera
   */
   function update_carrera($id,$params)
   {
@@ -75,7 +74,7 @@ class Carrera_model extends CI_Model
   }
 
   /*
-  * function to delete carrera
+  * funcion que elimina la carrera a partir del id ingresado por parametro
   */
   function delete_carrera($id)
   {

@@ -6,13 +6,14 @@
 
 class Nivel_model extends CI_Model
 {
+  //constructor de modelo nivel
     function __construct()
     {
         parent::__construct();
     }
 
     /*
-     * Get nivel by id
+     * obtinen el nivel a partir del id
      */
     function get_nivel($id)
     {
@@ -20,7 +21,7 @@ class Nivel_model extends CI_Model
     }
 
     /*
-     * Get all niveles count
+     * obtiene todos los niveles y los cuenta
      */
     function get_all_niveles_count()
     {
@@ -29,7 +30,7 @@ class Nivel_model extends CI_Model
     }
 
     /*
-     * Get all niveles
+     * obtiene todos los niveles
      */
     function get_all_niveles($params = array())
     {
@@ -42,7 +43,7 @@ class Nivel_model extends CI_Model
     }
 
     /*
-     * function to add new nivel
+     * funcion para agregar un nuevo nivel
      */
     function add_nivel($params)
     {
@@ -51,7 +52,7 @@ class Nivel_model extends CI_Model
     }
 
     /*
-     * function to update nivel
+     * funcion para actualizar un nivel
      */
     function update_nivel($id,$params)
     {
@@ -60,7 +61,7 @@ class Nivel_model extends CI_Model
     }
 
     /*
-     * function to delete nivel
+     * funcion para eliminar un nivel a partir de su id
      */
     function delete_nivel($id)
     {

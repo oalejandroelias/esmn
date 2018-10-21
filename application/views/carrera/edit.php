@@ -1,4 +1,5 @@
 <?php echo form_open('carrera/edit/'.$carrera['id'],array("class"=>"form-horizontal")); ?>
+<!-- esta vista permite editar el codigo de plan, nivel, nombre acta y fecha -->
 <div class="form-group">
 	<label for="id" class="col-md-4 control-label"><span class="text-danger">*</span>Codigo de Plan</label>
 	<div class="col-md-8">
@@ -53,6 +54,8 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- botones para guardar o cancelar el editar carrera -->
 	<div class="form-group">
 		<div class="col-sm-offset-4 col-sm-8">
 			<button type="submit" class="btn btn-success">Guardar</button>

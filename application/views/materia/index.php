@@ -1,4 +1,6 @@
 <div class="pull-right">
+
+<!-- vista de Index de Materia -->
 	<a href="<?php echo site_url('materia/add'); ?>" class="btn btn-success">Agregar</a>
 </div>
 

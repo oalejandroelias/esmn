@@ -12,7 +12,7 @@ class Materia_model extends CI_Model
     }
 
     /*
-     * Get materia by id
+     * obtiene una materia a partir del id
      */
     function get_materia($id)
     {
@@ -20,7 +20,7 @@ class Materia_model extends CI_Model
     }
 
     /*
-     * Get all materias count
+     * obtiene las materias y las cuenta
      */
     function get_all_materias_count()
     {
@@ -29,7 +29,7 @@ class Materia_model extends CI_Model
     }
 
     /*
-     * Get all materias
+     * Obtiene todas las materias
      */
     function get_all_materias($params = array())
     {
@@ -42,7 +42,7 @@ class Materia_model extends CI_Model
     }
 
     /*
-     * function to add new materia
+     * funcion para agregar una nueva materia
      */
     function add_materia($params)
     {
@@ -51,7 +51,7 @@ class Materia_model extends CI_Model
     }
 
     /*
-     * function to update materia
+     * funcion para actualizar una materia
      */
     function update_materia($id,$params)
     {
@@ -60,7 +60,7 @@ class Materia_model extends CI_Model
     }
 
     /*
-     * function to delete materia
+     * funcion para elimnar una materia a partir del id
      */
     function delete_materia($id)
     {

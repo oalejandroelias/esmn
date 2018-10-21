@@ -5,6 +5,7 @@
 */
 
 class Carrera extends CI_Controller{
+  //constructor de clase carrera
   function __construct()
   {
     parent::__construct();
@@ -12,7 +13,7 @@ class Carrera extends CI_Controller{
   }
 
   /*
-  * Listing of carreras
+  * Listado de carreras
   */
   function index()
   {
@@ -27,16 +28,13 @@ class Carrera extends CI_Controller{
     $this->pagination->initialize($config);
 
     $data['carreras'] = $this->Carrera_model->get_all_carreras($params);
-
-    // $data['_view'] = 'carrera/index';
-    // $this->load->view('layouts/main',$data);
     $this->load->view('templates/header',$data);
     $this->load->view('carrera/index',$data);
     $this->load->view('templates/footer');
   }
 
   /*
-  * Adding a new carrera
+  * Funcion que permite agregar nueva carrera al listado
   */
   function add()
   {
@@ -76,11 +74,11 @@ class Carrera extends CI_Controller{
   }
 
   /*
-  * Editing a carrera
+  * Metodo para editar del listado una carrera
   */
   function edit($id)
   {
-    // check if the carrera exists before trying to edit it
+    // controla que la carrera exista
     $data['carrera'] = $this->Carrera_model->get_carrera($id);
 
     if(isset($data['carrera']['id']))
@@ -121,24 +119,24 @@ class Carrera extends CI_Controller{
       }
     }
     else
-    show_error('No se puede borrar el nivel.');
+    show_error('No se puede borrar la carrera.');
   }
 
   /*
-  * Deleting carrera
+  * Funcion que permite eliminar una carrera si esta exite
   */
   function remove($id)
   {
     $carrera = $this->Carrera_model->get_carrera($id);
 
-    // check if the carrera exists before trying to delete it
+    // Comprueba si existe la carrera antes de intentar borrarla.
     if(isset($carrera['id']))
     {
       $this->Carrera_model->delete_carrera($id);
       redirect('carrera/index');
     }
     else
-    show_error('The carrera you are trying to delete does not exist.');
+    show_error('La carrera que quiere borrar no existe.');
   }
 
 }

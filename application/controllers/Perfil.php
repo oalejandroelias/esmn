@@ -21,7 +21,7 @@ class Perfil extends CI_Controller{
     $data['title']='Perfiles - CeciliaESMN';
     $data['page_title']='<span class="m-r-10 mdi mdi-account-convert"> Perfiles</span>';
     $data['perfiles'] = $this->Perfil_model->get_all_perfiles();
-    
+
     //Botones de acciones
     $data['boton_edit']=validar_botones('edit');
     $data['boton_add']=validar_botones('add');
@@ -29,7 +29,7 @@ class Perfil extends CI_Controller{
 
     //$data['_view'] = 'perfil/index';
     $this->load->view('templates/header',$data);
-    $this->load->view('Perfil/index',$data);
+    $this->load->view('perfil/index',$data);
     $this->load->view('templates/footer',$data);
   }
 
@@ -39,7 +39,7 @@ class Perfil extends CI_Controller{
   function add()
   {
     $this->load->library('form_validation');
-    
+
     $this->form_validation->set_rules('nombre','Nombre','required|max_length[64]');
 
     if($this->form_validation->run())
@@ -123,7 +123,7 @@ class Perfil extends CI_Controller{
 
   // editar permisos del rol $id
   public function edit_permission($id){
-      
+
     //validar_acceso();
     $data['perfil'] = $this->Perfil_model->get_perfil($id);
 

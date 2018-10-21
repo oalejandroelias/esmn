@@ -5,6 +5,7 @@
  */
 
 class Materia extends CI_Controller{
+  // funcion contructor de controlador clase materia
     function __construct()
     {
         parent::__construct();
@@ -12,7 +13,7 @@ class Materia extends CI_Controller{
     }
 
     /*
-     * Listing of materias
+     * listado de materias
      */
     function index()
     {
@@ -26,8 +27,6 @@ class Materia extends CI_Controller{
 
         $data['materias'] = $this->Materia_model->get_all_materias($params);
 
-        // $data['_view'] = 'materia/index';
-        // $this->load->view('layouts/main',$data);
         $data['title'] = 'Materias - ESMN';
         $data['page_title'] = 'Materia';
 
@@ -37,7 +36,7 @@ class Materia extends CI_Controller{
     }
 
     /*
-     * Adding a new materia
+     * funcion que permite agregar una nueva materia
      */
     function add()
     {
@@ -77,11 +76,11 @@ class Materia extends CI_Controller{
     }
 
     /*
-     * Editing a materia
+     * funcion que permite editar una Materia
      */
     function edit($id)
     {
-        // check if the materia exists before trying to edit it
+        //Comprueba si existe la materia antes de intentar editarla.
         $data['materia'] = $this->Materia_model->get_materia($id);
 
         if(isset($data['materia']['id']))
@@ -121,24 +120,24 @@ class Materia extends CI_Controller{
             }
         }
         else
-            show_error('The materia you are trying to edit does not exist.');
+            show_error('La materia que intenta editar, no existe.');
     }
 
     /*
-     * Deleting materia
+     * Funcion que permite eliminar una materia
      */
     function remove($id)
     {
         $materia = $this->Materia_model->get_materia($id);
 
-        // check if the materia exists before trying to delete it
+        // Comprueba si la materia existe antes de intentar borrarla.
         if(isset($materia['id']))
         {
             $this->Materia_model->delete_materia($id);
             redirect('materia/index');
         }
         else
-            show_error('The materia you are trying to delete does not exist.');
+            show_error('La materia que está intentando eliminar no existe.');
     }
 
 }

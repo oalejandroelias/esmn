@@ -1,5 +1,7 @@
 <?php echo form_open('carrera/add',array("class"=>"form-horizontal")); ?>
 
+<!-- esta vista permite agregar codigo de plan, nivel, nombre acta y fecha -->
+
 <div class="form-group">
 	<label for="id" class="col-md-4 control-label"><span class="text-danger">*</span>Codigo de Plan</label>
 	<div class="col-md-8">
@@ -47,13 +49,14 @@
 <div class="form-group">
 	<label for="fecha" class="col-md-4 control-label">Fecha</label>
 	<div class="input-group col-md-8">
+		<!-- formato de fecha año/mes/dia, con calendario desplgable -->
 		<input type="text" class="form-control mydatepicker" placeholder="yyyy-mm-dd" name="fecha" value="<?php echo $this->input->post('fecha'); ?>" id="fecha">
 		<div class="input-group-append">
 			<span class="input-group-text"><i class="fa fa-calendar"></i></span>
 		</div>
 	</div>
 </div>
-
+<!-- botones para guardar o cancelar el agregar carrera -->
 <div class="form-group">
 	<div class="col-sm-offset-4 col-sm-8">
 		<button type="submit" class="btn btn-success">Guardar</button>

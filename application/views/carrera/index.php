@@ -1,4 +1,5 @@
 <div class="pull-right">
+	<!-- vista de Index de Carrera -->
 	<a href="<?php echo site_url('carrera/add'); ?>" class="btn btn-success">Agregar</a>
 </div>
 
@@ -9,7 +10,7 @@
 		<th>Nombre</th>
 		<th>Acta</th>
 		<th>Fecha</th>
-		<th>Actions</th>
+		<th>Acciones</th>
     </tr>
 	<?php foreach($carreras as $c){ ?>
     <tr>
@@ -20,7 +21,7 @@
 		<td><?php echo $c['fecha']; ?></td>
 		<td>
             <a href="<?php echo site_url('carrera/edit/'.$c['carrera_id']); ?>" class="btn btn-info btn-sm">Editar</a>
-            <a href="<?php echo site_url('carrera/remove/'.$c['carrera_id']); ?>" class="btn btn-danger btn-sm">Borrar</a>
+            <a href="<?php echo site_url('carrera/remove/'.$c['carrera_id']); ?>" class="btn btn-danger btn-sm">Eliminar</a>
         </td>
     </tr>
 	<?php } ?>

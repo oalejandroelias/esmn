@@ -1,3 +1,4 @@
+<!-- vista de Index de Niveles -->
 <div class="pull-right">
 	<a href="<?php echo site_url('nivel/add'); ?>" class="btn btn-success">Nuevo</a>
 </div>
@@ -6,7 +7,7 @@
     <tr>
 		<!-- <th>Codigo de Nivel</th> -->
 		<th>Nombre</th>
-		<th>Actions</th>
+		<th>Acciones</th>
     </tr>
 	<?php foreach($niveles as $n){ ?>
     <tr>

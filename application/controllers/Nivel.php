@@ -5,6 +5,7 @@
  */
 
 class Nivel extends CI_Controller{
+  //funcion contructor de clase nivel
     function __construct()
     {
         parent::__construct();
@@ -13,7 +14,7 @@ class Nivel extends CI_Controller{
     }
 
     /*
-     * Listing of niveles
+     * Listado de niveles
      */
     function index()
     {
@@ -36,13 +37,13 @@ class Nivel extends CI_Controller{
     }
 
     /*
-     * Adding a new nivel
+     * Funcion que permite agregar un nuevo nivel al listado
      */
     function add()
     {
         $this->load->library('form_validation');
 
-		$this->form_validation->set_rules('nombre','Nombre','required|max_length[64]');
+		$this->form_validation->set_rules('nombre','Nombre','required|max_length[64]||is_unique[nivel.id]');
 
 		if($this->form_validation->run())
         {
@@ -65,7 +66,7 @@ class Nivel extends CI_Controller{
     }
 
     /*
-     * Editing a nivel
+     * Funcion que permite editar un nivel del listado
      */
     function edit($id)
     {
@@ -76,9 +77,10 @@ class Nivel extends CI_Controller{
         {
             $this->load->library('form_validation');
 
-			$this->form_validation->set_rules('nombre','Nombre','required|max_length[64]');
+			$this->form_validation->set_rules('nombre','Nombre','required|max_length[64]|is_unique[nivel.id]');
 
-			if($this->form_validation->run())
+      $nivel_exist = $this->Nivel_model->get_nivel($this->input->post('id'));
+			if($this->form_validation->run()&& ($data['nivel']['id'] == $this->input->post('id') || !isset($nivel_exist['id'])))
             {
                 $params = array(
 					'nombre' => $this->input->post('nombre'),
@@ -98,17 +100,17 @@ class Nivel extends CI_Controller{
             }
         }
         else
-            show_error('The nivel you are trying to edit does not exist.');
+            show_error('EL nivel que intenta editar, no existe.');
     }
 
     /*
-     * Deleting nivel
+     * Funcion que permite eliminar un nivel que no este asociado a ninguna carrera
      */
     function remove($id)
     {
         $nivel = $this->Nivel_model->get_nivel($id);
 
-        // check if the nivel exists before trying to delete it
+        // Se comprueba que el nivel existe antes de intentar eliminarlo
         if(isset($nivel['id']))
         {
           $carreras = $this->Carrera_model->get_all_carreras(array(),array('row'=>'id_nivel','value'=>$id));

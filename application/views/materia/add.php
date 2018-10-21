@@ -1,5 +1,5 @@
 <?php echo form_open('materia/add',array("class"=>"form-horizontal")); ?>
-
+<!-- esta vista permite agregar id de carrera,nombre,codigo de año,regimen de cursado,regimen de aprobación,carga horaria y tipo de catedra no repetido del nivel-->
 	<div class="form-group">
 		<label for="id_carrera" class="col-md-4 control-label"><span class="text-danger">*</span>Id Carrera</label>
 		<div class="col-md-8">
@@ -51,6 +51,7 @@
 	</div>
 
 	<div class="form-group">
+		<!-- botones para guardar o cancelar el agregar materias -->
 		<div class="col-sm-offset-4 col-sm-8">
 			<button type="submit" class="btn btn-success">Guardar</button>
 			<button type="button" class="btn btn-danger" onclick="history.go(-1)">Cancelar</button>
