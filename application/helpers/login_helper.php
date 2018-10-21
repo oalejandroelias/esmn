@@ -60,6 +60,7 @@ function validar_botones($accion)
     
     
     //$clase=$CI->uri->segments[1];
+    
     $clase=ucfirst($CI->uri->rsegments[1]);
     //$accion2=$CI->uri->rsegments[2];
     
