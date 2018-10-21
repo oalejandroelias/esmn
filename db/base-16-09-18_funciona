@@ -95,12 +95,21 @@ CREATE TABLE `persona_tutor` (
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `documentacion` (
-  `id_persona` INT(11) NOT NULL PRIMARY KEY,
+  `id` INT(11) NOT NULL PRIMARY KEY,
+  `id_persona` INT(11) NOT NULL,
+  `genero` VARCHAR(24),
   `fotocopia_dni` TEXT,
+  `titulo_primario` TEXT,
   `titulo_secundario` TEXT,
+  `otros_titulos` TEXT,
   `fecha_inscripcion` DATE,
   `foto_carnet` TEXT,
   `certificado_nacimiento` TEXT,
+  `beca` TEXT,
+  `certificado_jucaid` TEXT,
+  `medicacion` TEXT,
+  `enfermedad` TEXT,
+  `trabajo` TEXT,
   FOREIGN KEY (id_persona) REFERENCES persona(id) ON DELETE RESTRICT ON UPDATE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

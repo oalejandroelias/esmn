@@ -29,7 +29,7 @@ function validar_acceso()
     
     
     //$clase=$CI->uri->segments[1];
-    $clase=$CI->uri->rsegments[1];
+    $clase=ucfirst($CI->uri->rsegments[1]);
     $accion2=$CI->uri->rsegments[2];
 
     $permisos=json_decode($_SESSION['permisos']);
@@ -60,7 +60,8 @@ function validar_botones($accion)
     
     
     //$clase=$CI->uri->segments[1];
-    $clase=$CI->uri->rsegments[1];
+    
+    $clase=ucfirst($CI->uri->rsegments[1]);
     //$accion2=$CI->uri->rsegments[2];
     
     $permisos=json_decode($_SESSION['permisos']);

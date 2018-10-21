@@ -58,7 +58,7 @@ class Perfil extends CI_Controller{
       $data['page_title'] = 'Agregar perfil';
 
       $this->load->view('templates/header',$data);
-      $this->load->view('Perfil/add',$data);
+      $this->load->view('perfil/add',$data);
       $this->load->view('templates/footer',$data);
     }
   }
@@ -94,7 +94,7 @@ class Perfil extends CI_Controller{
         $data['page_title'] = 'Editar perfil';
 
         $this->load->view('templates/header',$data);
-        $this->load->view('Perfil/edit',$data);
+        $this->load->view('perfil/edit',$data);
         $this->load->view('templates/footer',$data);
       }
     }
@@ -169,6 +169,13 @@ class Perfil extends CI_Controller{
         );
         // guardar permisos en formato json
         $this->Perfil_model->update_perfil($id,$params);
+
+        // recargar permisos del usuario actual
+        if ($this->session->userdata('id_perfil')==$id) {
+          $this->session->unset_userdata('permisos');
+          $this->session->set_userdata($params);
+        }
+
         redirect('perfil/index');
 
       }else {
