@@ -11,7 +11,7 @@
 <div class="form-group">
 	<div class="col-sm-offset-4 col-sm-8">
 		<button type="submit" class="btn btn-success">Guardar</button>
-		<button type="button" class="btn btn-danger" onclick="history.go(-1)">Cancelar</button>
+		<button type="submit" formaction="index" class="btn btn-danger">Cancelar</button>
 	</div>
 </div>
 

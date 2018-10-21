@@ -4,7 +4,7 @@
 	<label for="id_tipo_documento" class="col-md-4 control-label"><span class="text-danger">*</span>Tipo Documento</label>
 	<div class="col-md-8">
 		<select name="id_tipo_documento" class="form-control">
-			<option value="">select tipo_documento</option>
+			<option value="">Seleccionar tipo de documento</option>
 			<?php
 			foreach($all_tipo_documento as $tipo_documento)
 			{
@@ -77,23 +77,19 @@
 	</div>
 </div>
 <div class="form-group">
-	<label for="fecha_nacimiento" class="col-md-4 control-label">Fecha Nacimiento</label>
-	<div class="col-md-8">
-		<input type="text" name="fecha_nacimiento" value="<?php echo ($this->input->post('fecha_nacimiento') ? $this->input->post('fecha_nacimiento') : $persona['fecha_nacimiento']); ?>" class="form-control" id="fecha_nacimiento" />
-	</div>
+	<label for="fecha" class="col-md-4 control-label">Fecha de Nacimiento</label>
+	<div class="input-group col-md-8">
+				<input type="text" class="form-control mydatepicker" placeholder="yyyy-mm-dd" name="fecha_nacimiento" value="<?php echo ($this->input->post('fecha_nacimiento') ? $this->input->post('fecha_nacimiento') : $persona['fecha_nacimiento']); ?>" id="fecha_nacimiento">
+				<div class="input-group-append">
+						<span class="input-group-text"><i class="fa fa-calendar"></i></span>
+				</div>
+		</div>
 </div>
 
-<<<<<<< HEAD
-	<div class="form-group">
-		<div class="col-sm-offset-4 col-sm-8">
-			<button type="submit" class="btn btn-success">Guardar</button>
-        </div>
-=======
 <div class="form-group">
 	<div class="col-sm-offset-4 col-sm-8">
 		<button type="submit" class="btn btn-success">Guardar</button>
-		<button type="button" class="btn btn-danger" onclick="history.go(-1)">Cancelar</button>
->>>>>>> ce5c873a993c2bf4afc33cf834b8fe74aaa9bf23
+		<button type="submit" formaction="index" class="btn btn-danger">Cancelar</button>
 	</div>
 </div>
 

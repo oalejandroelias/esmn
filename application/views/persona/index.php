@@ -24,13 +24,13 @@
 							<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending";>Fecha Nacimiento</th>
 							<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending";>Actions</th>
 						</tr>
-						
+
 				</thead>
 				<tbody>
-				
-			
+
+
 						<?php
-						
+
 						foreach($personas as $p){ ?>
 							<tr>
 								<!-- <td><?php echo $p['id']; ?></td> -->
@@ -44,14 +44,14 @@
 								<td><?php echo $p['email']; ?></td>
 								<td><?php echo $p['fecha_nacimiento']; ?></td>
 								<td>
-								
+
 								<?php if($boton_edit){?>
 									<a href="<?php echo site_url('Persona/edit/'.$p['persona_id']); ?>" class="btn btn-info btn-sm">Editar</a>
 									<?php }?>
 								<?php if($boton_remove){?>
 									<a href="<?php echo site_url('Persona/remove/'.$p['persona_id']); ?>" class="btn btn-danger btn-sm">Eliminar</a>
 									<?php }?>
-									
+
 									<?php if (empty($this->Usuario_model->get_usuario_by_persona($p['persona_id']))): ?>
 										<a href="<?php echo site_url('Usuario/add/'.$p['persona_id']); ?>" class="btn btn-primary btn-sm">Crear usuario</a>
 									<?php else: ?>
@@ -60,18 +60,18 @@
 								</td>
 							</tr>
 						<?php } ?>
-						
+
 						</tbody>
-						
+
 						<tfoot>
                 <tr>
                   <th rowspan="1" colspan="1">Tipo Documento</th>
-                  <th rowspan="1" colspan="1">Número de Documento³n</th>
+                  <th rowspan="1" colspan="1">Numero de Documento</th>
                   <th rowspan="1" colspan="1">Ciudad</th>
                   <th rowspan="1" colspan="1">Nombre</th>
                   <th rowspan="1" colspan="1">Apellido</th>
                   <th rowspan="1" colspan="1">Domicilio</th>
-                  <th rowspan="1" colspan="1">Teléfono</th>
+                  <th rowspan="1" colspan="1">Telefono</th>
                   <th rowspan="1" colspan="1">Email</th>
                   <th rowspan="1" colspan="1">Fecha de Nacimiento</th>
                   <th rowspan="1" colspan="1">Actions</th>
