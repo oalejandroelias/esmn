@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url('files/images/logo_esmn.png')?>">
     <title><?= $title ?></title>
    <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/select2/dist/css/select2.min.css">
@@ -72,7 +72,7 @@
                          <!-- Logo text -->
                         <span class="logo-text">
                              <!-- dark Logo text -->
-                             <img src="" alt="CeciliaESMN" class="light-logo" />
+                             <img src="<?=base_url('files/images/CeciliaESMN') ?>" alt="CeciliaESMN" class="light-logo" width="152"/>
                         </span>
                     </a>
                     <!-- ============================================================== -->
