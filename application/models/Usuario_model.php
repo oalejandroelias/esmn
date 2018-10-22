@@ -51,7 +51,7 @@ class Usuario_model extends CI_Model
   {
     $this->db->select('persona.id AS "persona_id",tipo_documento.nombre AS "tipo_documento",
                       numero_documento,persona.nombre,apellido,usuario.id AS "usuario_id",
-                      username,id_perfil,permisos,perfil.nombre AS "rol"');
+                      username,id_perfil,perfil.permisos,perfil.nombre AS "rol"');
     $this->db->from('usuario');
     $this->db->join('persona', 'persona.id = usuario.id_persona', 'inner');
     $this->db->join('tipo_documento', 'tipo_documento.id = persona.id_tipo_documento', 'inner');
