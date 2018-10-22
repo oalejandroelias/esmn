@@ -97,7 +97,7 @@ class Usuario_model extends CI_Model
   public function login($username,$password){
     $this->db->select('persona.id AS "persona_id",tipo_documento.nombre AS "tipo_documento",
                        numero_documento,persona.nombre,apellido,usuario.id AS "usuario_id",
-                       email,username,id_perfil,perfil.nombre AS "nombre_perfil",permisos');
+                       email,username,id_perfil,perfil.nombre AS "nombre_perfil",perfil.permisos');
     $this->db->from('persona');
     $this->db->join('tipo_documento','tipo_documento.id=persona.id_tipo_documento','inner');
     $this->db->join('usuario','usuario.id_persona=persona.id','inner');
