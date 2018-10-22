@@ -7,7 +7,7 @@
 <table class="table table-striped table-bordered">
     <tr>
 		<!-- <th>ID</th> -->
-		<th>Id Carrera</th>
+		<th>Carrera</th>
 		<th>Nombre</th>
 		<th>Codigo Anio</th>
 		<th>Regimen Cursado</th>
@@ -19,16 +19,16 @@
 	<?php foreach($materias as $m){ ?>
     <tr>
 		<!-- <td><?php echo $m['id']; ?></td> -->
-		<td><?php echo $m['id_carrera']; ?></td>
-		<td><?php echo $m['nombre']; ?></td>
+		<td><?php echo $m['id_carrera'].' - '.$m['nombre_carrera']; ?></td>
+		<td><?php echo $m['nombre_materia']; ?></td>
 		<td><?php echo $m['codigo_anio']; ?></td>
 		<td><?php echo $m['regimen_cursado']; ?></td>
 		<td><?php echo $m['regimen_aprobacion']; ?></td>
 		<td><?php echo $m['carga_horaria']; ?></td>
 		<td><?php echo $m['tipo_catedra']; ?></td>
 		<td>
-            <a href="<?php echo site_url('materia/edit/'.$m['id']); ?>" class="btn btn-info btn-xs">Editar</a>
-            <a href="<?php echo site_url('materia/remove/'.$m['id']); ?>" class="btn btn-danger btn-xs">Eliminar</a>
+            <a href="<?php echo site_url('materia/edit/'.$m['materia_id']); ?>" class="btn btn-info btn-xs">Editar</a>
+            <a href="<?php echo site_url('materia/remove/'.$m['materia_id']); ?>" class="btn btn-danger btn-xs">Eliminar</a>
         </td>
     </tr>
 	<?php } ?>

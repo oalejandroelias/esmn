@@ -31,15 +31,29 @@ class Materia_model extends CI_Model
     /*
      * Obtiene todas las materias
      */
-    function get_all_materias($params = array())
+    function get_all_materias($params = array(),$where = array())
     {
-        $this->db->order_by('id', 'desc');
+        $this->db->select('materia.id AS "materia_id",id_carrera,carrera.nombre AS "nombre_carrera",
+        materia.nombre AS "nombre_materia",codigo_anio,regimen_cursado,carga_horaria,
+        regimen_aprobacion,tipo_catedra');
+        $this->db->from('materia');
+        $this->db->join('carrera', 'carrera.id = materia.id_carrera', 'inner');
+        $this->db->order_by('materia_id', 'desc');
         if(isset($params) && !empty($params))
         {
             $this->db->limit($params['limit'], $params['offset']);
         }
-        return $this->db->get('materia')->result_array();
+        if(isset($where) && !empty($where))
+        {
+          $this->db->where($where['row'], $where['value']);
+        }
+        $query = $this->db->get();
+        return $query->result_array();
+        // return $this->db->get('materia')->result_array();
     }
+
+
+
 
     /*
      * funcion para agregar una nueva materia

@@ -9,6 +9,8 @@ class Nivel extends CI_Controller{
     function __construct()
     {
         parent::__construct();
+        validar_acceso();
+        is_logged_in();
         $this->load->model('Nivel_model');
         $this->load->model('Carrera_model');
     }
@@ -41,9 +43,7 @@ class Nivel extends CI_Controller{
      */
     function add()
     {
-        $this->load->library('form_validation');
-
-		$this->form_validation->set_rules('nombre','Nombre','required|max_length[64]||is_unique[nivel.id]');
+		$this->form_validation->set_rules('nombre','Nombre','required|max_length[64]|is_unique[nivel.nombre]');
 
 		if($this->form_validation->run())
         {
@@ -57,7 +57,7 @@ class Nivel extends CI_Controller{
         else
         {
           $data['title'] = 'Niveles - ESMN';
-          $data['page_title'] = 'Nivel';
+          $data['page_title'] = 'Nuevo Nivel';
 
             $this->load->view('templates/header',$data);
             $this->load->view('nivel/add',$data);
@@ -75,12 +75,10 @@ class Nivel extends CI_Controller{
 
         if(isset($data['nivel']['id']))
         {
-            $this->load->library('form_validation');
-
 			$this->form_validation->set_rules('nombre','Nombre','required|max_length[64]|is_unique[nivel.id]');
 
-      $nivel_exist = $this->Nivel_model->get_nivel($this->input->post('id'));
-			if($this->form_validation->run()&& ($data['nivel']['id'] == $this->input->post('id') || !isset($nivel_exist['id'])))
+      $nivel_exist = $this->Nivel_model->get_nivel_by_nombre($this->input->post('nombre'));
+			if($this->form_validation->run() && ($data['nivel']['nombre'] == $this->input->post('nombre') || !isset($nivel_exist['nombre'])))
             {
                 $params = array(
 					'nombre' => $this->input->post('nombre'),

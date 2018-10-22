@@ -9,6 +9,8 @@ class Carrera extends CI_Controller{
   function __construct()
   {
     parent::__construct();
+    validar_acceso();
+    is_logged_in();
     $this->load->model('Carrera_model');
   }
 
@@ -38,8 +40,6 @@ class Carrera extends CI_Controller{
   */
   function add()
   {
-    $this->load->library('form_validation');
-
     $this->form_validation->set_rules('id','Codigo de Plan','required|max_length[11]|is_unique[carrera.id]');
     $this->form_validation->set_rules('nombre','Nombre','required|max_length[128]');
     $this->form_validation->set_rules('acta','Acta','max_length[256]');
@@ -83,7 +83,6 @@ class Carrera extends CI_Controller{
 
     if(isset($data['carrera']['id']))
     {
-      $this->load->library('form_validation');
       $this->form_validation->set_rules('id','Codigo de Plan','required|max_length[11]');
       $this->form_validation->set_rules('nombre','Nombre','required|max_length[128]');
       $this->form_validation->set_rules('acta','Acta','max_length[256]');

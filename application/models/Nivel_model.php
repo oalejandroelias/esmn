@@ -20,6 +20,10 @@ class Nivel_model extends CI_Model
         return $this->db->get_where('nivel',array('id'=>$id))->row_array();
     }
 
+    function get_nivel_by_nombre($nombre)
+    {
+        return $this->db->get_where('nivel',array('nombre'=>$nombre))->row_array();
+    }
     /*
      * obtiene todos los niveles y los cuenta
      */

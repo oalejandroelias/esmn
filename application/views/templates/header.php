@@ -103,6 +103,7 @@
                                 <a class="dropdown-item" href="<?php echo base_url('Ciudad')?>">Ciudades</a>
                                 <a class="dropdown-item" href="<?php echo base_url('Nivel')?>">Niveles</a>
                                 <a class="dropdown-item" href="<?php echo base_url('Carrera')?>">Carreras</a>
+                                <a class="dropdown-item" href="<?php echo base_url('Materia')?>">Materias</a>
                                 <a class="dropdown-item" href="<?php echo base_url('Estado_asistencia')?>">Estados asistencia</a>
                                 <!-- <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">Something else here</a> -->
