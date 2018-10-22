@@ -33,6 +33,11 @@ class Materia extends CI_Controller{
     $data['title'] = 'Materias - ESMN';
     $data['page_title'] = 'Materia';
 
+    //validar botones
+    $data['boton_edit']=validar_botones('edit');
+    $data['boton_add']=validar_botones('add');
+    $data['boton_remove']=validar_botones('remove');
+    
     $this->load->view('templates/header',$data);
     $this->load->view('materia/index',$data);
     $this->load->view('templates/footer');

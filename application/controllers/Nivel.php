@@ -32,6 +32,10 @@ class Nivel extends CI_Controller{
 
         $data['niveles'] = $this->Nivel_model->get_all_niveles($params);
 
+        //Botones de acciones
+        $data['boton_edit']=validar_botones('edit');
+        $data['boton_add']=validar_botones('add');
+        $data['boton_remove']=validar_botones('remove');
 
         $this->load->view('templates/header',$data);
         $this->load->view('nivel/index',$data);
