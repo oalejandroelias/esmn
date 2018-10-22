@@ -33,7 +33,7 @@ class Usuario extends CI_Controller{
     $this->pagination->initialize($config);
 
     $data['usuarios'] = $this->Usuario_model->get_all_usuarios($params);
-    
+
     $data['boton_edit']=validar_botones('edit');
     $data['boton_add']=validar_botones('add');
     $data['boton_remove']=validar_botones('remove');
@@ -85,6 +85,7 @@ class Usuario extends CI_Controller{
         $data['title']= 'Crear Usuario - ESMN';
         $data['page_title']= 'Crear Usuario -> '.$data['persona']['nombre'].' '.$data['persona']['apellido'];
 
+        $data['username']=strtolower(substr($data['persona']['nombre'],0,1).$data['persona']['apellido']);
         $data['all_roles'] = $this->Perfil_model->get_all_perfiles();
 
         $this->load->view('templates/header',$data);
@@ -148,8 +149,9 @@ class Usuario extends CI_Controller{
     $usuario = $this->Usuario_model->get_usuario($id);
 
     // check if the usuario exists before trying to delete it
-    if(isset($usuario['id']))
+    if(isset($usuario['usuario_id']))
     {
+      $this->Perfil_usuario_model->delete_perfil_usuario($id);
       $this->Usuario_model->delete_usuario($id);
       redirect('usuario/index');
     }

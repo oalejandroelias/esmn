@@ -58,6 +58,7 @@
                               <span title="Ya tiene un usuario creado"><a href="#" class="btn btn-primary btn-sm disabled"  tabindex="-1" role="button" aria-disabled="true">Crear usuario</a></span>
                             <?php endif; ?>
                             <a href="<?php echo site_url('Documentacion/ver/'.$p['persona_id']); ?>" class="btn btn-outline-info btn-sm">Documentacion</a>
+                            <a href="<?php echo site_url('persona_tutor/relacion/'.$p['persona_id']); ?>" class="btn btn-outline-secondary btn-sm">Relaciones</a>
                           </td>
                         </tr>
                       <?php } ?>

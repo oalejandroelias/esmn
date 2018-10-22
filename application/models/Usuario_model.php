@@ -57,7 +57,7 @@ class Usuario_model extends CI_Model
     $this->db->join('tipo_documento', 'tipo_documento.id = persona.id_tipo_documento', 'inner');
     $this->db->join('perfil_usuario', 'usuario.id = perfil_usuario.id_usuario', 'inner');
     $this->db->join('perfil', 'perfil.id = perfil_usuario.id_perfil', 'inner');
-    
+
     $this->db->order_by('usuario_id', 'desc');
     if(isset($params) && !empty($params))
     {

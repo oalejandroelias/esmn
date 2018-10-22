@@ -3,7 +3,7 @@
 <div class="form-group">
 	<label for="username" class="col-md-4 control-label"><span class="text-danger">*</span>Username</label>
 	<div class="col-md-8">
-		<input type="text" name="username" value="<?php echo $this->input->post('username'); ?>" class="form-control" id="username" />
+		<input type="text" name="username" value="<?php echo ($this->input->post('username') ? $this->input->post('username') : $username); ?>" class="form-control" id="username" />
 		<span class="text-danger"><?php echo form_error('username');?></span>
 	</div>
 </div>
