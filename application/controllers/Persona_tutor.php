@@ -11,6 +11,7 @@ class Persona_tutor extends CI_Controller{
     validar_acceso();
     is_logged_in();
     $this->load->model('Persona_tutor_model');
+    $this->load->model('Tutor_model');
     $this->load->model('Persona_model');
   }
 
@@ -25,41 +26,63 @@ class Persona_tutor extends CI_Controller{
     $this->load->view('layouts/main',$data);
   }
 
+// ver y agregar relaciones de una persona
   function relacion($id_persona){
-    $data['relacion'] = $this->Persona_tutor_model->get_persona_tutor($id_persona);
-    $data['persona'] = $this->Persona_model->get_persona($id_persona);
+    $this->form_validation->set_rules('id_persona','id_persona','required|integer');
+    $this->form_validation->set_rules('id_responsable','Persona Responsable','required|integer');
+    $this->form_validation->set_rules('id_tutor','Tipo Tutor','required|integer');
+    if($this->form_validation->run())
+    {
+      $params = array(
+        'id_persona' => $this->input->post('id_persona'),
+        'id_responsable' => $this->input->post('id_responsable'),
+        'id_tutor' => $this->input->post('id_tutor'),
+      );
 
-    $data['title'] = 'Tutores/Encargados - ESMN';
-    $data['page_title'] = 'Relaciones con '.$data['persona']['nombre'].' '.$data['persona']['apellido'];
+      $persona_tutor_id = $this->Persona_tutor_model->add_persona_tutor($params);
+      redirect('persona_tutor/relacion/'.$id_persona);
 
-    $this->load->view('templates/header',$data);
-    $this->load->view('persona_tutor/relacion',$data);
-    $this->load->view('templates/footer');
+    }else {
+      $data['relacion'] = $this->Persona_tutor_model->get_persona_tutor($id_persona);
+      $data['persona'] = $this->Persona_model->get_persona($id_persona);
+
+      $data['title'] = 'Tutores/Encargados - ESMN';
+      $data['page_title'] = 'Relaciones con '.$data['persona']['nombre'].' '.$data['persona']['apellido'];
+
+      $data['personas'] = $this->Persona_model->get_all_personas();
+      $data['all_tutores'] = $this->Tutor_model->get_all_tutores();
+
+      $this->load->view('templates/header',$data);
+      $this->load->view('persona_tutor/relacion',$data);
+      $this->load->view('templates/footer');
+    }
   }
 
   /*
   * Adding a new persona_tutor
   */
-  function add()
-  {
-    if(isset($_POST) && count($_POST) > 0)
-    {
-      $params = array(
-        'id_tutor' => $this->input->post('id_tutor'),
-      );
-
-      $persona_tutor_id = $this->Persona_tutor_model->add_persona_tutor($params);
-      redirect('persona_tutor/index');
-    }
-    else
-    {
-      $this->load->model('Tutor_model');
-      $data['all_tutores'] = $this->Tutor_model->get_all_tutores();
-
-      $data['_view'] = 'persona_tutor/add';
-      $this->load->view('layouts/main',$data);
-    }
-  }
+  // function add()
+  // {
+  //   if(isset($_POST) && count($_POST) > 0)
+  //   {
+  //     $params = array(
+  //       'id_persona' => $this->input->post('id_persona'),
+  //       'id_responsable' => $this->input->post('id_responsable'),
+  //       'id_tutor' => $this->input->post('id_tutor'),
+  //     );
+  //
+  //     $persona_tutor_id = $this->Persona_tutor_model->add_persona_tutor($params);
+  //     redirect('persona_tutor/relacion/');
+  //   }
+  //   else
+  //   {
+  //     $this->load->model('Tutor_model');
+  //     $data['all_tutores'] = $this->Tutor_model->get_all_tutores();
+  //
+  //     $data['_view'] = 'persona_tutor/add';
+  //     $this->load->view('layouts/main',$data);
+  //   }
+  // }
 
   /*
   * Editing a persona_tutor
