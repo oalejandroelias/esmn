@@ -31,7 +31,7 @@
     <script type="text/javascript">
     function initialize() {
       var marcadores = [
-  
+
         ['Escuela de musica', -38.952516, -68.059611], ['Escuela de musica', -37.952516, -66.059611]
       ];
       var map = new google.maps.Map(document.getElementById('mapa'), {
@@ -39,10 +39,10 @@
         center: new google.maps.LatLng(-38.952516, -68.059611),
         mapTypeId: google.maps.MapTypeId.ROADMAP
       });
-      
+
       var infowindow = new google.maps.InfoWindow();
       var marker, i;
-      for (i = 0; i < marcadores.length; i++) {  
+      for (i = 0; i < marcadores.length; i++) {
         marker = new google.maps.Marker({
           position: new google.maps.LatLng(marcadores[i][1], marcadores[i][2]),
           map: map
@@ -58,4 +58,3 @@
     google.maps.event.addDomListener(window, 'load', initialize);
     </script>
  <!-- Mapa -->
-  </div>
