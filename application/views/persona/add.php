@@ -88,12 +88,6 @@
 	</div>
 
 	<div class="form-group">
-		<!-- <div class="form-check">
-	  		<label class="form-check-label">
-	    		<input type="checkbox" class="form-check-input" name="generar_usuario" value="0" >Generar Usuario
-
-	  		</label>
-		</div> -->
 		<label class="col-md-3"></label>
 		<div class="col-md-9">
 				<div class="custom-control custom-checkbox mr-sm-2">
@@ -125,7 +119,7 @@
 	<div class="form-group">
 		<div class="col-sm-offset-4 col-sm-8">
 			<button type="submit" class="btn btn-success">Guardar</button>
-			<button type="submit" formaction="index" class="btn btn-danger">Cancelar</button>
+			<a href="<?=site_url('persona/index'); ?>" class="btn btn-danger">Cancelar</a>
         </div>
 	</div>
 

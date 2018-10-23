@@ -50,6 +50,7 @@
         <div class="form-group">
           <div class="col-sm-offset-4 col-sm-8">
             <button type="submit" class="btn btn-success">Guardar</button>
+            <a href="<?=site_url('persona/index'); ?>" class="btn btn-danger">Volver</a>
           </div>
         </div>
 

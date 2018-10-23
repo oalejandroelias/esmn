@@ -28,7 +28,7 @@
 														<a href="<?php echo site_url('nivel/edit/'.$n['id']); ?>" class="btn btn-info btn-sm">Editar</a>
 													<?php }?>
 													<?php if($boton_remove){?>
-														<a href="<?php echo site_url('nivel/remove/'.$n['id']); ?>" class="btn btn-danger btn-sm">Eliminar</a>
+														<a href="<?php echo site_url('nivel/remove/'.$n['id']); ?>" data-confirm="remove" class="btn btn-danger btn-sm">Eliminar</a>
 													<?php }?>
 
 												</td>

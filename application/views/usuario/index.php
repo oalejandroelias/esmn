@@ -40,7 +40,7 @@
                             <a href="<?= site_url('Usuario/edit/'.$u['usuario_id']); ?>" class="btn btn-info btn-sm">Editar</a>
                           <?php } ?>
                           <?php if($boton_edit){?>
-                            <a href="<?= site_url('Usuario/remove/'.$u['usuario_id']); ?>" class="btn btn-danger btn-sm">Eliminar</a>
+                            <a href="<?= site_url('Usuario/remove/'.$u['usuario_id']); ?>" data-confirm="remove" class="btn btn-danger btn-sm">Eliminar</a>
                           <?php } ?>
 
 

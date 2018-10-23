@@ -32,7 +32,7 @@
                             <a href="<?php echo site_url('Perfil/edit/'.$p['id']); ?>" class="btn btn-info btn-sm">Editar</a>
                           <?php }?>
                           <?php if($boton_remove){?>
-                            <a href="<?php echo site_url('Perfil/remove/'.$p['id']); ?>" class="btn btn-danger btn-sm">Eliminar</a>
+                            <a href="<?php echo site_url('Perfil/remove/'.$p['id']); ?>" data-confirm="remove" class="btn btn-danger btn-sm">Eliminar</a>
                           <?php }?>
 
                           <a href="<?php echo site_url('Perfil/edit_permission/'.$p['id']); ?>" class="btn btn-warning btn-sm">Editar permisos</a>

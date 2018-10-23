@@ -54,7 +54,7 @@
 		<div class="col-sm-offset-4 col-sm-8">
 			<!-- botones para guardar o cancelar el editar nivel -->
 			<button type="submit" class="btn btn-success">Guardar</button>
-			<button type="button" class="btn btn-danger" onclick="history.go(-1)">Cancelar</button>
+			<a href="<?=site_url('materia/index'); ?>" class="btn btn-danger">Cancelar</a>
         </div>
 	</div>
 

@@ -40,7 +40,7 @@
 														<a href="<?php echo site_url('carrera/edit/'.$c['carrera_id']); ?>" class="btn btn-info btn-sm">Editar</a>
 													<?php }?>
 													<?php if($boton_remove){?>
-														<a href="<?php echo site_url('carrera/remove/'.$c['carrera_id']); ?>" class="btn btn-danger btn-sm">Eliminar</a>
+														<a href="<?php echo site_url('carrera/remove/'.$c['carrera_id']); ?>" data-confirm="remove" class="btn btn-danger btn-sm">Eliminar</a>
 													<?php }?>
 
 												</td>
@@ -50,7 +50,7 @@
 
 									<tfoot>
 										<tr>
-											
+
 											<th rowspan="1" colspan="1">Código de Plan</th>
 											<th rowspan="1" colspan="1">Nivel</th>
 											<th rowspan="1" colspan="1">Nombre</th>

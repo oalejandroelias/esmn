@@ -104,7 +104,10 @@
                                 <a class="dropdown-item" href="<?php echo base_url('Nivel')?>">Niveles</a>
                                 <a class="dropdown-item" href="<?php echo base_url('Carrera')?>">Carreras</a>
                                 <a class="dropdown-item" href="<?php echo base_url('Materia')?>">Materias</a>
+                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="<?php echo base_url('Estado_asistencia')?>">Estados asistencia</a>
+                                <a class="dropdown-item" href="<?php echo base_url('Tutor')?>">Tutores</a>
+                                <a class="dropdown-item" href="<?php echo base_url('Tipo_documento')?>">Tipo Documento</a>
                                 <!-- <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">Something else here</a> -->
                             </div>
@@ -231,3 +234,6 @@
             <!-- ============================================================== -->
             <div class="container-fluid">
               <!-- CONTENIDO DE LA PAGINA -->
+
+<!-- modales -->
+<div data-modal="remove"></div>

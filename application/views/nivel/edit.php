@@ -12,7 +12,7 @@
 		<!-- botones para guardar o cancelar el editar nivel -->
 		<div class="col-sm-offset-4 col-sm-8">
 			<button type="submit" class="btn btn-success">Guardar</button>
-			<button type="button" class="btn btn-danger" onclick="history.go(-1)">Cancelar</button>
+			<a href="<?=site_url('nivel/index'); ?>" class="btn btn-danger">Cancelar</a>
         </div>
 	</div>
 

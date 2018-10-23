@@ -42,7 +42,7 @@
 													 <a href="<?php echo site_url('materia/edit/'.$m['materia_id']); ?>" class="btn btn-info btn-sm">Editar</a>
 												 <?php }?>
 												 <?php if($boton_remove){?>
-													 <a href="<?php echo site_url('materia/remove/'.$m['materia_id']); ?>" class="btn btn-danger btn-sm">Eliminar</a>
+													 <a href="<?php echo site_url('materia/remove/'.$m['materia_id']); ?>" data-confirm="remove" class="btn btn-danger btn-sm">Eliminar</a>
 												 <?php }?>
 
 											 </td>
