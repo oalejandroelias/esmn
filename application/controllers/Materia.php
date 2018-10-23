@@ -37,7 +37,10 @@ class Materia extends CI_Controller{
     $data['boton_edit']=validar_botones('edit');
     $data['boton_add']=validar_botones('add');
     $data['boton_remove']=validar_botones('remove');
-    
+
+    // script de correlatividades
+    $data['js'] = array('materia_index.js');
+
     $this->load->view('templates/header',$data);
     $this->load->view('materia/index',$data);
     $this->load->view('templates/footer');
@@ -49,7 +52,7 @@ class Materia extends CI_Controller{
   function add()
   {
     $this->form_validation->set_rules('carrera_id','Codigo de Plan','required|max_length[11]');
-    $this->form_validation->set_rules('nombre','Nombre','required|max_length[128]');
+    $this->form_validation->set_rules('nombre','Nombre','required|max_length[128]|is_unique[materia.nombre]');
     $this->form_validation->set_rules('codigo_anio','Codigo Anio','max_length[24]');
     $this->form_validation->set_rules('regimen_cursado','Regimen Cursado','max_length[24]');
     $this->form_validation->set_rules('regimen_aprobacion','Regimen Aprobacion','max_length[24]');
