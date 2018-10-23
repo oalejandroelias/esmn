@@ -87,7 +87,7 @@
 </div>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="modal_correlativas" tabindex="-1" role="dialog" aria-labelledby="modal_correlativas" aria-hidden="true">
+<div class="modal fade" id="modal_correlativas" role="dialog" aria-labelledby="modal_correlativas" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -104,7 +104,7 @@
         <div class="form-group">
           <label class="col-12">Agregar correlatividad</label>
           <div class="col-12">
-            <select class="select2 form-control custom-select" name="id_correlativa" style="width: 100%; height:36px;">
+            <select class="form-control custom-select" name="id_correlativa" style="width: 100%; height:36px;">
               <option>Buscar</option>
               <?php
               foreach($materias as $m)
