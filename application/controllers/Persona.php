@@ -54,9 +54,8 @@ class Persona extends CI_Controller{
 
   function add()
   {
-
     $this->form_validation->set_rules('id_tipo_documento','Id Tipo Documento','required|integer');
-    $this->form_validation->set_rules('numero_documento','Numero Documento','required|max_length[11]');
+    $this->form_validation->set_rules('numero_documento','Numero Documento','required|max_length[11]|integer');
     $this->form_validation->set_rules('nombre','Nombre','required|max_length[128]');
     $this->form_validation->set_rules('apellido','Apellido','required|max_length[128]');
     $this->form_validation->set_rules('domicilio','Domicilio','max_length[128]');
@@ -93,7 +92,7 @@ class Persona extends CI_Controller{
           'username' => $username,
           'password' => $password,
         );
-
+// controlar username inexistente
         $usuario_id = $this->Usuario_model->add_usuario($params_usuario);
 
         $id_perfil = $this->input->post('id_perfil');
@@ -101,7 +100,6 @@ class Persona extends CI_Controller{
         $params_perfil_usuario=array(
           'id_usuario' => $usuario_id,
           'id_perfil' => $this->input->post('id_perfil'),
-          'permisos' => $permisos,
         );
 
         $this->Perfil_usuario_model->add_perfil_usuario($params_perfil_usuario);
@@ -119,7 +117,7 @@ class Persona extends CI_Controller{
       $data['all_ciudades'] = $this->Ciudad_model->get_all_ciudades();
       $data['all_roles'] = $this->Perfil_model->get_all_perfiles();
 
-      $data['js'] = array('persona_add.js');
+      $data['js'] = array('persona.js');
 
       $this->load->view('templates/header',$data);
       $this->load->view('persona/add',$data);
@@ -141,7 +139,7 @@ class Persona extends CI_Controller{
     {
 
       $this->form_validation->set_rules('id_tipo_documento','Id Tipo Documento','required|integer');
-      $this->form_validation->set_rules('numero_documento','Numero Documento','required|max_length[11]');
+      $this->form_validation->set_rules('numero_documento','Numero Documento','required|max_length[11]|integer');
       $this->form_validation->set_rules('nombre','Nombre','required|max_length[128]');
       $this->form_validation->set_rules('apellido','Apellido','required|max_length[128]');
       $this->form_validation->set_rules('domicilio','Domicilio','max_length[128]');
@@ -173,7 +171,8 @@ class Persona extends CI_Controller{
         $data['all_tipo_documento'] = $this->Tipo_documento_model->get_all_tipo_documento();
         $data['all_ciudades'] = $this->Ciudad_model->get_all_ciudades();
 
-        $data['_view'] = 'persona/edit';
+        $data['js'] = array('persona.js');
+
         $this->load->view('templates/header',$data);
         $this->load->view('persona/edit',$data);
         $this->load->view('templates/footer',$data);
