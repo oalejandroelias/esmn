@@ -117,7 +117,10 @@ class Persona extends CI_Controller{
       $data['all_ciudades'] = $this->Ciudad_model->get_all_ciudades();
       $data['all_roles'] = $this->Perfil_model->get_all_perfiles();
 
-      $data['js'] = array('persona.js');
+      $data['js'] = array(
+        '../bootstrap-birthday/bootstrap-birthday.min.js',
+        'persona.js'
+      );
 
       $this->load->view('templates/header',$data);
       $this->load->view('persona/add',$data);
