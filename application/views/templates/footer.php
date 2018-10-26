@@ -39,6 +39,7 @@
 <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
 <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/quill/dist/quill.min.js"></script>
+<script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/toastr/build/toastr.min.js"></script>
 
 
 <!-- this page js -->
@@ -55,6 +56,31 @@
     <script src="<?= base_url('Lib/js/'.$src);?>"></script>
   <?php endforeach; ?>
 <?php endif; ?>
+
+<?php if($this->session->flashdata('crear') !== null){ ?>
+	<script>
+		var mensaje=<?php echo json_encode($this->session->flashdata('crear'))?>;
+		toastr.success(mensaje,'Creando...');
+	</script>
+<?php 
+}?>
+
+<?php if($this->session->flashdata('eliminar') !== null){ ?>
+	<script>
+		var mensaje=<?php echo json_encode($this->session->flashdata('eliminar'))?>;
+		toastr.warning(mensaje,'Eliminando...');
+	</script>
+<?php 
+}
+?>
+<?php if($this->session->flashdata('editar') !== null){ ?>
+	<script>
+		var mensaje=<?php echo json_encode($this->session->flashdata('editar'))?>;
+		toastr.info(mensaje,'Modificando...');
+	</script>
+<?php 
+}
+?>
 
 
 

@@ -55,6 +55,7 @@ class Provincia extends CI_Controller{
       );
 
       $provincia_id = $this->Provincia->add_provincia($params);
+      $this->session->set_flashdata('crear', 'Nueva provincia creada');
       redirect('provincia/index');
     }
     else
@@ -88,6 +89,7 @@ class Provincia extends CI_Controller{
         );
 
         $this->Provincia->update_provincia($id,$params);
+        $this->session->set_flashdata('editar', 'Se guardaron los cambios');
         redirect('provincia/index');
       }
       else
@@ -114,6 +116,7 @@ class Provincia extends CI_Controller{
     if(isset($provincia['id']))
     {
       $this->Provincia->delete_provincia($id);
+      $this->session->set_flashdata('eliminar', 'Provincia eliminada');
       redirect('provincia/index');
     }
     else

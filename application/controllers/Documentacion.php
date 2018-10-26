@@ -86,6 +86,7 @@ class Documentacion extends CI_Controller{
       );
 
       $documentacion_id = $this->Documentacion_model->add_documentacion($params);
+      $this->session->set_flashdata('crear', 'Nueva persona creada');
       redirect('documentacion/index');
     }
     else
@@ -137,6 +138,7 @@ class Documentacion extends CI_Controller{
         );
 
         $this->Documentacion_model->update_documentacion($id,$params);
+        $this->session->set_flashdata('editar', 'Se guardaron los cambios');
         redirect('documentacion/index');
       }
       else
@@ -167,6 +169,7 @@ class Documentacion extends CI_Controller{
     if(isset($documentacion['id']))
     {
       $this->Documentacion_model->delete_documentacion($id);
+      $this->session->set_flashdata('eliminar', 'Documentación eliminada');
       redirect('documentacion/index');
     }
     else

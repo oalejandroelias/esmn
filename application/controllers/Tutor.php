@@ -55,6 +55,7 @@ class Tutor extends CI_Controller{
       );
 
       $tutor_id = $this->Tutor_model->add_tutor($params);
+      $this->session->set_flashdata('crear', 'Nueva tutor creado');
       redirect('tutor/index');
     }
     else
@@ -87,6 +88,7 @@ class Tutor extends CI_Controller{
         );
 
         $this->Tutor_model->update_tutor($id,$params);
+        $this->session->set_flashdata('editar', 'Se guardaron los cambios');
         redirect('tutor/index');
       }
       else
@@ -114,6 +116,7 @@ class Tutor extends CI_Controller{
     if(isset($tutor['id']))
     {
       $this->Tutor_model->delete_tutor($id);
+      $this->session->set_flashdata('eliminar', 'Tutor eliminado');
       redirect('tutor/index');
     }
     else

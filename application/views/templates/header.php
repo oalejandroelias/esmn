@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/quill/dist/quill.snow.css">
     <link href="<?= base_url();?>Lib/matrix-admin-bt4/dist/css/style.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/toastr/build/toastr.min.css" rel="stylesheet">
 
     <!-- ??? -->
     <link rel="stylesheet" type="text/css" href="<?= base_url();?>Lib/matrix-admin-bt4/assets/extra-libs/multicheck/multicheck.css">

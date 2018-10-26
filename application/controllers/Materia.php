@@ -72,6 +72,7 @@ class Materia extends CI_Controller{
       );
 
       $materia_id = $this->Materia_model->add_materia($params);
+      $this->session->set_flashdata('crear', 'Nueva materia creada');
       redirect('materia/index');
     }
     else
@@ -118,6 +119,7 @@ class Materia extends CI_Controller{
         );
 
         $this->Materia_model->update_materia($id,$params);
+        $this->session->set_flashdata('editar', 'Se guardaron los cambios');
         redirect('materia/index');
       }
       else
@@ -145,6 +147,7 @@ class Materia extends CI_Controller{
     if(isset($materia['id']))
     {
       $this->Materia_model->delete_materia($id);
+      $this->session->set_flashdata('eliminar', 'Materia eliminada');
       redirect('materia/index');
     }
     else

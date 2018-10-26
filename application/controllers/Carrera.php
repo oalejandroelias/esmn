@@ -60,6 +60,7 @@ class Carrera extends CI_Controller{
       );
 
       $carrera_id = $this->Carrera_model->add_carrera($params);
+      $this->session->set_flashdata('crear', 'Nueva carrera creada');
       redirect('carrera/index');
     }
     else
@@ -105,6 +106,7 @@ class Carrera extends CI_Controller{
 
         // if ($data['carrera']['id'] == $this->input->post('id') || !isset($carrera_exist['id'])) {
           $this->Carrera_model->update_carrera($id,$params);
+          $this->session->set_flashdata('editar', 'Se guardaron los cambios');
           redirect('carrera/index');
         // }
 
@@ -136,6 +138,7 @@ class Carrera extends CI_Controller{
     if(isset($carrera['id']))
     {
       $this->Carrera_model->delete_carrera($id);
+      $this->session->set_flashdata('eliminar', 'Carrera eliminada');
       redirect('carrera/index');
     }
     else

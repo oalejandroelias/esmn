@@ -77,7 +77,7 @@ class Usuario extends CI_Controller{
         );
 
         $this->Perfil_usuario_model->add_perfil_usuario($params_perfil_usuario);
-
+        $this->session->set_flashdata('crear', 'Nueva usuario creado');
         redirect('usuario/index');
       }
       else
@@ -123,6 +123,7 @@ class Usuario extends CI_Controller{
         );
 
         $this->Usuario_model->update_usuario($id,$params);
+        $this->session->set_flashdata('editar', 'Se guardaron los cambios');
         redirect('usuario/index');
       }
       else
@@ -153,6 +154,7 @@ class Usuario extends CI_Controller{
     {
       $this->Perfil_usuario_model->delete_perfil_usuario($id);
       $this->Usuario_model->delete_usuario($id);
+      $this->session->set_flashdata('eliminar', 'Usuario eliminado');
       redirect('usuario/index');
     }
     else

@@ -89,6 +89,7 @@ class Nivel extends CI_Controller{
                 );
 
                 $this->Nivel_model->update_nivel($id,$params);
+                $this->session->set_flashdata('editar', 'Se guardaron los cambios');
                 redirect('nivel/index');
             }
             else
@@ -118,6 +119,7 @@ class Nivel extends CI_Controller{
           $carreras = $this->Carrera_model->get_all_carreras(array(),array('row'=>'id_nivel','value'=>$id));
           if (empty($carreras)) {
             $this->Nivel_model->delete_nivel($id);
+            $this->session->set_flashdata('eliminar', 'Nivel eliminado');
             redirect('nivel/index');
           }else {
             show_error('El nivel no puede ser borrado, ya que esta asociado a una/s carrera/s.');

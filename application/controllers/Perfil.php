@@ -86,6 +86,7 @@ class Perfil extends CI_Controller{
         );
 
         $this->Perfil_model->update_perfil($id,$params);
+        $this->session->set_flashdata('editar', 'Se guardaron los cambios');
         redirect('Perfil/index');
       }
       else
@@ -115,6 +116,7 @@ class Perfil extends CI_Controller{
     if(isset($perfil['id']))
     {
       $this->Perfil_model->delete_perfil($id);
+      $this->session->set_flashdata('eliminar', 'Perfil eliminado');
       redirect('Perfil/index');
     }
     else

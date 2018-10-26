@@ -105,7 +105,7 @@ class Persona extends CI_Controller{
         $this->Perfil_usuario_model->add_perfil_usuario($params_perfil_usuario);
       }
 
-
+      $this->session->set_flashdata('crear', 'Nueva persona creada'); 
       redirect('persona/index');
     }
     else
@@ -167,6 +167,7 @@ class Persona extends CI_Controller{
         if ($params['id_ciudad']=='') {$params['id_ciudad']=NULL;}
 
         $this->Persona_model->update_persona($id,$params);
+        $this->session->set_flashdata('editar', 'Se guardaron los cambios');
         redirect('persona/index');
       }
       else
@@ -197,6 +198,7 @@ class Persona extends CI_Controller{
     if(isset($persona['id']))
     {
       $this->Persona_model->delete_persona($id);
+      $this->session->set_flashdata('eliminar', 'Persona eliminada');
       redirect('persona/index');
     }
     else

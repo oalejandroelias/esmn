@@ -55,6 +55,7 @@ class Tipo_documento extends CI_Controller{
       );
 
       $tipo_documento_id = $this->Tipo_documento_model->add_tipo_documento($params);
+      $this->session->set_flashdata('crear', 'Nueva tipo de documento creada');
       redirect('tipo_documento/index');
     }
     else
@@ -87,6 +88,7 @@ class Tipo_documento extends CI_Controller{
         );
 
         $this->Tipo_documento_model->update_tipo_documento($id,$params);
+        $this->session->set_flashdata('editar', 'Se guardaron los cambios');
         redirect('tipo_documento/index');
       }
       else
@@ -114,6 +116,7 @@ class Tipo_documento extends CI_Controller{
     if(isset($tipo_documento['id']))
     {
       $this->Tipo_documento_model->delete_tipo_documento($id);
+      $this->session->set_flashdata('eliminar', 'Tipo documento eliminado');
       redirect('tipo_documento/index');
     }
     else

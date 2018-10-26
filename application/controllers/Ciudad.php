@@ -60,6 +60,7 @@ class Ciudad extends CI_Controller{
       );
 
       $ciudad_id = $this->Ciudad_model->add_ciudad($params);
+      $this->session->set_flashdata('crear', 'Nueva ciudad creada');
       redirect('ciudad/index');
     }
     else
@@ -97,6 +98,7 @@ class Ciudad extends CI_Controller{
         );
 
         $this->Ciudad_model->update_ciudad($id,$params);
+        $this->session->set_flashdata('editar', 'Se guardaron los cambios');
         redirect('ciudad/index');
       }
       else
@@ -124,6 +126,7 @@ class Ciudad extends CI_Controller{
     if(isset($ciudad['id']))
     {
       $this->Ciudad_model->delete_ciudad($id);
+      $this->session->set_flashdata('eliminar', 'Ciudad eliminada');
       redirect('ciudad/index');
     }
     else
