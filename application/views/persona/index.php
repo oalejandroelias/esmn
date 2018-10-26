@@ -13,13 +13,13 @@
                     <tr role="row">
                       <tr>
                         <!-- <th>ID</th> -->
-                        <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Tipo Documento</th>
-                        <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Numero Documento</th>
-                        <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Ciudad</th>
+                        <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Documento</th>
+                        <!-- <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Numero Documento</th> -->
+                        <!-- <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Ciudad</th> -->
                         <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Nombre</th>
                         <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Apellido</th>
-                        <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Domicilio</th>
-                        <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Telefono</th>
+                        <!-- <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Domicilio</th> -->
+                        <!-- <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Telefono</th> -->
                         <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Email</th>
                         <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Fecha Nacimiento</th>
                         <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Acciones</th>
@@ -33,14 +33,13 @@
 
                       foreach($personas as $p){ ?>
                         <tr>
-                          <!-- <td><?php echo $p['id']; ?></td> -->
-                          <td><?php echo $p['tipo_documento']; ?></td>
-                          <td><?php echo $p['numero_documento']; ?></td>
-                          <td><?php echo $p['ciudad']; ?></td>
+                          <td><?php echo $p['tipo_documento'].' - '.$p['numero_documento']; ?></td>
+                          <!-- <td><?php echo $p['numero_documento']; ?></td> -->
+                          <!-- <td><?php echo $p['ciudad']; ?></td> -->
                           <td><?php echo $p['nombre']; ?></td>
                           <td><?php echo $p['apellido']; ?></td>
-                          <td><?php echo $p['domicilio']; ?></td>
-                          <td><?php echo $p['telefono']; ?></td>
+                          <!-- <td><?php echo $p['domicilio']; ?></td> -->
+                          <!-- <td><?php echo $p['telefono']; ?></td> -->
                           <td><?php echo $p['email']; ?></td>
                           <td><?php echo $p['fecha_nacimiento']; ?></td>
                           <td>
@@ -67,13 +66,13 @@
 
                     <tfoot>
                       <tr>
-                        <th rowspan="1" colspan="1">Tipo Documento</th>
-                        <th rowspan="1" colspan="1">Numero de Documento</th>
-                        <th rowspan="1" colspan="1">Ciudad</th>
+                        <th rowspan="1" colspan="1">Documento</th>
+                        <!-- <th rowspan="1" colspan="1">Numero de Documento</th> -->
+                        <!-- <th rowspan="1" colspan="1">Ciudad</th> -->
                         <th rowspan="1" colspan="1">Nombre</th>
                         <th rowspan="1" colspan="1">Apellido</th>
-                        <th rowspan="1" colspan="1">Domicilio</th>
-                        <th rowspan="1" colspan="1">Telefono</th>
+                        <!-- <th rowspan="1" colspan="1">Domicilio</th> -->
+                        <!-- <th rowspan="1" colspan="1">Telefono</th> -->
                         <th rowspan="1" colspan="1">Email</th>
                         <th rowspan="1" colspan="1">Fecha de Nacimiento</th>
                         <th rowspan="1" colspan="1">Acciones</th>

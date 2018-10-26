@@ -51,7 +51,6 @@ class Persona extends CI_Controller{
   /*
   * Adding a new persona
   */
-
   function add()
   {
     $this->form_validation->set_rules('id_tipo_documento','Id Tipo Documento','required|integer');
@@ -62,10 +61,26 @@ class Persona extends CI_Controller{
     $this->form_validation->set_rules('id_ciudad','Id Ciudad','integer');
     $this->form_validation->set_rules('telefono','Telefono','max_length[128]');
     $this->form_validation->set_rules('email','Email','max_length[128]|valid_email');
+    $this->form_validation->set_rules('fecha_nacimiento','Fecha de nacimiento','required');
 
-    if($this->form_validation->run())
+    $config['upload_path']= './files/images/';
+    $config['allowed_types']= 'gif|jpg|png|jpeg';
+    $config['max_size']= 10240;
+    $config['max_filename']= 200;
+    $config['file_ext_tolower']= TRUE;
+    $this->load->library('upload', $config);
+
+    if (!empty($_FILES)) {
+      if ($_FILES['foto_perfil']['error']!==0) {
+        $imagen = TRUE;
+      }else {
+        $imagen = $this->upload->do_upload('foto_perfil');
+        $imagen_path = base_url('files/images/'.$this->upload->data('file_name'));
+      }
+    }
+
+    if($this->form_validation->run() && $imagen)
     {
-
       $params = array(
         'id_tipo_documento' => $this->input->post('id_tipo_documento'),
         'id_ciudad' => $this->input->post('id_ciudad'),
@@ -77,7 +92,10 @@ class Persona extends CI_Controller{
         'email' => $this->input->post('email'),
         'fecha_nacimiento' => $this->input->post('fecha_nacimiento'),
       );
+      if (isset($imagen_path)) {$params['foto']= $imagen_path;}
+
       if ($params['id_ciudad']=='') {$params['id_ciudad']=NULL;}
+      // var_dump($params);exit;
 
       $persona_id = $this->Persona_model->add_persona($params);
 
@@ -92,7 +110,7 @@ class Persona extends CI_Controller{
           'username' => $username,
           'password' => $password,
         );
-// controlar username inexistente
+        // controlar username inexistente
         $usuario_id = $this->Usuario_model->add_usuario($params_usuario);
 
         $id_perfil = $this->input->post('id_perfil');
@@ -105,7 +123,7 @@ class Persona extends CI_Controller{
         $this->Perfil_usuario_model->add_perfil_usuario($params_perfil_usuario);
       }
 
-      $this->session->set_flashdata('crear', 'Nueva persona creada'); 
+      $this->session->set_flashdata('crear', 'Nueva persona creada');
       redirect('persona/index');
     }
     else
@@ -121,6 +139,7 @@ class Persona extends CI_Controller{
         '../bootstrap-birthday/bootstrap-birthday.min.js',
         'persona.js'
       );
+      $data['css'] = array('persona.css');
 
       $this->load->view('templates/header',$data);
       $this->load->view('persona/add',$data);

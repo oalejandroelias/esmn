@@ -16,6 +16,7 @@ $('#checkbox_generar_usuario').change(function(){
   }
 });
 
+// crear select de fecha nacimiento
 $('#fecha_nacimiento').bootstrapBirthday({
   widget: {
     wrapper: {
@@ -25,7 +26,8 @@ $('#fecha_nacimiento').bootstrapBirthday({
     wrapperYear: {
       use: true,
       tag: 'div',
-      class: 'col-sm-4'
+      class: 'col-sm-4',
+      required: 'required'
     },
     wrapperMonth: {
       use: true,
@@ -38,15 +40,15 @@ $('#fecha_nacimiento').bootstrapBirthday({
       class: 'col-sm-4'
     },
     selectYear: {
-      name: 'fecha_nacimiento[year]',
+      name: 'birthday[year]',
       class: 'form-control'
     },
     selectMonth: {
-      name: 'fecha_nacimiento[month]',
+      name: 'birthday[month]',
       class: 'form-control'
     },
     selectDay: {
-      name: 'fecha_nacimiento[day]',
+      name: 'birthday[day]',
       class: 'form-control'
     }
   },
@@ -72,5 +74,50 @@ $('#fecha_nacimiento').bootstrapBirthday({
         "Diciembre"
       ]
     }
+  }
+});
+
+// validar datos del formulario
+function validar_form(form){
+  var selects = $("select[name^='birthday']"),
+      year = $("select[name^='birthday[year]']").val(),
+      month = $("select[name^='birthday[month]']").val(),
+      day = $("select[name^='birthday[day]']").val();
+  for (var i = 0; i < selects.length; i++) {
+    if (selects[i].value == 0){
+      $('span[data-error="fecha_nacimiento"]').removeClass('d-none');
+      return false;
+    }
+  }
+  var date = year+"-"+month+"-"+day;
+  $("#fecha_nacimiento").val(date);
+}
+
+// obtener url de imagen y mostrarla en card_foto_perfil
+function readURL(input,id_img) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      $('#'+id_img).attr('src', e.target.result);
+    }
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$("#card_foto_perfil input").change(function() {
+  readURL(this,'img_foto_perfil');
+  $("#card_foto_perfil span").text("");
+});
+
+$(document).ready(function(){
+  //setear valores de fecha si vienen por post (repoblar)
+  if ($("input[name='fecha_nacimiento']").val() != "") {
+    var date = $("input[name='fecha_nacimiento']").val(),
+        year = $("input[name='fecha_nacimiento']").attr('data-valueyear'),
+        month = $("input[name='fecha_nacimiento']").attr('data-valuemonth'),
+        day = $("input[name='fecha_nacimiento']").attr('data-valueday');
+    $("select[name^='birthday[year]']").val(year);
+    $("select[name^='birthday[month]']").val(month);
+    $("select[name^='birthday[day]']").val(day);
   }
 });

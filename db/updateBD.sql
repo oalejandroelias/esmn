@@ -28,3 +28,8 @@ CREATE TABLE `documentacion` (
   FOREIGN KEY (id_persona) REFERENCES persona(id) ON DELETE RESTRICT ON UPDATE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ---------------------------------------
+
+
+-- 26/10/2018: agregar columna foto de perfil a persona --------
+ALTER TABLE `persona` ADD `foto` TEXT NULL AFTER `fecha_nacimiento`;
+---------------------------------------------------------

@@ -1,5 +1,24 @@
-<?php echo form_open('persona/add',array("class"=>"form-horizontal")); ?>
+<?php echo form_open_multipart('persona/add',array("class"=>"form-horizontal","onsubmit"=>"return validar_form(this);")); ?>
+
 <div class="row">
+	<div class="col-md-3 col-12">
+		<div class="card" style="max-width:250px;max-height:250px">
+			<div class="card text-center">
+				<div class="card-header bg-cyan text-white">
+					Foto de perfil
+				</div>
+				<img class="card-img-top" id="img_foto_perfil" src="<?= base_url('files/images/user.png')?>" alt="Foto perfil">
+				<div class="card-body" id=card_foto_perfil>
+					<label class="btn btn-primary">
+						<input type="file" name="foto_perfil"/>
+						<i class="fa fa-upload"></i> Subir foto
+					</label>
+					<?php echo $this->upload->display_errors('<span class="form-text text-danger">', '</span>'); ?>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<div class="col-md-8 col-12">
 		<div class="card">
 			<div class="card-body">
@@ -19,28 +38,26 @@
 						</select>
 						<span class="text-danger"><?php echo form_error('id_tipo_documento');?></span>
 					</div>
-					<!-- </div> -->
-					<!-- <div class="form-group"> -->
 					<div class="col-sm-6 col-12">
 						<label for="numero_documento" class="control-label"><span class="text-danger">*</span>Numero Documento</label>
 						<input type="number" min="0" maxlength="11" name="numero_documento" required value="<?php echo $this->input->post('numero_documento'); ?>" class="form-control" id="numero_documento" />
 						<span class="text-danger"><?php echo form_error('numero_documento');?></span>
 					</div>
 				</div>
+
 				<div class="form-row mb-3">
 					<div class="col-sm-6 col-12">
 						<label for="nombre" class="control-label"><span class="text-danger">*</span>Nombre</label>
 						<input type="text" maxlength="128" name="nombre" required value="<?php echo $this->input->post('nombre'); ?>" class="form-control" id="nombre" />
 						<span class="text-danger"><?php echo form_error('nombre');?></span>
 					</div>
-					<!-- </div> -->
-					<!-- <div class="form-group"> -->
 					<div class="col-sm-6 col-12">
 						<label for="apellido" class="control-label"><span class="text-danger">*</span>Apellido</label>
 						<input type="text" maxlength="128" name="apellido" required value="<?php echo $this->input->post('apellido'); ?>" class="form-control" id="apellido" />
 						<span class="text-danger"><?php echo form_error('apellido');?></span>
 					</div>
 				</div>
+
 				<div class="form-row mb-3">
 					<div class="col-sm-6 col-12">
 						<label for="id_ciudad" class="control-label">Ciudad</label>
@@ -57,22 +74,19 @@
 						</select>
 						<span class="text-danger"><?php echo form_error('id_ciudad');?></span>
 					</div>
-					<!-- </div>
-					<div class="form-row"> -->
 					<div class="col-sm-6 col-12">
 						<label for="domicilio" class="control-label">Domicilio</label>
 						<input type="text" maxlength="128" name="domicilio" value="<?php echo $this->input->post('domicilio'); ?>" class="form-control" id="domicilio" />
 						<span class="text-danger"><?php echo form_error('domicilio');?></span>
 					</div>
 				</div>
+
 				<div class="form-row mb-3">
 					<div class="col-sm-6 col-12">
 						<label for="telefono" class="control-label">Telefono</label>
 						<input type="text" maxlength="128" name="telefono" value="<?php echo $this->input->post('telefono'); ?>" class="form-control" id="telefono" />
 						<span class="text-danger"><?php echo form_error('telefono');?></span>
 					</div>
-					<!-- </div>
-					<div class="form-group"> -->
 					<div class="col-sm-6 col-12">
 						<label for="email" class="control-label">Email</label>
 						<input type="email" maxlength="128" name="email" value="<?php echo $this->input->post('email'); ?>" class="form-control" id="email" />
@@ -80,10 +94,16 @@
 					</div>
 				</div>
 
-				<label for="fecha" class="control-label">Fecha de Nacimiento</label>
+				<label for="fecha" class="control-label"><span class="text-danger">*</span>Fecha de Nacimiento</label>
 				<div class="form-row mb-3">
 					<div class="col-12">
-						<input type="text" name="fecha_nacimiento" value="" id="fecha_nacimiento"/>
+						<input type="text" name="fecha_nacimiento" id="fecha_nacimiento"
+						value="<?php echo $this->input->post('fecha_nacimiento'); ?>"
+						data-valueyear="<?php echo $this->input->post('birthday[year]'); ?>"
+						data-valuemonth="<?php echo $this->input->post('birthday[month]'); ?>"
+						data-valueday="<?php echo $this->input->post('birthday[day]'); ?>"
+						/>
+						<span class="text-danger d-none" data-error="fecha_nacimiento">Complete los datos de fecha de nacimiento.</span>
 					</div>
 				</div>
 
@@ -123,25 +143,9 @@
 					</div>
 				</div>
 
-
-			</div>
-		</div>
-
-	</div>
-	<div class="col-md-3 col-12">
-		<div class="card">
-			<div class="card text-center">
-				<div class="card-header">
-					Foto de perfil
-				</div>
-				<img class="card-img-top" src="<?= base_url('files/images/logo_esmn.png')?>" alt="Foto perfil">
-				<div class="card-body">
-					<a href="#" class="btn btn-primary">Subir una foto</a>
-				</div>
 			</div>
 		</div>
 	</div>
-
 </div>
 
 <?php echo form_close(); ?>
