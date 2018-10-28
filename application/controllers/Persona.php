@@ -159,7 +159,6 @@ class Persona extends CI_Controller{
 
     if(isset($data['persona']['id']))
     {
-
       $this->form_validation->set_rules('id_tipo_documento','Id Tipo Documento','required|integer');
       $this->form_validation->set_rules('numero_documento','Numero Documento','required|max_length[11]|integer');
       $this->form_validation->set_rules('nombre','Nombre','required|max_length[128]');
@@ -168,10 +167,26 @@ class Persona extends CI_Controller{
       $this->form_validation->set_rules('id_ciudad','Id Ciudad','integer');
       $this->form_validation->set_rules('telefono','Telefono','max_length[128]');
       $this->form_validation->set_rules('email','Email','max_length[128]|valid_email');
+      $this->form_validation->set_rules('fecha_nacimiento','Fecha de nacimiento','required');
 
-      if($this->form_validation->run())
+      $config['upload_path']= './files/images/';
+      $config['allowed_types']= 'gif|jpg|png|jpeg';
+      $config['max_size']= 10240;
+      $config['max_filename']= 200;
+      $config['file_ext_tolower']= TRUE;
+      $this->load->library('upload', $config);
+
+      if (!empty($_FILES)) {
+        if ($_FILES['foto_perfil']['error']!==0) {
+          $imagen = TRUE;
+        }else {
+          $imagen = $this->upload->do_upload('foto_perfil');
+          $imagen_path = base_url('files/images/'.$this->upload->data('file_name'));
+        }
+      }
+
+      if($this->form_validation->run() && $imagen)
       {
-
         $params = array(
           'id_tipo_documento' => $this->input->post('id_tipo_documento'),
           'id_ciudad' => $this->input->post('id_ciudad'),
@@ -183,6 +198,8 @@ class Persona extends CI_Controller{
           'email' => $this->input->post('email'),
           'fecha_nacimiento' => $this->input->post('fecha_nacimiento'),
         );
+        if (isset($imagen_path)) {$params['foto']= $imagen_path;}
+
         if ($params['id_ciudad']=='') {$params['id_ciudad']=NULL;}
 
         $this->Persona_model->update_persona($id,$params);
@@ -194,7 +211,11 @@ class Persona extends CI_Controller{
         $data['all_tipo_documento'] = $this->Tipo_documento_model->get_all_tipo_documento();
         $data['all_ciudades'] = $this->Ciudad_model->get_all_ciudades();
 
-        $data['js'] = array('persona.js');
+        $data['js'] = array(
+          '../bootstrap-birthday/bootstrap-birthday.min.js',
+          'persona.js'
+        );
+        $data['css'] = array('persona.css');
 
         $this->load->view('templates/header',$data);
         $this->load->view('persona/edit',$data);

@@ -87,9 +87,9 @@
                   <a href="<?php echo site_url('Persona/add'); ?>" class="btn btn-success">Nuevo</a>
                 </div>
 
-                <div class="float-right">
+                <!-- <div class="float-right">
                   <?php echo $this->pagination->create_links(); ?>
-                </div>
+                </div> -->
               </div>
 
             </div>

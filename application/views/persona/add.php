@@ -10,10 +10,11 @@
 				<img class="card-img-top" id="img_foto_perfil" src="<?= base_url('files/images/user.png')?>" alt="Foto perfil">
 				<div class="card-body" id=card_foto_perfil>
 					<label class="btn btn-primary">
-						<input type="file" name="foto_perfil"/>
+						<input type="file" name="foto_perfil" accept="image/*"/>
 						<i class="fa fa-upload"></i> Subir foto
 					</label>
-					<?php echo $this->upload->display_errors('<span class="form-text text-danger">', '</span>'); ?>
+					<span class="form-text text-danger"><?= $this->upload->display_errors(); ?></span>
+					<!-- <?php echo $this->upload->display_errors('<span class="form-text text-danger">', '</span>'); ?> -->
 				</div>
 			</div>
 		</div>
@@ -97,12 +98,7 @@
 				<label for="fecha" class="control-label"><span class="text-danger">*</span>Fecha de Nacimiento</label>
 				<div class="form-row mb-3">
 					<div class="col-12">
-						<input type="text" name="fecha_nacimiento" id="fecha_nacimiento"
-						value="<?php echo $this->input->post('fecha_nacimiento'); ?>"
-						data-valueyear="<?php echo $this->input->post('birthday[year]'); ?>"
-						data-valuemonth="<?php echo $this->input->post('birthday[month]'); ?>"
-						data-valueday="<?php echo $this->input->post('birthday[day]'); ?>"
-						/>
+						<input type="text" name="fecha_nacimiento" id="fecha_nacimiento" value="<?php echo $this->input->post('fecha_nacimiento'); ?>"/>
 						<span class="text-danger d-none" data-error="fecha_nacimiento">Complete los datos de fecha de nacimiento.</span>
 					</div>
 				</div>
