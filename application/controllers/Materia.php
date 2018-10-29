@@ -51,7 +51,7 @@ class Materia extends CI_Controller{
   */
   function add()
   {
-    $this->form_validation->set_rules('carrera_id','Codigo de Plan','required|max_length[11]');
+    $this->form_validation->set_rules('id_carrera','Codigo de Plan','required|max_length[11]');
     $this->form_validation->set_rules('nombre','Nombre','required|max_length[128]|is_unique[materia.nombre]');
     $this->form_validation->set_rules('codigo_anio','Codigo Anio','max_length[24]');
     $this->form_validation->set_rules('regimen_cursado','Regimen Cursado','max_length[24]');
@@ -62,7 +62,7 @@ class Materia extends CI_Controller{
     if($this->form_validation->run())
     {
       $params = array(
-        'id_carrera' => $this->input->post('carrera_id'),
+        'id_carrera' => $this->input->post('id_carrera'),
         'nombre' => $this->input->post('nombre'),
         'codigo_anio' => $this->input->post('codigo_anio'),
         'regimen_cursado' => $this->input->post('regimen_cursado'),
@@ -98,7 +98,7 @@ class Materia extends CI_Controller{
     if(isset($data['materia']['id']))
     {
 
-      $this->form_validation->set_rules('id_carrera','Id Carrera','required|max_length[11]');
+      $this->form_validation->set_rules('id_carrera','Codigo de Plan','required|max_length[11]');
       $this->form_validation->set_rules('nombre','Nombre','required|max_length[128]');
       $this->form_validation->set_rules('codigo_anio','Codigo Anio','max_length[24]');
       $this->form_validation->set_rules('regimen_cursado','Regimen Cursado','max_length[24]');
@@ -125,7 +125,9 @@ class Materia extends CI_Controller{
       else
       {
         $data['title'] = 'Materia - ESMN';
-        $data['page_title'] = 'Materia';
+        $data['page_title'] = 'Materia -> '.$data['materia']['nombre'];
+
+        $data['all_carreras'] = $this->Carrera_model->get_all_carreras();
 
         $this->load->view('templates/header',$data);
         $this->load->view('materia/edit',$data);

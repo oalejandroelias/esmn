@@ -2,9 +2,9 @@
 <!-- esta vista permite agregar id de carrera,nombre,codigo de año,regimen de cursado,regimen de aprobación,carga horaria y tipo de catedra no repetido del nivel-->
 
 	<div class="form-group">
-		<label for="nombre" class="col-md-4 control-label"><span class="text-danger">*</span>Carrera</label>
+		<label for="nombre" class="col-md-4 control-label"><span class="text-danger">*</span>Codigo de Plan</label>
 		<div class="col-md-8">
-			<select name="carrera_id" class="form-control">
+			<select name="id_carrera" class="form-control">
 				<option value="">Seleccione una carrera</option>
 				<?php
 				foreach($all_carreras as $carrera)

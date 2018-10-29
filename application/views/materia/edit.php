@@ -1,9 +1,20 @@
 <?php echo form_open('materia/edit/'.$materia['id'],array("class"=>"form-horizontal")); ?>
 <!-- esta vista permite editar id de carrera,nombre,codigo de año,regimen de cursado,regimen de aprobación,carga horaria y tipo de catedra no repetido del nivel-->
+
 	<div class="form-group">
-		<label for="id_carrera" class="col-md-4 control-label"><span class="text-danger">*</span>Id Carrera</label>
+		<label for="nombre" class="col-md-4 control-label"><span class="text-danger">*</span>Codigo de Plan</label>
 		<div class="col-md-8">
-			<input type="text" name="id_carrera" value="<?php echo ($this->input->post('id_carrera') ? $this->input->post('id_carrera') : $materia['id_carrera']); ?>" class="form-control" id="id_carrera" />
+			<select name="id_carrera" class="form-control">
+				<option value="">Seleccione una carrera</option>
+				<?php
+				foreach($all_carreras as $carrera)
+				{
+					$selected = ($carrera['carrera_id'] == $materia['id_carrera']) ? ' selected="selected"' : "";
+
+					echo '<option value="'.$carrera['carrera_id'].'" '.$selected.'>'.$carrera['carrera_nombre'].'</option>';
+				}
+				?>
+			</select>
 			<span class="text-danger"><?php echo form_error('id_carrera');?></span>
 		</div>
 	</div>
