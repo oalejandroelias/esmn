@@ -11,6 +11,7 @@ class Persona_tutor extends CI_Controller{
     validar_acceso();
     is_logged_in();
     $this->load->model('Persona_tutor_model');
+    $this->load->model('Tipo_documento_model');
     $this->load->model('Tutor_model');
     $this->load->model('Persona_model');
   }
@@ -51,6 +52,7 @@ class Persona_tutor extends CI_Controller{
 
       $data['personas'] = $this->Persona_model->get_all_personas();
       $data['all_tutores'] = $this->Tutor_model->get_all_tutores();
+      $data['all_tipo_documento'] = $this->Tipo_documento_model->get_all_tipo_documento();
 
       $this->load->view('templates/header',$data);
       $this->load->view('persona_tutor/relacion',$data);
@@ -119,18 +121,10 @@ class Persona_tutor extends CI_Controller{
   /*
   * Deleting persona_tutor
   */
-  function remove($id_persona)
+  function remove($id_persona,$id_responsable)
   {
-    $persona_tutor = $this->Persona_tutor_model->get_persona_tutor($id_persona);
-
-    // check if the persona_tutor exists before trying to delete it
-    if(isset($persona_tutor['id_persona']))
-    {
-      $this->Persona_tutor_model->delete_persona_tutor($id_persona);
-      redirect('persona_tutor/index');
-    }
-    else
-    show_error('The persona_tutor you are trying to delete does not exist.');
+      $this->Persona_tutor_model->delete_persona_tutor($id_persona,$id_responsable);
+      redirect('persona_tutor/relacion/'.$id_persona);
   }
 
 }

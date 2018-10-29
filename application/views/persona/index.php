@@ -41,7 +41,7 @@
                           <!-- <td><?php echo $p['domicilio']; ?></td> -->
                           <!-- <td><?php echo $p['telefono']; ?></td> -->
                           <td><?php echo $p['email']; ?></td>
-                          <td><?php echo $p['fecha_nacimiento']; ?></td>
+                          <td><?php echo iconv('ISO-8859-2', 'UTF-8', strftime("%d de %B de %Y", strtotime($p['fecha_nacimiento']))); ?></td>
                           <td>
 
                             <?php if($boton_edit){?>

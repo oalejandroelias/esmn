@@ -5,15 +5,21 @@ jQuery('.mydatepicker').datepicker({
   format: 'yyyy-mm-dd'
 });
 
-// al checkear "generar usuario" aparece un selector de permisos,
-// si se quita, desaparece el selector
-$('#checkbox_generar_usuario').change(function(){
-  $('#copiar_permisos_de').toggleClass('d-none');
+// al checkear "generar usuario" aparecen campos de usuario y un selector de permisos,
+// si se quita, desaparecen los campos
+function box_checked(){
+  $('#formdiv_permisos').toggleClass('d-none');
+  $('#formdiv_usuario').toggleClass('d-none');
   if ($(this).is(':checked')) {
-    $('#copiar_permisos_de select').attr('required',true);
+    $('#formdiv_permisos select').attr('required',true);
+    $('#formdiv_usuario input').attr('required',true);
   }else {
-    $('#copiar_permisos_de select').attr('required',false);
+    $('#formdiv_permisos select').attr('required',false);
+    $('#formdiv_usuario input').attr('required',false);
   }
+}
+$('#checkbox_generar_usuario').change(function(){
+  box_checked();
 });
 
 // crear select de fecha nacimiento
@@ -132,4 +138,7 @@ $(document).ready(function(){
     $("select[name^='birthday[month]']").val(month);
     $("select[name^='birthday[day]']").val(day);
   }
+
+  // si el checkbox generar_usuario viene por post:
+  if ($('#checkbox_generar_usuario')[0].checked) box_checked();
 });

@@ -17,13 +17,13 @@ class Persona_tutor_model extends CI_Model
   function get_persona_tutor($id_persona)
   {
     $query = $this->db->query("SELECT id_persona,id_responsable,id_tutor,tutor.nombre AS 'nombre_tutor',
-      P1.nombre AS 'nombre_persona',P1.apellido AS 'apellido_persona',
-      P2.nombre AS 'nombre_responsable',P2.apellido AS 'apellido_responsable'
+      P1.nombre AS 'nombre_persona',P1.apellido AS 'apellido_persona',P1.id_tipo_documento AS 'id_tipo_documento_persona',P1.numero_documento AS 'numero_documento_persona',P1.foto AS 'foto_persona',
+      P2.nombre AS 'nombre_responsable',P2.apellido AS 'apellido_responsable',P1.id_tipo_documento AS 'id_tipo_documento_responsable',P1.numero_documento AS 'numero_documento_responsable',P2.foto AS 'foto_responsable'
       FROM persona_tutor
       RIGHT JOIN persona AS P1 ON persona_tutor.id_persona=P1.id
       RIGHT JOIN persona AS P2 ON persona_tutor.id_responsable=P2.id
       JOIN tutor ON persona_tutor.id_tutor=tutor.id
-      WHERE id_persona=$id_persona
+      WHERE id_persona=$id_persona OR id_responsable=$id_persona
       ORDER BY id_persona");
       return $query->result();
       // return $this->db->get_where('persona_tutor',array('id_persona'=>$id_persona))->row_array();
@@ -59,8 +59,8 @@ class Persona_tutor_model extends CI_Model
     /*
     * function to delete persona_tutor
     */
-    function delete_persona_tutor($id_persona)
+    function delete_persona_tutor($id_persona,$id_responsable)
     {
-      return $this->db->delete('persona_tutor',array('id_persona'=>$id_persona));
+      return $this->db->delete('persona_tutor',array('id_persona'=>$id_persona,'id_responsable'=>$id_responsable));
     }
   }

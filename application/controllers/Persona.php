@@ -25,6 +25,7 @@ class Persona extends CI_Controller{
   {
     $data['title']='Personas - CeciliaESMN';
     $data['page_title']='Personas';
+    setlocale(LC_TIME,"es_ES.UTF-8"); //fechas en espaniol
 
     $params['limit'] = RECORDS_PER_PAGE;
     $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
@@ -62,6 +63,8 @@ class Persona extends CI_Controller{
     $this->form_validation->set_rules('telefono','Telefono','max_length[128]');
     $this->form_validation->set_rules('email','Email','max_length[128]|valid_email');
     $this->form_validation->set_rules('fecha_nacimiento','Fecha de nacimiento','required');
+    //para creacion de usuario:
+    $this->form_validation->set_rules('username','Nombre de usuario','max_length[128]|is_unique[usuario.username]');
 
     $config['upload_path']= './files/images/';
     $config['allowed_types']= 'gif|jpg|png|jpeg';
@@ -102,12 +105,12 @@ class Persona extends CI_Controller{
       //Creo el usuario
       if(isset($_POST['generar_usuario']))
       {
-        $username= strtolower(substr($this->input->post('nombre'),0,1).$this->input->post('apellido'));
+        // $username= strtolower(substr($this->input->post('nombre'),0,1).$this->input->post('apellido'));
 
-        $password = hash('sha512',$username.html_escape($this->input->post('numero_documento',TRUE)));
+        $password = hash('sha512',$this->input->post('username').html_escape($this->input->post('password',TRUE)));
         $params_usuario= array(
           'id_persona' => $persona_id,
-          'username' => $username,
+          'username' => $this->input->post('username'),
           'password' => $password,
         );
         // controlar username inexistente
