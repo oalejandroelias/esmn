@@ -78,7 +78,7 @@ class Materia extends CI_Controller{
     else
     {
       $data['title'] = 'Materia - ESMN';
-      $data['page_title'] = 'Materia';
+      $data['page_title'] = 'Nueva Materia';
       $data['all_carreras'] = $this->Carrera_model->get_all_carreras();
 
       $this->load->view('templates/header',$data);

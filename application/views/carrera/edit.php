@@ -39,7 +39,7 @@
 
 				<div class="col-sm-6 col-12">
 					<label for="acta" class="col-md-4 control-label">Acta</label>
-					<input type="text" name="acta" value="<?php echo ($this->input->post('acta') ? $this->input->post('acta') : $carrera['acta']); ?>" class="form-control" id="acta" />
+					<input type="text" name="acta" placeholder="Referencia a libro/folio" value="<?php echo ($this->input->post('acta') ? $this->input->post('acta') : $carrera['acta']); ?>" class="form-control" id="acta" />
 					<span class="text-danger"><?php echo form_error('acta');?></span>
 				</div>
 			</div>
