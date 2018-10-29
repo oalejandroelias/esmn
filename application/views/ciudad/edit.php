@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-6">
+	<div class="col-sm-6 col-12">
 		<div class="card">
 			<div class="card-body">
 				<?php echo form_open('ciudad/edit/'.$ciudad['id'],array("class"=>"form-horizontal")); ?>
