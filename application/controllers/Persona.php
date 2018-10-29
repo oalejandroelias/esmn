@@ -25,7 +25,7 @@ class Persona extends CI_Controller{
   {
     $data['title']='Personas - CeciliaESMN';
     $data['page_title']='Personas';
-    setlocale(LC_TIME,"es_ES.UTF-8"); //fechas en espaniol
+    setlocale(LC_TIME,"es_ES.UTF-8"); //fechas en español
 
     $params['limit'] = RECORDS_PER_PAGE;
     $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;

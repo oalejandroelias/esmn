@@ -34,7 +34,7 @@
 												<td><?php echo $c['nivel']; ?></td>
 												<td><?php echo $c['carrera_nombre']; ?></td>
 												<td><?php echo $c['acta']; ?></td>
-												<td><?php echo $c['fecha']; ?></td>
+												<td><?php echo iconv('ISO-8859-2', 'UTF-8', strftime("%d de %B de %Y", strtotime($c['fecha']))); ?></td>
 												<td>
 													<?php if($boton_edit){?>
 														<a href="<?php echo site_url('carrera/edit/'.$c['carrera_id']); ?>" class="btn btn-info btn-sm">Editar</a>

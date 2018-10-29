@@ -48,7 +48,7 @@
 	<div class="form-group">
 		<label for="fecha" class="col-md-4 control-label">Fecha</label>
 		<div class="input-group col-md-8">
-			<input type="text" class="form-control mydatepicker" placeholder="yyyy-mm-dd" name="fecha" value="<?php echo ($this->input->post('fecha') ? $this->input->post('fecha') : $carrera['fecha']); ?>" id="fecha">
+			<input type="text" class="form-control mydatepicker" placeholder="dd/mm/yyyy" name="fecha" value="<?php echo date("d/m/Y", strtotime(($this->input->post('fecha') ? $this->input->post('fecha') : $carrera['fecha']))); ?>" id="fecha">
 			<div class="input-group-append">
 				<span class="input-group-text"><i class="fa fa-calendar"></i></span>
 			</div>

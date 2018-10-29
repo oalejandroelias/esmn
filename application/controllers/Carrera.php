@@ -24,6 +24,8 @@ class Carrera extends CI_Controller{
     $params['limit'] = RECORDS_PER_PAGE;
     $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
 
+    setlocale(LC_TIME,"es_ES.UTF-8"); //fechas en español
+
     $config = $this->config->item('pagination');
     $config['base_url'] = site_url('carrera/index?');
     $config['total_rows'] = $this->Carrera_model->get_all_carreras_count();
@@ -56,7 +58,7 @@ class Carrera extends CI_Controller{
         'id_nivel' => $this->input->post('id_nivel'),
         'nombre' => $this->input->post('nombre'),
         'acta' => $this->input->post('acta'),
-        'fecha' => $this->input->post('fecha'),
+        'fecha' => date('Y-m-d', strtotime(str_replace('/', '-',$this->input->post('fecha')))),
       );
 
       $carrera_id = $this->Carrera_model->add_carrera($params);
@@ -67,7 +69,7 @@ class Carrera extends CI_Controller{
     {
       $this->load->model('Nivel_model');
       $data['all_niveles'] = $this->Nivel_model->get_all_niveles();
-      $data['js'] = array('carrera_add.js');
+      $data['js'] = array('carrera.js');
 
       $data['title'] = 'Carrera - ESMN';
       $data['page_title'] = 'Carrera';
@@ -93,6 +95,14 @@ class Carrera extends CI_Controller{
       $this->form_validation->set_rules('acta','Acta','max_length[256]');
       $this->form_validation->set_rules('id_nivel','Id Nivel','required');
 
+      // otra forma de hacer lo mismo
+      // if($this->input->post('user_name') != $original_value) {
+      //    $is_unique =  '|is_unique[users.user_name]'
+      // } else {
+      //    $is_unique =  ''
+      // }
+      // $this->form_validation->set_rules('user_name', 'User Name', 'required|trim|xss_clean'.$is_unique);
+
       $carrera_exist = $this->Carrera_model->get_carrera($this->input->post('id'));
       if($this->form_validation->run() && ($data['carrera']['id'] == $this->input->post('id') || !isset($carrera_exist['id'])))
       {
@@ -101,13 +111,13 @@ class Carrera extends CI_Controller{
           'id_nivel' => $this->input->post('id_nivel'),
           'nombre' => $this->input->post('nombre'),
           'acta' => $this->input->post('acta'),
-          'fecha' => $this->input->post('fecha'),
+          'fecha' => date('Y-m-d', strtotime(str_replace('/', '-',$this->input->post('fecha')))),
         );
 
         // if ($data['carrera']['id'] == $this->input->post('id') || !isset($carrera_exist['id'])) {
-          $this->Carrera_model->update_carrera($id,$params);
-          $this->session->set_flashdata('editar', 'Se guardaron los cambios');
-          redirect('carrera/index');
+        $this->Carrera_model->update_carrera($id,$params);
+        $this->session->set_flashdata('editar', 'Se guardaron los cambios');
+        redirect('carrera/index');
         // }
 
       }
@@ -115,6 +125,8 @@ class Carrera extends CI_Controller{
       {
         $this->load->model('Nivel_model');
         $data['all_niveles'] = $this->Nivel_model->get_all_niveles();
+
+        $data['js'] = array('carrera.js');
 
         $data['title'] = 'Carrera - ESMN';
         $data['page_title'] = 'Carrera';

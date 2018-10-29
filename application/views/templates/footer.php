@@ -38,6 +38,7 @@
 <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
 <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
 <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js"></script>
 <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/quill/dist/quill.min.js"></script>
 <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/toastr/build/toastr.min.js"></script>
 
@@ -62,7 +63,7 @@
 		var mensaje=<?php echo json_encode($this->session->flashdata('crear'))?>;
 		toastr.success(mensaje,'Creando...');
 	</script>
-<?php 
+<?php
 }?>
 
 <?php if($this->session->flashdata('eliminar') !== null){ ?>
@@ -70,7 +71,7 @@
 		var mensaje=<?php echo json_encode($this->session->flashdata('eliminar'))?>;
 		toastr.warning(mensaje,'Eliminando...');
 	</script>
-<?php 
+<?php
 }
 ?>
 <?php if($this->session->flashdata('editar') !== null){ ?>
@@ -78,7 +79,7 @@
 		var mensaje=<?php echo json_encode($this->session->flashdata('editar'))?>;
 		toastr.info(mensaje,'Modificando...');
 	</script>
-<?php 
+<?php
 }
 ?>
 
