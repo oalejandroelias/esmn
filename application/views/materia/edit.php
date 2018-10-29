@@ -24,17 +24,33 @@
 	<div class="form-group">
 		<label for="regimen_cursado" class="col-md-4 control-label">Regimen Cursado</label>
 		<div class="col-md-8">
-			<input type="text" name="regimen_cursado" value="<?php echo ($this->input->post('regimen_cursado') ? $this->input->post('regimen_cursado') : $materia['regimen_cursado']); ?>" class="form-control" id="regimen_cursado" />
+			<!-- <input type="text" name="regimen_cursado" value="<?php echo ($this->input->post('regimen_cursado') ? $this->input->post('regimen_cursado') : $materia['regimen_cursado']); ?>" class="form-control" id="regimen_cursado" /> -->
+			<?php $selected = ($this->input->post('regimen_cursado') ? $this->input->post('regimen_cursado') : $materia['regimen_cursado']); ?>
+
+			<select name="regimen_cursado" class="form-control">
+			<option value="">Seleccione la forma de Cursado</option>
+			<option value="Regular"<?= ($selected=='Regular' ? ' selected="selected"' : '') ?>>Regular</option>
+			<option value="Libre"<?= ($selected=='Libre' ? ' selected="selected"' : '') ?>>Libre</option>
+			<option value="Distancia"<?= ($selected=='Distancia' ? ' selected="selected"' : '') ?>>Distancia</option>
+			</select>
 			<span class="text-danger"><?php echo form_error('regimen_cursado');?></span>
 		</div>
 	</div>
+
 	<div class="form-group">
 		<label for="regimen_aprobacion" class="col-md-4 control-label">Regimen Aprobacion</label>
 		<div class="col-md-8">
-			<input type="text" name="regimen_aprobacion" value="<?php echo ($this->input->post('regimen_aprobacion') ? $this->input->post('regimen_aprobacion') : $materia['regimen_aprobacion']); ?>" class="form-control" id="regimen_aprobacion" />
+			<?php $selected = ($this->input->post('regimen_aprobacion') ? $this->input->post('regimen_aprobacion') : $materia['regimen_aprobacion']); ?>
+			<select name="regimen_aprobacion" class="form-control">
+			<option value="">Seleccione la forma de Aprobacion</option>
+			<option value="Final"<?= ($selected=='Final' ? ' selected="selected"' : '') ?>>Final</option>
+			<option value="Promocion"<?= ($selected=='Promocion' ? ' selected="selected"' : '') ?>>Promoción</option>
+	</select>
 			<span class="text-danger"><?php echo form_error('regimen_aprobacion');?></span>
 		</div>
 	</div>
+
+
 	<div class="form-group">
 		<label for="carga_horaria" class="col-md-4 control-label">Carga Horaria</label>
 		<div class="col-md-8">
@@ -42,13 +58,20 @@
 			<span class="text-danger"><?php echo form_error('carga_horaria');?></span>
 		</div>
 	</div>
+
 	<div class="form-group">
 		<label for="tipo_catedra" class="col-md-4 control-label">Tipo Catedra</label>
 		<div class="col-md-8">
-			<input type="text" name="tipo_catedra" value="<?php echo ($this->input->post('tipo_catedra') ? $this->input->post('tipo_catedra') : $materia['tipo_catedra']); ?>" class="form-control" id="tipo_catedra" />
+			<?php $selected = ($this->input->post('tipo_catedra') ? $this->input->post('tipo_catedra') : $materia['tipo_catedra']); ?>
+			<select name="tipo_catedra" class="form-control">
+			<option value="">Seleccione el tipo de Catedra</option>
+			<option value="Grupal" <?= ($selected=='Grupal' ? ' selected="selected"' : '') ?>>Grupal</option>
+			<option value="Individual" <?= ($selected=='Individual' ? ' selected="selected"' : '') ?>>Individual</option>
+		</select>
 			<span class="text-danger"><?php echo form_error('tipo_catedra');?></span>
 		</div>
 	</div>
+
 
 	<div class="form-group">
 		<div class="col-sm-offset-4 col-sm-8">

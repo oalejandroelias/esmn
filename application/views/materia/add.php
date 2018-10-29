@@ -38,7 +38,7 @@
 		<label for="regimen_cursado" class="col-md-4 control-label">Regimen Cursado</label>
 		<div class="col-md-8">
 			<!-- <input type="text" name="regimen_cursado" value="<?php echo $this->input->post('regimen_cursado'); ?>" class="form-control" id="regimen_cursado" /> -->
-			<select name="id_carrera" class="form-control">
+			<select name="regimen_cursado" class="form-control">
 			<option value="">Seleccione la forma de Cursado</option>
 			<option value="Regular">Regular</option>
 			<option value="Libre">Libre</option>
@@ -53,7 +53,7 @@
 		<label for="regimen_aprobacion" class="col-md-4 control-label">Regimen Aprobacion</label>
 		<div class="col-md-8">
 			<!-- <input type="text" name="regimen_aprobacion" value="<?php echo $this->input->post('regimen_aprobacion'); ?>" class="form-control" id="regimen_aprobacion" /> -->
-				<select name="id_carrera" class="form-control">
+				<select name="regimen_aprobacion" class="form-control">
 				<option value="">Seleccione la forma de Aprobacion</option>
 				<option value="Final">Final</option>
 				<option value="Promoción">Promoción</option>
@@ -75,7 +75,7 @@
 		<label for="tipo_catedra" class="col-md-4 control-label">Tipo Catedra</label>
 		<div class="col-md-8">
 			<!-- <input type="text" name="tipo_catedra" value="<?php echo $this->input->post('tipo_catedra'); ?>" class="form-control" id="tipo_catedra" /> -->
-			<select name="id_carrera" class="form-control">
+			<select name="tipo_catedra" class="form-control">
 			<option value="">Seleccione el tipo de Catedra</option>
 			<option value="Grupal">Grupal</option>
 			<option value="Individual">Individual</option>
