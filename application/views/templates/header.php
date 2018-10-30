@@ -12,11 +12,12 @@
     <title><?= $title ?></title>
    <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/select2/dist/css/select2.min.css">
-    <link rel="stylesheet" type="text/css" href="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/jquery-minicolors/jquery.minicolors.css">
+    <!-- <link rel="stylesheet" type="text/css" href="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/jquery-minicolors/jquery.minicolors.css"> -->
     <link rel="stylesheet" type="text/css" href="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/quill/dist/quill.snow.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/toastr/build/toastr.min.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url();?>Lib/jquery-confirm/dist/jquery-confirm.min.css">
     <link href="<?= base_url();?>Lib/matrix-admin-bt4/dist/css/style.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/toastr/build/toastr.min.css" rel="stylesheet">
 
     <!-- ??? -->
     <link rel="stylesheet" type="text/css" href="<?= base_url();?>Lib/matrix-admin-bt4/assets/extra-libs/multicheck/multicheck.css">
@@ -93,7 +94,7 @@
                         <!-- ============================================================== -->
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                             <span class="d-none d-md-block">Adminstración <i class="fa fa-angle-down"></i></span>
+                             <span class="d-none d-md-block">Administración <i class="fa fa-angle-down"></i></span>
                              <span class="d-block d-md-none"><i class="fa fa-plus"></i></span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">

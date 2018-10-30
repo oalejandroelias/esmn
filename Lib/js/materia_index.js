@@ -40,19 +40,36 @@ function ver_correlativas(id_materia){
 }
 
 $("#modal_correlativas").on("hidden.bs.modal", function () {
-    $('#modal_correlativas form select').select2('destroy'); //limpiar select
+  $('#modal_correlativas form select').select2('destroy'); //limpiar select
 });
 
 function eliminar_correlativa(id_materia,id_correlativa,btn){
-  $.ajax({
-    type:'POST',
-    url:ruta+'materia_correlativa/remove',
-    data: {id_materia,id_correlativa},
-    success:function (respuesta){
-      btn.parentElement.remove(); //eliminar <li>
-    },
-    error:function (respuesta){
-      console.log('error: '+respuesta);
+  $.confirm({
+    title: 'Alerta!',
+    content: 'Seguro de querer eliminar el elemento?',
+    buttons: {
+      Cancelar: {
+        btnClass: 'btn btn-success',
+        action : function () {
+          // $.alert('Cancelado!');
+        }
+      },
+      Continuar: {
+        btnClass: 'btn btn-danger',
+        action: function () {
+          $.ajax({
+            type:'POST',
+            url:ruta+'materia_correlativa/remove',
+            data: {id_materia,id_correlativa},
+            success:function (respuesta){
+              btn.parentElement.remove(); //eliminar <li>
+            },
+            error:function (respuesta){
+              console.log('error: '+respuesta);
+            }
+          });
+        },
+      }
     }
   });
 }

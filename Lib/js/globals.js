@@ -33,8 +33,8 @@ $('#zero_config').DataTable({
 // For select 2
 $(".select2").select2();
 
-// cargar modal de confirmacion de borrado
-$('a[data-confirm="remove"]').click(function(){
+// cargar modal de confirmacion de borrado para etiquetas <a>
+$('[data-confirm="remove"]').click(function(){
   var action_url = this.href;
   $('div[data-modal="remove"]').load(ruta+"Lib/modals/modal_remove.html",function(result){
     $("#modal_remove").modal();

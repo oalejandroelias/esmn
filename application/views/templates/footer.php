@@ -33,15 +33,15 @@
 <script src="<?= base_url();?>Lib/matrix-admin-bt4/dist/js/pages/mask/mask.init.js"></script>
 <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/select2/dist/js/select2.full.min.js"></script>
 <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/select2/dist/js/select2.min.js"></script>
-<script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
+<!-- <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
 <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
 <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
-<script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
+<script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script> -->
 <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js"></script>
 <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/quill/dist/quill.min.js"></script>
 <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/toastr/build/toastr.min.js"></script>
-
+<script src="<?= base_url();?>Lib/jquery-confirm/dist/jquery-confirm.min.js"></script>
 
 <!-- this page js -->
 <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
