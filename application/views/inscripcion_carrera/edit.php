@@ -1,4 +1,4 @@
-<?php echo form_open('inscripcion_carrera/add',array("class"=>"form-horizontal")); ?>
+<?php echo form_open('inscripcion_carrera/edit/'.$inscripcion_carrera['id_persona'].'/'.$inscripcion_carrera['id_carrera'],array("class"=>"form-horizontal")); ?>
 
 <div class="row">
   <div class="col-sm-6 col-12">
@@ -13,7 +13,7 @@
               <?php
               foreach($personas as $p)
               {
-                $selected = ($p['persona_id'] == $this->input->post('id_persona')) ? ' selected="selected"' : "";
+                $selected = ($p['persona_id'] == $inscripcion_carrera['id_persona']) ? ' selected="selected"' : "";
 
                 echo '<option value="'.$p['persona_id'].'" '.$selected.'>'.$p['nombre'].' '.$p['apellido'].' ('.$p['numero_documento'].')</option>';
               }
@@ -31,7 +31,7 @@
               <?php
               foreach($all_carreras as $c)
               {
-                $selected = ($c['carrera_id'] == $this->input->post('id_carrera')) ? ' selected="selected"' : "";
+                $selected = ($c['carrera_id'] == $inscripcion_carrera['id_carrera']) ? ' selected="selected"' : "";
 
                 echo '<option value="'.$c['carrera_id'].'" '.$selected.'>'.$c['carrera_nombre'].' ('.$c['carrera_id'].')</option>';
               }

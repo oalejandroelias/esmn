@@ -14,9 +14,9 @@ class Inscripcion_carrera_model extends CI_Model
   /*
   * Get inscripcion_carrera by id_persona
   */
-  function get_inscripcion_carrera($id_persona)
+  function get_inscripcion_carrera($id_persona,$id_carrera)
   {
-    return $this->db->get_where('inscripcion_carrera',array('id_persona'=>$id_persona))->row_array();
+    return $this->db->get_where('inscripcion_carrera',array('id_persona'=>$id_persona,'id_carrera'=>$id_carrera))->row_array();
   }
 
   /*
@@ -25,10 +25,12 @@ class Inscripcion_carrera_model extends CI_Model
   function get_all_inscripcion_carrera($where = array())
   {
     $this->db->select('id_persona,id_carrera,carrera.nombre AS "nombre_carrera",
-    persona.nombre AS "nombre_persona",persona.apellido AS "apellido_persona"');
+    persona.nombre AS "nombre_persona",persona.apellido AS "apellido_persona",
+    tipo_documento.nombre AS "tipo_documento_nombre", numero_documento');
     $this->db->from('inscripcion_carrera');
     $this->db->join('carrera', 'carrera.id = inscripcion_carrera.id_carrera', 'inner');
     $this->db->join('persona', 'persona.id = inscripcion_carrera.id_persona', 'inner');
+    $this->db->join('tipo_documento', 'tipo_documento.id = persona.id_tipo_documento', 'inner');
     $this->db->order_by('nombre_carrera', 'desc');
 
     if(isset($where) && !empty($where))
@@ -51,9 +53,9 @@ class Inscripcion_carrera_model extends CI_Model
   /*
   * function to update inscripcion_carrera
   */
-  function update_inscripcion_carrera($id_persona,$params)
+  function update_inscripcion_carrera($id_persona,$id_carrera,$params)
   {
-    $this->db->where('id_persona',$id_persona);
+    $this->db->where(array('id_persona'=>$id_persona,'id_carrera'=>$id_carrera));
     return $this->db->update('inscripcion_carrera',$params);
   }
 

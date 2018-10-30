@@ -22,7 +22,7 @@
 										<?php foreach($inscripcion_carrera as $i){ ?>
 											<tr>
 												<td><?php echo $i['id_carrera'].' - '.$i['nombre_carrera']; ?></td>
-                        <td><?php echo $i['nombre_persona'].' '.$i['apellido_persona']; ?></td>
+                        <td><?php echo $i['nombre_persona'].' '.$i['apellido_persona'].', '.$i['tipo_documento_nombre'].' - '.$i['numero_documento']; ?></td>
 												<td>
 
 													<?php if($boton_edit){?>

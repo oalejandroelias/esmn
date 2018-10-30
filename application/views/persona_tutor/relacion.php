@@ -76,9 +76,9 @@
         <input type="hidden" name="id_persona" value="<?=$persona['id']; ?>">
         <div class="form-group">
           <label class="control-label">Persona encargada</label>
-          <div class="col-sm-6 col-12">
+          <div class="col-sm-8 col-12">
             <select class="select2 form-control custom-select" name="id_responsable" style="width: 100%; height:36px;">
-              <option>Buscar</option>
+              <option value="">Buscar</option>
               <?php
               foreach($personas as $p)
               {
@@ -94,7 +94,7 @@
         </div>
         <div class="form-group">
           <label for="id_tutor" class="control-label">Tutor</label>
-          <div class="col-sm-6 col-12">
+          <div class="col-sm-8 col-12">
             <select name="id_tutor" class="form-control">
               <option value="">Tipo de tutor</option>
               <?php

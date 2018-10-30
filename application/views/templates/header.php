@@ -186,17 +186,17 @@
                             <i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Inicio</span>
                           </a>
                         </li>
-                        <!-- <li class="sidebar-item">
+                        <li class="sidebar-item">
                           <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                            <i class="mdi mdi-receipt"></i><span class="hide-menu">Provincias </span>
+                            <i class="mdi mdi-book-open-outline"></i><span class="hide-menu">Inscripciones </span>
                           </a>
                             <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="<?=base_url('provincia')?>" class="sidebar-link">
-                                  <i class="mdi mdi-note-outline"></i><span class="hide-menu"> Lista </span></a></li>
-                                <li class="sidebar-item"><a href="<?=base_url('provincia/add')?>" class="sidebar-link">
-                                  <i class="mdi mdi-note-plus"></i><span class="hide-menu"> Nuevo </span></a></li>
+                                <li class="sidebar-item"><a href="<?=base_url('inscripcion_carrera')?>" class="sidebar-link">
+                                  <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Carreras </span></a></li>
+                                <li class="sidebar-item"><a href="#" class="sidebar-link">
+                                  <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Materias </span></a></li>
                             </ul>
-                        </li> -->
+                        </li>
                     </ul>
                 </nav>
             </div>

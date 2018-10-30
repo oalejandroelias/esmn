@@ -68,25 +68,37 @@ class Inscripcion_carrera extends CI_Controller{
   /*
   * Editing a inscripcion_carrera
   */
-  function edit($id_persona)
+  function edit($id_persona,$id_carrera)
   {
     // check if the inscripcion_carrera exists before trying to edit it
-    $data['inscripcion_carrera'] = $this->Inscripcion_carrera_model->get_inscripcion_carrera($id_persona);
+    $data['inscripcion_carrera'] = $this->Inscripcion_carrera_model->get_inscripcion_carrera($id_persona,$id_carrera);
 
     if(isset($data['inscripcion_carrera']['id_persona']))
     {
-      if(isset($_POST) && count($_POST) > 0)
+      $this->form_validation->set_rules('id_persona','Persona / Alumno','required|integer');
+      $this->form_validation->set_rules('id_carrera','Carrera / Plan','required|max_length[11]');
+
+      if($this->form_validation->run())
       {
         $params = array(
+          'id_persona' => $this->input->post('id_persona'),
+          'id_carrera' => $this->input->post('id_carrera'),
         );
 
-        $this->Inscripcion_carrera_model->update_inscripcion_carrera($id_persona,$params);
+        $this->Inscripcion_carrera_model->update_inscripcion_carrera($id_persona,$id_carrera,$params);
         redirect('inscripcion_carrera/index');
       }
       else
       {
-        $data['_view'] = 'inscripcion_carrera/edit';
-        $this->load->view('layouts/main',$data);
+        $data['title'] = 'Editar Inscripcion - ESMN';
+        $data['page_title'] = 'Editar inscripcion a carrera';
+
+        $data['personas'] = $this->Persona_model->get_all_personas();
+        $data['all_carreras'] = $this->Carrera_model->get_all_carreras();
+
+        $this->load->view('templates/header',$data);
+        $this->load->view('inscripcion_carrera/edit',$data);
+        $this->load->view('templates/footer');
       }
     }
     else

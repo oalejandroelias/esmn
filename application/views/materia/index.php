@@ -105,7 +105,7 @@
           <label class="col-12">Agregar correlatividad</label>
           <div class="col-12">
             <select class="form-control custom-select" name="id_correlativa" style="width: 100%; height:36px;">
-              <option>Buscar</option>
+              <option value="">Buscar</option>
               <?php
               foreach($materias as $m)
               {
