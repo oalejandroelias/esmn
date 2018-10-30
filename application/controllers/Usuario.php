@@ -161,4 +161,43 @@ class Usuario extends CI_Controller{
     show_error('The usuario you are trying to delete does not exist.');
   }
 
+  function password_change($id){
+    $data['usuario'] = $this->Usuario_model->get_usuario($id);
+
+    if (isset($data['usuario']['usuario_id'])) {
+      if ($this->session->userdata('usuario_id')==$id) {
+
+        $this->form_validation->set_rules('old_password','Contraseña Actual','required');
+        $this->form_validation->set_rules('new_password','Nueva Contraseña','required');
+        $this->form_validation->set_rules('repeat_new_password','Repetir Nueva Contraseña','required');
+
+        if($this->form_validation->run()){
+
+          $params = array(
+            'password' => '',
+          );
+
+          // $this->Usuario_model->update_usuario($id,$params);
+          $this->session->set_flashdata('editar', 'Se guardaron los cambios');
+          redirect('usuario/index');
+
+        }else {
+          $data['title']='Cambiar contraseña - ESMN';
+          $data['page_title']=$data['usuario']['nombre'].' '.$data['usuario']['apellido'].' -> Cambiar contraseña';
+
+          $data['js'] = array('password_change.js');
+
+          $this->load->view('templates/header',$data);
+          $this->load->view('usuario/password_change',$data);
+          $this->load->view('templates/footer',$data);
+        }
+
+      }else {
+        show_error('No tienes permiso para estar aqui!');
+      }
+    }else {
+      show_error('El usuario no existe!');
+    }
+  }
+
 }

@@ -1,49 +1,45 @@
 <div class="row">
-  <div class="col-12">
 
-    <div class="card">
-      <div class="card-body">
-        <!-- <h5 class="card-title">Basic Datatable</h5> -->
-        <div class="table-responsive">
-          <div id="zero_config_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
-            <div class="row">
-              <div class="col-sm-12">
-              <table id="zero_config" class="table table-striped table-bordered dataTable" role="grid" aria-describedby="zero_config_info">
-              <thead>
-                <tr role="row">
-						<tr>
-                    		<th>Id Usuario</th>
-                    		<th>Id Perfil</th>
-                    		<th>Permisos</th>
-                    		<th>Actions</th>
-    			</tr>
-    		</thead>
-    		
-    		<tbody>
-	<?php foreach($perfil_usuario as $p){ ?>
-    <tr>
-		<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending";><?php echo $p['id_usuario']; ?></td>
-		<td><?php echo $p['id_perfil']; ?></td>
-		<td><?php echo $p['permisos']; ?></td>
-		<td>
-            <a href="<?php echo site_url('Perfil_usuario/edit/'.$p['id_usuario']); ?>" class="btn btn-info btn-xs">Edit</a> 
-            <a href="<?php echo site_url('Perfil_usuario/remove/'.$p['id_usuario']); ?>" class="btn btn-danger btn-xs">Delete</a>
-        </td>
-    </tr>
-	<?php } ?>
-	
-	</tbody>
-			<tfoot>
-                <tr>
-                  <th rowspan="1" colspan="1">Tipo Documento</th>
-                  <th rowspan="1" colspan="1">Id Usuario</th>
-                  <th rowspan="1" colspan="1">Id Perfil</th>
-                  <th rowspan="1" colspan="1">Permisos</th>
-                  <th rowspan="1" colspan="1">Actions</th>
-                </tr>
-              </tfoot>
-</table>
+  <div class="col-sm-3 col-12 mb-4">
+    <div class="card" style="max-width:250px;max-height:250px">
+      <div class="card text-center">
+        <div class="card-header bg-cyan text-white">
+          <?= $persona['nombre'].' '.$persona['apellido']; ?>
+        </div>
+        <img class="card-img-top" src="<?= ($persona['foto'] == '') ? base_url('files/images/user.png') : $persona['foto']?>" alt="Foto perfil">
+        <!-- <div class="card-body" id=card_foto_perfil>
+      </div> -->
+      </div>
+    </div>
+  </div>
 
-<div class="pull-right">
-	<a href="<?php echo site_url('Perfil_usuario/add'); ?>" class="btn btn-success">Add</a> 
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header border-bottom bg-cyan text-white">
+          <h5 class="card-title">Datos de contacto</h5>
+        </div>
+        <div class="card-body">
+          <ul class="list-unstyled">
+            <li><strong>Correo electrónico</strong></li>
+            <li><span class="text-info"><?= $persona['email']; ?></span></li>
+            <li><strong>Teléfono</strong></li>
+            <li><span class="text-info"><?= $persona['telefono']; ?></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <?php if ($this->session->userdata('usuario_id')==$usuario['usuario_id']): ?>
+            <a href="<?= base_url('persona/edit/').$persona['id']; ?>" class="btn btn-lg btn-block btn-info">Editar mis datos</a>
+            <a href="<?= base_url('usuario/password_change/').$usuario['usuario_id']; ?>" class="btn btn-lg btn-block btn-primary">Cambiar mi contraseña</a>
+          <?php endif; ?>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>

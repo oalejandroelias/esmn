@@ -161,7 +161,7 @@
                               <i class="mdi mdi-account-circle"></i> <?=$this->session->userdata('nombre')." ".$this->session->userdata('apellido')?>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="mdi mdi-account-card-details mx-1"></i> Mi Perfil</a>
+                                <a class="dropdown-item" href="<?= base_url('perfil_usuario/index/').$this->session->userdata('usuario_id'); ?>"><i class="mdi mdi-account-card-details mx-1"></i> Mi Perfil</a>
                                 <a class="dropdown-item" href="javascript:void(0)"><i class="mdi mdi-account-settings mx-1"></i> Configuración de la cuenta</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="<?= base_url('login/logout');?>"><i class="mdi mdi-logout mx-1"></i> Cerrar Sesión</a>
@@ -188,7 +188,7 @@
                         </li>
                         <li class="sidebar-item">
                           <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                            <i class="mdi mdi-book-open-outline"></i><span class="hide-menu">Inscripciones </span>
+                            <i class="mdi mdi-book-open"></i><span class="hide-menu">Inscripciones </span>
                           </a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item"><a href="<?=base_url('inscripcion_carrera')?>" class="sidebar-link">
