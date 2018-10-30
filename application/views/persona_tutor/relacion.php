@@ -82,14 +82,14 @@
               <?php
               foreach($personas as $p)
               {
-                $selected = ($p['persona_id'] == $this->input->post('persona_id')) ? ' selected="selected"' : "";
+                $selected = ($p['persona_id'] == $this->input->post('id_responsable')) ? ' selected="selected"' : "";
                 if ($p['persona_id']!=$persona['id']) {
                   echo '<option value="'.$p['persona_id'].'" '.$selected.'>'.$p['nombre'].' '.$p['apellido'].' ('.$p['numero_documento'].')</option>';
                 }
               }
               ?>
             </select>
-            <span class="text-danger"><?php echo form_error('persona_id');?></span>
+            <span class="text-danger"><?php echo form_error('id_responsable');?></span>
           </div>
         </div>
         <div class="form-group">
