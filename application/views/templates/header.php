@@ -194,7 +194,7 @@
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item"><a href="<?=base_url('inscripcion_carrera')?>" class="sidebar-link">
                                   <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Carreras </span></a></li>
-                                <li class="sidebar-item"><a href="#" class="sidebar-link">
+                                <li class="sidebar-item"><a href="<?=base_url('inscripcion_materia')?>" class="sidebar-link">
                                   <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Materias </span></a></li>
                             </ul>
                         </li>
