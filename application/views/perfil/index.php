@@ -25,7 +25,21 @@
                       <tr>
                         <!-- <td><?php echo $p['id']; ?></td> -->
                         <td><?php echo $p['nombre']; ?></td>
-                        <td><?php echo $p['permisos']; ?></td>
+                        <!-- <td><?php echo $p['permisos']; ?></td> -->
+                        <td>
+                          <?php
+                          $obj=json_decode($p['permisos']);
+                          ?>
+                          <?php foreach ($obj as $key => $value) {
+                            echo '<span class="font-weight-bold">('.$key.': </span>';
+                            $methods = array();
+
+                            foreach ($value as $method => $name) {
+                              array_push($methods,$method);
+                            }
+                            echo '<span class="text-info">'.implode(',',$methods).'</span><span class="font-weight-bold">); </span>';
+                          } ?>
+                        </td>
                         <td>
 
                           <?php if($boton_edit){?>
