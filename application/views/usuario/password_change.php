@@ -18,25 +18,28 @@
         <div class="form-group">
           <label for="new_password" class="control-label"><span class="text-danger">*</span>Nueva Contraseña</label>
           <div class="col-12">
-            <input type="password" name="new_password" value="" required placeholder="Ingrese la nueva contraseña" class="form-control" id="new_password" />
-            <span class="text-danger"><?php echo form_error('password');?></span>
+            <input type="password" name="new_password" value="" required minlength="6" placeholder="Ingrese la nueva contraseña" class="form-control" id="new_password" aria-describedby="new_password_helpBlock"/>
+            <small id="new_password_helpBlock" class="form-text text-muted">
+              La contraseña debe tener al menos 6 caracteres de longitud
+            </small>
+            <span class="text-danger"><?php echo form_error('new_password');?></span>
           </div>
         </div>
 
         <div class="form-group">
           <label for="repeat_new_password" class="control-label"><span class="text-danger">*</span>Repetir Nueva Contraseña</label>
           <div class="col-12">
-            <input type="password" name="repeat_new_password" value="" required placeholder="Ingrese nuevamente la nueva contraseña" class="form-control" id="repeat_new_password" />
+            <input type="password" name="repeat_new_password" value="" required minlength="6" placeholder="Ingrese nuevamente la nueva contraseña" class="form-control" id="repeat_new_password"/>
             <span class="text-danger"><?php echo form_error('repeat_new_password');?></span>
           </div>
         </div>
 
         <div class="form-group">
-					<div class="col-sm-offset-4 col-sm-8">
-						<button type="submit" class="btn btn-success">Guardar</button>
-						<a href="<?=site_url('perfil_usuario/index/').$usuario['usuario_id']; ?>" class="btn btn-danger">Cancelar</a>
-					</div>
-				</div>
+          <div class="col-sm-offset-4 col-sm-8">
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a href="<?=site_url('perfil_usuario/index/').$usuario['usuario_id']; ?>" class="btn btn-danger">Cancelar</a>
+          </div>
+        </div>
 
         <?php echo form_close(); ?>
       </div>

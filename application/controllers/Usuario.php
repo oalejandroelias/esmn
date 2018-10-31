@@ -166,27 +166,22 @@ class Usuario extends CI_Controller{
 
     if (isset($data['usuario']['usuario_id'])) {
       if ($this->session->userdata('usuario_id')==$id) {
+        $params_rule = json_encode(array('usuario_id'=>$id,'username'=>$data['usuario']['username']));
+        $this->form_validation->set_rules('actual_password','Contraseña Actual','required|callback_check_password['.$params_rule.']');
+        $this->form_validation->set_message('check_password','La contraseña es incorrecta!');
 
-        $this->form_validation->set_rules('actual_password','Contraseña Actual','required|callback_check_password['.$id.']');
-        // array('required',function($value){
-        //   $pass = hash('sha512',$data['usuario']['username'].html_escape($value));
-        //   $query = $this->Usuario_model->check_password($id,$pass);
-        //   return (count($query) > 0) ? true : false;
-        //   }));
-        // $this->form_validation->set_message('actual_password','La contraseña es incorrecta!');
-
-        $this->form_validation->set_rules('new_password','Nueva Contraseña','required');
-        $this->form_validation->set_rules('repeat_new_password','Repetir Nueva Contraseña','required|matches[new_password]');
+        $this->form_validation->set_rules('new_password','Nueva Contraseña','required|min_length[6]');
+        $this->form_validation->set_rules('repeat_new_password','Repetir Nueva Contraseña','required|min_length[6]|matches[new_password]');
 
         if($this->form_validation->run()){
 
           $params = array(
-            'password' => '',
+            'password' => hash('sha512',$data['usuario']['username'].html_escape($this->input->post('new_password'))),
           );
 
-          // $this->Usuario_model->update_usuario($id,$params);
-          $this->session->set_flashdata('editar', 'Se guardaron los cambios');
-          redirect('usuario/index');
+          $this->Usuario_model->update_usuario($id,$params);
+          // $this->session->set_flashdata('editar', 'Se guardaron los cambios');
+          redirect('login/logout');
 
         }else {
           $data['title']='Cambiar contraseña - ESMN';
@@ -207,10 +202,10 @@ class Usuario extends CI_Controller{
     }
   }
 
-  public function check_password($password,$id){
-    $pass = hash('sha512',$data['usuario']['username'].html_escape($value));
-    $query = $this->Usuario_model->check_password($id,$pass);
-    return (count($query) > 0) ? true : false;
+  public function check_password($field_value,$params = array()){
+    $pass = hash('sha512',json_decode($params)->username.html_escape($field_value));
+    $query = $this->Usuario_model->check_password(json_decode($params)->usuario_id,$pass);
+    return (!empty($query)) ? true : false;
   }
 
 }
