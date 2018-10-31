@@ -5,13 +5,13 @@
         <h5 class="card-title">Cambiar contraseña</h5>
       </div>
       <div class="card-body">
-        <?php echo form_open('usuario/password_change/'.$usuario['usuario_id'],array("class"=>"form-horizontal")); ?>
+        <?php echo form_open('usuario/password_change/'.$usuario['usuario_id'],array("class"=>"form-horizontal","onsubmit"=>"return validar_form();")); ?>
 
         <div class="form-group">
-          <label for="old_password" class="control-label"><span class="text-danger">*</span>Contraseña Actual</label>
+          <label for="actual_password" class="control-label"><span class="text-danger">*</span>Contraseña Actual</label>
           <div class="col-12">
-            <input type="password" name="old_password" value="" required placeholder="Ingrese su contraseña actual" class="form-control" id="old_password" />
-            <span class="text-danger"><?php echo form_error('old_password');?></span>
+            <input type="password" name="actual_password" value="" required placeholder="Ingrese su contraseña actual" class="form-control" id="actual_password" />
+            <span class="text-danger"><?php echo form_error('actual_password');?></span>
           </div>
         </div>
 

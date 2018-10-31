@@ -167,9 +167,16 @@ class Usuario extends CI_Controller{
     if (isset($data['usuario']['usuario_id'])) {
       if ($this->session->userdata('usuario_id')==$id) {
 
-        $this->form_validation->set_rules('old_password','Contraseña Actual','required');
+        $this->form_validation->set_rules('actual_password','Contraseña Actual','required|callback_check_password['.$id.']');
+        // array('required',function($value){
+        //   $pass = hash('sha512',$data['usuario']['username'].html_escape($value));
+        //   $query = $this->Usuario_model->check_password($id,$pass);
+        //   return (count($query) > 0) ? true : false;
+        //   }));
+        // $this->form_validation->set_message('actual_password','La contraseña es incorrecta!');
+
         $this->form_validation->set_rules('new_password','Nueva Contraseña','required');
-        $this->form_validation->set_rules('repeat_new_password','Repetir Nueva Contraseña','required');
+        $this->form_validation->set_rules('repeat_new_password','Repetir Nueva Contraseña','required|matches[new_password]');
 
         if($this->form_validation->run()){
 
@@ -198,6 +205,12 @@ class Usuario extends CI_Controller{
     }else {
       show_error('El usuario no existe!');
     }
+  }
+
+  public function check_password($password,$id){
+    $pass = hash('sha512',$data['usuario']['username'].html_escape($value));
+    $query = $this->Usuario_model->check_password($id,$pass);
+    return (count($query) > 0) ? true : false;
   }
 
 }

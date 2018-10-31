@@ -94,6 +94,11 @@ class Usuario_model extends CI_Model
   }
 
   // funcion comprobar usuario y contraseña
+public function check_password($id,$password){
+  return $this->db->get_where('usuario',array('id'=>$id,'password'=>$password))->row_array();
+}
+
+  // obtener todos los datos para un logueo exitoso
   public function login($username,$password){
     $this->db->select('persona.id AS "persona_id",tipo_documento.nombre AS "tipo_documento",
                        numero_documento,persona.nombre,apellido,usuario.id AS "usuario_id",
