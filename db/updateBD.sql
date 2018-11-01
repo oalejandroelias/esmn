@@ -33,3 +33,19 @@ CREATE TABLE `documentacion` (
 -- 26/10/2018: agregar columna foto de perfil a persona --------
 ALTER TABLE `persona` ADD `foto` TEXT NULL AFTER `fecha_nacimiento`;
 ---------------------------------------------------------
+
+
+-- 1/11/2018: agregar campos activo 
+
+ALTER TABLE persona ADD COLUMN activo boolean NOT null;
+ALTER TABLE usuario ADD COLUMN activo boolean NOT null;
+ALTER TABLE carrera ADD COLUMN activo boolean NOT null;
+ALTER TABLE provincia ADD COLUMN activo boolean NOT null;
+ALTER TABLE ciudad ADD COLUMN activo boolean NOT null;
+ALTER TABLE curso ADD COLUMN activo boolean NOT null;
+ALTER TABLE materia ADD COLUMN activo boolean NOT null;
+ALTER TABLE mesa ADD COLUMN activo boolean NOT null;
+ALTER TABLE nivel ADD COLUMN activo boolean NOT null;
+ALTER TABLE perfil ADD COLUMN activo boolean NOT null;
+ALTER TABLE tipo_documento ADD COLUMN activo boolean NOT null;
+ALTER TABLE tutor ADD COLUMN activo boolean NOT null;

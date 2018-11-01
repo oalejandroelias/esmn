@@ -196,6 +196,8 @@
                                   <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Carreras </span></a></li>
                                 <li class="sidebar-item"><a href="<?=base_url('inscripcion_materia')?>" class="sidebar-link">
                                   <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Materias </span></a></li>
+                                <li class="sidebar-item"><a href="<?=base_url('curso')?>" class="sidebar-link">
+                                  <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Curso </span></a></li>
                             </ul>
                         </li>
                     </ul>
