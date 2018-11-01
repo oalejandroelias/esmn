@@ -11,6 +11,8 @@ class Curso extends CI_Controller{
         validar_acceso();
         is_logged_in();
         $this->load->model('Curso_model');
+        $this->load->model('Materia_model');
+        $this->load->model('Carrera_model');
         
     } 
 
@@ -19,7 +21,7 @@ class Curso extends CI_Controller{
      */
     function index()
     {
-        $data['curso'] = $this->Curso_model->get_all_curso();
+        $data['cursos'] = $this->Curso_model->get_all_curso();
         
         $data['title'] = 'Cursos - ESMN';
         $data['page_title'] = 'Curso';
@@ -30,7 +32,7 @@ class Curso extends CI_Controller{
         $data['boton_remove']=validar_botones('remove');
         
         // script de correlatividades
-        $data['js'] = array('curso_index.js');
+        //$data['js'] = array('curso_index.js');
         
         $this->load->view('templates/header',$data);
         $this->load->view('curso/index',$data);
@@ -42,22 +44,33 @@ class Curso extends CI_Controller{
      */
     function add()
     {   
-        if(isset($_POST) && count($_POST) > 0)     
-        {   
+        
+        $this->form_validation->set_rules('id_materia','Id materia','required');
+        
+        
+        
+        if($this->form_validation->run())
+        {
             $params = array(
-				'id_curso' => $this->input->post('id_curso'),
-				'periodo' => $this->input->post('periodo'),
-				'diascursado' => $this->input->post('diascursado'),
+                'id' => $this->input->post('id'),
+                'id_materia' => $this->input->post('id_materia'),
+                'periodo' =>"Periodo",
+                'diascursado' => "dias cursados",
+               
             );
             
             $curso_id = $this->Curso_model->add_curso($params);
+            $this->session->set_flashdata('crear', 'Nuevo curso creado');
             redirect('curso/index');
         }
+        
         else
         {            
             $data['title'] = 'curso - ESMN';
             $data['page_title'] = 'Nueva curso';
-            //$data['all_carreras'] = $this->Carrera_model->get_all_carreras();
+            
+            $data['all_materias'] = $this->Materia_model->get_all_materias();
+            $data['all_carreras'] = $this->Carrera_model->get_all_carreras();
             
             $this->load->view('templates/header',$data);
             $this->load->view('curso/add',$data);

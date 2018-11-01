@@ -22,10 +22,25 @@ class Curso_model extends CI_Model
     /*
      * Get all curso
      */
-    function get_all_curso()
+//     function get_all_curso()
+//     {
+//         $this->db->order_by('id', 'desc');
+//         return $this->db->get('curso')->result_array();
+//     }
+
+    function get_all_curso($where = array())
     {
-        $this->db->order_by('id', 'desc');
-        return $this->db->get('curso')->result_array();
+        $this->db->select('*');
+        $this->db->from('curso');
+        $this->db->join('materia', 'materia.id = curso.id_materia','inner');
+        $this->db->order_by('materia.nombre', 'desc');
+        
+        if(isset($where) && !empty($where))
+        {
+            $this->db->where($where['row'], $where['value']);
+        }
+        $query = $this->db->get();
+        return $query->result_array();
     }
         
     /*
