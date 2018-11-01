@@ -1,10 +1,3 @@
-/*datepicker*/
-jQuery('.mydatepicker').datepicker({
-  autoclose: true,
-  todayHighlight: true,
-  format: 'yyyy-mm-dd'
-});
-
 // al checkear "generar usuario" aparecen campos de usuario y un selector de permisos,
 // si se quita, desaparecen los campos
 function box_checked(){

@@ -24,8 +24,6 @@ class Carrera extends CI_Controller{
     $params['limit'] = RECORDS_PER_PAGE;
     $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
 
-    setlocale(LC_TIME,"es_ES.UTF-8"); //fechas en español
-
     $config = $this->config->item('pagination');
     $config['base_url'] = site_url('carrera/index?');
     $config['total_rows'] = $this->Carrera_model->get_all_carreras_count();
@@ -36,6 +34,7 @@ class Carrera extends CI_Controller{
     $data['boton_edit']=validar_botones('edit');
     $data['boton_add']=validar_botones('add');
     $data['boton_remove']=validar_botones('remove');
+
     $this->load->view('templates/header',$data);
     $this->load->view('carrera/index',$data);
     $this->load->view('templates/footer');
@@ -69,7 +68,6 @@ class Carrera extends CI_Controller{
     {
       $this->load->model('Nivel_model');
       $data['all_niveles'] = $this->Nivel_model->get_all_niveles();
-      $data['js'] = array('carrera.js');
 
       $data['title'] = 'Carrera - ESMN';
       $data['page_title'] = 'Carrera';
@@ -114,19 +112,15 @@ class Carrera extends CI_Controller{
           'fecha' => date('Y-m-d', strtotime(str_replace('/', '-',$this->input->post('fecha')))),
         );
 
-        // if ($data['carrera']['id'] == $this->input->post('id') || !isset($carrera_exist['id'])) {
         $this->Carrera_model->update_carrera($id,$params);
         $this->session->set_flashdata('editar', 'Se guardaron los cambios');
         redirect('carrera/index');
-        // }
 
       }
       else
       {
         $this->load->model('Nivel_model');
         $data['all_niveles'] = $this->Nivel_model->get_all_niveles();
-
-        $data['js'] = array('carrera.js');
 
         $data['title'] = 'Carrera - ESMN';
         $data['page_title'] = 'Carrera';

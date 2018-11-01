@@ -1,6 +1,13 @@
 // RUTA DEL SITIO:
 ruta="http://localhost/esmn/";
 
+/*datepicker*/
+jQuery('.mydatepicker').datepicker({
+  autoclose: true,
+  todayHighlight: true,
+  format: 'dd/mm/yyyy'
+});
+
 // Basic Table
 $('#zero_config').DataTable({
   "language": {

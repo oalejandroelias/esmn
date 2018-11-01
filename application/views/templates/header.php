@@ -197,8 +197,13 @@
                                 <li class="sidebar-item"><a href="<?=base_url('inscripcion_materia')?>" class="sidebar-link">
                                   <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Materias </span></a></li>
                                 <li class="sidebar-item"><a href="<?=base_url('curso')?>" class="sidebar-link">
-                                  <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Curso </span></a></li>
+                                  <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Cursos </span></a></li>
                             </ul>
+                        </li>
+                        <li class="sidebar-item">
+                          <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?=base_url('mesa')?>" aria-expanded="false">
+                            <i class="mdi mdi-calendar"></i><span class="hide-menu">Mesas</span>
+                          </a>
                         </li>
                     </ul>
                 </nav>
