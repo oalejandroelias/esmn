@@ -1,4 +1,6 @@
 <?php
+setlocale(LC_TIME,"es_ES.UTF-8"); //fechas en español
+
 //ejemplo de ecuacion para calcular cantidad de dias en un periodo
 // para usar en construccion de json "diascursado" en tabla curso
 
@@ -25,7 +27,7 @@ function countDaysByName($dayName, $start, $end)
     }
     return $count;
 }
-echo countDaysByName('Tue',$fecha_inicio,$fecha_fin)." dias Martes y ";
-echo countDaysByName('Thu',$fecha_inicio,$fecha_fin)." dias Jueves";
+// echo countDaysByName('Tue',$fecha_inicio,$fecha_fin)." dias Martes y ";
+// echo countDaysByName('Thu',$fecha_inicio,$fecha_fin)." dias Jueves";
 
  ?>
