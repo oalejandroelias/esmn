@@ -35,7 +35,7 @@ ALTER TABLE `persona` ADD `foto` TEXT NULL AFTER `fecha_nacimiento`;
 ---------------------------------------------------------
 
 
--- 1/11/2018: agregar campos activo 
+-- 1/11/2018: agregar campos activo
 
 ALTER TABLE persona ADD COLUMN activo boolean NOT null;
 ALTER TABLE usuario ADD COLUMN activo boolean NOT null;
@@ -49,3 +49,31 @@ ALTER TABLE nivel ADD COLUMN activo boolean NOT null;
 ALTER TABLE perfil ADD COLUMN activo boolean NOT null;
 ALTER TABLE tipo_documento ADD COLUMN activo boolean NOT null;
 ALTER TABLE tutor ADD COLUMN activo boolean NOT null;
+
+-- 1/11/2018: setear campos activo=1
+UPDATE persona SET activo=1;
+UPDATE usuario SET activo=1;
+UPDATE carrera SET activo=1;
+UPDATE provincia SET activo=1;
+UPDATE ciudad SET activo=1;
+UPDATE curso SET activo=1;
+UPDATE materia SET activo=1;
+UPDATE mesa SET activo=1;
+UPDATE nivel SET activo=1;
+UPDATE perfil SET activo=1;
+UPDATE tipo_documento SET activo=1;
+UPDATE tutor SET activo=1;
+
+-- setear valor por defecto=1:
+-- (mysql puede que muestre una X de error al escribir la consulta, pero la ejecuta correctamente)
+ALTER TABLE persona ALTER COLUMN activo SET DEFAULT 1;
+ALTER TABLE usuario ALTER COLUMN activo SET DEFAULT 1;
+ALTER TABLE carrera ALTER COLUMN activo SET DEFAULT 1;
+ALTER TABLE provincia ALTER COLUMN activo SET DEFAULT 1;
+ALTER TABLE ciudad ALTER COLUMN activo SET DEFAULT 1;
+ALTER TABLE materia ALTER COLUMN activo SET DEFAULT 1;
+ALTER TABLE mesa ALTER COLUMN activo SET DEFAULT 1;
+ALTER TABLE nivel ALTER COLUMN activo SET DEFAULT 1;
+ALTER TABLE perfil ALTER COLUMN activo SET DEFAULT 1;
+ALTER TABLE tipo_documento ALTER COLUMN activo SET DEFAULT 1;
+ALTER TABLE tutor ALTER COLUMN activo SET DEFAULT 1;
