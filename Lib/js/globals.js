@@ -1,11 +1,26 @@
 // RUTA DEL SITIO:
 ruta="http://localhost/esmn/";
-
+// http://www.dotnetqueries.com/Article/106/bootstrap-datetimepicker-startdate-enddate-validation
 /*datepicker*/
 jQuery('.mydatepicker').datepicker({
   autoclose: true,
   todayHighlight: true,
+  zIndexOffset: 50,
   format: 'dd/mm/yyyy'
+});
+jQuery('.mydatepicker-start').datepicker({
+  autoclose: true,
+  todayHighlight: true,
+  zIndexOffset: 50,
+  format: 'dd/mm/yyyy',
+  endDate:jQuery('.mydatepicker-end').val()?jQuery('.mydatepicker-end').val():false,
+});
+jQuery('.mydatepicker-end').datepicker({
+  autoclose: true,
+  todayHighlight: true,
+  zIndexOffset: 50,
+  format: 'dd/mm/yyyy',
+  startDate:jQuery('.mydatepicker-start').val()?jQuery('.mydatepicker-start').val():false,
 });
 
 // Basic Table

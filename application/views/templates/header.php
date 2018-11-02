@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/toastr/build/toastr.min.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url();?>Lib/jquery-confirm/dist/jquery-confirm.min.css">
     <link href="<?= base_url();?>Lib/matrix-admin-bt4/dist/css/style.min.css" rel="stylesheet">
+    <link href="<?= base_url();?>Lib/css/globals.css" rel="stylesheet">
 
     <!-- ??? -->
     <link rel="stylesheet" type="text/css" href="<?= base_url();?>Lib/matrix-admin-bt4/assets/extra-libs/multicheck/multicheck.css">

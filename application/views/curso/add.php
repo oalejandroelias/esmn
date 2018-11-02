@@ -7,7 +7,7 @@
 			<div class="card-body">
 
 				<div class="form-row mb-4">
-				
+
 					<div class="col-sm-6 col-12">
 						<label for="id_materia" class="control-label"><span class="text-danger">*</span>Carrera	</label>
 						<select name="id_materia" required class="form-control">
@@ -23,7 +23,7 @@
 						</select>
 						<span class="text-danger"><?php echo form_error('id_carrera');?></span>
 					</div>
-					
+
 					<div class="col-sm-6 col-12">
 						<label for="id_materia" class="control-label"><span class="text-danger">*</span>Materia</label>
 						<select name="id_materia" required class="form-control">
@@ -46,7 +46,7 @@
 					<div class="col-sm-6 col-12">
 						<label for="fecha" class="control-label">Desde</label>
 						<div class="input-group">
-							<input type="text" class="form-control mydatepicker" placeholder="dd/mm/yyyy" name="fecha" value="<?php echo $this->input->post('fecha'); ?>" id="fecha">
+							<input type="text" class="form-control mydatepicker-start" placeholder="dd/mm/yyyy" name="fecha" value="<?php echo $this->input->post('fecha'); ?>" id="fecha">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fa fa-calendar"></i></span>
 							</div>
@@ -56,7 +56,7 @@
 					<div class="col-sm-6 col-12">
 						<label for="fecha" class="control-label">Hasta</label>
 						<div class="input-group">
-							<input type="text" class="form-control mydatepicker" placeholder="dd/mm/yyyy" name="fecha" value="<?php echo $this->input->post('fecha'); ?>" id="fecha">
+							<input type="text" class="form-control mydatepicker-end" placeholder="dd/mm/yyyy" name="fecha" value="<?php echo $this->input->post('fecha'); ?>" id="fecha">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fa fa-calendar"></i></span>
 							</div>
