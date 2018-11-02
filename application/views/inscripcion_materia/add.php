@@ -24,16 +24,16 @@
         </div>
 
         <div class="form-group">
-          <label class="control-label">materia / Plan</label>
+          <label class="control-label">Materia / Plan</label>
           <div class="col-sm-8 col-12">
             <select class="select2 form-control custom-select" name="id_materia" required style="width: 100%; height:36px;">
               <option value="">Buscar</option>
               <?php
-              foreach($all_materias as $c)
+              foreach($all_materias as $materia)
               {
-                $selected = ($c['materia_id'] == $this->input->post('id_materia')) ? ' selected="selected"' : "";
+                $selected = ($materia['materia_id'] == $this->input->post('id_materia')) ? ' selected="selected"' : "";
 
-                echo '<option value="'.$c['materia_id'].'" '.$selected.'>'.$c['materia_nombre'].' ('.$c['materia_id'].')</option>';
+                echo '<option value="'.$materia['materia_id'].'" '.$selected.'>'.$materia['nombre_materia'].' ('.$materia['id_carrera'].')</option>';
               }
               ?>
             </select>
