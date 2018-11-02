@@ -5,7 +5,9 @@ class Inicio extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		is_logged_in();
+		validar_acceso();
 	}
+
 	public function index()
 	{
 		$data['title']='Inicio - CeciliaESMN';

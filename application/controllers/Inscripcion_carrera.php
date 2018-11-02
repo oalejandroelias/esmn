@@ -8,6 +8,8 @@ class Inscripcion_carrera extends CI_Controller{
   function __construct()
   {
     parent::__construct();
+    is_logged_in();
+		validar_acceso();
     $this->load->model('Inscripcion_carrera_model');
     $this->load->model('Persona_model');
     $this->load->model('Carrera_model');

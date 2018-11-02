@@ -41,6 +41,7 @@
 										<tr>
 											<th rowspan="1" colspan="1">Materia</th>
 											<th rowspan="1" colspan="1">Fecha</th>
+											<th rowspan="1" colspan="1">Acciones</th>
 										</tr>
 									</tfoot>
 								</table>
