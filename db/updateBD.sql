@@ -81,13 +81,13 @@ ALTER TABLE tutor ALTER COLUMN activo SET DEFAULT 1;
 -- 2/11/2018: Periodo de cursado
 
 CREATE TABLE `tipo_periodo` (
-  `id` int(11) NOT NULL PRIMARY KEY,
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `descripcion` varchar(255) NOT NULL
  
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `periodo` (
-  `id` int(11) NOT NULL PRIMARY KEY,
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `id_tipo_periodo` int(11) NOT NULL,
   `desde` date NOT NULL,
   `hasta` date NOT NULL,
