@@ -206,6 +206,17 @@
                             <i class="mdi mdi-calendar"></i><span class="hide-menu">Mesas</span>
                           </a>
                         </li>
+                        <li class="sidebar-item">
+                          <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                            <i class="mdi mdi-book-open"></i><span class="hide-menu">Año </span>
+                          </a>
+                            <ul aria-expanded="false" class="collapse  first-level">
+                                <li class="sidebar-item"><a href="<?=base_url('tipo_periodo')?>" class="sidebar-link">
+                                  <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Tipo Periodo </span></a></li>
+                                <li class="sidebar-item"><a href="<?=base_url('periodo')?>" class="sidebar-link">
+                                  <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Periodo </span></a></li>             
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
             </div>

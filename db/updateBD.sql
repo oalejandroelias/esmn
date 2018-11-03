@@ -77,3 +77,20 @@ ALTER TABLE nivel ALTER COLUMN activo SET DEFAULT 1;
 ALTER TABLE perfil ALTER COLUMN activo SET DEFAULT 1;
 ALTER TABLE tipo_documento ALTER COLUMN activo SET DEFAULT 1;
 ALTER TABLE tutor ALTER COLUMN activo SET DEFAULT 1;
+
+-- 2/11/2018: Periodo de cursado
+
+CREATE TABLE `tipo_periodo` (
+  `id` int(11) NOT NULL PRIMARY KEY,
+  `descripcion` varchar(255) NOT NULL
+ 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `periodo` (
+  `id` int(11) NOT NULL PRIMARY KEY,
+  `id_tipo_periodo` int(11) NOT NULL,
+  `desde` date NOT NULL,
+  `hasta` date NOT NULL,
+  FOREIGN KEY (id_tipo_periodo) REFERENCES tipo_periodo(id) ON DELETE RESTRICT ON UPDATE CASCADE
+ 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
