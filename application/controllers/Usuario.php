@@ -68,11 +68,11 @@ class Usuario extends CI_Controller{
 
         $usuario_id = $this->Usuario_model->add_usuario($params);
 
-        $id_perfil = $this->input->post('id_perfil');
+        $id_perfil = $this->input->post('id_perfil',TRUE);
         $permisos = $this->Perfil_model->get_perfil($id_perfil)['permisos'];
         $params_perfil_usuario=array(
           'id_usuario' => $usuario_id,
-          'id_perfil' => $this->input->post('id_perfil'),
+          'id_perfil' => $this->input->post('id_perfil',TRUE),
           'permisos' => $permisos,
         );
 
@@ -111,16 +111,18 @@ class Usuario extends CI_Controller{
       $this->load->library('form_validation');
 
       $this->form_validation->set_rules('password','Password','max_length[256]');
-      $this->form_validation->set_rules('id_persona','Id Persona','required|integer');
-      $this->form_validation->set_rules('username','Username','max_length[128]');
+      $this->form_validation->set_rules('username','Username','required|max_length[128]');
+      $this->form_validation->set_rules('activo','Estado activo','required|integer');
 
       if($this->form_validation->run())
       {
         $params = array(
-          'id_persona' => $this->input->post('id_persona'),
-          'password' => $this->input->post('password'),
-          'username' => $this->input->post('username'),
+          'username' => $this->input->post('username',TRUE),
+          'activo' => $this->input->post('activo',TRUE),
         );
+        if ($this->input->post('password')) {
+          $params['password'] = hash('sha512',$this->input->post('username',TRUE).html_escape($this->input->post('password',TRUE)));
+        }
 
         $this->Usuario_model->update_usuario($id,$params);
         $this->session->set_flashdata('editar', 'Se guardaron los cambios');
@@ -128,8 +130,6 @@ class Usuario extends CI_Controller{
       }
       else
       {
-        $data['all_personas'] = $this->Persona_model->get_all_personas();
-
         $data['title']='Editar usuario - ESMN';
         $data['page_title']='Editar usuario -> '.$data['usuario']['nombre'].' '.$data['usuario']['apellido'];
 

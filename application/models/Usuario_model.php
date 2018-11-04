@@ -27,7 +27,7 @@ class Usuario_model extends CI_Model
   {
     // return $this->db->get_where('usuario',array('id'=>$id))->row_array();
     $this->db->select('persona.id AS "persona_id",persona.nombre,apellido,usuario.id AS "usuario_id",
-                      username,');
+                      username,usuario.activo');
     $this->db->from('usuario');
     $this->db->join('persona', 'persona.id = usuario.id_persona', 'inner');
     $this->db->where('usuario.id',$id);
@@ -102,7 +102,8 @@ public function check_password($id,$password){
   public function login($username,$password){
     $this->db->select('persona.id AS "persona_id",tipo_documento.nombre AS "tipo_documento",
                        numero_documento,persona.nombre,apellido,usuario.id AS "usuario_id",
-                       email,username,id_perfil,perfil.nombre AS "nombre_perfil",perfil.permisos');
+                       email,username,id_perfil,perfil.nombre AS "nombre_perfil",perfil.permisos,
+                       usuario.activo');
     $this->db->from('persona');
     $this->db->join('tipo_documento','tipo_documento.id=persona.id_tipo_documento','inner');
     $this->db->join('usuario','usuario.id_persona=persona.id','inner');
@@ -111,12 +112,7 @@ public function check_password($id,$password){
     $this->db->where('username',$username);
     $this->db->where('password',$password);
     $query = $this->db->get();
-    if($query->num_rows() == 1){
-      return $query->row();
-    }else{
-      $this->session->set_flashdata('usuario_incorrecto','Los datos introducidos son incorrectos');
-      redirect(base_url().'login','refresh');
-    }
+    return ($query->num_rows() == 1) ? $query->row() : false;
   }
 
 }

@@ -86,10 +86,16 @@ class Login extends CI_Controller {
         $this->index($request_uri);
       }else{
         $username = html_escape($this->input->post('username',TRUE)); //TRUE habilita el filtro xss
+        // hash sha512 usuario+password (evita hash identicos para passwords iguales)
         $password = hash('sha512',$username.html_escape($this->input->post('password',TRUE)));
-        $check_user = $this->usuario->login($username,$password);
-        if($check_user == TRUE){
-          $data = array(
+
+        $check_user = $this->usuario->login($username,$password); //buscar usuario en la base
+        if($check_user){
+          if ($check_user->activo==0) { //si el usuario esta deshabilitado no puede loguearse
+            $this->session->set_flashdata('usuario_incorrecto','El usuario esta deshabilitado por el administrador.');
+            redirect(base_url().'login','refresh');
+          }
+          $data = array( //cargar variables de session
             'is_logued_in' => TRUE,
             'usuario_id' => $check_user->usuario_id,
             'username' => $check_user->username,
@@ -104,12 +110,17 @@ class Login extends CI_Controller {
             'permisos' => $check_user->permisos,
           );
           $this->session->set_userdata($data);
-          if ($request_uri!="") {
+
+          if ($request_uri!="") { // redirige al usuario a la pagina en la que estaba (si la sesion se cerro por inactividad)
             $request_uri = str_replace('-','/',$request_uri);
             redirect($request_uri);
           }else {
             redirect(base_url('inicio'));
           }
+        }else {
+          // datos incorrectos
+          $this->session->set_flashdata('usuario_incorrecto','Los datos introducidos son incorrectos');
+          redirect(base_url().'login','refresh');
         }
       }
     }else{
