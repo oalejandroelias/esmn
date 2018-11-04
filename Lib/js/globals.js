@@ -1,6 +1,5 @@
 // RUTA DEL SITIO:
 ruta="http://localhost/esmn/";
-// http://www.dotnetqueries.com/Article/106/bootstrap-datetimepicker-startdate-enddate-validation
 /*datepicker*/
 jQuery('.mydatepicker').datepicker({
   autoclose: true,
@@ -8,19 +7,18 @@ jQuery('.mydatepicker').datepicker({
   zIndexOffset: 50,
   format: 'dd/mm/yyyy'
 });
-jQuery('.mydatepicker-start').datepicker({
-  autoclose: true,
-  todayHighlight: true,
-  zIndexOffset: 50,
-  format: 'dd/mm/yyyy',
-  endDate:jQuery('.mydatepicker-end').val()?jQuery('.mydatepicker-end').val():false,
+
+// controlar fechas desde-hasta
+// http://www.dotnetqueries.com/Article/106/bootstrap-datetimepicker-startdate-enddate-validation
+$('.mydatepicker-start').on("change", function(){
+   //when chosen from_date, the end date can be from that point forward
+   var startVal = $('.mydatepicker-start').val();
+   $('.mydatepicker-end').data('datepicker').setStartDate(startVal);
 });
-jQuery('.mydatepicker-end').datepicker({
-  autoclose: true,
-  todayHighlight: true,
-  zIndexOffset: 50,
-  format: 'dd/mm/yyyy',
-  startDate:jQuery('.mydatepicker-start').val()?jQuery('.mydatepicker-start').val():false,
+$('.mydatepicker-end').on("change", function(){
+   //when chosen end_date, start can go just up until that point
+   var endVal = $('.mydatepicker-end').val();
+   $('.mydatepicker-start').data('datepicker').setEndDate(endVal);
 });
 
 // Basic Table

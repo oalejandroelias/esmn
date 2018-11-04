@@ -2,7 +2,7 @@
 <?php echo form_open('curso/add',array("class"=>"form-horizontal")); ?>
 
 <div class="row">
-	<div class="col-md-12 col-12">
+	<div class="col-sm-8 col-12">
 		<div class="card">
 			<div class="card-body">
 
@@ -46,7 +46,7 @@
 					<div class="col-sm-6 col-12">
 						<label for="fecha" class="control-label">Desde</label>
 						<div class="input-group">
-							<input type="text" class="form-control mydatepicker-start" placeholder="dd/mm/yyyy" name="fecha" value="<?php echo $this->input->post('fecha'); ?>" id="fecha">
+							<input type="text" class="form-control mydatepicker mydatepicker-start" placeholder="dd/mm/yyyy" name="fecha" value="<?php echo $this->input->post('fecha'); ?>" id="fecha">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fa fa-calendar"></i></span>
 							</div>
@@ -56,7 +56,7 @@
 					<div class="col-sm-6 col-12">
 						<label for="fecha" class="control-label">Hasta</label>
 						<div class="input-group">
-							<input type="text" class="form-control mydatepicker-end" placeholder="dd/mm/yyyy" name="fecha" value="<?php echo $this->input->post('fecha'); ?>" id="fecha">
+							<input type="text" class="form-control mydatepicker mydatepicker-end" placeholder="dd/mm/yyyy" name="fecha" value="<?php echo $this->input->post('fecha'); ?>" id="fecha">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fa fa-calendar"></i></span>
 							</div>
