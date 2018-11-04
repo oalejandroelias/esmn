@@ -6,8 +6,8 @@
       <div class="card">
         <div class="card-body">
           <div class="form-group row">
-            <label class="col-md-3"><?=$class; ?></label>
-            <div class="col-md-9">
+            <label class="col-auto" title="Alternar seleccion"><a href="javascript:void(0);" onclick="check_all(this);" data-a="on" class="badge badge-light"><?=$class; ?></a></label>
+            <div class="col-auto">
               <?php $x=1; ?>
               <?php foreach ($permisos[$class] as $method => $value): ?>
                 <!-- $value corresponde al valor de checked -->

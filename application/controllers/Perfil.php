@@ -185,6 +185,8 @@ class Perfil extends CI_Controller{
         $data['title'] = 'Editar permisos - CeciliaESMN';
         $data['page_title'] = "Editar permisos de ".$data['perfil']['nombre'];
 
+        $data['js'] = array('edit_permission.js');
+
         $this->load->view('templates/header',$data);
         $this->load->view('perfil/edit_permission',$data);
         $this->load->view('templates/footer',$data);
