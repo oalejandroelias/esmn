@@ -83,7 +83,7 @@ ALTER TABLE tutor ALTER COLUMN activo SET DEFAULT 1;
 CREATE TABLE `tipo_periodo` (
   `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `descripcion` varchar(255) NOT NULL
- 
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `periodo` (
@@ -92,5 +92,11 @@ CREATE TABLE `periodo` (
   `desde` date NOT NULL,
   `hasta` date NOT NULL,
   FOREIGN KEY (id_tipo_periodo) REFERENCES tipo_periodo(id) ON DELETE RESTRICT ON UPDATE CASCADE
- 
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+-- 04/11/2018 -- cambiar periodo por id_periodo en tabla curso
+ALTER TABLE `curso` CHANGE `id_periodo` `id_periodos` INT(11) NOT NULL;
+ALTER TABLE `esmn`.`curso` ADD INDEX (`id_periodo`) USING BTREE;
+ALTER TABLE `curso` ADD CONSTRAINT `curso_ibfk_2` FOREIGN KEY (`id_periodo`) REFERENCES `periodo`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

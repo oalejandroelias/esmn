@@ -12,59 +12,55 @@
                   <thead>
                     <tr role="row">
 
-                      <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">ID</th>
-                      <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Tipo de Cursado</th>
+                      <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Periodo</th>
                       <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Desde</th>
                       <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Hasta</th>
-                      
+                      <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Acciones</th>
+
                     </tr>
                   </thead>
 
                   <tbody>
-	   
-                	<?php foreach($periodos as $periodo){ ?>
-                    <tr>
-                	<td><?php echo $p['id']; ?></td>
-					<td><?php echo $p['id_tipo_periodo']; ?></td>
-					<td><?php echo $p['desde']; ?></td>
-					<td><?php echo $p['hasta']; ?></td>
-                		<td>
-                            <?php if($boton_edit){?>
-                            <a href="<?php echo site_url('periodo/edit/'.$periodo['id']); ?>" class="btn btn-info btn-sm">Editar</a>
+
+                    <?php foreach($periodos as $p){ ?>
+                      <tr>
+                        <td><?php echo $p['descripcion']; ?></td>
+                        <td><?php echo iconv('ISO-8859-2', 'UTF-8', strftime("%d de %B de %Y", strtotime($p['desde']))); ?></td>
+                        <td><?php echo iconv('ISO-8859-2', 'UTF-8', strftime("%d de %B de %Y", strtotime($p['hasta']))); ?></td>
+                        <td>
+                          <?php if($boton_edit){?>
+                            <a href="<?php echo site_url('periodo/edit/'.$p['id']); ?>" class="btn btn-info btn-sm">Editar</a>
                           <?php }?>
                           <?php if($boton_remove){?>
-                            <a href="<?php echo site_url('periodo/remove/'.$periodo['id']); ?>" data-confirm="remove" class="btn btn-danger btn-sm">Eliminar</a>
+                            <a href="<?php echo site_url('periodo/remove/'.$p['id']); ?>" data-confirm="remove" class="btn btn-danger btn-sm">Eliminar</a>
                           <?php }?>
-                          
+
                         </td>
+                      </tr>
+                    <?php } ?>
+                  </tbody>
+
+                  <tfoot>
+                    <tr>
+                      <th rowspan="1" colspan="1">Periodo</th>
+                      <th rowspan="1" colspan="1">Desde</th>
+                      <th rowspan="1" colspan="1">Hasta</th>
+                      <th rowspan="1" colspan="1">Acciones</th>
+
                     </tr>
-                     <?php } ?>
-            </tbody>
+                  </tfoot>
+                </table>
 
-            <tfoot>
-              <tr>
-                <th rowspan="1" colspan="1">ID</th>
-                <th rowspan="1" colspan="1">Tipo de Cursado</th>
-                <th rowspan="1" colspan="1">Desde</th>
-                <th rowspan="1" colspan="1">Hasta</th>       
-               
-              </tr>
-            </tfoot>
-          </table>
-
-          <div class="pull-right">
-            <?php if ($boton_add): ?>
-              <a href="<?php echo site_url('periodo/add'); ?>" class="btn btn-success">Nuevo</a>
-            <?php endif; ?>
+                <div class="pull-right">
+                  <?php if ($boton_add): ?>
+                    <a href="<?php echo site_url('periodo/add'); ?>" class="btn btn-success">Nuevo</a>
+                  <?php endif; ?>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-</div>
-</div>
-</div>
-
-
-

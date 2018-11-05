@@ -13,22 +13,20 @@
                   <thead>
                     <tr role="row">
 
-                      <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">ID</th>
                       <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Materia</th>
                       <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Periodo</th>
-                      <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Diascursado</th>
+                      <!-- <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Diascursado</th> -->
                       <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Acciones</th>
                     </tr>
                   </thead>
 
                   <tbody>
-	   
+
                 	<?php foreach($cursos as $curso){ ?>
                     <tr>
-                		<td><?php echo $curso['id']; ?></td>
                 		<td><?php echo $curso['nombre']; ?></td>
-                		<td><?php echo $curso['periodo']; ?></td>
-                		<td><?php echo $curso['diascursado']; ?></td>
+                		<td><?php echo $curso['periodo'].' ('.$curso['desde'].' - '.$curso['hasta'].')'; ?></td>
+                		<!-- <td><?php echo $curso['diascursado']; ?></td> -->
                 		<td>
                             <?php if($boton_edit){?>
                             <a href="<?php echo site_url('curso/edit/'.$curso['id']); ?>" class="btn btn-info btn-sm">Editar</a>
@@ -36,7 +34,7 @@
                           <?php if($boton_remove){?>
                             <a href="<?php echo site_url('curso/remove/'.$curso['id']); ?>" data-confirm="remove" class="btn btn-danger btn-sm">Eliminar</a>
                           <?php }?>
-                          
+
                         </td>
                     </tr>
                      <?php } ?>
@@ -44,12 +42,11 @@
 
             <tfoot>
               <tr>
-                <th rowspan="1" colspan="1">ID</th>
                 <th rowspan="1" colspan="1">Materia</th>
                 <th rowspan="1" colspan="1">Periodo</th>
-                <th rowspan="1" colspan="1">Dias cursados</th>
+                <!-- <th rowspan="1" colspan="1">Dias cursados</th> -->
                 <th rowspan="1" colspan="1">Acciones</th>
-               
+
               </tr>
             </tfoot>
           </table>
