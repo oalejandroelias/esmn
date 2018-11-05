@@ -97,6 +97,6 @@ CREATE TABLE `periodo` (
 
 
 -- 04/11/2018 -- cambiar periodo por id_periodo en tabla curso
-ALTER TABLE `curso` CHANGE `id_periodo` `id_periodos` INT(11) NOT NULL;
+ALTER TABLE `curso` CHANGE `periodo` `id_periodo` INT(11) NOT NULL;
 ALTER TABLE `esmn`.`curso` ADD INDEX (`id_periodo`) USING BTREE;
 ALTER TABLE `curso` ADD CONSTRAINT `curso_ibfk_2` FOREIGN KEY (`id_periodo`) REFERENCES `periodo`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
