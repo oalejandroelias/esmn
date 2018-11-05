@@ -29,10 +29,10 @@
                 		<!-- <td><?php echo $curso['diascursado']; ?></td> -->
                 		<td>
                             <?php if($boton_edit){?>
-                            <a href="<?php echo site_url('curso/edit/'.$curso['id']); ?>" class="btn btn-info btn-sm">Editar</a>
+                            <a href="<?php echo site_url('curso/edit/'.$curso['curso_id']); ?>" class="btn btn-info btn-sm">Editar</a>
                           <?php }?>
                           <?php if($boton_remove){?>
-                            <a href="<?php echo site_url('curso/remove/'.$curso['id']); ?>" data-confirm="remove" class="btn btn-danger btn-sm">Eliminar</a>
+                            <a href="<?php echo site_url('curso/remove/'.$curso['curso_id']); ?>" data-confirm="remove" class="btn btn-danger btn-sm">Eliminar</a>
                           <?php }?>
 
                         </td>
