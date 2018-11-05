@@ -52,6 +52,8 @@ $('#zero_config').DataTable({
 
 // For select 2
 $(".select2").select2();
+$(".select2-selection.select2-selection--single").css("height",'33px');
+$(".select2-selection.select2-selection--single").children().css("height",'33px');
 
 // cargar modal de confirmacion de borrado para etiquetas <a>
 $('[data-confirm="remove"]').click(function(){

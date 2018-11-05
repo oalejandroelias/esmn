@@ -1,5 +1,5 @@
 <!-- esta vista permite agregar codigo de plan, nivel, nombre acta y fecha -->
-<?php echo form_open('curso/add',array("class"=>"form-horizontal")); ?>
+<?php echo form_open('curso/edit/'.$curso['id'],array("class"=>"form-horizontal")); ?>
 
 <div class="row">
 	<div class="col-sm-8 col-12">
@@ -7,15 +7,14 @@
 			<div class="card-body">
 
 				<div class="form-row mb-4">
-
 					<div class="col-sm-6 col-12">
 						<label for="id_materia" class="control-label"><span class="text-danger">*</span>Materia</label>
-						<select name="id_materia" required class="form-control">
-							<option value="">Seleccione una materia</option>
+						<select name="id_materia" required class="form-control select2 custom-select" style="width: 100%; height:32px;">
+							<option value="">Buscar</option>
 							<?php
 							foreach($all_materias as $materia)
 							{
-								$selected = ($materia['materia_id'] == $this->input->post('id_materia')) ? ' selected="selected"' : "";
+								$selected = ($materia['materia_id'] == $curso['id_materia']) ? ' selected="selected"' : "";
 
 								echo '<option value="'.$materia['materia_id'].'" '.$selected.'>'.$materia['nombre_materia'].' - '.$materia['id_carrera'].'</option>';
 							}
@@ -31,7 +30,7 @@
 							<?php
 							foreach($all_periodos as $periodo)
 							{
-							    $selected = ($periodo['id'] == $this->input->post('id_periodo')) ? ' selected="selected"' : "";
+							    $selected = ($periodo['id'] == $curso['id_periodo']) ? ' selected="selected"' : "";
 
 							    echo '<option value="'.$periodo['id'].'" '.$selected.'>'.$periodo['descripcion'].' ('.$periodo['desde'].' - '.$periodo['hasta'].')</option>';
 							}
@@ -45,31 +44,37 @@
 				<div class="form-row mb-4">
 						<div class="col-sm-6 col-12">
 							<label class="control-label">Dias de cursado</label>
-                <div class="custom-control custom-checkbox mr-sm-2">
-                  <input class="custom-control-input" name="dayweek[lunes]"
-                    id="lunes" type="checkbox" value="1">
-                  <label class="custom-control-label" for="lunes">Lunes</label>
-                </div>
-                <div class="custom-control custom-checkbox mr-sm-2">
-                  <input class="custom-control-input" name="dayweek[martes]"
-                    id="martes" type="checkbox" value="2">
-                  <label class="custom-control-label" for="martes">Martes</label>
-                </div>
-                <div class="custom-control custom-checkbox mr-sm-2">
-                  <input class="custom-control-input" name="dayweek[miercoles]"
-                    id="miercoles" type="checkbox" value="3">
-                  <label class="custom-control-label" for="miercoles">Miercoles</label>
-                </div>
-                <div class="custom-control custom-checkbox mr-sm-2">
-                  <input class="custom-control-input" name="dayweek[jueves]"
-                    id="jueves" type="checkbox" value="4">
-                  <label class="custom-control-label" for="jueves">Jueves</label>
-                </div>
-                <div class="custom-control custom-checkbox mr-sm-2">
-                  <input class="custom-control-input" name="dayweek[viernes]"
-                    id="viernes" type="checkbox" value="5">
-                  <label class="custom-control-label" for="viernes">Viernes</label>
-                </div>
+							<div class="custom-control custom-checkbox mr-sm-2">
+								<input class="custom-control-input" name="dayWeek[]"
+									id="Mon" type="checkbox" value="Mon">
+								<label class="custom-control-label" for="Mon">Lunes</label>
+							</div>
+							<div class="custom-control custom-checkbox mr-sm-2">
+								<input class="custom-control-input" name="dayWeek[]"
+									id="Tue" type="checkbox" value="Tue">
+								<label class="custom-control-label" for="Tue">Martes</label>
+							</div>
+							<div class="custom-control custom-checkbox mr-sm-2">
+								<input class="custom-control-input" name="dayWeek[]"
+									id="Wed" type="checkbox" value="Wed">
+								<label class="custom-control-label" for="Wed">Miercoles</label>
+							</div>
+							<div class="custom-control custom-checkbox mr-sm-2">
+								<input class="custom-control-input" name="dayWeek[]"
+									id="Thu" type="checkbox" value="Thu">
+								<label class="custom-control-label" for="Thu">Jueves</label>
+							</div>
+							<div class="custom-control custom-checkbox mr-sm-2">
+								<input class="custom-control-input" name="dayWeek[]"
+									id="Fry" type="checkbox" value="Fry">
+								<label class="custom-control-label" for="Fry">Viernes</label>
+							</div>
+							<div class="custom-control custom-checkbox mr-sm-2">
+								<input class="custom-control-input" name="dayWeek[]"
+									id="Sat" type="checkbox" value="Sat">
+								<label class="custom-control-label" for="Sat">Sabado</label>
+							</div>
+							<span class="text-danger"><?php echo form_error('dayWeek[]');?></span>
             </div>
 				</div>
 
