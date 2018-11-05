@@ -14,6 +14,7 @@ class Curso extends CI_Controller{
         $this->load->model('Materia_model');
         $this->load->model('Periodo_model');
         $this->load->model('Carrera_model');
+        $this->load->model('Modelo_global_model');
 
     }
 
@@ -47,14 +48,29 @@ class Curso extends CI_Controller{
     {
         $this->form_validation->set_rules('id_materia','Materia','required|integer');
         $this->form_validation->set_rules('id_periodo','Periodo','required|integer');
+        $this->form_validation->set_rules('dayweek[]','Dayweek','required');
 
         if($this->form_validation->run())
         {
+            $dias_cursado=$this->input->post('dayweek[]');
+            $datos_periodo=$this->Periodo_model->get_Periodo($this->input->post('id_periodo'));
+            $desde=$datos_periodo['desde'];
+            $hasta=$datos_periodo['hasta'];
+            $where='';
+            foreach ($dias_cursado as $dia)
+            {
+                $where.=' or dayofweek(DIASENTREFECHAS) = '.$dia;
+                
+            }
+            $where= substr($where, 4);
+            
+            $dias_cursado_string=json_encode($this->Modelo_global_model->fechas_de_intervalos($desde, $hasta, $where));
+            
             $params = array(
                 'id' => $this->input->post('id'),
                 'id_materia' => $this->input->post('id_materia'),
-                'periodo' =>"Periodo",
-                'diascursado' => "dias cursados",
+                'id_periodo' =>$this->input->post('id_periodo'),
+                'diascursado' => $dias_cursado_string,
 
             );
 
