@@ -76,7 +76,7 @@
 				<div class="form-group">
 					<div class="col-sm-offset-4 col-sm-8">
 						<button type="submit" class="btn btn-success">Guardar</button>
-						<a href="<?=site_url('carrera/index'); ?>" class="btn btn-danger">Cancelar</a>
+						<a href="<?=site_url('curso/index'); ?>" class="btn btn-danger">Cancelar</a>
 					</div>
 				</div>
 

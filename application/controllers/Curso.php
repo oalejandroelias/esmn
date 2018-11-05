@@ -53,6 +53,7 @@ class Curso extends CI_Controller{
         if($this->form_validation->run())
         {
             $dias_cursado=$this->input->post('dayweek[]');
+            $dias=json_encode($this->input->post('dayweek[]'));
             $datos_periodo=$this->Periodo_model->get_Periodo($this->input->post('id_periodo'));
             $desde=$datos_periodo['desde'];
             $hasta=$datos_periodo['hasta'];
@@ -64,7 +65,8 @@ class Curso extends CI_Controller{
             }
             $where= substr($where, 4);
             
-            $dias_cursado_string=json_encode($this->Modelo_global_model->fechas_de_intervalos($desde, $hasta, $where));
+            //$dias_cursado_string=json_encode($this->Modelo_global_model->fechas_de_intervalos($desde, $hasta, $where));
+            $dias_cursado_string=$dias;
             
             $params = array(
                 'id' => $this->input->post('id'),
@@ -86,6 +88,7 @@ class Curso extends CI_Controller{
 
             $data['all_materias'] = $this->Materia_model->get_all_materias();
             $data['all_periodos'] = $this->Periodo_model->get_all_periodo();
+            //$data['dias'] = {1,3};
 
             $this->load->view('templates/header',$data);
             $this->load->view('curso/add',$data);
@@ -98,28 +101,56 @@ class Curso extends CI_Controller{
      */
     function edit($id)
     {
-        // check if the curso exists before trying to edit it
         $data['curso'] = $this->Curso_model->get_curso($id);
-
         if(isset($data['curso']['id']))
         {
-            if(isset($_POST) && count($_POST) > 0)
+            
+            $this->form_validation->set_rules('id_materia','Materia','required|integer');
+            $this->form_validation->set_rules('id_periodo','Periodo','required|integer');
+            $this->form_validation->set_rules('dayweek[]','Dayweek','required');
+            
+            if($this->form_validation->run())
             {
+                $dias_cursado=$this->input->post('dayweek[]');
+                $datos_periodo=$this->Periodo_model->get_Periodo($this->input->post('id_periodo'));
+                $desde=$datos_periodo['desde'];
+                $hasta=$datos_periodo['hasta'];
+                $where='';
+                foreach ($dias_cursado as $dia)
+                {
+                    $where.=' or dayofweek(DIASENTREFECHAS) = '.$dia;
+                    
+                }
+                $where= substr($where, 4);
+                
+                $dias_cursado_string=json_encode($this->Modelo_global_model->fechas_de_intervalos($desde, $hasta, $where));
+                
                 $params = array(
-					'id_curso' => $this->input->post('id_curso'),
-					'periodo' => $this->input->post('periodo'),
-					'diascursado' => $this->input->post('diascursado'),
+                    'id' => $this->input->post('id'),
+                    'id_materia' => $this->input->post('id_materia'),
+                    'id_periodo' =>$this->input->post('id_periodo'),
+                    'diascursado' => $dias_cursado_string,
+                    
                 );
-
+                
                 $this->Curso_model->update_curso($id,$params);
+                $this->session->set_flashdata('editar', 'Se guardaron los cambios');
                 redirect('curso/index');
             }
             else
             {
-                $data['_view'] = 'curso/edit';
-                $this->load->view('layouts/main',$data);
+                $data['title'] = 'curso - ESMN';
+                $data['page_title'] = 'Nueva curso';
+                
+                $data['all_materias'] = $this->Materia_model->get_all_materias();
+                $data['all_periodos'] = $this->Periodo_model->get_all_periodo();
+                
+                $this->load->view('templates/header',$data);
+                $this->load->view('curso/add',$data);
+                $this->load->view('templates/footer');
             }
         }
+       
         else
             show_error('The curso you are trying to edit does not exist.');
     }
