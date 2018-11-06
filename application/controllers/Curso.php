@@ -126,7 +126,6 @@ class Curso extends CI_Controller{
         $dias_cursado = getDaysPeriod($desde,$hasta,$this->input->post('dayWeek[]',TRUE));
 
         $params = array(
-          'id' => $this->input->post('id'),
           'id_materia' => $this->input->post('id_materia',TRUE),
           'id_periodo' =>$this->input->post('id_periodo',TRUE),
           'diascursado' => json_encode($dias_cursado),
