@@ -246,7 +246,11 @@ class Persona extends CI_Controller{
     // check if the persona exists before trying to delete it
     if(isset($persona['id']))
     {
-      $this->Persona_model->delete_persona($id);
+      $respuesta = $this->Persona_model->delete_persona($id);
+      if (!$respuesta) { //controlar errores, la configuracion del proyecto tiene que estar en modo produccion!
+        echo "no se puede eliminar por q bla bla";
+        exit;
+      }
       $this->session->set_flashdata('eliminar', 'Persona eliminada');
       redirect('persona/index');
     }
