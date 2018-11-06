@@ -10,11 +10,13 @@ function getDaysPeriod(fecha_inicio,fecha_fin,daysWeek){
       var obj = JSON.parse(respuesta);
 
       for (var i = 0; i < obj.length; i++) {
-        $("#tablaDiasCursado thead").append('<th class="text-center">\
-        <span class="">\
+        $("#tablaDiasCursado thead tr").append('<th class="text-center rotate90deg">\
+        <span class="rotate90deg font-weight-bold">\
         '+obj[i].date+' '+transalteDay(obj[i].day,'largo')+'\
         </span>\
         </th>');
+
+        $("#tablaDiasCursado tbody tr").append('<td class="cell-diacursado" data-cellnum="'+i+'"><div></div></td>');
       }
     },
     error:function (respuesta){
@@ -25,8 +27,8 @@ function getDaysPeriod(fecha_inicio,fecha_fin,daysWeek){
 
 // llamar a getDaysPeriod cuando cambie la seleccion de dias de semana
 $('[name^="dayWeek"]').change(function(){
-  $("#tablaDiasCursado thead").html('');
-  $("#tablaDiasCursado tbody").html('');
+  $("#tablaDiasCursado thead tr").html('');
+  $("#tablaDiasCursado tbody tr").html('');
 
   if ($('[name="id_periodo"]').val() && $("[name='dayWeek[]']:checked").val()) {
     var fecha_inicio = $('[name="id_periodo"] option:selected').attr('data-inicio'),

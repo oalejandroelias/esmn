@@ -89,6 +89,7 @@ class Curso extends CI_Controller{
       $data['all_periodos'] = $this->Periodo_model->get_all_periodo();
 
       $data['js'] = array('curso.js');
+      $data['css'] = array('curso.css');
 
       $this->load->view('templates/header',$data);
       $this->load->view('curso/add',$data);
@@ -145,6 +146,7 @@ class Curso extends CI_Controller{
         $data['all_periodos'] = $this->Periodo_model->get_all_periodo();
 
         $data['js'] = array('curso.js');
+        $data['css'] = array('curso.css');
 
         $this->load->view('templates/header',$data);
         $this->load->view('curso/edit',$data);

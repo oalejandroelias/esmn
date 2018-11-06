@@ -85,13 +85,15 @@
             </div>
 				</div>
 
-				<table id="tablaDiasCursado" class="table table-bordered table-condensed table-responsive tabla-dias-cursado">
+				<table id="tablaDiasCursado" class="table table-bordered table-sm table-responsive tabla-dias-cursado">
 					<thead>
+						<tr></tr>
 						<!-- <tr>
 							<th class="rotete90lr" style="height:50px;"><span class="rotete90lr">2018-03-05 Martes</span></th>
 						</tr> -->
 					</thead>
 					<tbody>
+						<tr></tr>
 					</tbody>
 				</table>
 

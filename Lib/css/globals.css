@@ -4,8 +4,14 @@ label a.badge{font-size: 100%;}
   word-wrap: break-word;
   white-space:pre-wrap;
 }
-.rotete90lr{
+.rotate90lr{
   writing-mode: sideways-lr;
  -webkit-writing-mode: sideways-lr;
  -ms-writing-mode: sideways-lr;
+}
+.rotate90deg{
+-webkit-transform: rotate(-90deg);
+-moz-transform: rotate(-90deg);
+-ms-transform: rotate(-90deg);
+-o-transform: rotate(-90deg);
 }
