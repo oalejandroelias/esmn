@@ -8,8 +8,8 @@ class Tipo_periodo extends CI_Controller{
   function __construct()
   {
     parent::__construct();
-    validar_acceso();
     is_logged_in();
+    validar_acceso();
     $this->load->model('Tipo_periodo_model');
 
   }
@@ -76,7 +76,7 @@ class Tipo_periodo extends CI_Controller{
       } else {
         $is_unique =  '';
       }
-      
+
       $this->form_validation->set_rules('descripcion','Descripcion','required|max_length[128]'.$is_unique);
       if($this->form_validation->run())
       {

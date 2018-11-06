@@ -8,8 +8,8 @@ class Perfil_usuario extends CI_Controller{
   function __construct()
   {
     parent::__construct();
-    validar_acceso();
     is_logged_in();
+    validar_acceso();
     $this->load->model('Perfil_usuario_model');
     $this->load->model('Usuario_model');
     $this->load->model('Persona_model');

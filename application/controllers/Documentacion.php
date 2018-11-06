@@ -8,8 +8,8 @@ class Documentacion extends CI_Controller{
   function __construct()
   {
     parent::__construct();
-    validar_acceso();
     is_logged_in();
+    validar_acceso();
     $this->load->model('Persona_model');
     $this->load->model('Documentacion_model');
   }
@@ -169,7 +169,7 @@ class Documentacion extends CI_Controller{
     if(isset($documentacion['id']))
     {
       $this->Documentacion_model->delete_documentacion($id);
-      $this->session->set_flashdata('eliminar', 'Documentación eliminada');
+      $this->session->set_flashdata('eliminar', 'Documentaciï¿½n eliminada');
       redirect('documentacion/index');
     }
     else

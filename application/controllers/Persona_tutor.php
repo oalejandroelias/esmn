@@ -8,8 +8,8 @@ class Persona_tutor extends CI_Controller{
   function __construct()
   {
     parent::__construct();
-    validar_acceso();
     is_logged_in();
+    validar_acceso();
     $this->load->model('Persona_tutor_model');
     $this->load->model('Tipo_documento_model');
     $this->load->model('Tutor_model');

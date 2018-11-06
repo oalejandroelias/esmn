@@ -8,8 +8,8 @@ class Estado_asistencia extends CI_Controller{
   function __construct()
   {
     parent::__construct();
-    validar_acceso();
     is_logged_in();
+    validar_acceso();
     $this->load->model('Estado_asistencia_model');
   }
 

@@ -8,8 +8,8 @@ class Provincia extends CI_Controller{
   function __construct()
   {
     parent::__construct();
-    validar_acceso();
     is_logged_in();
+    validar_acceso();
     $this->load->model('Provincia_model','Provincia',TRUE);
   }
 
@@ -22,23 +22,23 @@ class Provincia extends CI_Controller{
     $data['page_title'] = 'Provincias';
     $params['limit'] = RECORDS_PER_PAGE;
     $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
-    
+
     $config = $this->config->item('pagination');
     $config['base_url'] = site_url('provincia/index?');
     $config['total_rows'] = $this->Provincia->get_all_provincias_count();
     $this->pagination->initialize($config);
-    
+
     $data['provincias'] = $this->Provincia->get_all_provincias($params);
-    
+
     //Botones de acciones
     $data['boton_edit']=validar_botones('edit');
     $data['boton_add']=validar_botones('add');
     $data['boton_remove']=validar_botones('remove');
-    
+
     $this->load->view('templates/header',$data);
     $this->load->view('provincia/index',$data);
     $this->load->view('templates/footer');
-    
+
   }
 
   /*

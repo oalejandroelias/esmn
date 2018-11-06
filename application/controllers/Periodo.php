@@ -8,8 +8,8 @@ class Periodo extends CI_Controller{
   function __construct()
   {
     parent::__construct();
-    validar_acceso();
     is_logged_in();
+    validar_acceso();
     $this->load->model('Periodo_model');
     $this->load->model('Tipo_periodo_model');
   }

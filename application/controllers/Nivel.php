@@ -9,8 +9,8 @@ class Nivel extends CI_Controller{
     function __construct()
     {
         parent::__construct();
-        validar_acceso();
         is_logged_in();
+        validar_acceso();
         $this->load->model('Nivel_model');
         $this->load->model('Carrera_model');
     }
