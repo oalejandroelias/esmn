@@ -56,7 +56,7 @@ $(".select2-selection.select2-selection--single").css("height",'34px');
 $(".select2-selection.select2-selection--single").children().css("height",'34px');
 
 // cargar modal de confirmacion de borrado para etiquetas <a>
-$('[data-confirm="remove"]').click(function(){
+$('#zero_config').on('click','a[data-confirm="remove"]',function(){
   var action_url = this.href;
   $('div[data-modal="remove"]').load(ruta+"Lib/modals/modal_remove.html",function(result){
     $("#modal_remove").modal();
