@@ -1,1 +1,11 @@
 label a.badge{font-size: 100%;}
+.vertical-text{
+  width:1px;
+  word-wrap: break-word;
+  white-space:pre-wrap;
+}
+.rotete90lr{
+  writing-mode: sideways-lr;
+ -webkit-writing-mode: sideways-lr;
+ -ms-writing-mode: sideways-lr;
+}

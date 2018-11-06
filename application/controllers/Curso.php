@@ -96,6 +96,14 @@ class Curso extends CI_Controller{
     }
   }
 
+  function get_days_period(){
+    if ($this->input->is_ajax_request() && !empty($_POST)) {
+      $dias_cursado = getDaysPeriod($_POST['fecha_inicio'],$_POST['fecha_fin'],$this->input->post('daysWeek[]',TRUE));
+      echo json_encode($dias_cursado);
+    }
+    return false;
+  }
+
   /*
   * Editing a curso
   */

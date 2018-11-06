@@ -2,13 +2,13 @@
 <?php echo form_open('curso/add',array("class"=>"form-horizontal")); ?>
 
 <div class="row">
-	<div class="col-sm-8 col-12">
+	<div class="col-12">
 		<div class="card">
 			<div class="card-body">
 
 				<div class="form-row mb-4">
 
-					<div class="col-sm-6 col-12">
+					<div class="col-sm-4 col-12">
 						<label for="id_materia" class="control-label"><span class="text-danger">*</span>Materia</label>
 						<select name="id_materia" required class="form-control select2 custom-select" style="width: 100%; height:32px;">
 							<option value="">Buscar</option>
@@ -24,7 +24,7 @@
 						<span class="text-danger"><?php echo form_error('id_materia');?></span>
 					</div>
 
-					<div class="col-sm-6 col-12">
+					<div class="col-sm-4 col-12">
 						<label for="id_materia" class="control-label"><span class="text-danger">*</span>Periodo	</label>
 						<select name="id_periodo" required class="form-control">
 							<option value="">Seleccione un periodo</option>
@@ -44,7 +44,7 @@
 				</div>
 
 				<div class="form-row mb-4">
-						<div class="col-sm-6 col-12">
+						<div class="col-sm-4 col-12">
 							<label class="control-label">Dias de cursado</label>
                 <!-- <div class="custom-control custom-checkbox mr-sm-2"> //ORIGINAL
                   <input class="custom-control-input" name="dayweek[lunes]"
@@ -73,8 +73,8 @@
                 </div>
                 <div class="custom-control custom-checkbox mr-sm-2">
                   <input class="custom-control-input" name="dayWeek[]"
-                    id="Fry" type="checkbox" value="Fry">
-                  <label class="custom-control-label" for="Fry">Viernes</label>
+                    id="Fri" type="checkbox" value="Fri">
+                  <label class="custom-control-label" for="Fri">Viernes</label>
                 </div>
 								<div class="custom-control custom-checkbox mr-sm-2">
 									<input class="custom-control-input" name="dayWeek[]"
@@ -84,6 +84,16 @@
 								<span class="text-danger"><?php echo form_error('dayWeek[]');?></span>
             </div>
 				</div>
+
+				<table id="tablaDiasCursado" class="table table-bordered table-condensed table-responsive tabla-dias-cursado">
+					<thead>
+						<!-- <tr>
+							<th class="rotete90lr" style="height:50px;"><span class="rotete90lr">2018-03-05 Martes</span></th>
+						</tr> -->
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
 
 				<div class="form-group">
 					<div class="col-sm-offset-4 col-sm-8">

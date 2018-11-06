@@ -46,11 +46,17 @@ function getDaysPeriod($fecha_inicio,$fecha_fin,$daysWeek){
 
   $arr_days = array(); //arreglo de dias con $daysWeek
 
+  $x = 0;
   foreach ($period as $key => $value) {
     if (in_array($value->format('D'),$daysWeek)){
-      $arr_days[$value->format('Y-m-d')] = array();
+      // $arr_days[$value->format('Y-m-d')] = array();
       // array_push($arr_days[$value->format('Y-m-d')],$value->format('D'));
-      $arr_days[$value->format('Y-m-d')] = $value->format('D');
+      // $arr_days[$value->format('Y-m-d')] = $value->format('D');
+      $arr_days[$x] = array(
+        'date' => $value->format('Y-m-d'),
+        'day' => $value->format('D')
+      );
+      $x++;
     }
   }
 
