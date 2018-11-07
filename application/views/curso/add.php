@@ -85,7 +85,7 @@
             </div>
 				</div>
 
-				<table id="tablaDiasCursado" class="table table-bordered table-sm table-responsive tabla-dias-cursado">
+				<table id="tablaDiasCursado" class="table-responsive tabla-dias-cursado mb-4">
 					<thead>
 						<tr></tr>
 						<!-- <tr>

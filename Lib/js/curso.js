@@ -10,10 +10,10 @@ function getDaysPeriod(fecha_inicio,fecha_fin,daysWeek){
       var obj = JSON.parse(respuesta);
 
       for (var i = 0; i < obj.length; i++) {
-        $("#tablaDiasCursado thead tr").append('<th class="text-center rotate90deg">\
-        <span class="rotate90deg font-weight-bold">\
+        $("#tablaDiasCursado thead tr").append('<th class="text-center rotate">\
+        <div><span class="font-weight-bold">\
         '+obj[i].date+' '+transalteDay(obj[i].day,'largo')+'\
-        </span>\
+        </span></div>\
         </th>');
 
         $("#tablaDiasCursado tbody tr").append('<td class="cell-diacursado" data-cellnum="'+i+'"><div></div></td>');
@@ -26,7 +26,7 @@ function getDaysPeriod(fecha_inicio,fecha_fin,daysWeek){
 }
 
 // llamar a getDaysPeriod cuando cambie la seleccion de dias de semana
-$('[name^="dayWeek"]').change(function(){
+$('[name^="dayWeek"],[name="id_periodo"]').change(function(){
   $("#tablaDiasCursado thead tr").html('');
   $("#tablaDiasCursado tbody tr").html('');
 

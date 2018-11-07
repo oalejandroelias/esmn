@@ -1,5 +1,26 @@
-.cell-diacursado div{
+/* .cell-diacursado div{
   height: 20px;
   width: 10px;
+} */
+.tabla-dias-cursado {border-collapse: collapse;}
+.tabla-dias-cursado td {width: 30px;}
+.tabla-dias-cursado th {padding: 5px 7px;}
+.tabla-dias-cursado td {
+  text-align: center;
+  padding: 20px 5px;
+  border: 1px solid #ccc;
 }
 .tabla-dias-cursado thead span{margin-bottom: 7px;}
+.tabla-dias-cursado th.rotate{
+  height: 140px;
+  white-space: nowrap;
+}
+.tabla-dias-cursado th.rotate > div {
+  -webkit-transform: translate(25px, 51px) rotate(315deg);
+          transform: translate(25px, 51px) rotate(315deg);
+  width: 30px;
+}
+.tabla-dias-cursado th.rotate > div > span {
+  border-bottom: 1px solid #ccc;
+  padding: 0px 5px;
+}
