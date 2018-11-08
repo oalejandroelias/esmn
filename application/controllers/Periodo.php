@@ -73,7 +73,8 @@ class Periodo extends CI_Controller{
   function edit($id)
   {
     // check if the periodo exists before trying to edit it
-    $data['periodo'] = $this->Periodo_model->get_all_periodo(array('row'=>'periodo.id','value'=>$id))[0];
+    $data['periodo'] = $this->Periodo_model->get_all_periodo(array('row'=>'periodo.id','value'=>$id));
+    $data['periodo'] = (isset($data['periodo'][0])) ? $data['periodo'][0] : null;
 
     if(isset($data['periodo']['id']))
     {

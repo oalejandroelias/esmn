@@ -72,7 +72,8 @@ class Mesa extends CI_Controller{
   function edit($id)
   {
     // check if the mesa exists before trying to edit it
-    $data['mesa'] = $this->Mesa_model->get_all_mesas(array('row'=>'mesa.id','value'=>$id))[0];
+    $data['mesa'] = $this->Mesa_model->get_all_mesas(array('row'=>'mesa.id','value'=>$id));
+    $data['mesa'] = (isset($data['mesa'][0])) ? $data['mesa'][0] : null;
 
     if(isset($data['mesa']['id_mesa']))
     {

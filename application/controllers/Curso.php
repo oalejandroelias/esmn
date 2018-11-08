@@ -112,7 +112,8 @@ class Curso extends CI_Controller{
   */
   function edit($id)
   {
-    $data['curso'] = $this->Curso_model->get_all_curso(array('row'=>'curso.id','value'=>$id))[0];
+    $data['curso'] = $this->Curso_model->get_all_curso(array('row'=>'curso.id','value'=>$id));
+    $data['curso'] = (isset($data['curso'][0])) ? $data['curso'][0] : null;
     // print_r($data['curso']);exit;
     if(isset($data['curso']['curso_id']))
     {
