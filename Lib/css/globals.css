@@ -1,4 +1,14 @@
+/* modificar clases de bootstrap */
+.badge{font-weight: 400;font-size: 90%;}
 label a.badge{font-size: 100%;}
+
+/* Rules for sizing the icon. */
+.mdi-18 { font-size: 18px; }
+.mdi-24 { font-size: 24px; }
+.mdi-36 { font-size: 36px; }
+.mdi-48 { font-size: 48px; }
+
+/* transformadores de texto */
 .vertical-text{
   width:1px;
   word-wrap: break-word;

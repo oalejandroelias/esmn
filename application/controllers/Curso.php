@@ -49,6 +49,7 @@ class Curso extends CI_Controller{
     $this->form_validation->set_rules('id_materia','Materia','required|integer');
     $this->form_validation->set_rules('id_periodo','Periodo','required|integer');
     $this->form_validation->set_rules('dayWeek[]','Dias de semana','required');
+    $this->form_validation->set_rules('diascursado','Json dias de cursado','required');
 
     if($this->form_validation->run())
     {
@@ -71,8 +72,9 @@ class Curso extends CI_Controller{
 
       $params = array(
         'id_materia' => $this->input->post('id_materia',TRUE),
-        'id_periodo' =>$this->input->post('id_periodo',TRUE),
-        'diascursado' => json_encode($dias_cursado),
+        'id_periodo' => $this->input->post('id_periodo',TRUE),
+        'diascursado' => $this->input->post('diascursado',TRUE),
+        'diassemana' => json_encode($this->input->post('dayWeek[]')),
       );
 
       $curso_id = $this->Curso_model->add_curso($params);
@@ -110,27 +112,22 @@ class Curso extends CI_Controller{
   */
   function edit($id)
   {
-    $data['curso'] = $this->Curso_model->get_curso($id);
+    $data['curso'] = $this->Curso_model->get_all_curso(array('row'=>'curso.id','value'=>$id))[0];
     // print_r($data['curso']);exit;
-    if(isset($data['curso']['id']))
+    if(isset($data['curso']['curso_id']))
     {
       $this->form_validation->set_rules('id_materia','Materia','required|integer');
       $this->form_validation->set_rules('id_periodo','Periodo','required|integer');
       $this->form_validation->set_rules('dayWeek[]','Dayweek','required');
+      $this->form_validation->set_rules('diascursado','Json dias de cursado','required');
 
       if($this->form_validation->run())
       {
-        $datos_periodo=$this->Periodo_model->get_Periodo($this->input->post('id_periodo',TRUE));
-        $desde=$datos_periodo['desde'];
-        $hasta=$datos_periodo['hasta'];
-
-        $dias_cursado = getDaysPeriod($desde,$hasta,$this->input->post('dayWeek[]',TRUE));
-
         $params = array(
           'id_materia' => $this->input->post('id_materia',TRUE),
-          'id_periodo' =>$this->input->post('id_periodo',TRUE),
-          'diascursado' => json_encode($dias_cursado),
-
+          'id_periodo' => $this->input->post('id_periodo',TRUE),
+          'diascursado' => $this->input->post('diascursado',TRUE),
+          'diassemana' => json_encode($this->input->post('dayWeek[]')),
         );
 
         $this->Curso_model->update_curso($id,$params);
@@ -139,8 +136,8 @@ class Curso extends CI_Controller{
       }
       else
       {
-        $data['title'] = 'curso - ESMN';
-        $data['page_title'] = 'Nueva curso';
+        $data['title'] = 'Editar curso - ESMN';
+        $data['page_title'] = 'Editar Curso '.$data['curso']['nombre'];
 
         $data['all_materias'] = $this->Materia_model->get_all_materias();
         $data['all_periodos'] = $this->Periodo_model->get_all_periodo();

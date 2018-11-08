@@ -30,8 +30,8 @@ class Curso_model extends CI_Model
 
     function get_all_curso($where = array())
     {
-        $this->db->select('curso.id AS "curso_id",id_materia,id_carrera,materia.nombre,
-        diascursado,curso.activo,tipo_periodo.descripcion AS "periodo",desde,hasta');
+        $this->db->select('curso.id AS "curso_id",id_materia,id_carrera,id_periodo,materia.nombre,
+        diascursado,diassemana,curso.activo,tipo_periodo.descripcion AS "periodo",desde,hasta');
         $this->db->from('curso');
         $this->db->join('materia', 'materia.id = curso.id_materia','inner');
         $this->db->join('periodo', 'periodo.id = curso.id_periodo','inner');

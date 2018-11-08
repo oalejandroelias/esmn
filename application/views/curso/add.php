@@ -44,6 +44,7 @@
 				</div>
 
 				<div class="form-row mb-4">
+					<input type="hidden" name="diascursado" value="">
 						<div class="col-sm-4 col-12">
 							<label class="control-label">Dias de cursado</label>
                 <!-- <div class="custom-control custom-checkbox mr-sm-2"> //ORIGINAL
@@ -85,7 +86,12 @@
             </div>
 				</div>
 
-				<table id="tablaDiasCursado" class="table table-bordered table-sm table-responsive tabla-dias-cursado">
+				<div class="col-sm-4 col-12 d-none" id="table-reference">
+					<h5>Seleccione los dias Feriados:</h5>
+					<p>Referencias: <span class="badge badge-danger">F: feriado</span></p>
+				</div>
+
+				<table id="tablaDiasCursado" class="table-responsive tabla-dias-cursado mb-4">
 					<thead>
 						<tr></tr>
 						<!-- <tr>

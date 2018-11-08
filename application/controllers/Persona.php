@@ -248,8 +248,8 @@ class Persona extends CI_Controller{
     {
       $respuesta = $this->Persona_model->delete_persona($id);
       if (!$respuesta) { //controlar errores, la configuracion del proyecto tiene que estar en modo produccion!
-        echo "no se puede eliminar por q bla bla";
-        exit;
+          $this->session->set_flashdata('eliminar', 'No se puede eliminar la persona. Error de dependencia');
+          redirect('persona/index');
       }
       $this->session->set_flashdata('eliminar', 'Persona eliminada');
       redirect('persona/index');

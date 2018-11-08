@@ -54,7 +54,9 @@ function getDaysPeriod($fecha_inicio,$fecha_fin,$daysWeek){
       // $arr_days[$value->format('Y-m-d')] = $value->format('D');
       $arr_days[$x] = array(
         'date' => $value->format('Y-m-d'),
-        'day' => $value->format('D')
+        'day' => $value->format('D'),
+        'state' => '0',
+        'state_description' => 'Clases normales',
       );
       $x++;
     }

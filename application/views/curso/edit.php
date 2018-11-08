@@ -1,5 +1,5 @@
 <!-- esta vista permite agregar codigo de plan, nivel, nombre acta y fecha -->
-<?php echo form_open('curso/edit/'.$curso['id'],array("class"=>"form-horizontal")); ?>
+<?php echo form_open('curso/edit/'.$curso['curso_id'],array("class"=>"form-horizontal")); ?>
 
 <div class="row">
 	<div class="col-sm-8 col-12">
@@ -26,7 +26,7 @@
 					<div class="col-sm-6 col-12">
 						<label for="id_materia" class="control-label"><span class="text-danger">*</span>Periodo	</label>
 						<select name="id_periodo" required class="form-control">
-							<option value="">Seleccione una carrera</option>
+							<option value="">Seleccione un periodo</option>
 							<?php
 							foreach($all_periodos as $periodo)
 							{
@@ -42,6 +42,7 @@
 				</div>
 
 				<div class="form-row mb-4">
+					<input type="hidden" name="diascursado" value="<?= $curso['diascursado']; ?>">
 						<div class="col-sm-6 col-12">
 							<label class="control-label">Dias de cursado</label>
 							<div class="custom-control custom-checkbox mr-sm-2">

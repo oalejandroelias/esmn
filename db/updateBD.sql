@@ -77,7 +77,6 @@ ALTER TABLE nivel ALTER COLUMN activo SET DEFAULT 1;
 ALTER TABLE perfil ALTER COLUMN activo SET DEFAULT 1;
 ALTER TABLE tipo_documento ALTER COLUMN activo SET DEFAULT 1;
 ALTER TABLE tutor ALTER COLUMN activo SET DEFAULT 1;
-ALTER TABLE `curso` CHANGE `activo` `activo` TINYINT(1) NOT NULL DEFAULT '1';
 
 -- 2/11/2018: Periodo de cursado
 
@@ -101,3 +100,10 @@ CREATE TABLE `periodo` (
 ALTER TABLE `curso` CHANGE `periodo` `id_periodo` INT(11) NOT NULL;
 ALTER TABLE `esmn`.`curso` ADD INDEX (`id_periodo`) USING BTREE;
 ALTER TABLE `curso` ADD CONSTRAINT `curso_ibfk_2` FOREIGN KEY (`id_periodo`) REFERENCES `periodo`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+
+-- 07/11/18 falto esta modificacion
+ALTER TABLE `curso` CHANGE `activo` `activo` TINYINT(1) NOT NULL DEFAULT '1';
+
+-- 07/11/18 agregar columna de dias (json de solo nombre de los dias de semana)
+ALTER TABLE `curso` ADD `diassemana` TEXT NOT NULL AFTER `diascursado`;
