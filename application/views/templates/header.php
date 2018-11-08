@@ -107,6 +107,7 @@
                                 <a class="dropdown-item" href="<?php echo base_url('Nivel')?>">Niveles</a>
                                 <a class="dropdown-item" href="<?php echo base_url('Carrera')?>">Carreras</a>
                                 <a class="dropdown-item" href="<?php echo base_url('Materia')?>">Materias</a>
+                                <a class="dropdown-item" href="<?php echo base_url('Curso')?>">Cursos</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="<?php echo base_url('Estado_asistencia')?>">Estados asistencia</a>
                                 <a class="dropdown-item" href="<?php echo base_url('Tutor')?>">Tutores</a>
@@ -197,7 +198,7 @@
                                   <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Carreras </span></a></li>
                                 <li class="sidebar-item"><a href="<?=base_url('inscripcion_materia')?>" class="sidebar-link">
                                   <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Materias </span></a></li>
-                                <li class="sidebar-item"><a href="<?=base_url('curso')?>" class="sidebar-link">
+                                <li class="sidebar-item"><a href="#" onclick="alert('aca va la inscripcion. los cursos se crean desde administracion')" class="sidebar-link">
                                   <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Cursos </span></a></li>
                             </ul>
                         </li>
@@ -208,13 +209,13 @@
                         </li>
                         <li class="sidebar-item">
                           <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                            <i class="mdi mdi-book-open"></i><span class="hide-menu">Año </span>
+                            <i class="mdi mdi-book-open"></i><span class="hide-menu">Aï¿½o </span>
                           </a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item"><a href="<?=base_url('tipo_periodo')?>" class="sidebar-link">
                                   <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Tipo Periodo </span></a></li>
                                 <li class="sidebar-item"><a href="<?=base_url('periodo')?>" class="sidebar-link">
-                                  <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Periodo </span></a></li>             
+                                  <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Periodo </span></a></li>
                             </ul>
                         </li>
                     </ul>
