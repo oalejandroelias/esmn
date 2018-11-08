@@ -1,11 +1,11 @@
 // obtener dias de un periodo, por nombre (en ingles, Mon, Tue, etc)
 // generar tabla (calendario)
 function getDaysPeriod(fecha_inicio,fecha_fin,daysWeek){
-  $.ajax({
+  return $.ajax({
     type:'POST',
     url:ruta+'curso/get_days_period',
     data: {fecha_inicio,fecha_fin,daysWeek},
-    async: false,
+    // async: false,
     success:function (respuesta){
       var obj = JSON.parse(respuesta);
       globalDiasCursado = obj;
@@ -52,10 +52,12 @@ $('[name^="dayWeek"],[name="id_periodo"]').change(function(){
       daysWeek.push($(this).val());
     });
 
-    getDaysPeriod(fecha_inicio,fecha_fin,daysWeek);
+    // getDaysPeriod(fecha_inicio,fecha_fin,daysWeek);
+    getDaysPeriod(fecha_inicio,fecha_fin,daysWeek).done(function(){
+      // setear valor de diascursado como json para enviar por post
+      $('input[name="diascursado"]').val(JSON.stringify(globalDiasCursado));
+    })
 
-    // setear valor de diascursado como json para enviar por post
-    $('input[name="diascursado"]').val(JSON.stringify(globalDiasCursado));
 
   }else {
     $('#table-reference').addClass('d-none');
