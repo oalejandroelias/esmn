@@ -137,7 +137,7 @@ class Curso extends CI_Controller{
       else
       {
         $data['title'] = 'Editar curso - ESMN';
-        $data['page_title'] = 'Editar Curso '.$data['curso']['nombre'];
+        $data['page_title'] = 'Editar Curso -> '.$data['curso']['nombre'];
 
         $data['all_materias'] = $this->Materia_model->get_all_materias();
         $data['all_periodos'] = $this->Periodo_model->get_all_periodo();

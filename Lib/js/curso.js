@@ -5,25 +5,35 @@ function getDaysPeriod(fecha_inicio,fecha_fin,daysWeek){
     type:'POST',
     url:ruta+'curso/get_days_period',
     data: {fecha_inicio,fecha_fin,daysWeek},
+    async: false,
     success:function (respuesta){
       var obj = JSON.parse(respuesta);
       globalDiasCursado = obj;
-      // console.log(obj);
-
-      for (var i = 0; i < obj.length; i++) {
-        $("#tablaDiasCursado thead tr").append('<th class="text-center rotate">\
-        <div><span class="font-weight-bold">\
-        '+obj[i].date+' '+transalteDay(obj[i].day,'largo')+'\
-        </span></div>\
-        </th>');
-
-        $("#tablaDiasCursado tbody tr").append('<td data-cellid="'+i+'" data-cellstate="0" onclick="changeState(this)"><span class="font-weight-bold"><i class=""></i></span></td>');
-      }
+      makeTable(obj);
     },
     error:function (respuesta){
       console.log('error: '+respuesta);
     }
   });
+}
+
+// construir tabla
+function makeTable(obj){
+  for (var i = 0; i < obj.length; i++) {
+    $("#tablaDiasCursado thead tr").append('<th class="text-center rotate">\
+    <div><span class="font-weight-bold">\
+    '+obj[i].date+' '+transalteDay(obj[i].day,'largo')+'\
+    </span></div>\
+    </th>');
+
+    $("#tablaDiasCursado tbody tr").append('<td data-cellid="'+i+'" data-cellstate="0" onclick="changeState(this)"><span class="font-weight-bold">\
+    <i class=""></i>\
+    </span></td>');
+    if (obj[i].state != 0) {
+      changeState($('td[data-cellid="'+i+'"]')[0],false);
+    }
+  }
+
 }
 
 // llamar a getDaysPeriod cuando cambie la seleccion de dias de semana o periodo
@@ -49,17 +59,21 @@ $('[name^="dayWeek"],[name="id_periodo"]').change(function(){
 
   }else {
     $('#table-reference').addClass('d-none');
+    $('input[name="diascursado"]').val('');
     return false};
   });
 
   // cambiar estado de un dia (al hacer click en una celda)
-  function changeState(cell){
+  // cell -> objeto celda
+  // recargar -> si es necesario recargar el value de diascursado, por defecto true
+  function changeState(cell,recargar = true){
     var actual_state = parseInt($(cell).attr('data-cellstate'));
     var set_state = actual_state+1;
     var idCell = $(cell).attr('data-cellid');
 
     if (set_state > 1) { //cambiar si agregamos mas estados, por ahora hay 1
       $(cell).attr('data-cellstate','0'); // 0=estado normal, clases normales
+      set_state = 0;
     }else {
       $(cell).attr('data-cellstate',set_state);
     }
@@ -81,11 +95,13 @@ $('[name^="dayWeek"],[name="id_periodo"]').change(function(){
     }
 
     // modificar json:
-    globalDiasCursado[idCell].state = idCell;
-    globalDiasCursado[idCell].state_description = state_description;
+    if (recargar) {
+      globalDiasCursado[idCell].state = set_state;
+      globalDiasCursado[idCell].state_description = state_description;
 
-    // setear valor de diascursado como json para enviar por post
-    $('input[name="diascursado"]').val(JSON.stringify(globalDiasCursado));
+      // setear valor de diascursado como json para enviar por post
+      $('input[name="diascursado"]').val(JSON.stringify(globalDiasCursado));
+    }
 
   }
 
@@ -131,6 +147,10 @@ $('[name^="dayWeek"],[name="id_periodo"]').change(function(){
     return translation;
   }
 
-  // $(document).ready(function(){
-  //   $("[name='dayWeek[]']:checked").change();
-  // });
+  $(document).ready(function(){
+    if ($('input[name="edit"]').length > 0) {
+      var objDiasCursado = JSON.parse($('input[name="diascursado"]').val());
+      globalDiasCursado = objDiasCursado;
+      makeTable(objDiasCursado);
+    }
+  });
