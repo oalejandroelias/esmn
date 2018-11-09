@@ -11,8 +11,10 @@ class Curso extends CI_Controller{
     is_logged_in();
     validar_acceso();
     $this->load->model('Curso_model');
+    $this->load->model('Catedra_model');
     $this->load->model('Materia_model');
     $this->load->model('Periodo_model');
+    $this->load->model('Persona_model');
     $this->load->model('Carrera_model');
     $this->load->model('Modelo_global_model');
 
@@ -24,6 +26,7 @@ class Curso extends CI_Controller{
   function index()
   {
     $data['cursos'] = $this->Curso_model->get_all_curso();
+    $data['catedras'] = $this->Catedra_model->get_all_catedras();
 
     $data['title'] = 'Cursos - ESMN';
     $data['page_title'] = 'Curso';
@@ -50,14 +53,15 @@ class Curso extends CI_Controller{
     $this->form_validation->set_rules('id_periodo','Periodo','required|integer');
     $this->form_validation->set_rules('dayWeek[]','Dias de semana','required');
     $this->form_validation->set_rules('diascursado','Json dias de cursado','required');
+    $this->form_validation->set_rules('id_persona[]','Catedra','required');
 
     if($this->form_validation->run())
     {
       // $dias_cursado=$this->input->post('dayWeek[]');
       // $dias=json_encode($this->input->post('dayWeek[]'));
-      $datos_periodo=$this->Periodo_model->get_Periodo($this->input->post('id_periodo',TRUE));
-      $desde=$datos_periodo['desde'];
-      $hasta=$datos_periodo['hasta'];
+      // $datos_periodo=$this->Periodo_model->get_Periodo($this->input->post('id_periodo',TRUE));
+      // $desde=$datos_periodo['desde'];
+      // $hasta=$datos_periodo['hasta'];
       // $where='';
       // foreach ($dias_cursado as $dia)
       // {
@@ -68,7 +72,7 @@ class Curso extends CI_Controller{
 
       //$dias_cursado_string=json_encode($this->Modelo_global_model->fechas_de_intervalos($desde, $hasta, $where));
       // $dias_cursado_string=$dias;
-      $dias_cursado = getDaysPeriod($desde,$hasta,$this->input->post('dayWeek[]',TRUE));
+      // $dias_cursado = getDaysPeriod($desde,$hasta,$this->input->post('dayWeek[]',TRUE));
 
       $params = array(
         'id_materia' => $this->input->post('id_materia',TRUE),
@@ -78,6 +82,20 @@ class Curso extends CI_Controller{
       );
 
       $curso_id = $this->Curso_model->add_curso($params);
+
+      if (isset($curso_id)) { //cargar catedra
+        $catedra = $this->input->post('id_persona[]',TRUE);
+
+        foreach ($catedra as $persona) {
+          $params = array(
+            'id_curso' => $curso_id,
+            'id_persona' => $persona,
+          );
+
+          $this->Catedra_model->add_catedra($params);
+        }
+      }
+
       $this->session->set_flashdata('crear', 'Nuevo curso creado');
       redirect('curso/index');
     }
@@ -89,6 +107,7 @@ class Curso extends CI_Controller{
 
       $data['all_materias'] = $this->Materia_model->get_all_materias();
       $data['all_periodos'] = $this->Periodo_model->get_all_periodo();
+      $data['personas'] = $this->Persona_model->get_all_personas();
 
       $data['js'] = array('curso.js');
       $data['css'] = array('curso.css');
@@ -121,6 +140,7 @@ class Curso extends CI_Controller{
       $this->form_validation->set_rules('id_periodo','Periodo','required|integer');
       $this->form_validation->set_rules('dayWeek[]','Dayweek','required');
       $this->form_validation->set_rules('diascursado','Json dias de cursado','required');
+      $this->form_validation->set_rules('id_persona[]','Catedra','required');
 
       if($this->form_validation->run())
       {
@@ -132,6 +152,19 @@ class Curso extends CI_Controller{
         );
 
         $this->Curso_model->update_curso($id,$params);
+
+        $this->Catedra_model->delete_catedra($data['curso']['curso_id']); //eliminar todas las coincidencias y recrearlas
+        $catedra = $this->input->post('id_persona[]',TRUE);
+
+        foreach ($catedra as $persona) {
+          $params = array(
+            'id_curso' => $id,
+            'id_persona' => $persona,
+          );
+
+          $this->Catedra_model->add_catedra($params);
+        }
+
         $this->session->set_flashdata('editar', 'Se guardaron los cambios');
         redirect('curso/index');
       }
@@ -142,6 +175,8 @@ class Curso extends CI_Controller{
 
         $data['all_materias'] = $this->Materia_model->get_all_materias();
         $data['all_periodos'] = $this->Periodo_model->get_all_periodo();
+        $data['personas'] = $this->Persona_model->get_all_personas();
+        $data['catedra'] = $this->Catedra_model->get_all_catedras(array('row'=>'id_curso','value'=>$data['curso']['curso_id']));
 
         $data['js'] = array('curso.js');
         $data['css'] = array('curso.css');

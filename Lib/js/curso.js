@@ -107,6 +107,19 @@ $('[name^="dayWeek"],[name="id_periodo"]').change(function(){
 
   }
 
+// animar formulario para mostrar carga de datos de curso o de catedra
+  function slideForm(btn){
+    $("#div-curso").toggle('slide');
+    $("#div-catedra").toggleClass('d-none');
+    $('button[type="submit"]').toggleClass('d-none');
+    if ($(btn).text()=='Continuar') {
+      $(btn).text('Regresar');
+    }else {
+      $(btn).text('Continuar');
+    }
+
+  }
+
 
   // traducir dias
   // day = nombre corto o largo en ingles (Mon,Thu,etc)

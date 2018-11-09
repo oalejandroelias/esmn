@@ -51,7 +51,7 @@ $('#zero_config').DataTable({
 });
 
 // For select 2
-$(".select2").select2();
+$(".select2").select2({width: 'resolve'});
 $(".select2-selection.select2-selection--single").css("height",'34px');
 $(".select2-selection.select2-selection--single").children().css("height",'34px');
 
