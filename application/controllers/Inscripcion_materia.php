@@ -13,6 +13,7 @@ class Inscripcion_materia extends CI_Controller{
         $this->load->model('Persona_model');
         $this->load->model('Inscripcion_materia_model');
         $this->load->model('Materia_model');
+        $this->load->model('Estado_cursado_model');
     }
 
     /*
@@ -20,16 +21,35 @@ class Inscripcion_materia extends CI_Controller{
      */
     function index()
     {
+        //Index de inscripcion de mesas de materia
         $data['title'] = 'Inscripciones a Materias - ESMN';
         $data['page_title'] = 'Inscripciones a Materias';
 
-        $data['inscripcion_materia'] = $this->Inscripcion_materia_model->get_all_inscripcion_materia();
+        $data['inscripcion_materia'] = $this->Inscripcion_materia_model->get_all_inscripcion_materia_mesa();
 
         //Botones de acciones
         $data['boton_edit']=validar_botones('edit');
         $data['boton_add']=validar_botones('add');
         $data['boton_remove']=validar_botones('remove');
 
+        $this->load->view('templates/header',$data);
+        $this->load->view('inscripcion_materia/index',$data);
+        $this->load->view('templates/footer');
+    }
+    
+    function index_2()
+    {
+        //index de inscripcion de cursados de materia
+        $data['title'] = 'Inscripciones a Materias - ESMN';
+        $data['page_title'] = 'Inscripciones a Materias';
+        
+        $data['inscripcion_materia'] = $this->Inscripcion_materia_model->get_all_inscripcion_materia();
+        
+        //Botones de acciones
+        $data['boton_edit']=validar_botones('edit');
+        $data['boton_add']=validar_botones('add');
+        $data['boton_remove']=validar_botones('remove');
+        
         $this->load->view('templates/header',$data);
         $this->load->view('inscripcion_materia/index',$data);
         $this->load->view('templates/footer');
@@ -42,12 +62,18 @@ class Inscripcion_materia extends CI_Controller{
     {
         $this->form_validation->set_rules('id_persona','Persona / Alumno','required|integer');
         $this->form_validation->set_rules('id_materia','materia / Plan','required|max_length[11]');
+        $this->form_validation->set_rules('id_estado','Estado','required|max_length[11]');
 
         if($this->form_validation->run())
         {
             $params = array(
                 'id_persona' => $this->input->post('id_persona'),
+                'id_curso' => 0,
                 'id_materia' => $this->input->post('id_materia'),
+                'id_mesa' => 1,
+                'id_estado' => $this->input->post('id_estado'),
+                'calificacion' => null,
+                'fecha' =>null
             );
 
             $inscripcion_materia_id = $this->Inscripcion_materia_model->add_inscripcion_materia($params);
@@ -60,6 +86,7 @@ class Inscripcion_materia extends CI_Controller{
 
             $data['personas'] = $this->Persona_model->get_all_personas();
             $data['all_materias'] = $this->Materia_model->get_all_materias();
+            $data['all_estados'] = $this->Estado_cursado_model->get_all_estado_cursado();
 
             $this->load->view('templates/header',$data);
             $this->load->view('inscripcion_materia/add',$data);

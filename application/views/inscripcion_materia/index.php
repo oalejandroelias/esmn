@@ -12,17 +12,21 @@
 									<thead>
 										<tr role="row">
 
-											<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">materia</th>
+											<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Materia</th>
+											<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Fecha Mesa</th>
+											<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Estado</th>
 											<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Alumno</th>
 											<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Acciones</th>
 										</tr>
 									</thead>
 
 									<tbody>
-										<?php foreach($inscripcion_materia as $i){ ?>
+											<?php foreach($inscripcion_materia as $i){ ?>
 											<tr>
 												<td><?php echo $i['id_materia'].' - '.$i['nombre_materia']; ?></td>
-                        <td><?php echo $i['nombre_persona'].' '.$i['apellido_persona'].', '.$i['tipo_documento_nombre'].' - '.$i['numero_documento']; ?></td>
+												<td><?php echo $i['fecha_mesa']; ?></td>
+												<td><?php echo $i['nombre_estado_cursado']; ?></td>
+                        						<td><?php echo $i['nombre_persona'].' '.$i['apellido_persona'].' - '.$i['numero_documento']; ?></td>
 												<td>
 
 													<?php if($boton_edit){?>
@@ -39,7 +43,9 @@
 
 									<tfoot>
 										<tr>
-											<th rowspan="1" colspan="1">materia</th>
+											<th rowspan="1" colspan="1">Materia</th>
+											<th rowspan="1" colspan="1">Fecha Mesa</th>
+											<th rowspan="1" colspan="1">Estado</th>
 											<th rowspan="1" colspan="1">Alumno</th>
 											<th rowspan="1" colspan="1">Acciones</th>
 										</tr>
