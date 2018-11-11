@@ -28,6 +28,27 @@ class Inscripcion_materia_model extends CI_Model
         return $this->db->get('inscripcion_materia')->result_array();
     }
     
+    function get_all_inscripcion_materia_cursado()
+    {
+        
+        
+        $this->db->select('id_persona, id_curso, inscripcion_materia.id_materia, id_mesa, estado_inscripcion_inicial.nombre as nombre_estado_inicial, id_estado_final, calificacion,
+                            materia.nombre as nombre_materia, persona.nombre as nombre_persona, persona.apellido as apellido_persona,
+                            persona.numero_documento as numero_documento, estado_inscripcion_inicial.nombre as nombre_estado_cursado');
+        $this->db->from('inscripcion_materia');
+        $this->db->join('curso', 'inscripcion_materia.id_curso = curso.id', 'inner');
+        $this->db->join('materia ', 'inscripcion_materia.id_materia  = materia .id', 'inner');
+        $this->db->join('persona ', 'inscripcion_materia.id_persona  = persona .id', 'inner');
+        $this->db->join('estado_inscripcion_inicial ', 'inscripcion_materia.id_estado_inicial  = estado_inscripcion_inicial .id', 'inner');
+        $this->db->where('inscripcion_materia.id_curso=0');
+        //$this->db->order_by('carrera_id', 'desc');
+        
+        
+        
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    
     function get_all_inscripcion_materia_mesa()
     {
         

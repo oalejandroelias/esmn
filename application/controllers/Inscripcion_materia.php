@@ -105,7 +105,7 @@ class Inscripcion_materia extends CI_Controller{
             else
             {
                 $data['_view'] = 'inscripcion_materia/edit';
-                $this->load->view('layouts/main',$data);
+                $this->load->view('inscripcion_materia/edit',$data);
             }
         }
         else
@@ -135,7 +135,7 @@ class Inscripcion_materia extends CI_Controller{
         $data['title'] = 'Inscripciones a cursado de Materias - ESMN';
         $data['page_title'] = 'Inscripciones a cursado de  Materias';
         
-        $data['inscripcion_materia'] = $this->Inscripcion_materia_model->get_all_inscripcion_materia();
+        $data['inscripcion_materia'] = $this->Inscripcion_materia_model->get_all_inscripcion_materia_cursado();
         
         //Botones de acciones
         $data['boton_edit']=validar_botones('edit');
@@ -151,7 +151,7 @@ class Inscripcion_materia extends CI_Controller{
     {
         $this->form_validation->set_rules('id_persona','Persona / Alumno','required|integer');
         $this->form_validation->set_rules('id_curso','Curso de Materia','required|max_length[11]');
-        $this->form_validation->set_rules('id_materia','Materia','required|max_length[11]');
+        
         
         
         if($this->form_validation->run())
@@ -159,16 +159,17 @@ class Inscripcion_materia extends CI_Controller{
             $params = array(
                 'id_persona' => $this->input->post('id_persona'),
                 'id_curso' => $this->input->post('id_curso'),
-                'id_materia' => $this->input->post('id_materia'),
+                'id_materia' => null,
                 'id_mesa' => 0,
                 'id_estado_inicial' => 1,
                 'calificacion' => null,
                 'fecha' =>null,
-                'id_estado_final' => null,
+                'id_estado_final' => 0,
             );
             
             $inscripcion_materia_id = $this->Inscripcion_materia_model->add_inscripcion_materia($params);
-            redirect('inscripcion_materia/index');
+            $this->session->set_flashdata('crear', 'Nueva mesa creada');
+            redirect('inscripcion_materia/index_inscripcion_cursado');
         }
         else
         {
@@ -206,12 +207,12 @@ class Inscripcion_materia extends CI_Controller{
                 );
                 
                 $this->Inscripcion_materia_model->update_inscripcion_materia($id,$params);
-                redirect('inscripcion_materia/index');
+                redirect('inscripcion_materia/index_inscripcion_cursado');
             }
             else
             {
                 $data['_view'] = 'inscripcion_materia/edit';
-                $this->load->view('layouts/main',$data);
+                $this->load->view('inscripcion_materia/edit_inscripcion_cursado',$data);
             }
         }
         else
@@ -226,7 +227,7 @@ class Inscripcion_materia extends CI_Controller{
         if(isset($inscripcion_materia['id']))
         {
             $this->Inscripcion_materia_model->delete_inscripcion_materia($id);
-            redirect('inscripcion_materia/index');
+            redirect('inscripcion_materia/index_inscripcion_cursado');
         }
         else
             show_error('The inscripcion_materia you are trying to delete does not exist.');

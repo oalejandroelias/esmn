@@ -35,8 +35,7 @@
                   $selected = ($curso['curso_id'] == $this->input->post('id_materia')) ? ' selected="selected"' : "";
 
                   echo '<option value="'.$curso['curso_id'].'" '.$selected.'>'.$curso['nombre'].' ('.$curso['curso_id'].')
-                        </option>
-<input type="hidden" name="id_materia" required value='.$this->input->post('id_materia').' class="form-control" id="nombre" />';
+                        </option>';
                   
               }
               ?>
