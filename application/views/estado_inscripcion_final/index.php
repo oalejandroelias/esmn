@@ -20,17 +20,17 @@
 									</thead>
 
 									<tbody>
-										<?php foreach($estado_cursado as $e){ ?>
+										<?php foreach($estado_inscripcion_final as $e){ ?>
 											<tr>
 												<td><?php echo $e['nombre']; ?></td>
 												<td><?php echo $e['nomenclatura']; ?></td>
 												<td>
 
 													<?php if($boton_edit){?>
-														<a href="<?php echo site_url('estado_cursado/edit/'.$e['id']); ?>" class="btn btn-info btn-sm">Editar</a>
+														<a href="<?php echo site_url('estado_inscripcion_final/edit/'.$e['id']); ?>" class="btn btn-info btn-sm">Editar</a>
 													<?php }?>
 													<?php if($boton_remove){?>
-														<a href="<?php echo site_url('estado_cursado/remove/'.$e['id']); ?>" data-confirm="remove" class="btn btn-danger btn-sm">Eliminar</a>
+														<a href="<?php echo site_url('estado_inscripcion_final/remove/'.$e['id']); ?>" data-confirm="remove" class="btn btn-danger btn-sm">Eliminar</a>
 													<?php }?>
 
 												</td>
@@ -49,7 +49,7 @@
 
 								<div class="pull-right">
 									<?php if ($boton_add): ?>
-										<a href="<?php echo site_url('estado_cursado/add'); ?>" class="btn btn-success">Nuevo</a>
+										<a href="<?php echo site_url('estado_inscripcion_final/add'); ?>" class="btn btn-success">Nuevo</a>
 									<?php endif; ?>
 								</div>
 							</div>

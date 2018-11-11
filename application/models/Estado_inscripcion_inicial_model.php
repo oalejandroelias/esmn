@@ -4,7 +4,7 @@
 * www.crudigniter.com
 */
 
-class estado_inscripcion_inicial_model extends CI_Model
+class Estado_inscripcion_inicial_model extends CI_Model
 {
   function __construct()
   {

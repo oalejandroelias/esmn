@@ -112,7 +112,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="<?php echo base_url('Estado_asistencia')?>">Estados asistencia</a>
                                 <a class="dropdown-item" href="<?php echo base_url('Estado_inscripcion_inicial')?>">Estados inscripción inicial</a>
-                                <a class="dropdown-item" href="<?php echo base_url('Estado_inscripcion_final')?>">Estados inscripción inicial</a>
+                                <a class="dropdown-item" href="<?php echo base_url('Estado_inscripcion_final')?>">Estados inscripción final</a>
                                 <a class="dropdown-item" href="<?php echo base_url('Tutor')?>">Tutores</a>
                                 <a class="dropdown-item" href="<?php echo base_url('Tipo_documento')?>">Tipo Documento</a>
                                 <!-- <div class="dropdown-divider"></div>
