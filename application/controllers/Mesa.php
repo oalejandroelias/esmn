@@ -12,6 +12,8 @@ class Mesa extends CI_Controller{
     validar_acceso();
     $this->load->model('Mesa_model');
     $this->load->model('Materia_model');
+    $this->load->model('Tribunal_model');
+    $this->load->model('Persona_model');
   }
 
   /*
@@ -23,6 +25,7 @@ class Mesa extends CI_Controller{
     $data['page_title'] = 'Mesas';
 
     $data['mesas'] = $this->Mesa_model->get_all_mesas();
+    $data['tribunales'] = $this->Tribunal_model->get_all_tribunales();
 
     //Botones de acciones
     $data['boton_edit']=validar_botones('edit');
@@ -42,6 +45,7 @@ class Mesa extends CI_Controller{
     $this->form_validation->set_rules('id_materia','Materia','required|integer');
     $this->form_validation->set_rules('fecha','Fecha','required');
     $this->form_validation->set_rules('hora','Hora','required');
+    $this->form_validation->set_rules('id_persona[]','Tribunal','required');
 
     if($this->form_validation->run())
     {
@@ -54,12 +58,28 @@ class Mesa extends CI_Controller{
       );
 
       $mesa_id = $this->Mesa_model->add_mesa($params);
+
+      if (isset($mesa_id)) { //cargar tribunal
+        $tribunal = $this->input->post('id_persona[]',TRUE);
+
+        foreach ($tribunal as $persona) {
+          $params = array(
+            'id_mesa' => $mesa_id,
+            'id_persona' => $persona,
+          );
+
+          $this->Tribunal_model->add_tribunal($params);
+        }
+      }
+
+      $this->session->set_flashdata('crear', 'Nueva mesa creada');
       redirect('mesa/index');
     }
     else
     {
 
       $data['all_materias'] = $this->Materia_model->get_all_materias();
+      $data['personas'] = $this->Persona_model->get_all_personas();
 
       $data['title'] = 'Nueva mesa - ESMN';
       $data['page_title'] = 'Nueva mesa de examen';
@@ -96,12 +116,28 @@ class Mesa extends CI_Controller{
           'fecha' => $datetime,
         );
 
-        $this->Mesa_model->update_mesa($id,$params);
+        if($this->Mesa_model->update_mesa($id,$params)){
+          $this->Tribunal_model->delete_tribunal($data['mesa']['id_mesa']); //eliminar todas las coincidencias y recrearlas
+          $tribunal = $this->input->post('id_persona[]',TRUE);
+
+          foreach ($tribunal as $persona) {
+            $params = array(
+              'id_mesa' => $id,
+              'id_persona' => $persona,
+            );
+
+            $this->Tribunal_model->add_tribunal($params);
+          }
+        }
+
+        $this->session->set_flashdata('editar', 'Se guardaron los cambios');
         redirect('mesa/index');
       }
       else
       {
         $data['all_materias'] = $this->Materia_model->get_all_materias();
+        $data['tribunal'] = $this->Tribunal_model->get_all_tribunales(array('row'=>'id_mesa','value'=>$data['mesa']['id_mesa']));
+        $data['personas'] = $this->Persona_model->get_all_personas();
 
         $data['title'] = 'Editar mesa - ESMN';
         $data['page_title'] = 'Editar mesa de examen -> '.$data['mesa']['materia'].' ('.$data['mesa']['fecha'].')';

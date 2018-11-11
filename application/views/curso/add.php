@@ -109,7 +109,7 @@
 
 		<div class="d-none" id="div-catedra">
 			<div class="form-group">
-				<label class="control-label">Catedra: <em class="text-secondary">seleccione el o los profesores a cargo del curso</em></label>
+				<label class="control-label"><span class="text-danger">*</span>Catedra: <em class="text-secondary">seleccione el o los profesores a cargo del curso</em></label>
 				<div class="col-sm-4 col-12">
 					<select class="select2 form-control m-t-15" multiple="multiple" name="id_persona[]" style="width: 100%; height:36px;">
 						<option value="">Buscar</option>

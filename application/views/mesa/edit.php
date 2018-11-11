@@ -46,6 +46,24 @@
 					</div>
 				</div>
 
+				<div class="form-row mb-3">
+					<div class="col-sm-8 col-12">
+						<label class="control-label"><span class="text-danger">*</span>Tribunal: <em class="text-secondary">seleccione las personas a cargo de la mesa</em></label>
+						<select name="id_persona[]" class="select2 form-control m-t-15" multiple="multiple" required style="width: 100%; height:36px;">
+							<option value="">Buscar</option>
+							<?php
+							foreach($personas as $p)
+							{
+								$selected = (is_int(array_search($p['persona_id'],array_column($tribunal,'id_persona')))) ? ' selected="selected"' : "";
+									echo '<option value="'.$p['persona_id'].'" '.$selected.'>'.$p['nombre'].' '.$p['apellido'].' ('.$p['numero_documento'].')</option>';
+							}
+              ?>
+							?>
+						</select>
+						<span class="text-danger"><?php echo form_error('id_persona[]');?></span>
+					</div>
+				</div>
+
 				<div class="form-group">
 					<div class="col-sm-offset-4 col-sm-8">
 						<button type="submit" class="btn btn-success">Guardar</button>

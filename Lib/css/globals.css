@@ -2,6 +2,9 @@
 .badge{font-weight: 400;font-size: 90%;}
 label a.badge{font-size: 100%;}
 
+/* quitar altura fija en multiselect */
+.select2-container--default .select2-selection--multiple{height: unset !important;}
+
 /* Rules for sizing the icon. */
 .mdi-18 { font-size: 18px; }
 .mdi-24 { font-size: 24px; }

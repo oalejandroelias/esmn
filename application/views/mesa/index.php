@@ -13,7 +13,8 @@
 										<tr role="row">
 
 											<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Materia</th>
-											<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Fecha</th>
+											<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Fecha y hora</th>
+											<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Tribunal</th>
 											<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Acciones</th>
 										</tr>
 									</thead>
@@ -23,6 +24,16 @@
 											<tr>
 												<td><?php echo $m['materia'].' - '.$m['id_carrera']; ?></td>
 												<td><?php echo iconv('ISO-8859-2', 'UTF-8', strftime("%d de %B de %Y", strtotime($m['fecha']))).', '.date('H:i',strtotime($m['fecha'])).'hs'; ?></td>
+												<?php
+		                    $personas=array();
+		                    foreach ($tribunales as $t) {
+		                      if ($t['id_mesa']==$m['id_mesa']) {
+		                        $persona = $t['nombre'].' '.$t['apellido'];
+		                        array_push($personas,$persona);
+		                      }
+		                    }
+		                     ?>
+		                		<td><?php echo implode(', ',$personas); ?></td>
 												<td>
 
 													<?php if($boton_edit){?>
@@ -40,7 +51,8 @@
 									<tfoot>
 										<tr>
 											<th rowspan="1" colspan="1">Materia</th>
-											<th rowspan="1" colspan="1">Fecha</th>
+											<th rowspan="1" colspan="1">Fecha y hora</th>
+											<th rowspan="1" colspan="1">Tribunal</th>
 											<th rowspan="1" colspan="1">Acciones</th>
 										</tr>
 									</tfoot>

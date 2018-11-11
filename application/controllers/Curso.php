@@ -57,23 +57,6 @@ class Curso extends CI_Controller{
 
     if($this->form_validation->run())
     {
-      // $dias_cursado=$this->input->post('dayWeek[]');
-      // $dias=json_encode($this->input->post('dayWeek[]'));
-      // $datos_periodo=$this->Periodo_model->get_Periodo($this->input->post('id_periodo',TRUE));
-      // $desde=$datos_periodo['desde'];
-      // $hasta=$datos_periodo['hasta'];
-      // $where='';
-      // foreach ($dias_cursado as $dia)
-      // {
-      //     $where.=' or dayofweek(DIASENTREFECHAS) = '.$dia;
-      //
-      // }
-      // $where= substr($where, 4);
-
-      //$dias_cursado_string=json_encode($this->Modelo_global_model->fechas_de_intervalos($desde, $hasta, $where));
-      // $dias_cursado_string=$dias;
-      // $dias_cursado = getDaysPeriod($desde,$hasta,$this->input->post('dayWeek[]',TRUE));
-
       $params = array(
         'id_materia' => $this->input->post('id_materia',TRUE),
         'id_periodo' => $this->input->post('id_periodo',TRUE),
@@ -151,19 +134,20 @@ class Curso extends CI_Controller{
           'diassemana' => json_encode($this->input->post('dayWeek[]')),
         );
 
-        $this->Curso_model->update_curso($id,$params);
+        if($this->Curso_model->update_curso($id,$params)){
+          $this->Catedra_model->delete_catedra($data['curso']['curso_id']); //eliminar todas las coincidencias y recrearlas
+          $catedra = $this->input->post('id_persona[]',TRUE);
 
-        $this->Catedra_model->delete_catedra($data['curso']['curso_id']); //eliminar todas las coincidencias y recrearlas
-        $catedra = $this->input->post('id_persona[]',TRUE);
+          foreach ($catedra as $persona) {
+            $params = array(
+              'id_curso' => $id,
+              'id_persona' => $persona,
+            );
 
-        foreach ($catedra as $persona) {
-          $params = array(
-            'id_curso' => $id,
-            'id_persona' => $persona,
-          );
-
-          $this->Catedra_model->add_catedra($params);
+            $this->Catedra_model->add_catedra($params);
+          }
         }
+
 
         $this->session->set_flashdata('editar', 'Se guardaron los cambios');
         redirect('curso/index');
