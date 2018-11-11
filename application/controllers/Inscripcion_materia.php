@@ -37,11 +37,11 @@ class Inscripcion_materia extends CI_Controller{
         $this->load->view('templates/footer');
     }
     
-    function index_2()
+    function index_inscripcion_cursado()
     {
         //index de inscripcion de cursados de materia
-        $data['title'] = 'Inscripciones a Materias - ESMN';
-        $data['page_title'] = 'Inscripciones a Materias';
+        $data['title'] = 'Inscripciones a cursado de Materias - ESMN';
+        $data['page_title'] = 'Inscripciones a cursado de  Materias';
         
         $data['inscripcion_materia'] = $this->Inscripcion_materia_model->get_all_inscripcion_materia();
         
@@ -62,7 +62,7 @@ class Inscripcion_materia extends CI_Controller{
     {
         $this->form_validation->set_rules('id_persona','Persona / Alumno','required|integer');
         $this->form_validation->set_rules('id_materia','materia / Plan','required|max_length[11]');
-        $this->form_validation->set_rules('id_estado','Estado','required|max_length[11]');
+        $this->form_validation->set_rules('id_estado_inicial','Estado','required|max_length[11]');
 
         if($this->form_validation->run())
         {
@@ -71,7 +71,7 @@ class Inscripcion_materia extends CI_Controller{
                 'id_curso' => 0,
                 'id_materia' => $this->input->post('id_materia'),
                 'id_mesa' => 1,
-                'id_estado' => $this->input->post('id_estado'),
+                'id_estado_inicial' => $this->input->post('id_estado_inicial'),
                 'calificacion' => null,
                 'fecha' =>null
             );
@@ -111,7 +111,7 @@ class Inscripcion_materia extends CI_Controller{
 					'id_curso' => $this->input->post('id_curso'),
 					'id_materia' => $this->input->post('id_materia'),
 					'id_mesa' => $this->input->post('id_mesa'),
-					'id_estado' => $this->input->post('id_estado'),
+					'id_estado_inicial' => $this->input->post('id_estado_inicial'),
 					'calificacion' => $this->input->post('calificacion'),
 					'fecha' => $this->input->post('fecha'),
                 );

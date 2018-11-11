@@ -111,7 +111,8 @@
                                 <a class="dropdown-item" href="<?php echo base_url('Curso')?>">Cursos</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="<?php echo base_url('Estado_asistencia')?>">Estados asistencia</a>
-                                <a class="dropdown-item" href="<?php echo base_url('Estado_cursado')?>">Estados cursado</a>
+                                <a class="dropdown-item" href="<?php echo base_url('Estado_inscripcion_inicial')?>">Estados inscripción inicial</a>
+                                <a class="dropdown-item" href="<?php echo base_url('Estado_inscripcion_final')?>">Estados inscripción inicial</a>
                                 <a class="dropdown-item" href="<?php echo base_url('Tutor')?>">Tutores</a>
                                 <a class="dropdown-item" href="<?php echo base_url('Tipo_documento')?>">Tipo Documento</a>
                                 <!-- <div class="dropdown-divider"></div>
@@ -200,7 +201,7 @@
                                   <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Carreras </span></a></li>
                                 <li class="sidebar-item"><a href="<?=base_url('inscripcion_materia')?>" class="sidebar-link">
                                   <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Materias </span></a></li>
-                                <li class="sidebar-item"><a href="#" onclick="alert('aca va la inscripcion. los cursos se crean desde administracion')" class="sidebar-link">
+                                <li class="sidebar-item"><a href="<?=base_url('inscripcion_materia/index_inscripcion_cursado')?>" onclick="alert('aca va la inscripcion. los cursos se crean desde administracion')" class="sidebar-link">
                                   <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Cursos </span></a></li>
                             </ul>
                         </li>

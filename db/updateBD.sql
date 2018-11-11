@@ -111,3 +111,29 @@ ALTER TABLE `curso` ADD `diassemana` TEXT NOT NULL AFTER `diascursado`;
 
 -- 11/11/2018 cambiar date por datetime en mesa
 ALTER TABLE `mesa` CHANGE `fecha` `fecha` DATETIME NOT NULL;
+
+
+--10/11/2018
+ALTER TABLE `inscripcion_materia` CHANGE `id_estado` `id_estado_inicial` INT(11) NOT NULL;
+
+ALTER TABLE `inscripcion_materia` ADD `id_estado_final` INT(11) NOT NULL;
+
+
+CREATE TABLE `estado_inscripcion_inicial` (
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `nombre` varchar(64) NOT NULL COMMENT 'Descripcion',
+  `nomenclatura` varchar(4) DEFAULT NULL COMMENT 'Abreviacion',
+  `es_cursado` tinyint(1),
+  `es_mesa` tinyint(1)
+    
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `estado_inscripcion_final` (
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `nombre` varchar(64) NOT NULL COMMENT 'Descripcion',
+  `nomenclatura` varchar(4) DEFAULT NULL COMMENT 'Abreviacion',
+  `es_cursado` tinyint(1),
+  `es_mesa` tinyint(1)
+    
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
