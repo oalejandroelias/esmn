@@ -15,6 +15,7 @@ class Inscripcion_materia extends CI_Controller{
         $this->load->model('Materia_model');
         $this->load->model('Estado_inscripcion_inicial_model');
         $this->load->model('Curso_model');
+        $this->load->model('Mesa_model');
     }
 
     /*
@@ -44,16 +45,18 @@ class Inscripcion_materia extends CI_Controller{
     function add()
     {
         $this->form_validation->set_rules('id_persona','Persona / Alumno','required|integer');
-        $this->form_validation->set_rules('id_materia','materia / Plan','required|max_length[11]');
+        $this->form_validation->set_rules('id_mesa','Mesa','required|max_length[11]');
         $this->form_validation->set_rules('id_estado_inicial','Estado','required|max_length[11]');
 
         if($this->form_validation->run())
         {
+            
+            $mesa=$this->Mesa_model->get_mesa($this->input->post('id_mesa'));
             $params = array(
                 'id_persona' => $this->input->post('id_persona'),
-                'id_curso' => 0,
-                'id_materia' => $this->input->post('id_materia'),
-                'id_mesa' => 1,
+                'id_curso' => null,
+                'id_materia' => $mesa['id_materia'],
+                'id_mesa' => $this->input->post('id_mesa'),
                 'id_estado_inicial' => $this->input->post('id_estado_inicial'),
                 'calificacion' => null,
                 'fecha' =>null
@@ -68,8 +71,9 @@ class Inscripcion_materia extends CI_Controller{
             $data['page_title'] = 'Inscribir un alumno a una materia';
 
             $data['personas'] = $this->Persona_model->get_all_personas();
+            $data['all_mesas'] = $this->Mesa_model->get_all_mesas();
             $data['all_materias'] = $this->Materia_model->get_all_materias();
-            $data['all_estados'] = $this->Estado_inscripcion_inicial->get_all_estado_inscripcion_inicial();
+            $data['all_estados'] = $this->Estado_inscripcion_inicial_model->get_all_estado_inscripcion_inicial_mesa();
 
             $this->load->view('templates/header',$data);
             $this->load->view('inscripcion_materia/add',$data);
@@ -162,10 +166,11 @@ class Inscripcion_materia extends CI_Controller{
         
         if($this->form_validation->run())
         {
+            $curso=$this->Curso_model->get_curso($this->input->post('id_curso'));
             $params = array(
                 'id_persona' => $this->input->post('id_persona'),
                 'id_curso' => $this->input->post('id_curso'),
-                'id_materia' => null,
+                'id_materia' => $curso['id_materia'],
                 'id_mesa' => null,
                 'id_estado_inicial' => 1,
                 'calificacion' => null,
@@ -197,25 +202,27 @@ class Inscripcion_materia extends CI_Controller{
     {
         // check if the inscripcion_materia exists before trying to edit it
         $data['inscripcion_materia'] = $this->Inscripcion_materia_model->get_inscripcion_materia($id);
+        //Obtengo los datos del curso
         
         if(isset($data['inscripcion_materia']['id']))
         {
             if(isset($_POST) && count($_POST) > 0)
             {
+                //Obtengo los datos del nuevo curso
+                $curso=$this->Curso_model->get_curso($this->input->post('id_curso'));
                 $params = array(
                     'id_persona' => $this->input->post('id_persona'),
                     'id_curso' => $this->input->post('id_curso'),
-                    'id_materia' => $this->input->post('id_materia'),
-                    'id_mesa' => $this->input->post('id_mesa'),
-                    'id_estado_inicial' => $this->input->post('id_estado_inicial'),
-                    'calificacion' => $this->input->post('calificacion'),
-                    'fecha' => $this->input->post('fecha'),
+                    'id_materia' => $curso['id_materia'],
+                    'id_mesa' => null,
+                    'id_estado_inicial' => 1,
+                    'calificacion' => null,
+                    'fecha' => null,
+                    'id_estado_inicial' => 0
                 );
                 
                 $this->Inscripcion_materia_model->update_inscripcion_materia($id,$params);
-                $this->load->view('templates/header',$data);
-                $this->load->view('inscripcion_materia/index_inscripcion_cursado',$data);
-                $this->load->view('templates/footer'); 
+                redirect('inscripcion_materia/index_inscripcion_cursado');
             }
             else
             {

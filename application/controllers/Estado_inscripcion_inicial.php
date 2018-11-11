@@ -59,8 +59,8 @@ class Estado_inscripcion_inicial extends CI_Controller{
             $cursado=0;
         }
         else {
-            $mesa=1;
-            $cursado=0;
+            $mesa=0;
+            $cursado=1;
         }
       $params = array(
         'nombre' => $this->input->post('nombre'),
@@ -98,10 +98,21 @@ class Estado_inscripcion_inicial extends CI_Controller{
 
       if($this->form_validation->run())
       {
-        $params = array(
-          'nombre' => $this->input->post('nombre'),
-          'nomenclatura' => $this->input->post('nomenclatura'),
-        );
+          if($this->input->post('radio-stacked') == 'mesa')
+          {
+              $mesa=1;
+              $cursado=0;
+          }
+          else {
+              $mesa=0;
+              $cursado=1;
+          }
+          $params = array(
+              'nombre' => $this->input->post('nombre'),
+              'nomenclatura' => $this->input->post('nomenclatura'),
+              'es_mesa' => $mesa,
+              'es_cursado' => $cursado
+          );
 
         $this->estado_inscripcion_inicial_model->update_estado_inscripcion_inicial($id,$params);
         redirect('estado_inscripcion_inicial/index');

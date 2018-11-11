@@ -1,4 +1,4 @@
-<?php echo form_open('inscripcion_cursado/edit/'.$inscripcion_materia['id'],array("class"=>"form-horizontal")); ?>
+<?php echo form_open('inscripcion_materia/edit_inscripcion_cursado/'.$inscripcion_materia['id'],array("class"=>"form-horizontal")); ?>
 
 <div class="row">
   <div class="col-sm-6 col-12">

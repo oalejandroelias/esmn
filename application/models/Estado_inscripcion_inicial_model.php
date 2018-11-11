@@ -40,6 +40,17 @@ class Estado_inscripcion_inicial_model extends CI_Model
     }
     return $this->db->get('estado_inscripcion_inicial')->result_array();
   }
+  
+  function get_all_estado_inscripcion_inicial_mesa($params = array())
+  {
+      $this->db->order_by('id', 'desc');
+      $this->db->where('es_mesa=1');
+      if(isset($params) && !empty($params))
+      {
+          $this->db->limit($params['limit'], $params['offset']);
+      }
+      return $this->db->get('estado_inscripcion_inicial')->result_array();
+  }
 
   /*
   * function to add new estado_inscripcion_inicial
