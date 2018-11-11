@@ -125,7 +125,7 @@ CREATE TABLE `estado_inscripcion_inicial` (
   `nomenclatura` varchar(4) DEFAULT NULL COMMENT 'Abreviacion',
   `es_cursado` tinyint(1),
   `es_mesa` tinyint(1)
-    
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -135,5 +135,14 @@ CREATE TABLE `estado_inscripcion_final` (
   `nomenclatura` varchar(4) DEFAULT NULL COMMENT 'Abreviacion',
   `es_cursado` tinyint(1),
   `es_mesa` tinyint(1)
-    
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 11/11/18 tabla materias equivalentes
+CREATE TABLE `esmn`.`materia_equivalente` (
+  `id_materia` INT(11) NOT NULL ,
+  `id_equivalencia` INT(11) NOT NULL ,
+  PRIMARY KEY  (`id_materia`, `id_equivalencia`)
+  USING BTREE) ENGINE = InnoDB;
+
+ALTER TABLE `materia_equivalente` ADD CONSTRAINT `materia_equivalente_ibfk_1` FOREIGN KEY (`id_materia`) REFERENCES `materia`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE; ALTER TABLE `materia_equivalente` ADD CONSTRAINT `materia_equivalente_ibfk_2` FOREIGN KEY (`id_equivalencia`) REFERENCES `materia`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
