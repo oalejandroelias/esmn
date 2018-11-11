@@ -200,9 +200,9 @@
                                 <li class="sidebar-item"><a href="<?=base_url('inscripcion_carrera')?>" class="sidebar-link">
                                   <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Carreras </span></a></li>
                                 <li class="sidebar-item"><a href="<?=base_url('inscripcion_materia')?>" class="sidebar-link">
-                                  <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Materias </span></a></li>
-                                <li class="sidebar-item"><a href="<?=base_url('inscripcion_materia/index_inscripcion_cursado')?>" onclick="alert('aca va la inscripcion. los cursos se crean desde administracion')" class="sidebar-link">
-                                  <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Cursos </span></a></li>
+                                  <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Inscribir a Mesa </span></a></li>
+                                <li class="sidebar-item"><a href="<?=base_url('inscripcion_materia/index_inscripcion_cursado')?>" class="sidebar-link">
+                                  <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Inscribir a Curso </span></a></li>
                             </ul>
                         </li>
                         <li class="sidebar-item">
