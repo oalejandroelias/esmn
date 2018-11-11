@@ -107,3 +107,7 @@ ALTER TABLE `curso` CHANGE `activo` `activo` TINYINT(1) NOT NULL DEFAULT '1';
 
 -- 07/11/18 agregar columna de dias (json de solo nombre de los dias de semana)
 ALTER TABLE `curso` ADD `diassemana` TEXT NOT NULL AFTER `diascursado`;
+
+
+-- 11/11/2018 cambiar date por datetime en mesa
+ALTER TABLE `mesa` CHANGE `fecha` `fecha` DATETIME NOT NULL;

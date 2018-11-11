@@ -22,7 +22,7 @@
 										<?php foreach($mesas as $m){ ?>
 											<tr>
 												<td><?php echo $m['materia'].' - '.$m['id_carrera']; ?></td>
-												<td><?php echo iconv('ISO-8859-2', 'UTF-8', strftime("%d de %B de %Y", strtotime($m['fecha']))); ?></td>
+												<td><?php echo iconv('ISO-8859-2', 'UTF-8', strftime("%d de %B de %Y", strtotime($m['fecha']))).', '.date('H:i',strtotime($m['fecha'])).'hs'; ?></td>
 												<td>
 
 													<?php if($boton_edit){?>

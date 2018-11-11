@@ -22,18 +22,30 @@
 					</div>
 				</div>
 
-				<div class="form-group">
-					<div class="col-sm-8 col-12">
+				<div class="form-row mb-3">
+					<div class="col-sm-4 col-12">
 						<label for="fecha" class="control-label"><span class="text-danger">*</span>Fecha</label>
 						<div class="input-group">
-							<input type="text" name="fecha" class="form-control mydatepicker" placeholder="dd/mm/yyyy" value="<?php echo $this->input->post('fecha'); ?>" id="fecha" />
+							<input type="text" name="fecha" class="form-control mydatepicker" required placeholder="dd/mm/yyyy" value="<?php echo $this->input->post('fecha'); ?>" id="fecha" />
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fa fa-calendar"></i></span>
 							</div>
 						</div>
+						<span class="text-danger"><?php echo form_error('fecha');?></span>
 					</div>
+
+					<div class="col-sm-4 col-12">
+						<label for="hora" class="control-label"><span class="text-danger">*</span>Hora</label>
+						<div class="input-group">
+							<input type="text" name="hora" class="form-control timepicker" required placeholder="" value="<?php echo $this->input->post('hora'); ?>" id="hora" />
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fa fa-clock"></i></span>
+							</div>
+						</div>
+						<span class="text-danger"><?php echo form_error('hora');?></span>
+					</div>
+
 				</div>
-				<span class="text-danger"><?php echo form_error('fecha');?></span>
 
 				<div class="form-group">
 					<div class="col-sm-offset-4 col-sm-8">

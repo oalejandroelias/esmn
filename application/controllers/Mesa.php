@@ -41,12 +41,16 @@ class Mesa extends CI_Controller{
   {
     $this->form_validation->set_rules('id_materia','Materia','required|integer');
     $this->form_validation->set_rules('fecha','Fecha','required');
+    $this->form_validation->set_rules('hora','Hora','required');
 
     if($this->form_validation->run())
     {
+      $fecha = date('Y-m-d', strtotime(str_replace('/', '-',$this->input->post('fecha',true))));
+      $hora = substr($this->input->post('hora',true),0,-3);
+      $datetime = $fecha.' '.$hora.':00';
       $params = array(
         'id_materia' => $this->input->post('id_materia'),
-        'fecha' => date('Y-m-d', strtotime(str_replace('/', '-',$this->input->post('fecha')))),
+        'fecha' => $datetime,
       );
 
       $mesa_id = $this->Mesa_model->add_mesa($params);
@@ -59,6 +63,8 @@ class Mesa extends CI_Controller{
 
       $data['title'] = 'Nueva mesa - ESMN';
       $data['page_title'] = 'Nueva mesa de examen';
+
+      $data['js'] = array('mesa.js');
 
       $this->load->view('templates/header',$data);
       $this->load->view('mesa/add',$data);
@@ -82,9 +88,12 @@ class Mesa extends CI_Controller{
 
       if($this->form_validation->run())
       {
+        $fecha = date('Y-m-d', strtotime(str_replace('/', '-',$this->input->post('fecha',true))));
+        $hora = substr($this->input->post('hora',true),0,-3);
+        $datetime = $fecha.' '.$hora.':00';
         $params = array(
           'id_materia' => $this->input->post('id_materia'),
-          'fecha' => date('Y-m-d', strtotime(str_replace('/', '-',$this->input->post('fecha')))),
+          'fecha' => $datetime,
         );
 
         $this->Mesa_model->update_mesa($id,$params);
@@ -96,6 +105,8 @@ class Mesa extends CI_Controller{
 
         $data['title'] = 'Editar mesa - ESMN';
         $data['page_title'] = 'Editar mesa de examen -> '.$data['mesa']['materia'].' ('.$data['mesa']['fecha'].')';
+
+        $data['js'] = array('mesa.js');
 
         $this->load->view('templates/header',$data);
         $this->load->view('mesa/edit',$data);
