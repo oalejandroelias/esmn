@@ -150,19 +150,21 @@ class Inscripcion_materia extends CI_Controller{
     function add_inscripcion_cursado()
     {
         $this->form_validation->set_rules('id_persona','Persona / Alumno','required|integer');
-        $this->form_validation->set_rules('id_materia','materia / Plan','required|max_length[11]');
-        $this->form_validation->set_rules('id_estado_inicial','Estado','required|max_length[11]');
+        $this->form_validation->set_rules('id_curso','Curso de Materia','required|max_length[11]');
+        $this->form_validation->set_rules('id_materia','Materia','required|max_length[11]');
+        
         
         if($this->form_validation->run())
         {
             $params = array(
                 'id_persona' => $this->input->post('id_persona'),
-                'id_curso' => 0,
+                'id_curso' => $this->input->post('id_curso'),
                 'id_materia' => $this->input->post('id_materia'),
-                'id_mesa' => 1,
-                'id_estado_inicial' => $this->input->post('id_estado_inicial'),
+                'id_mesa' => 0,
+                'id_estado_inicial' => 1,
                 'calificacion' => null,
-                'fecha' =>null
+                'fecha' =>null,
+                'id_estado_final' => null,
             );
             
             $inscripcion_materia_id = $this->Inscripcion_materia_model->add_inscripcion_materia($params);
