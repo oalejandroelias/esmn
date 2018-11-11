@@ -1,4 +1,4 @@
-<?php echo form_open('inscripcion_materia/add_inscripcion_cursado',array("class"=>"form-horizontal")); ?>
+<?php echo form_open('inscripcion_cursado/edit/'.$inscripcion_materia['id'],array("class"=>"form-horizontal")); ?>
 
 <div class="row">
   <div class="col-sm-6 col-12">
@@ -13,7 +13,7 @@
               <?php
               foreach($personas as $p)
               {
-                $selected = ($p['persona_id'] == $this->input->post('id_persona')) ? ' selected="selected"' : "";
+                  $selected = ($p['persona_id'] ==  $inscripcion_materia['id_persona']) ? ' selected="selected"' : "";
 
                 echo '<option value="'.$p['persona_id'].'" '.$selected.'>'.$p['nombre'].' '.$p['apellido'].' ('.$p['numero_documento'].')</option>';
               }
@@ -32,7 +32,7 @@
               <?php
               foreach($all_cursos as $curso)
               {
-                  $selected = ($curso['curso_id'] == $this->input->post('id_materia')) ? ' selected="selected"' : "";
+                  $selected = ($curso['curso_id'] == $inscripcion_materia['id_curso']) ? ' selected="selected"' : "";
 
                   echo '<option value="'.$curso['curso_id'].'" '.$selected.'>'.$curso['nombre'].' ('.$curso['curso_id'].')
                         </option>';

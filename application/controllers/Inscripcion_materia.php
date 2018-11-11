@@ -104,6 +104,9 @@ class Inscripcion_materia extends CI_Controller{
             }
             else
             {
+                
+                $data['personas'] = $this->Persona_model->get_all_personas();
+                $data['all_materias'] = $this->Materia_model->get_all_materias();
                 $this->load->view('templates/header',$data);
                 $this->load->view('inscripcion_materia/edit',$data);
                 $this->load->view('templates/footer');
@@ -163,7 +166,7 @@ class Inscripcion_materia extends CI_Controller{
                 'id_persona' => $this->input->post('id_persona'),
                 'id_curso' => $this->input->post('id_curso'),
                 'id_materia' => null,
-                'id_mesa' => 0,
+                'id_mesa' => null,
                 'id_estado_inicial' => 1,
                 'calificacion' => null,
                 'fecha' =>null,
@@ -218,6 +221,11 @@ class Inscripcion_materia extends CI_Controller{
             {
                 $data['title'] = 'Eidtar Inscripciones a Materias - ESMN';
                 $data['page_title'] = 'Inscripciones a Materias';
+                
+                $data['personas'] = $this->Persona_model->get_all_personas();
+                $data['all_materias'] = $this->Materia_model->get_all_materias();
+                $data['all_estados_inicial'] = $this->Estado_inscripcion_inicial_model->get_all_estado_inscripcion_inicial();
+                $data['all_cursos'] = $this->Curso_model->get_all_curso();
                 
                 $this->load->view('templates/header',$data);
                 $this->load->view('inscripcion_materia/edit_inscripcion_cursado',$data);
