@@ -104,8 +104,10 @@ class Inscripcion_materia extends CI_Controller{
             }
             else
             {
-                $data['_view'] = 'inscripcion_materia/edit';
+                $this->load->view('templates/header',$data);
                 $this->load->view('inscripcion_materia/edit',$data);
+                $this->load->view('templates/footer');
+                
             }
         }
         else
@@ -123,6 +125,7 @@ class Inscripcion_materia extends CI_Controller{
         if(isset($inscripcion_materia['id']))
         {
             $this->Inscripcion_materia_model->delete_inscripcion_materia($id);
+            $this->load->view('templates/header',$data);
             redirect('inscripcion_materia/index');
         }
         else
@@ -207,12 +210,19 @@ class Inscripcion_materia extends CI_Controller{
                 );
                 
                 $this->Inscripcion_materia_model->update_inscripcion_materia($id,$params);
-                redirect('inscripcion_materia/index_inscripcion_cursado');
+                $this->load->view('templates/header',$data);
+                $this->load->view('inscripcion_materia/index_inscripcion_cursado',$data);
+                $this->load->view('templates/footer'); 
             }
             else
             {
-                $data['_view'] = 'inscripcion_materia/edit';
+                $data['title'] = 'Eidtar Inscripciones a Materias - ESMN';
+                $data['page_title'] = 'Inscripciones a Materias';
+                
+                $this->load->view('templates/header',$data);
                 $this->load->view('inscripcion_materia/edit_inscripcion_cursado',$data);
+                $this->load->view('templates/footer'); 
+                
             }
         }
         else
@@ -227,7 +237,11 @@ class Inscripcion_materia extends CI_Controller{
         if(isset($inscripcion_materia['id']))
         {
             $this->Inscripcion_materia_model->delete_inscripcion_materia($id);
+            
+            $this->load->view('templates/header',$data);
             redirect('inscripcion_materia/index_inscripcion_cursado');
+            $this->load->view('templates/footer');
+
         }
         else
             show_error('The inscripcion_materia you are trying to delete does not exist.');

@@ -32,7 +32,7 @@ class Inscripcion_materia_model extends CI_Model
     {
         
         
-        $this->db->select('id_persona, id_curso, inscripcion_materia.id_materia, id_mesa, estado_inscripcion_inicial.nombre as nombre_estado_inicial, id_estado_final, calificacion,
+        $this->db->select('inscripcion_materia.id as id_inscripcion_materia, id_persona, id_curso, inscripcion_materia.id_materia, id_mesa, estado_inscripcion_inicial.nombre as nombre_estado_inicial, id_estado_final, calificacion,
                             materia.nombre as nombre_materia, persona.nombre as nombre_persona, persona.apellido as apellido_persona,
                             persona.numero_documento as numero_documento, estado_inscripcion_inicial.nombre as nombre_estado_cursado');
         $this->db->from('inscripcion_materia');

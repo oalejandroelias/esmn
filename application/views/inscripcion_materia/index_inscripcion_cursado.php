@@ -30,10 +30,10 @@
 												<td>
 
 													<?php if($boton_edit){?>
-														<a href="<?php echo site_url('inscripcion_materia/edit_inscripcion_cursado/'.$i['id_persona'].'/'.$i['id_materia']); ?>" class="btn btn-info btn-sm">Editar</a>
+														<a href="<?php echo site_url('inscripcion_materia/edit_inscripcion_cursado/'.$i['id_inscripcion_materia']); ?>" class="btn btn-info btn-sm">Editar</a>
 													<?php }?>
 													<?php if($boton_remove){?>
-														<a href="<?php echo site_url('inscripcion_materia/remove_inscripcion_cursado/'.$i['id_persona'].'/'.$i['id_materia']); ?>" data-confirm="remove" class="btn btn-danger btn-sm">Eliminar</a>
+														<a href="<?php echo site_url('inscripcion_materia/remove_inscripcion_cursado/'.$i['id_inscripcion_materia']); ?>" data-confirm="remove" class="btn btn-danger btn-sm">Eliminar</a>
 													<?php }?>
 
 												</td>
