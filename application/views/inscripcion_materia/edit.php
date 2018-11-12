@@ -1,4 +1,4 @@
-<?php echo form_open('inscripcion_materia/edit/'.$inscripcion_materia['id_persona'].'/'.$inscripcion_materia['id_materia'],array("class"=>"form-horizontal")); ?>
+<?php echo form_open('inscripcion_materia/edit/'.$inscripcion_materia['id'],array("class"=>"form-horizontal")); ?>
 
 <div class="row">
   <div class="col-sm-6 col-12">
@@ -33,7 +33,7 @@
               {
                 $selected = ($c['materia_id'] == $inscripcion_materia['id_materia']) ? ' selected="selected"' : "";
 
-                echo '<option value="'.$c['materia_id'].'" '.$selected.'>'.$c['materia_nombre'].' ('.$c['materia_id'].')</option>';
+                echo '<option value="'.$c['materia_id'].'" '.$selected.'>'.$c['nombre_materia'].' ('.$c['materia_id'].')</option>';
               }
               ?>
             </select>
