@@ -36,8 +36,7 @@ class Curso extends CI_Controller{
     $data['boton_add']=validar_botones('add');
     $data['boton_remove']=validar_botones('remove');
 
-    // script de correlatividades
-    //$data['js'] = array('curso_index.js');
+    $data['js'] = array('curso_index.js');
 
     $this->load->view('templates/header',$data);
     $this->load->view('curso/index',$data);

@@ -14,8 +14,7 @@
                     <tr role="row">
 
                       <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Materia</th>
-                      <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Periodo</th>
-                      <!-- <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Diascursado</th> -->
+                      <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Periodo de clases</th>
                       <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Catedra</th>
                       <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Acciones</th>
                     </tr>
@@ -26,8 +25,7 @@
                 	<?php foreach($cursos as $curso){ ?>
                     <tr>
                 		<td><?php echo $curso['nombre']; ?></td>
-                		<td><?php echo $curso['periodo'].' ('.$curso['desde'].' - '.$curso['hasta'].')'; ?></td>
-                		<!-- <td><?php echo $curso['diascursado']; ?></td> -->
+                		<td><?php echo $curso['periodo'].' ('.$curso['desde'].' - '.$curso['hasta'].') - '."<span id='cursoSpan".$curso['curso_id']."'>".$curso['diassemana']."</span>"; ?></td>
                     <?php
                     $personas=array();
                     foreach ($catedras as $c) {
@@ -54,8 +52,7 @@
             <tfoot>
               <tr>
                 <th rowspan="1" colspan="1">Materia</th>
-                <th rowspan="1" colspan="1">Periodo</th>
-                <!-- <th rowspan="1" colspan="1">Dias cursados</th> -->
+                <th rowspan="1" colspan="1">Periodo de clases</th>
                 <th rowspan="1" colspan="1">Catedra</th>
                 <th rowspan="1" colspan="1">Acciones</th>
 

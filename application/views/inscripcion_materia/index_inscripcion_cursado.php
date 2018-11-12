@@ -15,17 +15,19 @@
 											<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Curso</th>
 											<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Estado</th>
 											<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Alumno</th>
+											<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Calificación</th>
 											<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Acciones</th>
 										</tr>
 									</thead>
 
 									<tbody>
-											<?php foreach($inscripcion_materia as $i){ ?>
+										<?php foreach($inscripcion_materia as $i){ ?>
 											<tr>
-												<td><?php print_r($i); ?></td>
+												<td><?php echo "NOMBRE DE LA MATERIA"; ?></td>
 
 												<td><?php echo $i['nombre_estado_inicial']; ?></td>
-                        						<td><?php echo $i['nombre_persona'].' '.$i['apellido_persona'].' - '.$i['numero_documento']; ?></td>
+												<td><?php echo $i['nombre_persona'].' '.$i['apellido_persona'].' - '.$i['numero_documento']; ?></td>
+												<td><?php echo $i['calificacion']; ?></td>
 												<td>
 
 													<?php if($boton_edit){?>
@@ -34,6 +36,7 @@
 													<?php if($boton_remove){?>
 														<a href="<?php echo site_url('inscripcion_materia/remove_inscripcion_cursado/'.$i['id_inscripcion_materia']); ?>" data-confirm="remove" class="btn btn-danger btn-sm">Eliminar</a>
 													<?php }?>
+													<button type="button" class="btn btn-outline-info btn-sm">Cambiar Calificación</button>
 
 												</td>
 											</tr>
@@ -45,6 +48,7 @@
 											<th rowspan="1" colspan="1">Curso</th>
 											<th rowspan="1" colspan="1">Estado</th>
 											<th rowspan="1" colspan="1">Alumno</th>
+											<th rowspan="1" colspan="1">Calificación</th>
 											<th rowspan="1" colspan="1">Acciones</th>
 										</tr>
 									</tfoot>

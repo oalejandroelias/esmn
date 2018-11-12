@@ -120,48 +120,6 @@ $('[name^="dayWeek"],[name="id_periodo"]').change(function(){
 
   }
 
-
-  // traducir dias
-  // day = nombre corto o largo en ingles (Mon,Thu,etc)
-  // mode puede ser respuesta en nombre 'corto' o 'largo'
-  function transalteDay(day,mode){
-    var day = day.toLowerCase();
-    switch (day) {
-      case 'mon':
-      case 'monday':
-      var translation = (mode=='corto') ? 'Lun' : 'Lunes';
-      break;
-      case 'tue':
-      case 'tuesday':
-      var translation = (mode=='corto') ? 'Mar' : 'Martes';
-      break;
-      case 'wed':
-      case 'wednesday':
-      var translation = (mode=='corto') ? 'Mie' : 'Miercoles';
-      break;
-      case 'thu':
-      case 'thursday':
-      var translation = (mode=='corto') ? 'Jue' : 'Jueves';
-      break;
-      case 'fri':
-      case 'friday':
-      var translation = (mode=='corto') ? 'Vie' : 'Viernes';
-      break;
-      case 'sat':
-      case 'saturday':
-      var translation = (mode=='corto') ? 'Sab' : 'Sabado';
-      break;
-      case 'sun':
-      case 'sunday':
-      var translation = (mode=='corto') ? 'Dom' : 'Domingo';
-      break;
-
-      default:
-      var translation = false;
-    }
-    return translation;
-  }
-
   $(document).ready(function(){
     if ($('input[name="edit"]').length > 0) {
       var objDiasCursado = JSON.parse($('input[name="diascursado"]').val());
