@@ -15,6 +15,7 @@ class Inscripcion_materia extends CI_Controller{
     $this->load->model('Materia_model');
     $this->load->model('Estado_inscripcion_inicial_model');
     $this->load->model('Curso_model');
+    $this->load->model('Asiste_model');
     $this->load->model('Mesa_model');
   }
 
@@ -63,7 +64,7 @@ class Inscripcion_materia extends CI_Controller{
       );
 
       $inscripcion_materia_id = $this->Inscripcion_materia_model->add_inscripcion_materia($params);
-      $this->session->set_flashdata('crear', 'Nueva inscripci�n a mesa creada');
+      $this->session->set_flashdata('crear', 'Nueva inscripción a mesa creada');
       redirect('inscripcion_materia/index');
     }
     else
@@ -178,13 +179,22 @@ class Inscripcion_materia extends CI_Controller{
         'id_curso' => $this->input->post('id_curso'),
         'id_materia' => null,
         'id_mesa' => null,
-        'id_estado_inicial' => 1,
+        'id_estado_inicial' => 1, // 1 = CURSANDO
         'calificacion' => null,
         'fecha' =>null,
         'id_estado_final' => null,
       );
 
       $inscripcion_materia_id = $this->Inscripcion_materia_model->add_inscripcion_materia($params);
+
+      // crear registro de "asiste a curso"
+      $params_asiste = array(
+        'id_curso' => $this->input->post('id_curso'),
+        'id_persona' => $this->input->post('id_persona'),
+        'porcentaje' => null,
+      );
+      $id_asiste = $this->Asiste_model->add_asiste($params_asiste);
+
       $this->session->set_flashdata('crear', 'Nueva inscripción a cursado creada');
       redirect('inscripcion_materia/index_inscripcion_cursado');
     }
