@@ -20,27 +20,28 @@
 					</div>
 				</div>
 
+				<div class="form-group row">
+					<label class="col-md-3">Estado inicial para:</label>
+					<div class="col-md-9">
+						<div class="custom-control custom-radio">
+							<input type="radio" class="custom-control-input" value="mesa" id="customControlValidation1" name="radio-stacked" required="" <?php if($estado_inscripcion_final['es_mesa'] == 1) echo "checked"; ?> >
+							<label class="custom-control-label" for="customControlValidation1">Mesa</label>
+						</div>
+						<div class="custom-control custom-radio">
+							<input type="radio" class="custom-control-input" value="curso" id="customControlValidation2" name="radio-stacked" required="" <?php if($estado_inscripcion_final['es_cursado'] == 1) echo "checked"; ?>>
+							<label class="custom-control-label" for="customControlValidation2">Cursado</label>
+						</div>
+						<?php echo form_error('radio-stacked');?>
+					</div>
+				</div>
+				
 				<div class="form-group">
 					<div class="col-sm-offset-4 col-sm-8">
 						<button type="submit" class="btn btn-success">Guardar</button>
 						<a href="<?=site_url('estado_inscripcion_final/index'); ?>" class="btn btn-danger">Cancelar</a>
 					</div>
 				</div>
-				
-				<div class="form-group row">
-                    <label class="col-md-3">Estado inicial para:</label>
-                    <div class="col-md-9">
-                        <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" value="mesa" id="customControlValidation1" name="radio-stacked" required="" <?php if($estado_inscripcion_final['es_mesa'] == 1) echo "checked"; ?> >
-                            <label class="custom-control-label" for="customControlValidation1">Mesa</label>
-                        </div>
-                         <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" value="curso" id="customControlValidation2" name="radio-stacked" required="" <?php if($estado_inscripcion_final['es_cursado'] == 1) echo "checked"; ?>>
-                            <label class="custom-control-label" for="customControlValidation2">Cursado</label>
-                        </div>
-                        
-                    </div>
-                </div>
+
 
 			</div>
 		</div>

@@ -18,18 +18,10 @@ class Estado_inscripcion_inicial extends CI_Controller{
   */
   function index()
   {
-    $params['limit'] = RECORDS_PER_PAGE;
-    $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
+    $data['estado_inscripcion_inicial'] = $this->estado_inscripcion_inicial_model->get_all_estado_inscripcion_inicial();
 
-    $config = $this->config->item('pagination');
-    $config['base_url'] = site_url('estado_inscripcion_inicial/index?');
-    $config['total_rows'] = $this->estado_inscripcion_inicial_model->get_all_estado_inscripcion_inicial_count();
-    $this->pagination->initialize($config);
-
-    $data['estado_inscripcion_inicial'] = $this->estado_inscripcion_inicial_model->get_all_estado_inscripcion_inicial($params);
-
-    $data['page_title'] = 'Estados de cursado - ESMN';
-    $data['title'] = 'Estados de cursado';
+    $data['title'] = 'Estados de inscripcion inicial - ESMN';
+    $data['page_title'] = 'Estados de inscripcion inicial';
 
     //Botones de acciones
     $data['boton_edit']=validar_botones('edit');
@@ -74,8 +66,8 @@ class Estado_inscripcion_inicial extends CI_Controller{
     }
     else
     {
-      $data['page_title'] = 'Nuevo estado de cursado - ESMN';
-      $data['title'] = 'Nuevo estado de cursado';
+      $data['title'] = 'Nuevo estado - ESMN';
+      $data['page_title'] = 'Nuevo estado de inscripcion inicial';
 
       $this->load->view('templates/header',$data);
       $this->load->view('estado_inscripcion_inicial/add',$data);
@@ -119,8 +111,8 @@ class Estado_inscripcion_inicial extends CI_Controller{
       }
       else
       {
-        $data['page_title'] = 'Editar estado de cursado - ESMN';
-        $data['title'] = 'Editar estado de cursado';
+        $data['title'] = 'Editar estado - ESMN';
+        $data['page_title'] = 'Editar estado de inscripcion inicial';
 
         $this->load->view('templates/header',$data);
         $this->load->view('estado_inscripcion_inicial/edit',$data);

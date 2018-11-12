@@ -23,7 +23,7 @@
           </div>
         </div>
 
-  
+
         <div class="form-group">
           <label class="control-label">Cursado de Materia</label>
           <div class="col-sm-8 col-12">
@@ -32,25 +32,18 @@
               <?php
               foreach($all_cursos as $curso)
               {
-                  $selected = ($curso['curso_id'] == $this->input->post('id_materia')) ? ' selected="selected"' : "";
+                $selected = ($curso['curso_id'] == $this->input->post('id_materia')) ? ' selected="selected"' : "";
 
-                  echo '<option value="'.$curso['curso_id'].'" '.$selected.'>'.$curso['nombre'].' ('.$curso['curso_id'].')
-                        </option>';
-                  
+                echo '<option value="'.$curso['curso_id'].'" '.$selected.'>'.$curso['nombre'].' ('.$curso['curso_id'].')
+                </option>';
               }
               ?>
             </select>
             <span class="text-danger"><?php echo form_error('id_curso');?></span>
           </div>
         </div>
-        
-        
-        
-        
-       
 
         <div class="form-group">
-          <!-- botones para guardar o cancelar el agregar nivel -->
           <div class="col-sm-offset-4 col-sm-8">
             <button type="submit" class="btn btn-success">Guardar</button>
             <a href="<?=site_url('inscripcion_materia/index'); ?>" class="btn btn-danger">Cancelar</a>

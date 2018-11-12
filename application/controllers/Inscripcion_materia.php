@@ -170,24 +170,22 @@ class Inscripcion_materia extends CI_Controller{
     $this->form_validation->set_rules('id_persona','Persona / Alumno','required|integer');
     $this->form_validation->set_rules('id_curso','Curso de Materia','required|max_length[11]');
 
-
-
     if($this->form_validation->run())
     {
       $curso=$this->Curso_model->get_curso($this->input->post('id_curso'));
       $params = array(
         'id_persona' => $this->input->post('id_persona'),
         'id_curso' => $this->input->post('id_curso'),
-        'id_materia' => $curso['id_materia'],
+        'id_materia' => null,
         'id_mesa' => null,
         'id_estado_inicial' => 1,
         'calificacion' => null,
         'fecha' =>null,
-        'id_estado_final' => 0,
+        'id_estado_final' => null,
       );
 
       $inscripcion_materia_id = $this->Inscripcion_materia_model->add_inscripcion_materia($params);
-      $this->session->set_flashdata('crear', 'Nueva inscripci�n a cursado creada');
+      $this->session->set_flashdata('crear', 'Nueva inscripción a cursado creada');
       redirect('inscripcion_materia/index_inscripcion_cursado');
     }
     else

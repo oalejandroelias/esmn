@@ -15,6 +15,7 @@
 
 											<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Nombre</th>
 											<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Nomenclatura</th>
+											<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Estado para</th>
 											<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Acciones</th>
 										</tr>
 									</thead>
@@ -24,6 +25,7 @@
 											<tr>
 												<td><?php echo $e['nombre']; ?></td>
 												<td><?php echo $e['nomenclatura']; ?></td>
+												<td><?php echo ($e['es_cursado']==1) ? 'Cursado' : 'Mesa'; ?></td>
 												<td>
 
 													<?php if($boton_edit){?>
@@ -42,6 +44,7 @@
 										<tr>
 											<th rowspan="1" colspan="1">Nombre</th>
 											<th rowspan="1" colspan="1">Nomenclatura</th>
+											<th rowspan="1" colspan="1">Estado para</th>
 											<th rowspan="1" colspan="1">Acciones</th>
 										</tr>
 									</tfoot>

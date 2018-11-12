@@ -18,18 +18,10 @@ class estado_inscripcion_final extends CI_Controller{
   */
   function index()
   {
-    $params['limit'] = RECORDS_PER_PAGE;
-    $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
+    $data['estado_inscripcion_final'] = $this->estado_inscripcion_final_model->get_all_estado_inscripcion_final();
 
-    $config = $this->config->item('pagination');
-    $config['base_url'] = site_url('estado_inscripcion_final/index?');
-    $config['total_rows'] = $this->estado_inscripcion_final_model->get_all_estado_inscripcion_final_count();
-    $this->pagination->initialize($config);
-
-    $data['estado_inscripcion_final'] = $this->estado_inscripcion_final_model->get_all_estado_inscripcion_final($params);
-
-    $data['page_title'] = 'Estados de cursado - ESMN';
-    $data['title'] = 'Estados de cursado';
+    $data['title'] = 'Estados de inscripcion final - ESMN';
+    $data['page_title'] = 'Estados de inscripcion final';
 
     //Botones de acciones
     $data['boton_edit']=validar_botones('edit');
@@ -53,20 +45,20 @@ class estado_inscripcion_final extends CI_Controller{
 
     if($this->form_validation->run())
     {
-        if($this->input->post('radio-stacked') == 'mesa')
-        {
-            $mesa=1;
-            $cursado=0;
-        }
-        else {
-            $mesa=1;
-            $cursado=0;
-        }
+      if($this->input->post('radio-stacked') == 'mesa')
+      {
+        $mesa=1;
+        $cursado=0;
+      }
+      else {
+        $mesa=0;
+        $cursado=1;
+      }
       $params = array(
         'nombre' => $this->input->post('nombre'),
         'nomenclatura' => $this->input->post('nomenclatura'),
-         'es_mesa' => $mesa,
-         'es_cursado' => $cursado
+        'es_mesa' => $mesa,
+        'es_cursado' => $cursado
       );
 
       $estado_inscripcion_final_id = $this->estado_inscripcion_final_model->add_estado_inscripcion_final($params);
@@ -74,8 +66,8 @@ class estado_inscripcion_final extends CI_Controller{
     }
     else
     {
-      $data['page_title'] = 'Nuevo estado de cursado - ESMN';
-      $data['title'] = 'Nuevo estado de cursado';
+      $data['title'] = 'Nuevo estado - ESMN';
+      $data['page_title'] = 'Nuevo estado de inscripcion final';
 
       $this->load->view('templates/header',$data);
       $this->load->view('estado_inscripcion_final/add',$data);
@@ -95,12 +87,24 @@ class estado_inscripcion_final extends CI_Controller{
     {
       $this->form_validation->set_rules('nombre','Nombre','required|max_length[64]');
       $this->form_validation->set_rules('nomenclatura','Nomenclatura','max_length[4]');
+      $this->form_validation->set_rules('radio-stacked','Tipo inscripcion','required');
 
       if($this->form_validation->run())
       {
+        if($this->input->post('radio-stacked') == 'mesa')
+        {
+          $mesa=1;
+          $cursado=0;
+        }
+        else {
+          $mesa=0;
+          $cursado=1;
+        }
         $params = array(
           'nombre' => $this->input->post('nombre'),
           'nomenclatura' => $this->input->post('nomenclatura'),
+          'es_mesa' => $mesa,
+          'es_cursado' => $cursado
         );
 
         $this->estado_inscripcion_final_model->update_estado_inscripcion_final($id,$params);
@@ -108,8 +112,8 @@ class estado_inscripcion_final extends CI_Controller{
       }
       else
       {
-        $data['page_title'] = 'Editar estado de cursado - ESMN';
-        $data['title'] = 'Editar estado de cursado';
+        $data['title'] = 'Editar estado - ESMN';
+        $data['page_title'] = 'Editar estado de inscripcion final';
 
         $this->load->view('templates/header',$data);
         $this->load->view('estado_inscripcion_final/edit',$data);

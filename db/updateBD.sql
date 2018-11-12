@@ -146,3 +146,17 @@ CREATE TABLE `esmn`.`materia_equivalente` (
   USING BTREE) ENGINE = InnoDB;
 
 ALTER TABLE `materia_equivalente` ADD CONSTRAINT `materia_equivalente_ibfk_1` FOREIGN KEY (`id_materia`) REFERENCES `materia`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE; ALTER TABLE `materia_equivalente` ADD CONSTRAINT `materia_equivalente_ibfk_2` FOREIGN KEY (`id_equivalencia`) REFERENCES `materia`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- 12/11/18 cambiar id_estado a null
+ALTER TABLE `inscripcion_materia` CHANGE `id_estado_final` `id_estado_final` INT(11) NULL;
+-- agregar index id_estado_final y relacion foranea
+ALTER TABLE `esmn`.`inscripcion_materia` ADD INDEX `id_estado_final` (`id`) USING BTREE;
+
+-- lo mismo con id_estado_inicial
+ALTER TABLE `esmn`.`inscripcion_materia` DROP INDEX `id_estado`,
+ADD INDEX `id_estado_inicial` (`id_estado_inicial`) USING BTREE;
+ALTER TABLE `inscripcion_materia` DROP FOREIGN KEY `inscripcion_materia_ibfk_5`;
+ALTER TABLE `inscripcion_materia` ADD CONSTRAINT `inscripcion_materia_ibfk_5`
+FOREIGN KEY (`id_estado_inicial`) REFERENCES `estado_inscripcion_inicial`(`id`)
+ON DELETE RESTRICT ON UPDATE CASCADE; ALTER TABLE `inscripcion_materia` ADD CONSTRAINT `inscripcion_materia_ibfk_6`
+FOREIGN KEY (`id_estado_final`) REFERENCES `estado_inscripcion_final`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
