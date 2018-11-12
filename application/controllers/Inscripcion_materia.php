@@ -59,7 +59,7 @@ class Inscripcion_materia extends CI_Controller{
                 'id_mesa' => $this->input->post('id_mesa'),
                 'id_estado_inicial' => $this->input->post('id_estado_inicial'),
                 'calificacion' => null,
-                'fecha' =>null
+                'fecha' =>$mesa['fecha']
             );
 
             $inscripcion_materia_id = $this->Inscripcion_materia_model->add_inscripcion_materia($params);
@@ -94,15 +94,16 @@ class Inscripcion_materia extends CI_Controller{
         {
             if(isset($_POST) && count($_POST) > 0)
             {
+                //Obtengo los datos de mesa
                 $mesa=$this->Mesa_model->get_mesa($this->input->post('id_mesa'));
                 $params = array(
 					'id_persona' => $this->input->post('id_persona'),
 					'id_curso' => $this->input->post('id_curso'),
-					'id_materia' => $this->input->post('id_materia'),
-					'id_mesa' => $this->input->post('id_mesa'),
+                    'id_materia' => $mesa['id_materia'],
+                    'id_mesa' =>  $this->input->post('id_mesa'),
 					'id_estado_inicial' => $this->input->post('id_estado_inicial'),
-					'calificacion' => $this->input->post('calificacion'),
-					'fecha' => $this->input->post('fecha'),
+					'calificacion' => null,
+                    'fecha' => $mesa['fecha'],
                 );
 
                 $this->Inscripcion_materia_model->update_inscripcion_materia($id,$params);
@@ -115,7 +116,9 @@ class Inscripcion_materia extends CI_Controller{
                 $data['page_title'] = 'Editar inscripcion de mesa';
                 
                 $data['personas'] = $this->Persona_model->get_all_personas();
+                $data['all_mesas'] = $this->Mesa_model->get_all_mesas();
                 $data['all_materias'] = $this->Materia_model->get_all_materias();
+                $data['all_estados'] = $this->Estado_inscripcion_inicial_model->get_all_estado_inscripcion_inicial_mesa();
                 $this->load->view('templates/header',$data);
                 $this->load->view('inscripcion_materia/edit',$data);
                 $this->load->view('templates/footer');
@@ -137,7 +140,7 @@ class Inscripcion_materia extends CI_Controller{
         if(isset($inscripcion_materia['id']))
         {
             $this->Inscripcion_materia_model->delete_inscripcion_materia($id);
-            $this->session->set_flashdata('eliminar', 'Carrera eliminada');
+            $this->session->set_flashdata('eliminar', 'Inscripcion a mesa anulada');
             redirect('inscripcion_materia/index');
         }
         else

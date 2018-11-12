@@ -13,7 +13,7 @@
               <?php
               foreach($personas as $p)
               {
-                $selected = ($p['persona_id'] == $inscripcion_materia['id_persona']) ? ' selected="selected"' : "";
+                  $selected = ($p['persona_id'] == $inscripcion_materia['id_persona']) ? ' selected="selected"' : "";
 
                 echo '<option value="'.$p['persona_id'].'" '.$selected.'>'.$p['nombre'].' '.$p['apellido'].' ('.$p['numero_documento'].')</option>';
               }
@@ -23,21 +23,57 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <label class="control-label">materia / Plan</label>
+       <!--   <div class="form-group">
+          <label class="control-label">Materia / Plan</label>
           <div class="col-sm-8 col-12">
             <select class="select2 form-control custom-select" name="id_materia" required style="width: 100%; height:36px;">
               <option value="">Buscar</option>
               <?php
-              foreach($all_materias as $c)
+              foreach($all_materias as $materia)
               {
-                $selected = ($c['materia_id'] == $inscripcion_materia['id_materia']) ? ' selected="selected"' : "";
+                  $selected = ($materia['materia_id'] == $inscripcion_materia['id_materia']) ? ' selected="selected"' : "";
 
-                echo '<option value="'.$c['materia_id'].'" '.$selected.'>'.$c['nombre_materia'].' ('.$c['materia_id'].')</option>';
+                echo '<option value="'.$materia['materia_id'].'" '.$selected.'>'.$materia['nombre_materia'].' ('.$materia['id_carrera'].')</option>';
               }
               ?>
             </select>
             <span class="text-danger"><?php echo form_error('id_materia');?></span>
+          </div>
+        </div>-->
+        
+        <div class="form-group">
+          <label class="control-label">Mesa</label>
+          <div class="col-sm-8 col-12">
+            <select class="select2 form-control custom-select" name="id_mesa" required style="width: 100%; height:36px;">
+              <option value="">Buscar</option>
+              <?php
+              foreach($all_mesas as $mesa)
+              {
+                  $selected = ($mesa['id_mesa'] == $inscripcion_materia['id_materia']) ? ' selected="selected"' : "";
+
+                  echo '<option value="'.$mesa['id_mesa'].'" '.$selected.'>'.$mesa['nombre_materia'].' ('.$mesa['materia'].')</option>';
+              }
+              ?>
+            </select>
+            <span class="text-danger"><?php echo form_error('id_materia');?></span>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="control-label">Estado</label>
+          <div class="col-sm-8 col-12">
+            <select class="select2 form-control custom-select" name="id_estado_inicial" required style="width: 100%; height:36px;">
+              <option value="">Buscar</option>
+              <?php
+              foreach($all_estados as $estado)
+              {
+                  $selected = ($estado['id'] == $this->input->post('id_estado_inicial')) ? ' selected="selected"' : "";
+
+                  echo '<option value="'.$estado['id'].'" '.$selected.'>'.$estado['nombre'].'</option>';
+              }
+              ?>
+            </select>
+            <span class="text-danger"><?php echo form_error('id_estado_inicial');?></span>
           </div>
         </div>
 
@@ -55,3 +91,4 @@
 </div>
 
 <?php echo form_close(); ?>
+
