@@ -4,8 +4,8 @@ $(document).ready(function(){
     var span = rows[i];
     var obj = JSON.parse(rows[i].innerText);
     var dias = [];
-    for (var i = 0; i < obj.length; i++) {
-      dias.push(transalteDay(obj[i],'largo'));
+    for (var j = 0; j < obj.length; j++) {
+      dias.push(transalteDay(obj[j],'largo'));
     }
     span.innerText = dias.join(", ");
   }
