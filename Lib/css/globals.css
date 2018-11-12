@@ -28,3 +28,8 @@ label a.badge{font-size: 100%;}
 -ms-transform: rotate(-90deg);
 -o-transform: rotate(-90deg);
 }
+
+#menu-administracion{
+  max-height: 400px;
+  overflow: auto;
+}

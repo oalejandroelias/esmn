@@ -99,7 +99,7 @@
                              <span class="d-none d-md-block">AdministraciÃ³n <i class="fa fa-angle-down"></i></span>
                              <span class="d-block d-md-none"><i class="fa fa-plus"></i></span>
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="menu-administracion">
                                 <a class="dropdown-item" href="<?php echo base_url('Perfil')?>">Perfiles</a>
                                 <a class="dropdown-item" href="<?php echo base_url('Persona')?>">Personas</a>
                                 <a class="dropdown-item" href="<?php echo base_url('Usuario')?>">Usuarios</a>
@@ -111,8 +111,8 @@
                                 <a class="dropdown-item" href="<?php echo base_url('Curso')?>">Cursos</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="<?php echo base_url('Estado_asistencia')?>">Estados asistencia</a>
-                                <a class="dropdown-item" href="<?php echo base_url('Estado_inscripcion_inicial')?>">Estados inscripción inicial</a>
-                                <a class="dropdown-item" href="<?php echo base_url('Estado_inscripcion_final')?>">Estados inscripción final</a>
+                                <a class="dropdown-item" href="<?php echo base_url('Estado_inscripcion_inicial')?>">Estados inscripciÃ³n inicial</a>
+                                <a class="dropdown-item" href="<?php echo base_url('Estado_inscripcion_final')?>">Estados inscripciÃ³n final</a>
                                 <a class="dropdown-item" href="<?php echo base_url('Tutor')?>">Tutores</a>
                                 <a class="dropdown-item" href="<?php echo base_url('Tipo_documento')?>">Tipo Documento</a>
                                 <!-- <div class="dropdown-divider"></div>
@@ -200,9 +200,9 @@
                                 <li class="sidebar-item"><a href="<?=base_url('inscripcion_carrera')?>" class="sidebar-link">
                                   <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Carreras </span></a></li>
                                 <li class="sidebar-item"><a href="<?=base_url('inscripcion_materia')?>" class="sidebar-link">
-                                  <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Inscribir a Mesa </span></a></li>
+                                  <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Mesas </span></a></li>
                                 <li class="sidebar-item"><a href="<?=base_url('inscripcion_materia/index_inscripcion_cursado')?>" class="sidebar-link">
-                                  <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Inscribir a Curso </span></a></li>
+                                  <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Cursos </span></a></li>
                             </ul>
                         </li>
                         <li class="sidebar-item">
@@ -212,7 +212,7 @@
                         </li>
                         <li class="sidebar-item">
                           <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                            <i class="mdi mdi-book-open"></i><span class="hide-menu">Aï¿½o </span>
+                            <i class="mdi mdi-book-open"></i><span class="hide-menu">Periodos </span>
                           </a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item"><a href="<?=base_url('tipo_periodo')?>" class="sidebar-link">
