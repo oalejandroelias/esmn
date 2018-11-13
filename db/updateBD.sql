@@ -150,7 +150,7 @@ ALTER TABLE `materia_equivalente` ADD CONSTRAINT `materia_equivalente_ibfk_1` FO
 -- 12/11/18 cambiar id_estado a null
 ALTER TABLE `inscripcion_materia` CHANGE `id_estado_final` `id_estado_final` INT(11) NULL;
 -- agregar index id_estado_final y relacion foranea
-ALTER TABLE `esmn`.`inscripcion_materia` ADD INDEX `id_estado_final` (`id`) USING BTREE;
+ALTER TABLE `esmn`.`inscripcion_materia` ADD INDEX `id_estado_final` (`id_estado_final`) USING BTREE;
 
 -- lo mismo con id_estado_inicial
 ALTER TABLE `esmn`.`inscripcion_materia` DROP INDEX `id_estado`,

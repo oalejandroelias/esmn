@@ -23,8 +23,7 @@
 									<tbody>
 										<?php foreach($inscripcion_materia as $i){ ?>
 											<tr>
-												<td><?php echo "NOMBRE DE LA MATERIA"; ?></td>
-
+												<td><?php echo $i['nombre_materia']; ?></td>
 												<td><?php echo $i['nombre_estado_inicial']; ?></td>
 												<td><?php echo $i['nombre_persona'].' '.$i['apellido_persona'].' - '.$i['numero_documento']; ?></td>
 												<td><?php echo $i['calificacion']; ?></td>

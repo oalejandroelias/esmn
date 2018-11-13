@@ -43,6 +43,7 @@
                           <?php if($boton_remove){?>
                             <a href="<?php echo site_url('curso/remove/'.$curso['curso_id']); ?>" data-confirm="remove" class="btn btn-danger btn-sm">Eliminar</a>
                           <?php }?>
+                          <a href="<?php echo site_url('asistencia/control/'.$curso['curso_id']); ?>" class="btn btn-outline-info btn-sm">Asistencias</a>
 
                         </td>
                     </tr>
