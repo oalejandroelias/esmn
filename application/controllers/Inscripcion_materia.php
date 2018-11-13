@@ -168,8 +168,9 @@ class Inscripcion_materia extends CI_Controller{
 
   function add_inscripcion_cursado()
   {
-    $this->form_validation->set_rules('id_persona','Persona / Alumno','required|integer');
-    $this->form_validation->set_rules('id_curso','Curso de Materia','required|max_length[11]');
+    $this->form_validation->set_rules('id_curso','Curso de Materia','required|integer');
+    $this->form_validation->set_rules('id_persona','Persona / Alumno','required|integer|callback_check_inscripcion['.$this->input->post('id_curso').']');
+    $this->form_validation->set_message('check_inscripcion','La persona ya se encuentra registrada en este curso!');
 
     if($this->form_validation->run())
     {
@@ -177,7 +178,7 @@ class Inscripcion_materia extends CI_Controller{
       $params = array(
         'id_persona' => $this->input->post('id_persona'),
         'id_curso' => $this->input->post('id_curso'),
-        'id_materia' => null,
+        'id_materia' => $this->input->post('id_materia'),
         'id_mesa' => null,
         'id_estado_inicial' => 1, // 1 = CURSANDO
         'calificacion' => null,
@@ -208,10 +209,18 @@ class Inscripcion_materia extends CI_Controller{
       $data['all_estados_inicial'] = $this->Estado_inscripcion_inicial_model->get_all_estado_inscripcion_inicial();
       $data['all_cursos'] = $this->Curso_model->get_all_curso();
 
+      $data['js'] = array('inscripcion_cursado.js');
+
       $this->load->view('templates/header',$data);
       $this->load->view('inscripcion_materia/add_inscripcion_cursado',$data);
       $this->load->view('templates/footer');
     }
+  }
+
+// funcion comprobar si una persona ya esta registrada en un curso
+  function check_inscripcion($id_persona,$id_curso){
+    $query = $this->Inscripcion_materia_model->check_inscripcion($id_persona,$id_curso);
+    return (!empty($query)) ? false : true;
   }
 
   function edit_inscripcion_cursado($id)

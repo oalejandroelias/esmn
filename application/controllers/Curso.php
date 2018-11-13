@@ -29,7 +29,7 @@ class Curso extends CI_Controller{
     $data['catedras'] = $this->Catedra_model->get_all_catedras();
 
     $data['title'] = 'Cursos - ESMN';
-    $data['page_title'] = 'Curso';
+    $data['page_title'] = 'Cursos';
 
     //validar botones
     $data['boton_edit']=validar_botones('edit');
