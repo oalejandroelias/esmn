@@ -74,30 +74,4 @@ class Persona_model extends CI_Model
     {
         return $this->db->delete('persona',array('id'=>$id));
     }
-    
-//     function get_historial_persona($id)
-//     {
-//         /*$this->db->select('persona.id AS "persona_id",tipo_documento.nombre AS "tipo_documento",
-//                         ciudad.nombre AS "ciudad",numero_documento,persona.nombre,apellido,
-//                         domicilio,telefono,email,fecha_nacimiento,foto');*/
-//         $this->db->select('*');
-//         $this->db->from('persona');
-//         $this->db->join('tipo_documento', 'tipo_documento.id = persona.id_tipo_documento', 'join');
-//         $this->db->join('ciudad', 'ciudad.id = persona.id_ciudad', 'left');
-//         $this->db->join('inscripcion_materia', 'inscripcion_materia.id_persona=persona.id', 'inner');
-//         $this->db->join('curso', 'curso.id=inscripcion_materia.id_curso', 'inner');
-//         $this->db->where('persona.id='.$id.' AND inscripcion_materia.id_curso IS NOT null');
-        
-//         $this->db->group_by('inscripcion_materia.id ', 'desc');
-//         if(isset($params) && !empty($params))
-//         {
-//             $this->db->limit($params['limit'], $params['offset']);
-//         }
-//         $query = $this->db->get();
-//         return $query->result_array();
-//         // return $this->db->get('persona')->result_array();
-//     }
-    
-    
-   
 }

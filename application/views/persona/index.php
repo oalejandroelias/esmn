@@ -58,7 +58,6 @@
                             <?php endif; ?>
                             <a href="<?php echo site_url('Documentacion/ver/'.$p['persona_id']); ?>" class="btn btn-outline-info btn-sm">Documentacion</a>
                             <a href="<?php echo site_url('persona_tutor/relacion/'.$p['persona_id']); ?>" class="btn btn-outline-secondary btn-sm">Relaciones</a>
-                            <a href="<?php echo site_url('Persona/ver_historial/'.$p['persona_id']); ?>" class="btn btn-outline-secondary btn-sm">Historial</a>
                           </td>
                         </tr>
                       <?php } ?>
