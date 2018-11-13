@@ -1,3 +1,4 @@
+// traducir nombres de dias al cargar la pagina
 $(document).ready(function(){
   var rows = $("span[id^='cursoSpan']");
   for (var i = 0; i < rows.length; i++) {

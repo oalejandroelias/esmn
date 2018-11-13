@@ -26,9 +26,7 @@ function makeTable(obj){
     </span></div>\
     </th>');
 
-    $("#tablaDiasCursado tbody tr").append('<td data-cellid="'+i+'" data-cellstate="0" onclick="changeState(this)"><span class="font-weight-bold">\
-    <i class=""></i>\
-    </span></td>');
+    $("#tablaDiasCursado tbody tr").append('<td data-cellid="'+i+'" data-cellstate="0" onclick="changeState(this)"><span class="font-weight-bold"></span></td>');
     if (obj[i].state != 0) {
       changeState($('td[data-cellid="'+i+'"]')[0],false);
     }
@@ -120,6 +118,7 @@ $('[name^="dayWeek"],[name="id_periodo"]').change(function(){
 
   }
 
+// construir tabla al editar
   $(document).ready(function(){
     if ($('input[name="edit"]').length > 0) {
       var objDiasCursado = JSON.parse($('input[name="diascursado"]').val());

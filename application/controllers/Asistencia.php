@@ -20,6 +20,10 @@ class Asistencia extends CI_Controller{
       $data['page_title'] = 'Asistencia';
 
       $data['asistencia'] = $this->Asistencia_model->get_asistencia($id_curso);
+      if (empty($data['asistencia'])) {
+        $this->session->set_flashdata('error', 'No existen personas inscriptas en este curso.');
+        redirect('curso/index');
+      }
       $data['diascursado'] = json_decode($data['asistencia'][0]['diascursado']);
 
       $data['css'] = array('curso.css');

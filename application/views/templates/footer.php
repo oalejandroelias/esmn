@@ -83,7 +83,14 @@
 <?php
 }
 ?>
-
+<?php if($this->session->flashdata('error') !== null){ ?>
+	<script>
+		var mensaje=<?php echo json_encode($this->session->flashdata('error'))?>;
+		toastr.error(mensaje,'');
+	</script>
+<?php
+}
+?>
 
 
 </body>

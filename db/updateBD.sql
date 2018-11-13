@@ -160,3 +160,7 @@ ALTER TABLE `inscripcion_materia` ADD CONSTRAINT `inscripcion_materia_ibfk_5`
 FOREIGN KEY (`id_estado_inicial`) REFERENCES `estado_inscripcion_inicial`(`id`)
 ON DELETE RESTRICT ON UPDATE CASCADE; ALTER TABLE `inscripcion_materia` ADD CONSTRAINT `inscripcion_materia_ibfk_6`
 FOREIGN KEY (`id_estado_final`) REFERENCES `estado_inscripcion_final`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+-- 13/11/18 edicion tabla asiste, eliminar tabla asistencia
+ALTER TABLE `asiste` ADD `id_estado` INT(11) NULL AFTER `id_curso`, ADD `asistencia` TEXT NULL COMMENT 'json' AFTER `id_estado`, ADD INDEX (`id_estado`) USING BTREE;
+ALTER TABLE `asiste` ADD CONSTRAINT `asiste_ibfk_3` FOREIGN KEY (`id_estado`) REFERENCES `estado_asistencia`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

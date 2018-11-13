@@ -7,6 +7,7 @@
   border: 1px solid #ccc;
   height: 45px;
 }
+.tabla-dias-cursado td:hover{background-color: #27a9e3;}
 .tabla-dias-cursado td:first-of-type{border-left-width: 2px;}
 .tabla-dias-cursado thead span{margin-bottom: 7px;}
 .tabla-dias-cursado th.rotate{
