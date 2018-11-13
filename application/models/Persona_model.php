@@ -74,4 +74,28 @@ class Persona_model extends CI_Model
     {
         return $this->db->delete('persona',array('id'=>$id));
     }
+    
+    function get_historial_persona($id)
+    {
+        $this->db->select('persona.id AS persona_id, inscripcion_materia.id as inscripcion_materia_id, materia.nombre as materia_nombre,
+                            materia.id_carrera as id_carrera, estado_inscripcion_inicial.nombre as nombre_inicial, inscripcion_materia.calificacion,
+                            estado_inscripcion_final.nombre as final_nombre');
+        $this->db->from('inscripcion_materia');
+        $this->db->join('persona', 'inscripcion_materia.id_persona=persona.id', 'inner');
+        $this->db->join('curso', 'curso.id=inscripcion_materia.id_curso', 'inner');
+        $this->db->join('materia', 'materia.id = curso.id_materia', 'inner');
+        $this->db->join('estado_inscripcion_inicial', 'estado_inscripcion_inicial.id = inscripcion_materia.id_estado_inicial', 'left');
+        $this->db->join('estado_inscripcion_final', 'estado_inscripcion_final.id = inscripcion_materia.id_estado_final', 'left');
+        
+        $this->db->where('persona.id='.$id.' AND inscripcion_materia.id_curso IS NOT null');
+        
+        //$this->db->group_by('inscripcion_materia.id ', 'desc');
+        if(isset($params) && !empty($params))
+        {
+            $this->db->limit($params['limit'], $params['offset']);
+        }
+        $query = $this->db->get();
+        return $query->result_array();
+        // return $th
+    }
 }
