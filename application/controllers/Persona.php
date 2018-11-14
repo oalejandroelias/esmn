@@ -55,6 +55,7 @@ class Persona extends CI_Controller{
      */
     function add()
     {
+        $this->load->library('Google_maps');
         $this->form_validation->set_rules('id_tipo_documento','Id Tipo Documento','required|integer');
         $this->form_validation->set_rules('numero_documento','Numero Documento','required|max_length[11]|integer');
         $this->form_validation->set_rules('nombre','Nombre','required|max_length[128]');
@@ -172,6 +173,7 @@ class Persona extends CI_Controller{
                 $this->form_validation->set_rules('telefono','Telefono','max_length[128]');
                 $this->form_validation->set_rules('email','Email','max_length[128]|valid_email');
                 $this->form_validation->set_rules('fecha_nacimiento','Fecha de nacimiento','required');
+                $this->form_validation->set_rules('username','Nombre de usuario','max_length[128]|is_unique[usuario.username]');
                 
                 $config['upload_path']= './files/images/';
                 $config['allowed_types']= 'gif|jpg|png|jpeg';
@@ -217,6 +219,9 @@ class Persona extends CI_Controller{
                     
                     $data['all_tipo_documento'] = $this->Tipo_documento_model->get_all_tipo_documento();
                     $data['all_ciudades'] = $this->Ciudad_model->get_all_ciudades();
+                    $data['all_roles'] = $this->Perfil_model->get_all_perfiles();
+                    $data['usuario'] = $this->Persona_model->get_usuario_de_persona($id);
+                    
                     
                     $data['js'] = array(
                         '../bootstrap-birthday/bootstrap-birthday.min.js',

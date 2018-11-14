@@ -99,10 +99,42 @@
           <label for="fecha" class="control-label"><span class="text-danger">*</span>Fecha de Nacimiento</label>
           <div class="form-row mb-3">
             <div class="col-12">
-              <input type="text" name="fecha_nacimiento" id="fecha_nacimiento" value="<?php echo ($this->input->post('fecha_nacimiento') ? $this->input->post('fecha_nacimiento') : $persona['fecha_nacimiento']); ?>"/>
+              <input type="text" name="fecha_nacimiento" id="fecha_nacimiento" value="<?php echo ($this->input->post('fecha_nacimiento') ? $this->input->post('fecha_nacimiento') : $persona['fecha_nacimiento']); ?>"/> 
               <span class="text-danger d-none" data-error="fecha_nacimiento">Complete los datos de fecha de nacimiento.</span>
             </div>
           </div>
+          
+<!--           <div class="form-row mb-3 d-none" id="formdiv_usuario"> -->
+<!-- 					<div class="col-sm-6 col-12"> -->
+<!-- 						<label for="username" class="control-label"><span class="text-danger">*</span>Nombre de usuario</label> -->
+<!--						<input type="text" maxlength="128" name="username" value="<?php echo $this->input->post('username') ? $this->input->post('username') : $usuario[0]['username']; ?>"  class="form-control" id="username" /> -->
+<!--						<span class="text-danger"><?php echo form_error('username');?></span>
+<!-- 					</div> -->
+
+<!-- 					<div class="col-sm-6 col-12"> -->
+<!-- 						<label for="password" class="control-label"><span class="text-danger">*</span>Contraseña</label> -->
+<!--						<input type="password" maxlength="128" name="password" value="<?php echo $this->input->post('password') ? $this->input->post('password') : $usuario[0]['password']; ?>" class="form-control" id="password" />  -->
+<!--						<span class="text-danger"><?php echo form_error('password');?></span>
+<!-- 					</div> -->
+<!-- 				</div> -->
+
+<!-- 				<div class="form-row mb-4 d-none" id="formdiv_permisos"> -->
+<!-- 					<div class="col-sm-6 col-12"> -->
+<!-- 						<label for="id_ciudad" class="control-label"><span class="text-danger">*</span>Asignar permisos de</label> -->
+<!-- 						<select name="id_perfil" class="form-control"> -->
+<!-- 							<option value="">Seleccionar Rol</option> -->
+							<?php
+// 							foreach($all_roles as $rol)
+// 							{
+// 								$selected = ($rol['id'] == $this->input->post('id_perfil')) ? ' selected="selected"' : "";
+
+// 								echo '<option value="'.$rol['id'].'" '.$selected.'>'.$rol['nombre'].'</option>';
+// 							}
+// 							?>
+<!-- 						</select> -->
+<!--						<span class="text-danger"><?php echo form_error('id_perfil');?></span>
+<!-- 					</div> -->
+<!-- 				</div> -->
 
           <div class="form-group">
             <div class="col-sm-offset-4 col-sm-8">

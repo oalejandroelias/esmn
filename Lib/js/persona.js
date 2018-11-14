@@ -133,5 +133,14 @@ $(document).ready(function(){
   }
 
   // si el checkbox generar_usuario viene por post:
-  if ($('#checkbox_generar_usuario')[0].checked) box_checked();
+  if ($('#checkbox_generar_usuario').length>0)
+	  {
+	  	if ($('#checkbox_generar_usuario')[0].checked) box_checked();
+	  }
+  else{
+	  $('#formdiv_permisos').toggleClass('d-none');
+	  $('#formdiv_usuario').toggleClass('d-none');
+	  $('#formdiv_permisos select').attr('required',true);
+	    $('#formdiv_usuario input').attr('required',true);
+  }
 });
