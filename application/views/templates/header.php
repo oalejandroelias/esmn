@@ -24,6 +24,7 @@
     <!-- ??? -->
     <link rel="stylesheet" type="text/css" href="<?= base_url();?>Lib/matrix-admin-bt4/assets/extra-libs/multicheck/multicheck.css">
     <link href="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+    <!-- <link href="<?= base_url();?>Lib/matrix-admin-bt4/assets/extra-libs/DataTables/buttons.dataTables.min.css" rel="stylesheet"> -->
 
     <?php if (isset($css)) : ?> <!-- aca se cargan estilos desde el controlador -->
       <?php foreach ($css as $src) : ?>

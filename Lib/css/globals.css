@@ -29,7 +29,11 @@ label a.badge{font-size: 100%;}
 -o-transform: rotate(-90deg);
 }
 
+/* menu desplegable de administrador mas chico */
 #menu-administracion{
   max-height: 400px;
   overflow: auto;
 }
+
+/* text-muted a las filas inactivas o deshabilidatas */
+.row-disabled td{color:#a1aab2 !important;}

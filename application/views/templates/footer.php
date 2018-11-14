@@ -48,6 +48,7 @@
 <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
 <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/extra-libs/multicheck/jquery.multicheck.js"></script>
 <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/extra-libs/DataTables/datatables.min.js"></script>
+<!-- <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/extra-libs/DataTables/dataTables.buttons.min.js"></script> -->
 
 <!-- custom -->
 <script src="<?= base_url();?>Lib/js/globals.js"></script>
@@ -71,6 +72,22 @@
 	<script>
 		var mensaje=<?php echo json_encode($this->session->flashdata('eliminar'))?>;
 		toastr.warning(mensaje,'Eliminando...');
+	</script>
+<?php
+}
+?>
+<?php if($this->session->flashdata('deshabilitar') !== null){ ?>
+	<script>
+		var mensaje=<?php echo json_encode($this->session->flashdata('deshabilitar'))?>;
+		toastr.error(mensaje,'Deshabilitando...');
+	</script>
+<?php
+}
+?>
+<?php if($this->session->flashdata('habilitar') !== null){ ?>
+	<script>
+		var mensaje=<?php echo json_encode($this->session->flashdata('habilitar'))?>;
+		toastr.success(mensaje,'Habilitando...');
 	</script>
 <?php
 }

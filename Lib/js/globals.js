@@ -24,7 +24,7 @@ $('.mydatepicker-end').on("change", function(){
 });
 
 // Basic Table
-$('#zero_config').DataTable({
+var dtable = $('#zero_config').DataTable({
   "language": {
     // "url": "/esmn/Lib/matrix-admin-bt4/assets/libs/datatables/i18n/dataTables.spanish.lang"
     "sProcessing":     "Procesando...",
@@ -51,6 +51,20 @@ $('#zero_config').DataTable({
   	}
   }
 });
+
+// mostrar filas ocultas
+ function mostrarTodo(){
+   // determinar registros inactivos o deshabilitados, y ocultarlos
+   dtable.rows().eq(0).each( function ( index ) {
+      var row = dtable.row( index );
+      var rowNode = row.node();
+      var activo = $(rowNode).attr('data-activo');
+      if (activo!=1) {
+        $(row.node()).toggleClass("d-none");
+      }
+    });
+ }
+ mostrarTodo();
 
 // For select 2
 $(".select2").select2({width: 'resolve'});

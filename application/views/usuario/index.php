@@ -4,6 +4,7 @@
     <div class="card">
       <div class="card-body">
         <!-- <h5 class="card-title">Basic Datatable</h5> -->
+        <button type="button" class="btn btn-sm btn-primary mb-3" onclick="mostrarTodo();">Mostrar deshabilitados</button>
         <div class="table-responsive">
           <div id="zero_config_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
             <div class="row">
@@ -25,7 +26,7 @@
 
                   <tbody>
                     <?php foreach($usuarios as $u){ ?>
-                      <tr>
+                      <tr data-activo="<?= $u['activo']; ?>" class="<?= ($u['activo']==0) ? 'row-disabled' : ''; ?>">
                         <td><?= $u['tipo_documento']." - ".$u['numero_documento']; ?></td>
                         <td><?= $u['nombre']; ?></td>
                         <td><?= $u['apellido']; ?></td>
@@ -34,13 +35,15 @@
                         <!--<td><?= $u['permisos']?></td> -->
                         <td>
 
-
-
                           <?php if($boton_edit){?>
                             <a href="<?= site_url('Usuario/edit/'.$u['usuario_id']); ?>" class="btn btn-info btn-sm">Editar</a>
                           <?php } ?>
-                          <?php if($boton_edit){?>
-                            <a href="<?= site_url('Usuario/remove/'.$u['usuario_id']); ?>" data-confirm="remove" class="btn btn-danger btn-sm">Eliminar</a>
+                          <?php if($boton_remove){?>
+                            <?php if ($u['activo'] == 0): ?>
+                              <a href="<?= site_url('Usuario/remove/'.$u['usuario_id'].'/1'); ?>" data-confirm="remove" class="btn btn-success btn-sm"><i class="mdi mdi-eye-off"></i> Habilitar</a>
+                              <?php else: ?>
+                                <a href="<?= site_url('Usuario/remove/'.$u['usuario_id'].'/0'); ?>" data-confirm="remove" class="btn btn-danger btn-sm"><i class="mdi mdi-eye-off"></i> Deshabilitar</a>
+                            <?php endif; ?>
                           <?php } ?>
 
 
