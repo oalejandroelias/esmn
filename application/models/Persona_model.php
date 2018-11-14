@@ -98,4 +98,14 @@ class Persona_model extends CI_Model
         return $query->result_array();
         // return $th
     }
+    
+    function get_usuario_de_persona($id)
+    {
+        $this->db->select('id, id_persona, username, password, activo');
+        $this->db->from('usuario');
+        $this->db->where('usuario.id_persona='.$id);
+        
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }
