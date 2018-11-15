@@ -257,7 +257,7 @@ class Persona extends CI_Controller{
             //     $this->session->set_flashdata('eliminar', 'No se puede eliminar la persona. Error de dependencia');
             //     redirect('persona/index');
             // }
-            $this->Persona_model->update($id,array('activo'=>0));
+            $this->Persona_model->update_persona($id,array('activo'=>0));
             $this->session->set_flashdata('eliminar', 'Persona eliminada');
             redirect('persona/index');
         }
