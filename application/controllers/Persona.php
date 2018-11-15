@@ -18,6 +18,40 @@ class Persona extends CI_Controller{
         $this->load->model('Perfil_usuario_model');
         $this->load->model('inscripcion_materia_model');
     }
+    
+    public function cargar_y_configurar_googlemaps_library($busqueda_direccion=array()){
+        $this->load->library('Googlemaps');
+        $config['zoom'] = 'auto';
+        
+        $config['apiKey'] = '';
+        
+        if(count($busqueda_direccion)>0){
+            $config['places'] = TRUE;
+            $config['placesAutocompleteInputID'] = $busqueda_direccion['id_input_vista'];
+            $config['placesAutocompleteBoundsMap'] = TRUE; // set results biased towards the maps viewport
+            $config['placesAutocompleteOnChange'] = $busqueda_direccion['funcion_js_vista'];
+        }
+        
+        $this->googlemaps->initialize($config);
+    }
+    
+    
+    public function obtener_latlong_de_direccion(){
+        $direccion  = $this->input->post('direccion',true);
+        
+        if(!$gmaps || $gmaps == null){
+            $this->cargar_y_configurar_googlemaps_library();
+            $gmaps =  $this->googlemaps;
+        }
+        
+        $latlong = $gmaps->get_lat_long_from_address($direccion);
+        
+        $result = ['success' => '1','lat' => $latlong[0], 'long' => $latlong[1]];
+        echo json_encode($result);
+        exit;
+        //exit
+        
+    }
 
     /*
      * Listing of personas
@@ -26,7 +60,7 @@ class Persona extends CI_Controller{
     {
         $data['title']='Personas - CeciliaESMN';
         $data['page_title']='Personas';
-        setlocale(LC_TIME,"es_ES.UTF-8"); //fechas en espa�ol
+        setlocale(LC_TIME,"es_ES.UTF-8"); //fechas en espaï¿½ol
 
         $params['limit'] = RECORDS_PER_PAGE;
         $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
@@ -55,7 +89,11 @@ class Persona extends CI_Controller{
      */
     function add()
     {
-        $this->load->library('Google_maps');
+        $this->load->library('Googlemaps');
+        
+        $data_vista = array('id_input_vista'=>'field-PER_CALLE','funcion_js_vista'=>'cargar_datos_de_busqueda_direccion_gmaps()');
+        $this->cargar_y_configurar_googlemaps_library($data_vista);
+        
         $this->form_validation->set_rules('id_tipo_documento','Id Tipo Documento','required|integer');
         $this->form_validation->set_rules('numero_documento','Numero Documento','required|max_length[11]|integer');
         $this->form_validation->set_rules('nombre','Nombre','required|max_length[128]');
@@ -257,7 +295,7 @@ class Persona extends CI_Controller{
             //     $this->session->set_flashdata('eliminar', 'No se puede eliminar la persona. Error de dependencia');
             //     redirect('persona/index');
             // }
-            $this->Persona_model->update_persona($id,array('activo'=>0));
+            $this->Persona_model->update($id,array('activo'=>0));
             $this->session->set_flashdata('eliminar', 'Persona eliminada');
             redirect('persona/index');
         }
@@ -272,7 +310,7 @@ class Persona extends CI_Controller{
 
         $data['title']='Personas - CeciliaESMN';
         $data['page_title']='Estudiante - '.$data['persona']['nombre'].' '.$data['persona']['apellido'];
-        setlocale(LC_TIME,"es_ES.UTF-8"); //fechas en espa�ol
+        setlocale(LC_TIME,"es_ES.UTF-8"); //fechas en espaï¿½ol
 
         $params['limit'] = RECORDS_PER_PAGE;
         $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
