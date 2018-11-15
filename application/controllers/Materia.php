@@ -79,7 +79,7 @@ class Materia extends CI_Controller{
     {
       $data['title'] = 'Materia - ESMN';
       $data['page_title'] = 'Nueva Materia';
-      $data['all_carreras'] = $this->Carrera_model->get_all_carreras();
+      $data['all_carreras'] = $this->Carrera_model->get_all_carreras(array(),array('row'=>'carrera.activo','value'=>1));
 
       $this->load->view('templates/header',$data);
       $this->load->view('materia/add',$data);
@@ -127,7 +127,7 @@ class Materia extends CI_Controller{
         $data['title'] = 'Materia - ESMN';
         $data['page_title'] = 'Materia -> '.$data['materia']['nombre'];
 
-        $data['all_carreras'] = $this->Carrera_model->get_all_carreras();
+        $data['all_carreras'] = $this->Carrera_model->get_all_carreras(array(),array('row'=>'carrera.activo','value'=>1));
 
         $this->load->view('templates/header',$data);
         $this->load->view('materia/edit',$data);
@@ -148,9 +148,23 @@ class Materia extends CI_Controller{
     // Comprueba si la materia existe antes de intentar borrarla.
     if(isset($materia['id']))
     {
-      $this->Materia_model->delete_materia($id);
-      $this->session->set_flashdata('eliminar', 'Materia eliminada');
-      redirect('materia/index');
+      $this->load->model('Curso_model');
+      $this->load->model('Inscripcion_materia_model');
+      $this->load->model('Mesa_model');
+      $this->load->model('Materia_correlativa_model');
+
+      $cursos = $this->Curso_model->get_all_curso(array('row'=>'id_materia','value'=>$id));
+      $inscripciones = $this->Inscripcion_materia_model->get_all_inscripcion_materia(array('row'=>'id_materia','value'=>$id));
+      $mesas = $this->Mesa_model->get_all_mesas(array('row'=>'id_materia','value'=>$id));
+      $correlativas = $this->Materia_correlativa_model->get_all_materias_correlativas(array(),array('row'=>'id_materia','value'=>$id));
+
+      if (empty($cursos) && empty($inscripciones) && empty($mesas) && empty($correlativas)) {
+        $this->Materia_model->update_materia($id,array('activo'=>0));
+        $this->session->set_flashdata('eliminar', 'Materia eliminada');
+        redirect('materia/index');
+      }else {
+        show_error('No puede eliminar la materia, existen cursos, inscripciones, mesas o correlativas asociadas.');
+      }
     }
     else
     show_error('La materia que está intentando eliminar no existe.');

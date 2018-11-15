@@ -64,7 +64,9 @@ var dtable = $('#zero_config').DataTable({
       }
     });
  }
- mostrarTodo();
+ if ($.fn.DataTable.isDataTable( '#zero_config' )) {
+   mostrarTodo();
+ }
 
 // For select 2
 $(".select2").select2({width: 'resolve'});

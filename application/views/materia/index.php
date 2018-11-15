@@ -26,7 +26,7 @@
 
                   <tbody>
                     <?php foreach($materias as $m){ ?>
-                      <tr>
+                      <tr data-activo="<?= $m['activo']; ?>" class="<?= ($m['activo']==0) ? 'row-disabled' : ''; ?>">
                         <td><?php echo $m['id_carrera']." - ".$m['nombre_carrera']; ?></td>
                         <td><?php echo $m['nombre_materia']; ?></td>
                         <td><?php echo $m['codigo_anio']; ?></td>

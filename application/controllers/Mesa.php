@@ -78,8 +78,8 @@ class Mesa extends CI_Controller{
     else
     {
 
-      $data['all_materias'] = $this->Materia_model->get_all_materias();
-      $data['personas'] = $this->Persona_model->get_all_personas();
+      $data['all_materias'] = $this->Materia_model->get_all_materias(array(),array('row'=>'materia.activo','value'=>1));
+      $data['personas'] = $this->Persona_model->get_all_personas(array(),array('row'=>'persona.activo','value'=>1));
 
       $data['title'] = 'Nueva mesa - ESMN';
       $data['page_title'] = 'Nueva mesa de examen';
@@ -163,7 +163,7 @@ class Mesa extends CI_Controller{
     // check if the mesa exists before trying to delete it
     if(isset($mesa['id_mesa']))
     {
-      $this->Mesa_model->delete_mesa($id);
+      $this->Mesa_model->update_mesa($id,array('activo'=>0));
       redirect('mesa/index');
     }
     else

@@ -22,9 +22,13 @@ class Inscripcion_materia_model extends CI_Model
   /*
   * Get all inscripcion_materia
   */
-  function get_all_inscripcion_materia()
+  function get_all_inscripcion_materia($where = array())
   {
     $this->db->order_by('id', 'desc');
+    if(isset($where) && !empty($where))
+    {
+      $this->db->where($where['row'], $where['value']);
+    }
     return $this->db->get('inscripcion_materia')->result_array();
   }
 

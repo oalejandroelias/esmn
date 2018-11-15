@@ -22,7 +22,7 @@ class Tribunal_model extends CI_Model
     /*
      * Get all tribunales
      */
-    function get_all_tribunales()
+    function get_all_tribunales($where = array())
     {
       $this->db->select('id_mesa,id_persona,nombre,apellido');
       $this->db->from('tribunal');

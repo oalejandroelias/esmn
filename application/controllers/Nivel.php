@@ -118,7 +118,8 @@ class Nivel extends CI_Controller{
         {
           $carreras = $this->Carrera_model->get_all_carreras(array(),array('row'=>'id_nivel','value'=>$id));
           if (empty($carreras)) {
-            $this->Nivel_model->delete_nivel($id);
+            // $this->Nivel_model->delete_nivel($id);
+            $this->Nivel_model->update_nivel($id,array('activo'=>0));
             $this->session->set_flashdata('eliminar', 'Nivel eliminado');
             redirect('nivel/index');
           }else {

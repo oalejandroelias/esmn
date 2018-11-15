@@ -31,7 +31,7 @@ class Persona_model extends CI_Model
     /*
      * Get all personas
      */
-    function get_all_personas($params = array())
+    function get_all_personas($params = array(),$where = array())
     {
       $this->db->select('persona.id AS "persona_id",tipo_documento.nombre AS "tipo_documento",
                         ciudad.nombre AS "ciudad",numero_documento,persona.nombre,apellido,
@@ -43,6 +43,10 @@ class Persona_model extends CI_Model
       if(isset($params) && !empty($params))
       {
         $this->db->limit($params['limit'], $params['offset']);
+      }
+      if(isset($where) && !empty($where))
+      {
+        $this->db->where($where['row'], $where['value']);
       }
       $query = $this->db->get();
       return $query->result_array();

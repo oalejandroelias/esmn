@@ -40,7 +40,7 @@
 														<a href="<?php echo site_url('mesa/edit/'.$m['id_mesa']); ?>" class="btn btn-info btn-sm">Editar</a>
 													<?php }?>
 													<?php if($boton_remove){?>
-														<a href="<?php echo site_url('mesa/remove/'.$m['id_mesa']); ?>" data-confirm="remove" class="btn btn-danger btn-sm">Eliminar</a>
+														<a href="<?php echo site_url('mesa/remove/'.$m['id_mesa']); ?>" data-confirm="remove" class="btn btn-danger btn-sm">Deshabilitar</a>
 													<?php }?>
 
 												</td>
