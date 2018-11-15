@@ -21,7 +21,7 @@
           <tbody>
             <?php foreach ($asistencia as $row): ?>
               <tr>
-                <td data-asistencia="" data-idpersona="<?= $row['id_persona']; ?>" onclick="check_all(this);">
+                <td data-asistencia='<?= json_encode($diascursado); ?>' data-idpersona="<?= $row['id_persona']; ?>" onclick="check_all(this);">
                   <?= $row['nombre'].' '.$row['apellido'].' ('.$row['numero_documento'].')'; ?>
                 </td>
                 <?php foreach ($diascursado as $dia): ?>
@@ -37,6 +37,7 @@
                    ?>
                   <td class="<?= $classtd; ?>" title="<?= $dia->state_description; ?>"
                     data-state="<?= $dia->state; ?>"
+                    data-fecha="<?= $dia->date; ?>"
                     data-onclick="<?= $dataonclick; ?>"
                     data-idpersona="<?= $row['id_persona']; ?>">
                     <span class="<?= $classmdi; ?>"></span>

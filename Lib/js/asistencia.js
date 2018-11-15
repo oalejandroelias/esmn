@@ -23,6 +23,10 @@ $("td[data-onclick='1']").click(function(){
   }
 });
 
+function updateJson(state,fecha,id_persona){
+  var obj = $("td[data-idpersona='"+id_persona+"']")
+}
+
 function check_all(td){
   var id_persona = $(td).attr("data-idpersona");
   var tds = $("td[data-idpersona='"+id_persona+"'][data-onclick='1']");
