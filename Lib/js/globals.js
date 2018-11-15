@@ -64,7 +64,8 @@ var dtable = $('#zero_config').DataTable({
       }
     });
  }
- if ($.fn.DataTable.isDataTable( '#zero_config' )) {
+ //if ($.fn.DataTable.isDataTable( '#zero_config' )) {
+ if (dtable.rows().length>0) {
    mostrarTodo();
  }
 

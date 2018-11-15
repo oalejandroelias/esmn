@@ -1,5 +1,29 @@
 <?php echo form_open_multipart('persona/add',array("class"=>"form-horizontal","onsubmit"=>"return validar_form(this);")); ?>
 
+<?php 
+    $marker = array();
+    $coordenadas_direccion = array();
+    
+    
+    $coordenadas_direccion=  $this->googlemaps->get_lat_long_from_address($domicilio);
+    
+    $marker['position'] = $coordenadas_direccion[0].', '.$coordenadas_direccion[1];
+    $marker['draggable'] = true;
+    $marker['ondragend'] = 'guardar_coordenadas(event.latLng.lat(), event.latLng.lng());';
+    
+    
+    
+    $this->googlemaps->add_marker($marker);
+    $mapa = $this->googlemaps->create_map();
+    echo $mapa['js'];
+    $mapa_mostrar = '<label class="col-sm-3 control-label"><b>Ubicación</b></label><i>Puede arrastrar el marcador para posicionar exactamente la ubicación</i>' . $mapa['html'];
+    
+    ?>
+        
+        <script>
+       	var datos_mapa='<?php echo $mapa_mostrar;?>';
+        </script>
+
 <div class="row">
 	<div class="col-md-3 col-12">
 		<div class="card" style="max-width:250px;max-height:250px">
@@ -77,7 +101,7 @@
 					</div>
 					<div class="col-sm-6 col-12">
 						<label for="domicilio" class="control-label">Domicilio</label>
-						<input type="text" maxlength="128" name="domicilio" value="<?php echo $this->input->post('domicilio'); ?>" class="form-control" id="domicilio" />
+						<input type="text" maxlength="128" id="field-PER_CALLE" name="domicilio" value="<?php echo $this->input->post('domicilio'); ?>" class="form-control" id="domicilio" />
 						<span class="text-danger"><?php echo form_error('domicilio');?></span>
 					</div>
 				</div>

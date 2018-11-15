@@ -37,7 +37,7 @@ class Persona extends CI_Controller{
     
     
     public function obtener_latlong_de_direccion(){
-        $direccion  = $this->input->post('direccion',true);
+        $direccion  = $this->input->post('domicilio',true);
         
         if(!$gmaps || $gmaps == null){
             $this->cargar_y_configurar_googlemaps_library();
