@@ -36,12 +36,16 @@ class Nivel_model extends CI_Model
     /*
      * obtiene todos los niveles
      */
-    function get_all_niveles($params = array())
+    function get_all_niveles($params = array(),$where = array())
     {
         $this->db->order_by('id', 'desc');
         if(isset($params) && !empty($params))
         {
             $this->db->limit($params['limit'], $params['offset']);
+        }
+        if(isset($where) && !empty($where))
+        {
+          $this->db->where($where['row'], $where['value']);
         }
         return $this->db->get('nivel')->result_array();
     }

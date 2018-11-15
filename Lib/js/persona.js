@@ -133,5 +133,50 @@ $(document).ready(function(){
   }
 
   // si el checkbox generar_usuario viene por post:
-  if ($('#checkbox_generar_usuario')[0].checked) box_checked();
+  if ($('#checkbox_generar_usuario').length>0)
+	  {
+	  	if ($('#checkbox_generar_usuario')[0].checked) box_checked();
+	  }
+  else{
+	  $('#formdiv_permisos').toggleClass('d-none');
+	  $('#formdiv_usuario').toggleClass('d-none');
+	  $('#formdiv_permisos select').attr('required',true);
+	    $('#formdiv_usuario input').attr('required',true);
+  }
+  
+  if($('#checkbox_generar_usuario').length){ 
+		$('#checkbox_generar_usuario').after(datos_mapa);
+	}
 });
+
+function cargar_datos_de_busqueda_direccion_gmaps(){
+    $.ajax({
+    		type: 'POST',
+            url: base_url+'index.php/Persona/obtener_latlong_de_direccion' ,
+	        data: {direccion: $('#field-PER_CALLE').val() },
+	        dataType: 'html',
+	        success: function(data){
+	        	var response =  jQuery.parseJSON(data);
+	        	if(response.success==1){
+                
+                       var myLatlng = new google.maps.LatLng(response.lat, response.long);
+                
+                     var markerOptions = {
+            				map: map,
+            				position: myLatlng,
+            				draggable: true
+            			};
+            			marker_0 = createMarker_map(markerOptions);
+                        map.setCenter(myLatlng);
+                
+	        	}
+              }
+	   });
+                
+}
+
+
+function guardar_coordenadas(nueva_latitud,nueva_longitud){
+$('#field-PER_LONGITUD_DOMICILIO').val(nueva_longitud);
+$('#field-PER_LATITUD_DOMICILIO').val(nueva_latitud);    
+}

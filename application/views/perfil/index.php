@@ -30,15 +30,21 @@
                           <?php
                           $obj=json_decode($p['permisos']);
                           ?>
-                          <?php foreach ($obj as $key => $value) {
-                            echo '<span class="font-weight-bold">('.$key.': </span>';
-                            $methods = array();
-
-                            foreach ($value as $method => $name) {
-                              array_push($methods,$method);
-                            }
-                            echo '<span class="text-info">'.implode(',',$methods).'</span><span class="font-weight-bold">); </span>';
-                          } ?>
+                          <?php 
+                          if($obj != null)
+                          {
+                              foreach ($obj as $key => $value) {
+                                echo '<span class="font-weight-bold">('.$key.': </span>';
+                                $methods = array();
+    
+                                foreach ($value as $method => $name) {
+                                  array_push($methods,$method);
+                                }
+                                echo '<span class="text-info">'.implode(',',$methods).'</span><span class="font-weight-bold">); </span>';
+                              }
+                          }
+                          ?>
+                          
                         </td>
                         <td>
 

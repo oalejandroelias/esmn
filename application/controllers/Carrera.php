@@ -12,6 +12,7 @@ class Carrera extends CI_Controller{
     is_logged_in();
     validar_acceso();
     $this->load->model('Carrera_model');
+    $this->load->model('Nivel_model');
   }
 
   /*
@@ -66,8 +67,7 @@ class Carrera extends CI_Controller{
     }
     else
     {
-      $this->load->model('Nivel_model');
-      $data['all_niveles'] = $this->Nivel_model->get_all_niveles();
+      $data['all_niveles'] = $this->Nivel_model->get_all_niveles(array(),array('row'=>'activo','value'=>1));
 
       $data['title'] = 'Carrera - ESMN';
       $data['page_title'] = 'Carrera';
@@ -119,8 +119,7 @@ class Carrera extends CI_Controller{
       }
       else
       {
-        $this->load->model('Nivel_model');
-        $data['all_niveles'] = $this->Nivel_model->get_all_niveles();
+        $data['all_niveles'] = $this->Nivel_model->get_all_niveles(array(),array('row'=>'activo','value'=>1));
 
         $data['title'] = 'Carrera - ESMN';
         $data['page_title'] = 'Carrera';
@@ -143,9 +142,16 @@ class Carrera extends CI_Controller{
     // Comprueba si existe la carrera antes de intentar borrarla.
     if(isset($carrera['id']))
     {
-      $this->Carrera_model->delete_carrera($id);
-      $this->session->set_flashdata('eliminar', 'Carrera eliminada');
-      redirect('carrera/index');
+      $this->load->model('Materia_model');
+      $materias = $this->Materia_model->get_all_materias(array(),array('row'=>'id_carrera','value'=>$id));
+      if (empty($materias)) {
+        // $this->Nivel_model->delete_nivel($id);
+        $this->Carrera_model->update_carrera($id,array('activo'=>0));
+        $this->session->set_flashdata('eliminar', 'Carrera eliminada');
+        redirect('carrera/index');
+      }else {
+        show_error('No puede eliminar la carrera, existen materias asociadas.');
+      }
     }
     else
     show_error('La carrera que quiere borrar no existe.');

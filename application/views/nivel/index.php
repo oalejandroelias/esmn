@@ -20,7 +20,7 @@
 
 									<tbody>
 										<?php foreach($niveles as $n){ ?>
-											<tr>
+											<tr data-activo="<?= $n['activo']; ?>" class="<?= ($n['activo']==0) ? 'row-disabled' : ''; ?>">
 												<td><?php echo $n['nombre']; ?></td>
 												<td>
 

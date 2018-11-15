@@ -35,7 +35,7 @@ class Materia_model extends CI_Model
     {
         $this->db->select('materia.id AS "materia_id",id_carrera,carrera.nombre AS "nombre_carrera",
         materia.nombre AS "nombre_materia",codigo_anio,regimen_cursado,carga_horaria,
-        regimen_aprobacion,tipo_catedra');
+        regimen_aprobacion,tipo_catedra, materia.activo');
         $this->db->from('materia');
         $this->db->join('carrera', 'carrera.id = materia.id_carrera', 'inner');
         $this->db->order_by('materia_id', 'desc');

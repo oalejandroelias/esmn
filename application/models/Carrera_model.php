@@ -37,7 +37,7 @@ class Carrera_model extends CI_Model
   {
 
     $this->db->select('carrera.id AS "carrera_id",carrera.nombre AS "carrera_nombre",
-    id_nivel,nivel.nombre AS "nivel",acta,fecha');
+    id_nivel,nivel.nombre AS "nivel",acta,fecha,carrera.activo');
     $this->db->from('carrera');
     $this->db->join('nivel', 'nivel.id = carrera.id_nivel', 'inner');
     $this->db->order_by('carrera_id', 'desc');

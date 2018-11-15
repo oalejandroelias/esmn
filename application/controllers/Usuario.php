@@ -145,16 +145,22 @@ class Usuario extends CI_Controller{
   /*
   * Deleting usuario
   */
-  function remove($id)
+  function remove($id,$activo)
   {
     $usuario = $this->Usuario_model->get_usuario($id);
 
     // check if the usuario exists before trying to delete it
     if(isset($usuario['usuario_id']))
     {
-      $this->Perfil_usuario_model->delete_perfil_usuario($id);
-      $this->Usuario_model->delete_usuario($id);
-      $this->session->set_flashdata('eliminar', 'Usuario eliminado');
+      // $this->Perfil_usuario_model->delete_perfil_usuario($id);
+      // $this->Usuario_model->delete_usuario($id);
+      $params = array('activo'=>$activo);
+      $this->Usuario_model->update_usuario($id,$params);
+      if ($activo == 0) {
+        $this->session->set_flashdata('deshabilitar', 'Usuario deshabilitado');
+      }else {
+        $this->session->set_flashdata('habilitar', 'Usuario habilitado');
+      }
       redirect('usuario/index');
     }
     else

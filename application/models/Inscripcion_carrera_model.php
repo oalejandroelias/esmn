@@ -26,7 +26,8 @@ class Inscripcion_carrera_model extends CI_Model
   {
     $this->db->select('id_persona,id_carrera,carrera.nombre AS "nombre_carrera",
     persona.nombre AS "nombre_persona",persona.apellido AS "apellido_persona",
-    tipo_documento.nombre AS "tipo_documento_nombre", numero_documento');
+    tipo_documento.nombre AS "tipo_documento_nombre", numero_documento,
+    carrera.activo AS "carrera_activo",persona.activo AS "persona_activo"');
     $this->db->from('inscripcion_carrera');
     $this->db->join('carrera', 'carrera.id = inscripcion_carrera.id_carrera', 'inner');
     $this->db->join('persona', 'persona.id = inscripcion_carrera.id_persona', 'inner');

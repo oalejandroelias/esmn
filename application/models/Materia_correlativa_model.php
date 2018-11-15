@@ -39,12 +39,16 @@ class Materia_correlativa_model extends CI_Model
     /*
     * Get all materias_correlativas
     */
-    function get_all_materias_correlativas($params = array())
+    function get_all_materias_correlativas($params = array(),$where = array())
     {
       $this->db->order_by('id_materia', 'desc');
       if(isset($params) && !empty($params))
       {
         $this->db->limit($params['limit'], $params['offset']);
+      }
+      if(isset($where) && !empty($where))
+      {
+        $this->db->where($where['row'], $where['value']);
       }
       return $this->db->get('materia_correlativa')->result_array();
     }

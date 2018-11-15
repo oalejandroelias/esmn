@@ -32,7 +32,7 @@
                       <?php
 
                       foreach($personas as $p){ ?>
-                        <tr>
+                        <tr data-activo="<?= $p['activo']; ?>" class="<?= ($p['activo']==0) ? 'row-disabled' : ''; ?>">
                           <td><?php echo $p['tipo_documento'].' - '.$p['numero_documento']; ?></td>
                           <!-- <td><?php echo $p['numero_documento']; ?></td> -->
                           <!-- <td><?php echo $p['ciudad']; ?></td> -->

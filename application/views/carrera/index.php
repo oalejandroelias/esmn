@@ -29,7 +29,7 @@
 
 									<tbody>
 										<?php foreach($carreras as $c){ ?>
-											<tr>
+											<tr data-activo="<?= $c['activo']; ?>" class="<?= ($c['activo']==0) ? 'row-disabled' : ''; ?>">
 												<td><?php echo $c['carrera_id']; ?></td>
 												<td><?php echo $c['nivel']; ?></td>
 												<td><?php echo $c['carrera_nombre']; ?></td>
