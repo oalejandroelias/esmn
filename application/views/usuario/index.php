@@ -40,7 +40,7 @@
                           <?php } ?>
                           <?php if($boton_remove){?>
                             <?php if ($u['activo'] == 0): ?>
-                              <a href="<?= site_url('Usuario/remove/'.$u['usuario_id'].'/1'); ?>" data-confirm="remove" class="btn btn-success btn-sm"><i class="mdi mdi-eye-off"></i> Habilitar</a>
+                              <a href="<?= site_url('Usuario/remove/'.$u['usuario_id'].'/1'); ?>" data-confirm="remove" class="btn btn-success btn-sm"><i class="mdi mdi-eye"></i> Habilitar</a>
                               <?php else: ?>
                                 <a href="<?= site_url('Usuario/remove/'.$u['usuario_id'].'/0'); ?>" data-confirm="remove" class="btn btn-danger btn-sm"><i class="mdi mdi-eye-off"></i> Deshabilitar</a>
                             <?php endif; ?>

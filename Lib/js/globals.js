@@ -59,7 +59,7 @@ var dtable = $('#zero_config').DataTable({
       var row = dtable.row( index );
       var rowNode = row.node();
       var activo = $(rowNode).attr('data-activo');
-      if (activo!=1) {
+      if (typeof activo !== typeof undefined && activo !== false && activo!=1) {
         $(row.node()).toggleClass("d-none");
       }
     });
