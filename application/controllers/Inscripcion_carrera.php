@@ -23,7 +23,7 @@ class Inscripcion_carrera extends CI_Controller{
     $data['title'] = 'Inscripciones a Carreras - ESMN';
     $data['page_title'] = 'Inscripciones a Carreras';
 
-    $data['inscripcion_carrera'] = $this->Inscripcion_carrera_model->get_all_inscripcion_carrera();
+    $data['inscripcion_carrera'] = $this->Inscripcion_carrera_model->get_all_inscripcion_carrera(array('row'=>'carrera.activo','value'=>1));
 
     //Botones de acciones
     $data['boton_edit']=validar_botones('edit');
@@ -58,8 +58,8 @@ class Inscripcion_carrera extends CI_Controller{
       $data['title'] = 'Nueva Inscripcion - ESMN';
       $data['page_title'] = 'Inscribir un alumno a una carrera';
 
-      $data['personas'] = $this->Persona_model->get_all_personas();
-      $data['all_carreras'] = $this->Carrera_model->get_all_carreras();
+      $data['personas'] = $this->Persona_model->get_all_personas(array(),array('row'=>'persona.activo','value'=>1));
+      $data['all_carreras'] = $this->Carrera_model->get_all_carreras(array(),array('row'=>'carrera.activo','value'=>1));
 
       $this->load->view('templates/header',$data);
       $this->load->view('inscripcion_carrera/add',$data);
@@ -95,8 +95,8 @@ class Inscripcion_carrera extends CI_Controller{
         $data['title'] = 'Editar Inscripcion - ESMN';
         $data['page_title'] = 'Editar inscripcion a carrera';
 
-        $data['personas'] = $this->Persona_model->get_all_personas();
-        $data['all_carreras'] = $this->Carrera_model->get_all_carreras();
+        $data['personas'] = $this->Persona_model->get_all_personas(array(),array('row'=>'persona.activo','value'=>1));
+        $data['all_carreras'] = $this->Carrera_model->get_all_carreras(array(),array('row'=>'carrera.activo','value'=>1));
 
         $this->load->view('templates/header',$data);
         $this->load->view('inscripcion_carrera/edit',$data);
