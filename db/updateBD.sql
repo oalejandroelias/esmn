@@ -164,3 +164,6 @@ FOREIGN KEY (`id_estado_final`) REFERENCES `estado_inscripcion_final`(`id`) ON D
 -- 13/11/18 edicion tabla asiste, eliminar tabla asistencia
 ALTER TABLE `asiste` ADD `id_estado` INT(11) NULL AFTER `id_curso`, ADD `asistencia` TEXT NULL COMMENT 'json' AFTER `id_estado`, ADD INDEX (`id_estado`) USING BTREE;
 ALTER TABLE `asiste` ADD CONSTRAINT `asiste_ibfk_3` FOREIGN KEY (`id_estado`) REFERENCES `estado_asistencia`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- 16/11/18 borrar tabla asistencia, se usa solo "asiste"
+DROP TABLE `asistencia`

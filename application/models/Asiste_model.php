@@ -14,9 +14,22 @@ class Asiste_model extends CI_Model
     /*
      * Get asiste by id
      */
-    function get_asiste($id)
+    function get_asiste($id_curso)
     {
-        return $this->db->get_where('asiste',array('id'=>$id))->row_array();
+      $this->db->select('asiste.id,asiste.id_estado,asiste.id_persona,
+      persona.nombre,persona.apellido,numero_documento,id_materia,id_periodo,materia.nombre AS "materia",
+      curso.id AS "id_curso",diascursado,diassemana,curso.activo,tipo_periodo.descripcion AS "periodo",desde,hasta');
+      $this->db->from('asiste');
+      $this->db->join('persona', 'persona.id = asiste.id_persona','right');
+      $this->db->join('curso', 'curso.id = asiste.id_curso','right');
+      $this->db->join('materia', 'materia.id = curso.id_materia','right');
+      $this->db->join('periodo', 'periodo.id = curso.id_periodo','right');
+      $this->db->join('tipo_periodo', 'tipo_periodo.id = periodo.id_tipo_periodo','right');
+      $this->db->order_by('persona.nombre', 'desc');
+      $this->db->where(array('curso.id' => $id_curso, 'asiste.id IS NOT NULL' => NULL));
+
+      $query = $this->db->get();
+      return $query->result_array();
     }
 
     /*
@@ -40,9 +53,9 @@ class Asiste_model extends CI_Model
     /*
      * function to update asiste
      */
-    function update_asiste($id,$params)
+    function update_asiste($id_persona,$id_curso,$params)
     {
-        $this->db->where('id',$id);
+        $this->db->where(array('id_persona'=>$id_persona,'id_curso'=>$id_curso));
         return $this->db->update('asiste',$params);
     }
 

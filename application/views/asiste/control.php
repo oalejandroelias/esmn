@@ -1,4 +1,3 @@
-<!-- <?php print_r(json_decode($asistencia[0]['diascursado'])); ?> -->
 <div class="row">
   <div class="col-12">
     <div class="card">
@@ -6,6 +5,16 @@
         <h5 class="card-title font-weight-bold">Controlar asistencia</h5>
         <p class="text-info"><span><i class="mdi mdi-menu-right"></i></span>Haga click en las celdas para marcar asistencia o dejela en blanco en caso de inasistencia.</p>
         <p class="text-info"><span><i class="mdi mdi-menu-right"></i></span>Puede hacer click en el nombre del alumno para marcar todas las celdas de la fila correspondiente.</p>
+
+        <div class="col-12" id="">
+          <h5>Referencias:</h5>
+          <div class="row">
+            <div class="col-auto"><span class="mdi mdi-calendar-remove mdi-24 text-danger"></span>Feriado</div>
+            <div class="col-auto"><span class="mdi mdi-check mdi-24 text-info"></span>Asistencia Ok</div>
+            <div class="col-auto"><span class="mdi mdi-flag mdi-24 text-info"></span>Falta Justificada</div>
+            <div class="col-auto"><span class="mdi mdi-close mdi-24 text-secondary"></span>Inasistencia</div>
+          </div>
+        </div>
 
         <table class="table-responsive tabla-dias-cursado">
           <thead>
@@ -47,6 +56,14 @@
             <?php endforeach; ?>
           </tbody>
         </table>
+
+        <div class="form-group">
+          <div class="col-sm-offset-4 col-sm-8">
+            <input type="hidden" name="id_curso" value="<?= $curso['id']; ?>">
+            <button type="button" class="btn btn-success" onclick="guardar();">Guardar</button>
+            <a href="<?=site_url('curso/index'); ?>" class="btn btn-danger">Cancelar</a>
+          </div>
+        </div>
 
       </div>
     </div>
