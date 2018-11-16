@@ -72,9 +72,9 @@ class Inscripcion_materia extends CI_Controller{
       $data['title'] = 'Nueva Inscripcion - ESMN';
       $data['page_title'] = 'Inscribir un alumno a una mesa';
 
-      $data['personas'] = $this->Persona_model->get_all_personas();
-      $data['all_mesas'] = $this->Mesa_model->get_all_mesas();
-      $data['all_materias'] = $this->Materia_model->get_all_materias();
+      $data['personas'] = $this->Persona_model->get_all_personas(array(),array('row'=>'persona.activo','value'=>1));
+      $data['all_mesas'] = $this->Mesa_model->get_all_mesas(array('row'=>'mesa.activo','value'=>1));
+      $data['all_materias'] = $this->Materia_model->get_all_materias(array(),array('row'=>'materia.activo','value'=>1));
       $data['all_estados'] = $this->Estado_inscripcion_inicial_model->get_all_estado_inscripcion_inicial_mesa();
 
       $this->load->view('templates/header',$data);
@@ -116,9 +116,9 @@ class Inscripcion_materia extends CI_Controller{
         $data['title'] = 'Nueva Inscripcion - ESMN';
         $data['page_title'] = 'Editar inscripcion de mesa';
 
-        $data['personas'] = $this->Persona_model->get_all_personas();
-        $data['all_mesas'] = $this->Mesa_model->get_all_mesas();
-        $data['all_materias'] = $this->Materia_model->get_all_materias();
+        $data['personas'] = $this->Persona_model->get_all_personas(array(),array('row'=>'persona.activo','value'=>1));
+        $data['all_mesas'] = $this->Mesa_model->get_all_mesas(array('row'=>'mesa.activo','value'=>1));
+        $data['all_materias'] = $this->Materia_model->get_all_materias(array(),array('row'=>'materia.activo','value'=>1));
         $data['all_estados'] = $this->Estado_inscripcion_inicial_model->get_all_estado_inscripcion_inicial_mesa();
         $this->load->view('templates/header',$data);
         $this->load->view('inscripcion_materia/edit',$data);
@@ -204,10 +204,10 @@ class Inscripcion_materia extends CI_Controller{
       $data['title'] = 'Nueva Inscripcion - ESMN';
       $data['page_title'] = 'Inscribir un alumno a un curso';
 
-      $data['personas'] = $this->Persona_model->get_all_personas();
-      $data['all_materias'] = $this->Materia_model->get_all_materias();
+      $data['personas'] = $this->Persona_model->get_all_personas(array(),array('row'=>'persona.activo','value'=>1));
+      $data['all_materias'] = $this->Materia_model->get_all_materias(array(),array('row'=>'materia.activo','value'=>1));
       $data['all_estados_inicial'] = $this->Estado_inscripcion_inicial_model->get_all_estado_inscripcion_inicial();
-      $data['all_cursos'] = $this->Curso_model->get_all_curso();
+      $data['all_cursos'] = $this->Curso_model->get_all_curso(array('row'=>'curso.activo','value'=>1));
 
       $data['js'] = array('inscripcion_cursado.js');
 
@@ -255,10 +255,10 @@ class Inscripcion_materia extends CI_Controller{
         $data['title'] = 'Editar Inscripcion - ESMN';
         $data['page_title'] = 'Editar inscripcion al curso';
 
-        $data['personas'] = $this->Persona_model->get_all_personas();
-        $data['all_materias'] = $this->Materia_model->get_all_materias();
+        $data['personas'] = $this->Persona_model->get_all_personas(array(),array('row'=>'persona.activo','value'=>1));
+        $data['all_materias'] = $this->Materia_model->get_all_materias(array(),array('row'=>'materia.activo','value'=>1));
         $data['all_estados_inicial'] = $this->Estado_inscripcion_inicial_model->get_all_estado_inscripcion_inicial();
-        $data['all_cursos'] = $this->Curso_model->get_all_curso();
+        $data['all_cursos'] = $this->Curso_model->get_all_curso(array('row'=>'curso.activo','value'=>1));
 
         $this->load->view('templates/header',$data);
         $this->load->view('inscripcion_materia/edit_inscripcion_cursado',$data);
