@@ -152,8 +152,8 @@ $(document).ready(function(){
 function cargar_datos_de_busqueda_direccion_gmaps(){
     $.ajax({
     		type: 'POST',
-            url: 'http://localhost/esmn/index.php/Persona/obtener_latlong_de_direccion' ,
-	        data: {direccion: $('#field-PER_CALLE').val()},
+            url: base_url+'index.php/Persona/obtener_latlong_de_direccion' ,
+	        data: {direccion: $('#field-PER_CALLE').val() },
 	        dataType: 'html',
 	        success: function(data){
 	        	var response =  jQuery.parseJSON(data);

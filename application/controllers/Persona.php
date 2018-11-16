@@ -23,9 +23,7 @@ class Persona extends CI_Controller{
         $this->load->library('Googlemaps');
         $config['zoom'] = 'auto';
         
-        $config['apiKey'] = 'AIzaSyC4rZigdVYVLesCSP95tkJqxBbIw-Gvzcg';
-        //AIzaSyB8hRc2zUfN4AY-bipUlI6fStLeKE37_SU
-        //AIzaSyC4rZigdVYVLesCSP95tkJqxBbIw-Gvzcg
+        $config['apiKey'] = '';
         
         if(count($busqueda_direccion)>0){
             $config['places'] = TRUE;
@@ -73,7 +71,7 @@ class Persona extends CI_Controller{
         $this->pagination->initialize($config);
 
         $data['personas'] = $this->Persona_model->get_all_personas($params);
-        //$data['all_tipo_documento'] = $this->Tipo_documento_model->get_all_tipo_documento();
+        $data['all_tipo_documento'] = $this->Tipo_documento_model->get_all_tipo_documento();
         $data['all_ciudades'] = $this->Ciudad_model->get_all_ciudades();
 
         //Botones de acciones

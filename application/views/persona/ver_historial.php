@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-12">
 
-	<h5 class="card-title"><?php echo $all_tipo_documento[$persona['id_tipo_documento']]['nombre'].': '. $persona['numero_documento'];?></h5>
+	<h5 class="card-title"><?php echo $all_tipo_documento[0]['nombre'].': '. $persona['numero_documento'];?></h5>
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">Cursados</h5>
