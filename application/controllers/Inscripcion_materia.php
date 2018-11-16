@@ -243,7 +243,7 @@ class Inscripcion_materia extends CI_Controller{
           'id_estado_inicial' => 1,
           'calificacion' => null,
           'fecha' => null,
-          'id_estado_inicial' => 0
+            'id_estado_inicial' => $data['inscripcion_materia']['id_estado_inicial']
         );
 
         $this->Inscripcion_materia_model->update_inscripcion_materia($id,$params);

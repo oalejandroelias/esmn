@@ -88,6 +88,7 @@ class Persona_model extends CI_Model
         $this->db->join('persona', 'inscripcion_materia.id_persona=persona.id', 'inner');
         $this->db->join('curso', 'curso.id=inscripcion_materia.id_curso', 'inner');
         $this->db->join('materia', 'materia.id = curso.id_materia', 'inner');
+        $this->db->join('tipo_documento', 'persona.id_tipo_documento = tipo_documento.id', 'inner');
         $this->db->join('estado_inscripcion_inicial', 'estado_inscripcion_inicial.id = inscripcion_materia.id_estado_inicial', 'left');
         $this->db->join('estado_inscripcion_final', 'estado_inscripcion_final.id = inscripcion_materia.id_estado_final', 'left');
 
