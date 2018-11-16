@@ -144,19 +144,19 @@ $(document).ready(function(){
 	    $('#formdiv_usuario input').attr('required',true);
   }
   
-  if($('#checkbox_generar_usuario').length){ 
-		$('#checkbox_generar_usuario').after(datos_mapa);
+  if($('#tabla_mapa').length){ 
+		$('#tabla_mapa').after(datos_mapa);
 	}
 });
 
 function cargar_datos_de_busqueda_direccion_gmaps(){
     $.ajax({
     		type: 'POST',
-            url: ruta+'/index.php/Persona/obtener_latlong_de_direccion' ,
+            url: ruta+'/Persona/obtener_latlong_de_direccion',
 	        data: {direccion: $('#field-PER_CALLE').val()},
 	        dataType: 'html',
 	        success: function(data){
-	        	var response =  jQuery.parseJSON(data);
+	        	var response =  data;
 	        	if(response.success==1){
                 
                        var myLatlng = new google.maps.LatLng(response.lat, response.long);
@@ -176,7 +176,9 @@ function cargar_datos_de_busqueda_direccion_gmaps(){
 }
 
 
-function guardar_coordenadas(nueva_latitud,nueva_longitud){
-$('#field-PER_LONGITUD_DOMICILIO').val(nueva_longitud);
-$('#field-PER_LATITUD_DOMICILIO').val(nueva_latitud);    
-}
+
+
+//function guardar_coordenadas(nueva_latitud,nueva_longitud){
+//$('#field-PER_LONGITUD_DOMICILIO').val(nueva_longitud);
+//$('#field-PER_LATITUD_DOMICILIO').val(nueva_latitud);    
+//}

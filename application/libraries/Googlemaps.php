@@ -2216,12 +2216,29 @@ class Googlemaps {
 			
 		}
 		
-		if ($this->https) { $data_location = 'https://'; }else{ $data_location = 'http://'; }
-		$data_location .= "maps.google.com/maps/api/geocode/json?address=".urlencode(utf8_encode($address))."&sensor=".$this->sensor."&key=".strip_tags($this->apiKey);
-		if ($this->region!="" && strlen($this->region)==2) { $data_location .= "&region=".$this->region; }
-		$data = file_get_contents($data_location);
+// 		if ($this->https) { $data_location = 'https://'; }else{ $data_location = 'http://'; }
+// 		$data_location .= "maps.google.com/maps/api/geocode/json?address=".urlencode(utf8_encode($address))."&sensor=".$this->sensor."&key=".strip_tags($this->apiKey);
+// 		if ($this->region!="" && strlen($this->region)==2) { $data_location .= "&region=".$this->region; }
+// 		$data = file_get_contents($data_location);
 		
-		$data = json_decode($data);
+// 		$data = json_decode($data);
+
+		if ($this->https) { $data_location = 'https://'; }else{ $data_location = 'https://'; }
+		//$data_location .= "maps.google.com/maps/api/geocode/json?address=".urlencode(utf8_encode($address))."&sensor=".$this->sensor;
+		$data_location .= "maps.google.com/maps/api/geocode/json?address=".urlencode($address)."&sensor=".$this->sensor."&key=".strip_tags($this->apiKey);
+		if ($this->region!="" && strlen($this->region)==2) { $data_location .= "&region=".$this->region; }
+		
+		$url=str_replace(array("\r", "\n"), '', $data_location) ;
+		$url2 = 'https://maps.google.com/maps/api/geocode/json?address=Corrientes%2C+Argentina&sensor=false&key=AIzaSyC4rZigdVYVLesCSP95tkJqxBbIw-Gvzcg';
+		//$data = json_decode(file_get_contents($url));
+		if($url === $url2)
+		{
+		    $a=1;
+		}
+		else{
+		    
+		}
+		$data = file_get_contents('https://maps.google.com/maps/api/geocode/json?address=Corrientes%2C+Argentina&sensor=false&key=AIzaSyC4rZigdVYVLesCSP95tkJqxBbIw-Gvzcg');
 		
 		if ($data->status=="OK") 
 		{

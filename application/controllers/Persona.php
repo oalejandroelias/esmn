@@ -23,9 +23,7 @@ class Persona extends CI_Controller{
         $this->load->library('Googlemaps');
         $config['zoom'] = 'auto';
         
-        $config['apiKey'] = 'AIzaSyC4rZigdVYVLesCSP95tkJqxBbIw-Gvzcg';
-        //AIzaSyB8hRc2zUfN4AY-bipUlI6fStLeKE37_SU
-        //AIzaSyC4rZigdVYVLesCSP95tkJqxBbIw-Gvzcg
+        $config['apiKey'] = 'AIzaSyBVZDs2iHSsTy8S--XKdIJE3bHN8i45u5U';
         
         if(count($busqueda_direccion)>0){
             $config['places'] = TRUE;
@@ -39,7 +37,7 @@ class Persona extends CI_Controller{
     
     
     public function obtener_latlong_de_direccion(){
-        $direccion  = $this->input->post('domicilio',true);
+        $direccion  = $this->input->post('direccion');
         
         if(!$gmaps || $gmaps == null){
             $this->cargar_y_configurar_googlemaps_library();
@@ -91,7 +89,7 @@ class Persona extends CI_Controller{
      */
     function add()
     {
-        $this->load->library('Googlemaps');
+        //$this->load->library('Googlemaps');
         
         $data_vista = array('id_input_vista'=>'field-PER_CALLE','funcion_js_vista'=>'cargar_datos_de_busqueda_direccion_gmaps()');
         $this->cargar_y_configurar_googlemaps_library($data_vista);

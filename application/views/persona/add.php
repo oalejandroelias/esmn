@@ -5,9 +5,10 @@
     $coordenadas_direccion = array();
     
     
-    $coordenadas_direccion=  $this->googlemaps->get_lat_long_from_address($domicilio);
+//    $coordenadas_direccion= $this->googlemaps->get_lat_long_from_address('Corrientes, Argentina');
     
-    $marker['position'] = $coordenadas_direccion[0].', '.$coordenadas_direccion[1];
+    //$marker['position'] = $coordenadas_direccion[0].', '.$coordenadas_direccion[1];
+    $marker['position'] = '-68.0575352 , -38.9419357' ;
     $marker['draggable'] = true;
     $marker['ondragend'] = 'guardar_coordenadas(event.latLng.lat(), event.latLng.lng());';
     
@@ -135,6 +136,12 @@
 							id="checkbox_generar_usuario" type="checkbox" value="0">
 							<label class="custom-control-label" for="checkbox_generar_usuario">Generar Usuario</label>
 						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-12"></label>
+					<div class="col-md-12" id="tabla_mapa">
+						
 					</div>
 				</div>
 
