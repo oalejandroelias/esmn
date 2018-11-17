@@ -118,22 +118,33 @@ class Curso extends CI_Controller{
     // print_r($data['curso']);exit;
     if(isset($data['curso']['curso_id']))
     {
-      $this->form_validation->set_rules('id_materia','Materia','required|integer');
-      $this->form_validation->set_rules('id_periodo','Periodo','required|integer');
-      $this->form_validation->set_rules('dayWeek[]','Dayweek','required');
-      $this->form_validation->set_rules('diascursado','Json dias de cursado','required');
+      $this->load->model('Asiste_model');
+      $data['asiste'] = $this->Asiste_model->get_all_asiste(array('row'=>'id_curso','value'=>$data['curso']['curso_id']));
+      $data['can_edit'] = (empty($data['asiste'])) ? true : false;
+
+      if ($data['can_edit']) {
+        $this->form_validation->set_rules('id_materia','Materia','required|integer');
+        $this->form_validation->set_rules('id_periodo','Periodo','required|integer');
+        $this->form_validation->set_rules('dayWeek[]','Dayweek','required');
+        $this->form_validation->set_rules('diascursado','Json dias de cursado','required');
+      }
       $this->form_validation->set_rules('id_persona[]','Catedra','required');
 
       if($this->form_validation->run())
       {
-        $params = array(
-          'id_materia' => $this->input->post('id_materia',TRUE),
-          'id_periodo' => $this->input->post('id_periodo',TRUE),
-          'diascursado' => $this->input->post('diascursado',TRUE),
-          'diassemana' => json_encode($this->input->post('dayWeek[]')),
-        );
+        if ($data['can_edit']) {
+          $params = array(
+            'id_materia' => $this->input->post('id_materia',TRUE),
+            'id_periodo' => $this->input->post('id_periodo',TRUE),
+            'diascursado' => $this->input->post('diascursado',TRUE),
+            'diassemana' => json_encode($this->input->post('dayWeek[]')),
+          );
+          $update_curso = $this->Curso_model->update_curso($id,$params);
+        }else {
+          $update_curso = true;
+        }
 
-        if($this->Curso_model->update_curso($id,$params)){
+        if($update_curso){
           $this->Catedra_model->delete_catedra($data['curso']['curso_id']); //eliminar todas las coincidencias y recrearlas
           $catedra = $this->input->post('id_persona[]',TRUE);
 

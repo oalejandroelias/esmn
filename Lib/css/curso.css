@@ -16,10 +16,27 @@
 }
 .tabla-dias-cursado th.rotate > div {
   -webkit-transform: translate(25px, 51px) rotate(315deg);
-          transform: translate(25px, 51px) rotate(315deg);
+  transform: translate(25px, 51px) rotate(315deg);
   width: 30px;
 }
 .tabla-dias-cursado th.rotate > div > span {
   border-bottom: 1px solid #ccc;
   padding: 0px 5px;
+}
+.div-dias-cursado{
+  top: 50%;
+  left: 20%;
+  box-shadow: 0 2px 4px 1px #222;
+  background-color: #343a40e6 !important;
+  z-index: 1;
+}
+.table-blur{
+  background: rgba(215, 215, 215, 0.27);
+  filter: blur(1px);
+  -o-filter: blur(1px);
+  -ms-filter: blur(1px);
+  -moz-filter: blur(1px);
+  -webkit-filter: blur(1px);
+  opacity: 0.6;
+  pointer-events: none;
 }

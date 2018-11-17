@@ -93,17 +93,20 @@
 					<p>Referencias: <span class="badge badge-danger">F: feriado</span></p>
 				</div>
 
-				<table id="tablaDiasCursado" class="table-responsive tabla-dias-cursado mb-4">
-					<thead>
+				<div>
+					<table id="tablaDiasCursado" class="table-responsive tabla-dias-cursado mb-4">
+						<thead>
+							<tr></tr>
+							<!-- <tr>
+							<th class="rotete90lr" style="height:50px;"><span class="rotete90lr">2018-03-05 Martes</span></th>
+						</tr> -->
+					</thead>
+					<tbody>
 						<tr></tr>
-						<!-- <tr>
-						<th class="rotete90lr" style="height:50px;"><span class="rotete90lr">2018-03-05 Martes</span></th>
-					</tr> -->
-				</thead>
-				<tbody>
-					<tr></tr>
-				</tbody>
-			</table>
+					</tbody>
+				</table>
+
+			</div>
 
 		</div>
 
@@ -117,7 +120,7 @@
 						foreach($personas as $p)
 						{
 							$selected = (is_array($this->input->post('id_persona')) && in_array($p['persona_id'],$this->input->post('id_persona'))) ? ' selected="selected"' : "";
-								echo '<option value="'.$p['persona_id'].'" '.$selected.'>'.$p['nombre'].' '.$p['apellido'].' ('.$p['numero_documento'].')</option>';
+							echo '<option value="'.$p['persona_id'].'" '.$selected.'>'.$p['nombre'].' '.$p['apellido'].' ('.$p['numero_documento'].')</option>';
 						}
 						?>
 					</select>

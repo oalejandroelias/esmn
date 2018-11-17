@@ -78,7 +78,7 @@
       <div class="form-group mt-3">
         <div class="col-sm-offset-4 col-sm-8">
           <input type="hidden" name="id_curso" value="<?= $curso['id']; ?>">
-          <button type="button" class="btn btn-success" onclick="guardar();">Guardar</button>
+          <button type="button" class="btn btn-success" onclick="guardar();" data-modify='' disabled>Guardar</button>
           <a href="<?=site_url('curso/index'); ?>" class="btn btn-danger">Cancelar</a>
         </div>
       </div>

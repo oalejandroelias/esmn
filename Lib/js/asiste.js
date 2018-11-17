@@ -1,6 +1,7 @@
 // cambiar iconos de las celdas.
 // realizar llamada a updateJson para actualizar asistencia de la persona
 $("td[data-onclick='1']").click(function(){
+  $("button[data-modify]").attr('disabled',false);
   var actual_state = parseInt($(this).attr('data-state'));
   var id_persona = $(this).attr('data-idpersona');
   var fecha = $(this).attr('data-fecha');
@@ -62,6 +63,7 @@ function check_all(td){
 // guardar cambios.
 // se actualizan los dias "clases normales" no marcados como inasistencias
 function guardar(){
+  $("button[data-modify]").attr('disabled',true);
   var tdPersonas = $("td[data-idpersona][data-asistencia]");
   var id_curso = $("input[name='id_curso']").val();
 

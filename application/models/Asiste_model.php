@@ -35,9 +35,13 @@ class Asiste_model extends CI_Model
     /*
      * Get all asiste
      */
-    function get_all_asiste()
+    function get_all_asiste($where = array())
     {
         $this->db->order_by('id', 'desc');
+        if(isset($where) && !empty($where))
+        {
+          $this->db->where($where['row'], $where['value']);
+        }
         return $this->db->get('asiste')->result_array();
     }
 
