@@ -2229,8 +2229,8 @@ class Googlemaps {
 		if ($this->region!="" && strlen($this->region)==2) { $data_location .= "&region=".$this->region; }
 		
 		$url=str_replace(array("\r", "\n"), '', $data_location) ;
-		$url2 = 'https://maps.google.com/maps/api/geocode/json?address=Corrientes%2C+Argentina&sensor=false&key=AIzaSyC4rZigdVYVLesCSP95tkJqxBbIw-Gvzcg';
-		//$data = json_decode(file_get_contents($url));
+		//$url2 = 'https://maps.google.com/maps/api/geocode/json?address=Corrientes%2C+Argentina&sensor=false&key=AIzaSyC4rZigdVYVLesCSP95tkJqxBbIw-Gvzcg';
+		$data = json_decode(file_get_contents($url));
 		if($url === $url2)
 		{
 		    $a=1;
@@ -2238,7 +2238,7 @@ class Googlemaps {
 		else{
 		    
 		}
-		$data = file_get_contents('https://maps.google.com/maps/api/geocode/json?address=Corrientes%2C+Argentina&sensor=false&key=AIzaSyC4rZigdVYVLesCSP95tkJqxBbIw-Gvzcg');
+		//$data = file_get_contents('https://maps.google.com/maps/api/geocode/json?address=Corrientes%2C+Argentina&sensor=false&key=AIzaSyC4rZigdVYVLesCSP95tkJqxBbIw-Gvzcg');
 		
 		if ($data->status=="OK") 
 		{

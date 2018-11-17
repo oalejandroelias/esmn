@@ -22,8 +22,10 @@ class Persona extends CI_Controller{
     public function cargar_y_configurar_googlemaps_library($busqueda_direccion=array()){
         $this->load->library('Googlemaps');
         $config['zoom'] = 'auto';
-        
-        $config['apiKey'] = 'AIzaSyBVZDs2iHSsTy8S--XKdIJE3bHN8i45u5U';
+        //AIzaSyCOnpDL1OhCIE-a2oxHx2WVUTMNOhn5aSY
+        //AIzaSyBVZDs2iHSsTy8S--XKdIJE3bHN8i45u5U
+        //AIzaSyC4rZigdVYVLesCSP95tkJqxBbIw-Gvzcg
+        $config['apiKey'] = 'AIzaSyC4rZigdVYVLesCSP95tkJqxBbIw-Gvzcg';
         
         if(count($busqueda_direccion)>0){
             $config['places'] = TRUE;

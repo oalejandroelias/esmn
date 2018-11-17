@@ -152,7 +152,7 @@ $(document).ready(function(){
 function cargar_datos_de_busqueda_direccion_gmaps(){
     $.ajax({
     		type: 'POST',
-            url: ruta+'/Persona/obtener_latlong_de_direccion',
+            url: ruta+'Persona/obtener_latlong_de_direccion',
 	        data: {direccion: $('#field-PER_CALLE').val()},
 	        dataType: 'html',
 	        success: function(data){

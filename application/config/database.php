@@ -74,7 +74,7 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array( //con pdo
-	'dsn'	=> 'mysql:host=localhost;dbname=esmn',
+	'dsn'	=> 'mysql:host=localhost;dbname=esmn2',
 	'hostname' => '',
 	'username' => 'esmn',
 	'password' => 'esmn123',
