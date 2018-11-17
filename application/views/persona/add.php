@@ -5,7 +5,7 @@
     $coordenadas_direccion = array();
     
     
-    $coordenadas_direccion= $this->googlemaps->get_lat_long_from_address('Corrientes, Argentina');
+    $coordenadas_direccion= $this->googlemaps->get_lat_long_from_address('domicilio');
     
     $marker['position'] = $coordenadas_direccion[0].', '.$coordenadas_direccion[1];
     //$marker['position'] = '-68.0575352 , -38.9419357' ;

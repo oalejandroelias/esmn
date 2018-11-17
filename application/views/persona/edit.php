@@ -1,4 +1,30 @@
 <?php echo form_open_multipart('persona/edit/'.$persona['id'],array("class"=>"form-horizontal","onsubmit"=>"return validar_form(this);")); ?>
+
+<?php 
+    $marker = array();
+    $coordenadas_direccion = array();
+    
+    
+    $coordenadas_direccion= $this->googlemaps->get_lat_long_from_address($persona['domicilio']);
+    
+    $marker['position'] = $coordenadas_direccion[0].', '.$coordenadas_direccion[1];
+    //$marker['position'] = '-68.0575352 , -38.9419357' ;
+    $marker['draggable'] = true;
+    $marker['ondragend'] = 'guardar_coordenadas(event.latLng.lat(), event.latLng.lng());';
+    
+    
+    
+    $this->googlemaps->add_marker($marker);
+    $mapa = $this->googlemaps->create_map();
+    echo $mapa['js'];
+    $mapa_mostrar = '<label class="col-sm-3 control-label"><b>Ubicación</b></label><i>Puede arrastrar el marcador para posicionar exactamente la ubicación</i>' . $mapa['html'];
+    
+    ?>
+        
+        <script>
+       	var datos_mapa='<?php echo $mapa_mostrar;?>';
+        </script>
+
 <fieldset>
 
   <div class="row">
@@ -78,7 +104,7 @@
             </div>
             <div class="col-sm-6 col-12">
               <label for="domicilio" class="control-label">Domicilio</label>
-              <input type="text" maxlength="128" name="domicilio" value="<?php echo ($this->input->post('domicilio') ? $this->input->post('domicilio') : $persona['domicilio']); ?>" class="form-control" id="domicilio" />
+              <input type="text" maxlength="128" id="field-PER_CALLE" name="domicilio" value="<?php echo ($this->input->post('domicilio') ? $this->input->post('domicilio') : $persona['domicilio']); ?>" class="form-control" id="domicilio" />
               <span class="text-danger"><?php echo form_error('domicilio');?></span>
             </div>
           </div>
@@ -135,6 +161,13 @@
 <!--						<span class="text-danger"><?php echo form_error('id_perfil');?></span>
 <!-- 					</div> -->
 <!-- 				</div> -->
+
+				<div class="form-group">
+					<label class="col-md-12"></label>
+					<div class="col-md-12" id="tabla_mapa">
+						
+					</div>
+				</div>
 
           <div class="form-group">
             <div class="col-sm-offset-4 col-sm-8">

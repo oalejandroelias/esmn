@@ -40,6 +40,7 @@ class Persona extends CI_Controller{
     
     public function obtener_latlong_de_direccion(){
         $direccion  = $this->input->post('direccion');
+        $gmaps='';
         
         if(!$gmaps || $gmaps == null){
             $this->cargar_y_configurar_googlemaps_library();
@@ -197,6 +198,8 @@ class Persona extends CI_Controller{
      */
     function edit($id)
     {
+        $data_vista = array('id_input_vista'=>'field-PER_CALLE','funcion_js_vista'=>'cargar_datos_de_busqueda_direccion_gmaps()');
+        $this->cargar_y_configurar_googlemaps_library($data_vista);
         // check if the persona exists before trying to edit it
         $data['persona'] = $this->Persona_model->get_persona($id);
         

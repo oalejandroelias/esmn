@@ -156,7 +156,7 @@ function cargar_datos_de_busqueda_direccion_gmaps(){
 	        data: {direccion: $('#field-PER_CALLE').val()},
 	        dataType: 'html',
 	        success: function(data){
-	        	var response =  data;
+	        	var response =  jQuery.parseJSON(data);
 	        	if(response.success==1){
                 
                        var myLatlng = new google.maps.LatLng(response.lat, response.long);
@@ -166,8 +166,9 @@ function cargar_datos_de_busqueda_direccion_gmaps(){
             				position: myLatlng,
             				draggable: true
             			};
-            			marker_0 = createMarker_map(markerOptions);
-                        map.setCenter(myLatlng);
+	                     marker_0.setPosition(null);
+	         			 marker_0 = createMarker_map(markerOptions);
+	                     map.setCenter(myLatlng);
                 
 	        	}
               }
