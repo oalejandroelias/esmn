@@ -16,6 +16,7 @@
 											<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Tipo Catedra</th>
 											<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Estado</th>
 											<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Alumno</th>
+											<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Asistencia</th>
 											<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Calificación</th>
 											<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Acciones</th>
 										</tr>
@@ -28,6 +29,7 @@
 												<td><?php echo $i['tipo_catedra']; ?></td>
 												<td><?php echo $i['nombre_estado_inicial']; ?></td>
 												<td><?php echo $i['nombre_persona'].' '.$i['apellido_persona'].' - '.$i['numero_documento']; ?></td>
+												<td><?php echo ($i['porcentaje']) ? $i['porcentaje'].'%, '.$i['faltas'].' faltas' : ' - '; ?></td>
 												<td><?php echo $i['calificacion']; ?></td>
 												<td>
 
@@ -50,6 +52,7 @@
 											<th rowspan="1" colspan="1">Tipo Catedra</th>
 											<th rowspan="1" colspan="1">Estado</th>
 											<th rowspan="1" colspan="1">Alumno</th>
+											<th rowspan="1" colspan="1">Asistencia</th>
 											<th rowspan="1" colspan="1">Calificación</th>
 											<th rowspan="1" colspan="1">Acciones</th>
 										</tr>

@@ -34,14 +34,18 @@ class Inscripcion_materia_model extends CI_Model
 
   function get_all_inscripcion_materia_cursado()
   {
-    $this->db->select('inscripcion_materia.id AS "id_inscripcion_materia", id_persona, id_curso, id_carrera, tipo_catedra,
-    inscripcion_materia.id_materia, id_mesa, estado_inscripcion_inicial.nombre as nombre_estado_inicial, id_estado_final, calificacion,
-    materia.nombre AS "nombre_materia", persona.nombre AS "nombre_persona", persona.apellido AS "apellido_persona",
-    persona.numero_documento AS "numero_documento", estado_inscripcion_inicial.nombre AS "nombre_estado_cursado"');
+    $this->db->select('inscripcion_materia.id AS "id_inscripcion_materia",
+    inscripcion_materia.id_persona, inscripcion_materia.id_curso, id_carrera, tipo_catedra,
+    inscripcion_materia.id_materia, id_mesa, estado_inscripcion_inicial.nombre as nombre_estado_inicial,
+    id_estado_final, calificacion, materia.nombre AS "nombre_materia",
+    persona.nombre AS "nombre_persona", persona.apellido AS "apellido_persona",
+    persona.numero_documento AS "numero_documento", estado_inscripcion_inicial.nombre AS "nombre_estado_cursado",
+    porcentaje,faltas');
     $this->db->from('inscripcion_materia');
     $this->db->join('curso', 'inscripcion_materia.id_curso = curso.id', 'left');
     $this->db->join('materia ', 'inscripcion_materia.id_materia  = materia.id', 'left');
     $this->db->join('persona ', 'inscripcion_materia.id_persona  = persona.id', 'left');
+    $this->db->join('asiste', 'asiste.id_persona = persona.id', 'left');
     $this->db->join('estado_inscripcion_inicial ', 'inscripcion_materia.id_estado_inicial  = estado_inscripcion_inicial.id', 'left');
     $this->db->where('inscripcion_materia.id_curso IS NOT NULL');
     //$this->db->order_by('carrera_id', 'desc');
