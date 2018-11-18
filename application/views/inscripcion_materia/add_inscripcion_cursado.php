@@ -34,7 +34,7 @@
               {
                 $selected = ($curso['curso_id'] == $this->input->post('id_curso')) ? ' selected="selected"' : "";
 
-                echo '<option value="'.$curso['curso_id'].'" '.$selected.' data-idmateria="'.$curso['id_materia'].'">'.$curso['nombre'].' ('.$curso['curso_id'].')
+                echo '<option value="'.$curso['curso_id'].'" '.$selected.' data-idmateria="'.$curso['id_materia'].'">'.$curso['nombre'].' ('.$curso['id_carrera'].')
                 </option>';
               }
               ?>

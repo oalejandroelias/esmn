@@ -23,7 +23,7 @@
           </div>
         </div>
 
-  
+
         <div class="form-group">
           <label class="control-label">Cursado de Materia</label>
           <div class="col-sm-8 col-12">
@@ -34,20 +34,20 @@
               {
                   $selected = ($curso['curso_id'] == $inscripcion_materia['id_curso']) ? ' selected="selected"' : "";
 
-                  echo '<option value="'.$curso['curso_id'].'" '.$selected.'>'.$curso['nombre'].' ('.$curso['curso_id'].')
+                  echo '<option value="'.$curso['curso_id'].'" '.$selected.'>'.$curso['nombre'].' ('.$curso['id_carrera'].')
                         </option>';
-                  
+
               }
               ?>
             </select>
             <span class="text-danger"><?php echo form_error('id_curso');?></span>
           </div>
         </div>
-        
-        
-        
-        
-       
+
+
+
+
+
 
         <div class="form-group">
           <!-- botones para guardar o cancelar el agregar nivel -->
