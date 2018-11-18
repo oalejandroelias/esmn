@@ -16,7 +16,7 @@
 							{
 								$selected = ($carrera['carrera_id'] == $materia['id_carrera']) ? ' selected="selected"' : "";
 
-								echo '<option value="'.$carrera['carrera_id'].'" '.$selected.'>'.$carrera['carrera_nombre'].'</option>';
+								echo '<option value="'.$carrera['carrera_id'].'" '.$selected.'>'.$carrera['carrera_nombre'].' ('.$carrera['carrera_id'].')</option>';
 							}
 							?>
 						</select>
@@ -73,7 +73,7 @@
 					<div class="col-sm-4 col-12">
 						<label for="tipo_catedra" class="control-label">Tipo Catedra</label>
 						<?php $selected = ($this->input->post('tipo_catedra') ? $this->input->post('tipo_catedra') : $materia['tipo_catedra']); ?>
-						<select name="tipo_catedra" class="form-control">
+						<select name="tipo_catedra" class="form-control" required>
 							<option value="">Seleccione el tipo de Catedra</option>
 							<option value="Grupal" <?= ($selected=='Grupal' ? ' selected="selected"' : '') ?>>Grupal</option>
 							<option value="Individual" <?= ($selected=='Individual' ? ' selected="selected"' : '') ?>>Individual</option>
@@ -81,7 +81,7 @@
 						<span class="text-danger"><?php echo form_error('tipo_catedra');?></span>
 					</div>
 				</div>
-				
+
 				<div class="form-group">
 					<div class="col-sm-offset-4 col-sm-8">
 						<!-- botones para guardar o cancelar el editar nivel -->

@@ -16,7 +16,7 @@ class Asiste_model extends CI_Model
      */
     function get_asiste($id_curso)
     {
-      $this->db->select('asiste.id,asiste.id_estado,asiste.id_persona,asistencia,porcentaje,
+      $this->db->select('asiste.id,asiste.id_persona,asistencia,porcentaje,
       persona.nombre,persona.apellido,numero_documento,id_materia,id_periodo,materia.nombre AS "materia",
       curso.id AS "id_curso",diascursado,diassemana,curso.activo,tipo_periodo.descripcion AS "periodo",desde,hasta');
       $this->db->from('asiste');

@@ -95,7 +95,12 @@ function ver_equivalencias(id_materia){
         // mostrar materias en lista
         $('#modal_equivalencias div[data-respuesta=""]').append('<ul class="list-group list-group-flush"></ul>');
         for (var i = 0; i < obj.length; i++) {
-          $('#modal_equivalencias div[data-respuesta=""] ul').append('<li class="list-group-item">'+obj[i].nombre_equivalencia+' \
+          if (id_materia == obj[i].id_materia) {
+            var nombre = obj[i].nombre_equivalencia+' ('+obj[i].carrera_equivalencia+')';
+          }else {
+            var nombre = obj[i].nombre_materia+' ('+obj[i].carrera_materia+')';
+          }
+          $('#modal_equivalencias div[data-respuesta=""] ul').append('<li class="list-group-item">'+nombre+' \
           <button class="btn btn-danger btn-xs float-right" title="Eliminar" onclick="eliminar_equivalencia('+obj[i].id_materia+','+obj[i].id_equivalencia+',this)">\
           <i class="fas fa-times"></i>\
           </button>\
@@ -138,7 +143,7 @@ function eliminar_equivalencia(id_materia,id_equivalencia,btn){
             url:ruta+'materia_equivalente/remove',
             data: {id_materia,id_equivalencia},
             success:function (respuesta){
-              console.log(respuesta);
+              // console.log(respuesta);
               btn.parentElement.remove(); //eliminar <li>
             },
             error:function (respuesta){

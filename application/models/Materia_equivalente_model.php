@@ -9,7 +9,8 @@ class Materia_equivalente_model extends CI_Model
   function get_materia_equivalente($id_materia)
   {
     $query = $this->db->query("SELECT id_materia,id_equivalencia,
-      M1.nombre AS 'nombre_materia',M2.nombre AS 'nombre_equivalencia'
+      M1.nombre AS 'nombre_materia',M1.id_carrera AS 'carrera_materia',
+      M2.nombre AS 'nombre_equivalencia',M2.id_carrera AS 'carrera_equivalencia'
       FROM materia_equivalente
       JOIN materia AS M1 ON materia_equivalente.id_materia=M1.id
       JOIN materia AS M2 ON materia_equivalente.id_equivalencia=M2.id

@@ -51,13 +51,17 @@ class Materia extends CI_Controller{
   */
   function add()
   {
+    // if ($this->input->post('id_carrera') && $this->input->post('nombre')) {
+    $query = $this->Materia_model->get_materia_by_nombre($this->input->post('id_carrera'),$this->input->post('nombre'));
+    $is_unique = (empty($query)) ? '' :'|is_unique[materia.nombre]';
+    
     $this->form_validation->set_rules('id_carrera','Codigo de Plan','required|max_length[11]');
-    $this->form_validation->set_rules('nombre','Nombre','required|max_length[128]|is_unique[materia.nombre]');
+    $this->form_validation->set_rules('nombre','Nombre','required|max_length[128]'.$is_unique);
     $this->form_validation->set_rules('codigo_anio','Codigo Anio','max_length[24]');
     $this->form_validation->set_rules('regimen_cursado','Regimen Cursado','max_length[24]');
     $this->form_validation->set_rules('regimen_aprobacion','Regimen Aprobacion','max_length[24]');
     $this->form_validation->set_rules('carga_horaria','Carga Horaria','integer');
-    $this->form_validation->set_rules('tipo_catedra','Tipo Catedra','max_length[24]');
+    $this->form_validation->set_rules('tipo_catedra','Tipo Catedra','required|max_length[24]');
 
     if($this->form_validation->run())
     {
@@ -104,7 +108,7 @@ class Materia extends CI_Controller{
       $this->form_validation->set_rules('regimen_cursado','Regimen Cursado','max_length[24]');
       $this->form_validation->set_rules('regimen_aprobacion','Regimen Aprobacion','max_length[24]');
       $this->form_validation->set_rules('carga_horaria','Carga Horaria','integer');
-      $this->form_validation->set_rules('tipo_catedra','Tipo Catedra','max_length[24]');
+      $this->form_validation->set_rules('tipo_catedra','Tipo Catedra','required|max_length[24]');
 
       if($this->form_validation->run())
       {

@@ -167,3 +167,11 @@ ALTER TABLE `asiste` ADD CONSTRAINT `asiste_ibfk_3` FOREIGN KEY (`id_estado`) RE
 
 -- 16/11/18 borrar tabla asistencia, se usa solo "asiste"
 DROP TABLE `asistencia`
+
+-- 17/11/18 tabla estado_asistencia ya no se utiliza
+ALTER TABLE `asiste` DROP FOREIGN KEY `asiste_ibfk_3`;
+ALTER TABLE `asiste` DROP INDEX `id_estado`;
+ALTER TABLE `asiste` DROP `id_estado`;
+DROP TABLE `estado_asistencia`;
+-- agregar columna faltas a asiste
+ALTER TABLE `asiste` ADD `faltas` INT(2) NULL DEFAULT NULL AFTER `porcentaje`;

@@ -18,6 +18,9 @@ class Materia_model extends CI_Model
     {
         return $this->db->get_where('materia',array('id'=>$id))->row_array();
     }
+    function get_materia_by_nombre($id_carrera,$nombre_materia){
+      return $this->db->get_where('materia',array('id_carrera'=>$id_carrera,'nombre'=>$nombre_materia))->row_array();
+    }
 
     /*
      * obtiene las materias y las cuenta

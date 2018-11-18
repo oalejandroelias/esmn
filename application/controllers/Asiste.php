@@ -50,10 +50,12 @@ class Asiste extends CI_Controller{
         }
       }
       $porcentaje = round($diasAsiste*100/$diasNormales);
+      $faltas = $diasNormales - $diasAsiste;
 
       $params = array(
         'asistencia' => json_encode($asistencia),
         'porcentaje' => $porcentaje,
+        'faltas'=> $faltas,
       );
 
       $respuesta = $this->Asiste_model->update_asiste($id_persona,$id_curso,$params);

@@ -13,6 +13,7 @@
 										<tr role="row">
 
 											<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Curso</th>
+											<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Tipo Catedra</th>
 											<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Estado</th>
 											<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Alumno</th>
 											<th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Calificación</th>
@@ -23,7 +24,8 @@
 									<tbody>
 										<?php foreach($inscripcion_materia as $i){ ?>
 											<tr>
-												<td><?php echo $i['nombre_materia']; ?></td>
+												<td><?php echo $i['nombre_materia'].' ('.$i['id_carrera'].')'; ?></td>
+												<td><?php echo $i['tipo_catedra']; ?></td>
 												<td><?php echo $i['nombre_estado_inicial']; ?></td>
 												<td><?php echo $i['nombre_persona'].' '.$i['apellido_persona'].' - '.$i['numero_documento']; ?></td>
 												<td><?php echo $i['calificacion']; ?></td>
@@ -45,6 +47,7 @@
 									<tfoot>
 										<tr>
 											<th rowspan="1" colspan="1">Curso</th>
+											<th rowspan="1" colspan="1">Tipo Catedra</th>
 											<th rowspan="1" colspan="1">Estado</th>
 											<th rowspan="1" colspan="1">Alumno</th>
 											<th rowspan="1" colspan="1">Calificación</th>
