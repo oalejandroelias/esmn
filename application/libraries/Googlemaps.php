@@ -23,7 +23,7 @@ class Googlemaps {
 	var $apiKey						= 'AIzaSyB8hRc2zUfN4AY-bipUlI6fStLeKE37_SU'; 						// If you've got an API key you can use it by passing this parameter. Setup an API key here: https://code.google.com/apis/console
 	var $backgroundColor			= '';						// A hex color value shown as the map background when tiles have not yet loaded as the user pans
 	var $bicyclingOverlay			= FALSE;					// If set to TRUE will overlay bicycling information (ie. bike paths and suggested routes) onto the map by default 
-	var $center						= "37.4419, -122.1419";		// Sets the default center location (lat/long co-ordinate or address) of the map. If defaulting to the users location set to "auto"
+	var $center						= "-68.0575352 , -38.9419357";		// Sets the default center location (lat/long co-ordinate or address) of the map. If defaulting to the users location set to "auto"
 	var $class 						= '';						// A class name if wishing to style the map further through CSS. Can also be useful if wanting it to be responsive etc.
 	var $cluster					= FALSE;					// Whether to cluster markers
 	var $clusterGridSize			= 60;						// The grid size of a cluster in pixels
@@ -139,7 +139,7 @@ class Googlemaps {
 	var $drawingOnEdit				= array();					// An array of JS to execute when shapes are changed/resized, one array element per shape. For example: array('circle'=>'JS here', 'polygon'=>'JS here');
 	
 	var $places						= FALSE;					// Whether or not the map will be used to show places
-	var $placesLocation				= '';						// A point (lat/long co-ordinate or address) on the map if the search for places is based around a central point
+	var $placesLocation				= '-68.0575352 , -38.9419357';						// A point (lat/long co-ordinate or address) on the map if the search for places is based around a central point
 	var $placesRadius				= 0;						// The radius (in meters) if search is based around a central position
 	var $placesLocationSW			= '';						// If preferring to search within bounds the South-West position (latitude/longitude coordinate OR address)
 	var $placesLocationNE			= '';						// If preferring to search within bounds the North-East position (latitude/longitude coordinate OR address)

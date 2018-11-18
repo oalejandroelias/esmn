@@ -4,8 +4,16 @@
     $marker = array();
     $coordenadas_direccion = array();
     
-    
-    $coordenadas_direccion= $this->googlemaps->get_lat_long_from_address($persona['domicilio']);
+    //Si la dirección es nula le paso como base la direccion de Neuquen
+    if($persona['domicilio'] ==null)
+    {
+        $direccion="Neuquen";
+    }
+    else {
+        $direccion=$persona['domicilio'];
+    }
+    //$direccion="";
+    $coordenadas_direccion= $this->googlemaps->get_lat_long_from_address($direccion);
     
     $marker['position'] = $coordenadas_direccion[0].', '.$coordenadas_direccion[1];
     //$marker['position'] = '-68.0575352 , -38.9419357' ;

@@ -25,7 +25,7 @@ class Persona extends CI_Controller{
         //AIzaSyCOnpDL1OhCIE-a2oxHx2WVUTMNOhn5aSY
         //AIzaSyBVZDs2iHSsTy8S--XKdIJE3bHN8i45u5U
         //AIzaSyC4rZigdVYVLesCSP95tkJqxBbIw-Gvzcg
-        $config['apiKey'] = 'AIzaSyC4rZigdVYVLesCSP95tkJqxBbIw-Gvzcg';
+        $config['apiKey'] = 'AIzaSyCOnpDL1OhCIE-a2oxHx2WVUTMNOhn5aSY';
         
         if(count($busqueda_direccion)>0){
             $config['places'] = TRUE;
