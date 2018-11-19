@@ -41,7 +41,8 @@ class Inscripcion_carrera extends CI_Controller{
   function add()
   {
     $this->form_validation->set_rules('id_persona','Persona / Alumno','required|integer');
-    $this->form_validation->set_rules('id_carrera','Carrera / Plan','required|max_length[11]');
+    $this->form_validation->set_rules('id_carrera','Carrera / Plan','required|max_length[11]|callback_check_inscripcion['.$this->input->post('id_persona').']');
+    $this->form_validation->set_message('check_inscripcion','La persona ya se encuentra registrada en esta carrera!');
 
     if($this->form_validation->run())
     {
@@ -65,6 +66,12 @@ class Inscripcion_carrera extends CI_Controller{
       $this->load->view('inscripcion_carrera/add',$data);
       $this->load->view('templates/footer');
     }
+  }
+
+// comprobar que la persona no se encuentra ya inscripta
+  function check_inscripcion($id_carrera,$id_persona){
+    $query = $this->Inscripcion_carrera_model->get_inscripcion_carrera($id_persona,$id_carrera);
+    return (empty($query)) ? true : false;
   }
 
   /*
