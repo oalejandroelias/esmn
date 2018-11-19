@@ -90,6 +90,7 @@ function validar_form(form){
   }
   var date = year+"-"+month+"-"+day;
   $("#fecha_nacimiento").val(date);
+  $(form).find('button[type="submit"]').attr('disabled',true);
 }
 
 // obtener url de imagen y mostrarla en card_foto_perfil
@@ -143,8 +144,8 @@ $(document).ready(function(){
 	  $('#formdiv_permisos select').attr('required',true);
 	    $('#formdiv_usuario input').attr('required',true);
   }
-  
-  if($('#tabla_mapa').length){ 
+
+  if($('#tabla_mapa').length){
 		$('#tabla_mapa').after(datos_mapa);
 	}
 });
@@ -158,9 +159,9 @@ function cargar_datos_de_busqueda_direccion_gmaps(){
 	        success: function(data){
 	        	var response =  jQuery.parseJSON(data);
 	        	if(response.success==1){
-                
+
                        var myLatlng = new google.maps.LatLng(response.lat, response.long);
-                
+
                      var markerOptions = {
             				map: map,
             				position: myLatlng,
@@ -169,11 +170,11 @@ function cargar_datos_de_busqueda_direccion_gmaps(){
 	                     marker_0.setPosition(null);
 	         			 marker_0 = createMarker_map(markerOptions);
 	                     map.setCenter(myLatlng);
-                
+
 	        	}
               }
 	   });
-                
+
 }
 
 
@@ -181,5 +182,5 @@ function cargar_datos_de_busqueda_direccion_gmaps(){
 
 //function guardar_coordenadas(nueva_latitud,nueva_longitud){
 //$('#field-PER_LONGITUD_DOMICILIO').val(nueva_longitud);
-//$('#field-PER_LATITUD_DOMICILIO').val(nueva_latitud);    
+//$('#field-PER_LATITUD_DOMICILIO').val(nueva_latitud);
 //}

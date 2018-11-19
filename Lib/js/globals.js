@@ -84,6 +84,12 @@ $('#zero_config').on('click','a[data-confirm="remove"]',function(){
   return false;
 });
 
+// deshabilitar botones de guardado para evitar datos repetidos
+function disableBtn(btn){
+  $(btn).attr('disabled',true);
+  return;
+}
+
 // traducir dias
 // day = nombre corto o largo en ingles (Mon,Thu,etc)
 // mode puede ser respuesta en nombre 'corto' o 'largo'

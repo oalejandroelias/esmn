@@ -16,4 +16,9 @@ class Test extends CI_Controller {
 	public function get_all_methods(){
 
 	}
+	public function files(){
+		$file_path=APPPATH.'../files/images/5840913713_a1943b3afd_b2.jpg';
+		// var_dump(filetype($file_path));
+		var_dump(finfo_file(finfo_open(FILEINFO_MIME_TYPE), $file_path));
+	}
 }

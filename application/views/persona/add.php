@@ -1,26 +1,26 @@
 <?php echo form_open_multipart('persona/add',array("class"=>"form-horizontal","onsubmit"=>"return validar_form(this);")); ?>
 
-<?php 
+<?php
     $marker = array();
     $coordenadas_direccion = array();
-    
-    
+
+
     $coordenadas_direccion= $this->googlemaps->get_lat_long_from_address('neuquen');
-    
+
     $marker['position'] = $coordenadas_direccion[0].', '.$coordenadas_direccion[1];
     //$marker['position'] = '-68.0575352 , -38.9419357' ;
     $marker['draggable'] = true;
     $marker['ondragend'] = 'guardar_coordenadas(event.latLng.lat(), event.latLng.lng());';
-    
-    
-    
+
+
+
     $this->googlemaps->add_marker($marker);
     $mapa = $this->googlemaps->create_map();
     echo $mapa['js'];
-    $mapa_mostrar = '<label class="col-sm-3 control-label"><b>Ubicación</b></label><i>Puede arrastrar el marcador para posicionar exactamente la ubicación</i>' . $mapa['html'];
-    
+    $mapa_mostrar = '<label class="col-sm-3 control-label"><b>Ubicaciï¿½n</b></label><i>Puede arrastrar el marcador para posicionar exactamente la ubicaciï¿½n</i>' . $mapa['html'];
+
     ?>
-        
+
         <script>
        	var datos_mapa='<?php echo $mapa_mostrar;?>';
         </script>
@@ -141,7 +141,7 @@
 				<div class="form-group">
 					<label class="col-md-12"></label>
 					<div class="col-md-12" id="tabla_mapa">
-						
+
 					</div>
 				</div>
 
