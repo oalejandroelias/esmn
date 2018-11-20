@@ -183,7 +183,7 @@ class Inscripcion_materia extends CI_Controller{
         'id_mesa' => null,
         'id_estado_inicial' => 1, // 1 = CURSANDO
         'calificacion' => null,
-        'fecha' =>null,
+         'fecha' =>date('Y-m-d'),
         'id_estado_final' => null,
       );
 

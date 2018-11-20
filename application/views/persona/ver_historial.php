@@ -21,6 +21,7 @@
                         <!-- <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Domicilio</th> -->
                         <!-- <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Telefono</th> -->
                         <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Estado</th>
+                        <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Fecha</th>
                         <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Nota</th>
                         <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Estado de aprobación</th>
                       </tr>
@@ -36,6 +37,7 @@
                             <td><?php echo $dato['materia_nombre']; ?></td>
                         	<td><?php echo $dato['id_carrera']; ?></td>
                         	<td><?php echo $dato['nombre_inicial']; ?></td>
+                        	<td><?php echo $dato['fecha']; ?></td>
                         	<td><?php echo $dato['calificacion']; ?></td>
                         	<td><?php echo $dato['final_nombre']; ?></td>
                         </tr>
@@ -46,16 +48,17 @@
 
                     <tfoot>
                       <tr>
-                        <th rowspan="1" colspan="1">Documento</th>
+                        <th rowspan="1" colspan="1">materia</th>
                         <!-- <th rowspan="1" colspan="1">Numero de Documento</th> -->
                         <!-- <th rowspan="1" colspan="1">Ciudad</th> -->
-                        <th rowspan="1" colspan="1">Nombre y Apellido</th>
+                        <th rowspan="1" colspan="1">ID-Carrera</th>
                         <!-- <th rowspan="1" colspan="1">Apellido</th> -->
                         <!-- <th rowspan="1" colspan="1">Domicilio</th> -->
                         <!-- <th rowspan="1" colspan="1">Telefono</th> -->
-                        <th rowspan="1" colspan="1">Email</th>
-                        <th rowspan="1" colspan="1">Fecha de Nacimiento</th>
-                        <th rowspan="1" colspan="1">Acciones</th>
+                        <th rowspan="1" colspan="1">Estado</th>
+                        <th rowspan="1" colspan="1">Fecha</th>
+                        <th rowspan="1" colspan="1">Nota</th>
+                        <th rowspan="1" colspan="1">Estado de aprobación</th>
                       </tr>
                     </tfoot>
 
@@ -95,6 +98,7 @@
                         <!-- <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Domicilio</th> -->
                         <!-- <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Telefono</th> -->
                         <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Estado</th>
+                        <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Fecha</th>
                         <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Nota</th>
                         <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Estado de aprobación</th>
                       </tr>
@@ -110,6 +114,7 @@
                             <td><?php echo $dato['materia_nombre']; ?></td>
                         	<td><?php echo $dato['id_carrera']; ?></td>
                         	<td><?php echo $dato['nombre_inicial']; ?></td>
+                        	<td><?php echo $dato['fecha']; ?></td>
                         	<td><?php echo $dato['calificacion']; ?></td>
                         	<td><?php echo $dato['final_nombre']; ?></td>
                         </tr>
@@ -123,13 +128,14 @@
                         <th rowspan="1" colspan="1">Documento</th>
                         <!-- <th rowspan="1" colspan="1">Numero de Documento</th> -->
                         <!-- <th rowspan="1" colspan="1">Ciudad</th> -->
-                        <th rowspan="1" colspan="1">Nombre y Apellido</th>
+                        <th rowspan="1" colspan="1">ID-Carrera</th>
                         <!-- <th rowspan="1" colspan="1">Apellido</th> -->
                         <!-- <th rowspan="1" colspan="1">Domicilio</th> -->
                         <!-- <th rowspan="1" colspan="1">Telefono</th> -->
-                        <th rowspan="1" colspan="1">Email</th>
-                        <th rowspan="1" colspan="1">Fecha de Nacimiento</th>
-                        <th rowspan="1" colspan="1">Acciones</th>
+                        <th rowspan="1" colspan="1">Estado</th>
+                        <th rowspan="1" colspan="1">Fecha</th>
+                        <th rowspan="1" colspan="1">Nota</th>
+                        <th rowspan="1" colspan="1">Estado de aprobación</th>
                       </tr>
                     </tfoot>
 

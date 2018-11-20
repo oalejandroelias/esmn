@@ -84,7 +84,7 @@ class Persona_model extends CI_Model
     {
         $this->db->select('persona.id AS persona_id, inscripcion_materia.id as inscripcion_materia_id, materia.nombre as materia_nombre,
                             materia.id_carrera as id_carrera, estado_inscripcion_inicial.nombre as nombre_inicial, inscripcion_materia.calificacion,
-                            estado_inscripcion_final.nombre as final_nombre');
+                            estado_inscripcion_final.nombre as final_nombre, inscripcion_materia.fecha');
         $this->db->from('inscripcion_materia');
         $this->db->join('persona', 'inscripcion_materia.id_persona=persona.id', 'inner');
         $this->db->join('curso', 'curso.id=inscripcion_materia.id_curso', 'inner');
@@ -110,7 +110,7 @@ class Persona_model extends CI_Model
     {
         $this->db->select('persona.id AS persona_id, inscripcion_materia.id as inscripcion_materia_id, materia.nombre as materia_nombre,
                             materia.id_carrera as id_carrera, estado_inscripcion_inicial.nombre as nombre_inicial, inscripcion_materia.calificacion,
-                            estado_inscripcion_final.nombre as final_nombre');
+                            estado_inscripcion_final.nombre as final_nombre, inscripcion_materia.fecha');
         $this->db->from('inscripcion_materia');
         $this->db->join('persona', 'inscripcion_materia.id_persona=persona.id', 'inner');
         //$this->db->join('curso', 'curso.id=inscripcion_materia.id_curso', 'inner');
