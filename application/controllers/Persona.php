@@ -331,8 +331,18 @@ class Persona extends CI_Controller{
     $config['total_rows'] = $this->Persona_model->get_all_personas_count();
     $this->pagination->initialize($config);
 
-    $data['datos_persona'] = $this->Persona_model->get_historial_persona($id);
+    $data['datos_persona'] = $this->Persona_model->get_historial_persona_curso($id);
+    $data['datos_mesas'] = $this->Persona_model->get_historial_persona_mesa($id);
+    
     $data['all_tipo_documento'] = $this->Tipo_documento_model->get_all_tipo_documento();
+    $data['tipo_documento']="";
+    foreach ($data['all_tipo_documento'] as $tipo_doc)
+    {
+        if($tipo_doc['id'] == $data['persona']['id_tipo_documento'])
+        {
+            $data['tipo_documento']=$tipo_doc['nombre'];
+        }
+    }
     $data['all_ciudades'] = $this->Ciudad_model->get_all_ciudades();
 
     //Botones de acciones

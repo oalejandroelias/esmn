@@ -67,7 +67,7 @@
               <?php
               foreach($all_estados as $estado)
               {
-                  $selected = ($estado['id'] == $this->input->post('id_estado_inicial')) ? ' selected="selected"' : "";
+                  $selected = ($estado['id'] == $inscripcion_materia['id_estado_inicial']) ? ' selected="selected"' : "";
 
                   echo '<option value="'.$estado['id'].'" '.$selected.'>'.$estado['nombre'].'</option>';
               }
