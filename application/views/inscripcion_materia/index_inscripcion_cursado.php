@@ -30,7 +30,7 @@
 												<td><?php echo $i['nombre_estado_inicial']; ?></td>
 												<td><?php echo $i['nombre_persona'].' '.$i['apellido_persona'].' - '.$i['numero_documento']; ?></td>
 												<td><?php echo ($i['porcentaje']) ? $i['porcentaje'].'%, '.$i['faltas'].' faltas' : ' - '; ?></td>
-												<td><?php echo $i['calificacion']; ?></td>
+												<td id="tdCalificacion<?= $i['id_inscripcion_materia']; ?>"><?php echo $i['calificacion']; ?></td>
 												<td>
 
 													<?php if($boton_edit){?>
@@ -39,8 +39,22 @@
 													<?php if($boton_remove){?>
 														<a href="<?php echo site_url('inscripcion_materia/remove_inscripcion_cursado/'.$i['id_inscripcion_materia']); ?>" data-confirm="remove" class="btn btn-danger btn-sm">Eliminar</a>
 													<?php }?>
-													<button type="button" class="btn btn-outline-info btn-sm">Cambiar Calificación</button>
-
+													<!-- <button type="button" class="btn btn-outline-info btn-sm">Cambiar Calificación</button> -->
+													<button id="cambiarCalificacion<?= $i['id_inscripcion_materia']; ?>"
+														data-id="<?= $i['id_inscripcion_materia']; ?>"
+														data-calificacion="<?= $i['calificacion']; ?>"
+														onclick="editarCalificacion(this);"
+														type="button" class="btn btn-outline-info btn-sm" title="Cambiar Calificación" data-toggle="modal" data-target="#editar_calificacion_modal">
+														<i class="fa fa-pencil" aria-hidden="true"></i>
+														Cambiar Calificación
+													</button>
+													<div id="btnGroupCalificacion<?= $i['id_inscripcion_materia']; ?>" class="btn-group d-none" role="group" aria-label="Cambiar Calificación">
+														<button id="guardarCalificacion<?= $i['id_inscripcion_materia']; ?>" type="button" class="btn btn-success btn-sm" title="Guardar"><i class="mdi mdi-content-save"></i></button>
+														<button id="cancelarCalificacion<?= $i['id_inscripcion_materia']; ?>"
+															data-id="<?= $i['id_inscripcion_materia']; ?>"
+															data-calificacion="<?= $i['calificacion']; ?>"
+															type="button" class="btn btn-secondary btn-sm" title="Cancelar"><i class="mdi mdi-close"></i></button>
+													</div>
 												</td>
 											</tr>
 										<?php } ?>

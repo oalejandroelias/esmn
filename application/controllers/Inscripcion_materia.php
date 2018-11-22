@@ -161,6 +161,8 @@ class Inscripcion_materia extends CI_Controller{
     $data['boton_add']=validar_botones('add');
     $data['boton_remove']=validar_botones('remove');
 
+    $data['js'] = array('inscripcion_cursado.js');
+
     $this->load->view('templates/header',$data);
     $this->load->view('inscripcion_materia/index_inscripcion_cursado',$data);
     $this->load->view('templates/footer');
