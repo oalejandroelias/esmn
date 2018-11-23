@@ -80,7 +80,7 @@ class Persona_model extends CI_Model
     }
     
     /*HISTORIAL CURSADO*/
-    function get_historial_persona_curso($id)
+    function get_historial_persona_curso($id, $id_carrera)
     {
         $this->db->select('persona.id AS persona_id, inscripcion_materia.id as inscripcion_materia_id, materia.nombre as materia_nombre,
                             materia.id_carrera as id_carrera, estado_inscripcion_inicial.nombre as nombre_inicial, inscripcion_materia.calificacion,
@@ -93,7 +93,7 @@ class Persona_model extends CI_Model
         $this->db->join('estado_inscripcion_inicial', 'estado_inscripcion_inicial.id = inscripcion_materia.id_estado_inicial', 'left');
         $this->db->join('estado_inscripcion_final', 'estado_inscripcion_final.id = inscripcion_materia.id_estado_final', 'left');
         
-        $this->db->where('persona.id='.$id.' AND inscripcion_materia.id_curso IS NOT null');
+        $this->db->where('persona.id='.$id.' AND inscripcion_materia.id_curso IS NOT null AND materia.id_carrera LIKE "'.$id_carrera.'"');
         
         //$this->db->group_by('inscripcion_materia.id ', 'desc');
         if(isset($params) && !empty($params))
@@ -106,7 +106,7 @@ class Persona_model extends CI_Model
     }
     
     /*HISTORIAL MESAS*/
-    function get_historial_persona_mesa($id)
+    function get_historial_persona_mesa($id, $id_carrera)
     {
         $this->db->select('persona.id AS persona_id, inscripcion_materia.id as inscripcion_materia_id, materia.nombre as materia_nombre,
                             materia.id_carrera as id_carrera, estado_inscripcion_inicial.nombre as nombre_inicial, inscripcion_materia.calificacion,
@@ -120,7 +120,7 @@ class Persona_model extends CI_Model
         $this->db->join('estado_inscripcion_inicial', 'estado_inscripcion_inicial.id = inscripcion_materia.id_estado_inicial', 'left');
         $this->db->join('estado_inscripcion_final', 'estado_inscripcion_final.id = inscripcion_materia.id_estado_final', 'left');
         
-        $this->db->where('persona.id='.$id.' AND inscripcion_materia.id_mesa IS NOT null');
+        $this->db->where('persona.id='.$id.' AND inscripcion_materia.id_mesa IS NOT null AND materia.id_carrera LIKE "'.$id_carrera.'"');
         
         //$this->db->group_by('inscripcion_materia.id ', 'desc');
         if(isset($params) && !empty($params))
@@ -140,5 +140,18 @@ class Persona_model extends CI_Model
         
         $query = $this->db->get();
         return $query->result_array();
+    }
+    
+    function get_carreras_inscriptas($id_persona) {
+        
+        $this->db->select('carrera.id, carrera.id_nivel, carrera.nombre');
+        $this->db->from('persona');
+        $this->db->join('inscripcion_carrera', 'inscripcion_carrera.id_persona=persona.id', 'inner');
+        $this->db->join('carrera', 'carrera.id=inscripcion_carrera.id_carrera', 'inner');
+        $this->db->where('persona.id='.$id_persona);
+        
+        $query = $this->db->get();
+        return $query->result_array();
+        
     }
 }

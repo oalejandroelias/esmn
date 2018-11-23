@@ -1,10 +1,27 @@
+<?php echo form_open('persona/ver_historial/'.$persona['id'],array("class"=>"form-horizontal")); ?>
 <div class="row">
   <div class="col-12">
 
 	<h5 class="card-title"><?php echo $tipo_documento.': '. $persona['numero_documento'];?></h5>
+
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">Cursados</h5>
+        <div class="col-sm-6 col-12">
+						<label for="id_carrera" class="control-label"><span class="text-danger">*</span>Carrera</label>
+						<select name="id_carrera" required class="form-control" onchange='this.form.submit()'>
+							<option value="">Seleccionar carrera</option>
+							<?php
+							foreach($carreras_iscripcion as $carrera)
+							{
+							    $selected = ($carrera['id'] == $this->input->post('id_carrera')) ? ' selected="selected"' : "";
+
+							    echo '<option value="'.$carrera['id'].'" '.$selected.'>'.$carrera['nombre'].'</option>';
+							}
+							?>
+						</select>
+						<span class="text-danger"><?php echo form_error('id_tipo_documento');?></span>
+					</div>
         <div class="table-responsive">
           <div id="zero_config_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
             <div class="row">
@@ -86,7 +103,7 @@
           <div id="zero_config_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
             <div class="row">
               <div class="col-sm-12">
-                <table id="zero_config" class="table table-striped table-bordered dataTable" role="grid" aria-describedby="zero_config_info">
+                <table id="aaa" class="table table-striped table-bordered dataTable" role="grid" aria-describedby="zero_config_info">
                   <thead>
                     <tr role="row">
                       <tr>
@@ -157,3 +174,9 @@
       </div>
     </div>
   </div>
+  
+  <script>
+var idPersona = <?php echo $persona['id'] ;?>;
+</script>
+  
+ 

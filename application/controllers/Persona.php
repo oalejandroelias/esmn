@@ -318,6 +318,12 @@ class Persona extends CI_Controller{
   function ver_historial($id) {
 
     $data['persona'] = $this->Persona_model->get_persona($id);
+    
+    $carrera= $this->input->post('id_carrera');
+    
+    $data['js'] = array(
+        'persona.js'
+    );
 
     $data['title']='Personas - CeciliaESMN';
     $data['page_title']='Estudiante - '.$data['persona']['nombre'].' '.$data['persona']['apellido'];
@@ -331,8 +337,13 @@ class Persona extends CI_Controller{
     $config['total_rows'] = $this->Persona_model->get_all_personas_count();
     $this->pagination->initialize($config);
 
-    $data['datos_persona'] = $this->Persona_model->get_historial_persona_curso($id);
-    $data['datos_mesas'] = $this->Persona_model->get_historial_persona_mesa($id);
+    $data['carreras_iscripcion'] = $this->Persona_model->get_carreras_inscriptas($id);
+    if($carrera == null)
+    {
+        $carrera= $data['carreras_iscripcion'][0]['id'];
+    }
+    $data['datos_persona'] = $this->Persona_model->get_historial_persona_curso($id, $carrera);
+    $data['datos_mesas'] = $this->Persona_model->get_historial_persona_mesa($id, $carrera);
     
     $data['all_tipo_documento'] = $this->Tipo_documento_model->get_all_tipo_documento();
     $data['tipo_documento']="";
@@ -359,3 +370,5 @@ class Persona extends CI_Controller{
   }
 
 }
+
+?>

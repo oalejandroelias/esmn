@@ -16,65 +16,67 @@ $('#checkbox_generar_usuario').change(function(){
 });
 
 // crear select de fecha nacimiento
-$('#fecha_nacimiento').bootstrapBirthday({
-  widget: {
-    wrapper: {
-      tag: 'div',
-      class: 'row'
-    },
-    wrapperYear: {
-      use: true,
-      tag: 'div',
-      class: 'col-sm-4',
-      required: 'required'
-    },
-    wrapperMonth: {
-      use: true,
-      tag: 'div',
-      class: 'col-sm-4'
-    },
-    wrapperDay: {
-      use: true,
-      tag: 'div',
-      class: 'col-sm-4'
-    },
-    selectYear: {
-      name: 'birthday[year]',
-      class: 'form-control'
-    },
-    selectMonth: {
-      name: 'birthday[month]',
-      class: 'form-control'
-    },
-    selectDay: {
-      name: 'birthday[day]',
-      class: 'form-control'
-    }
-  },
-  dateFormat: 'littleEndian',
-  monthFormat: 'long',
-  text: {
-    year: "Año",
-    month: "Mes",
-    day: "Dia",
-    months: {
-      long: [
-        "Enero",
-        "Febrero",
-        "Marzo",
-        "Abril",
-        "Mayo",
-        "Junio",
-        "Julio",
-        "Agosto",
-        "Septiembre",
-        "Octubre",
-        "Noviembre",
-        "Diciembre"
-      ]
-    }
-  }
-});
+if($('#fecha_nacimiento').length){
+	$('#fecha_nacimiento').bootstrapBirthday({
+	  widget: {
+	    wrapper: {
+	      tag: 'div',
+	      class: 'row'
+	    },
+	    wrapperYear: {
+	      use: true,
+	      tag: 'div',
+	      class: 'col-sm-4',
+	      required: 'required'
+	    },
+	    wrapperMonth: {
+	      use: true,
+	      tag: 'div',
+	      class: 'col-sm-4'
+	    },
+	    wrapperDay: {
+	      use: true,
+	      tag: 'div',
+	      class: 'col-sm-4'
+	    },
+	    selectYear: {
+	      name: 'birthday[year]',
+	      class: 'form-control'
+	    },
+	    selectMonth: {
+	      name: 'birthday[month]',
+	      class: 'form-control'
+	    },
+	    selectDay: {
+	      name: 'birthday[day]',
+	      class: 'form-control'
+	    }
+	  },
+	  dateFormat: 'littleEndian',
+	  monthFormat: 'long',
+	  text: {
+	    year: "Año",
+	    month: "Mes",
+	    day: "Dia",
+	    months: {
+	      long: [
+	        "Enero",
+	        "Febrero",
+	        "Marzo",
+	        "Abril",
+	        "Mayo",
+	        "Junio",
+	        "Julio",
+	        "Agosto",
+	        "Septiembre",
+	        "Octubre",
+	        "Noviembre",
+	        "Diciembre"
+	      ]
+	    }
+	  }
+	})
+};
 
 // validar datos del formulario
 function validar_form(form){
@@ -165,8 +167,7 @@ function cargar_datos_de_busqueda_direccion_gmaps(){
                      var markerOptions = {
             				map: map,
             				position: myLatlng,
-            				draggable: true
-            			};
+            				draggable: true            			};
 	                     marker_0.setPosition(null);
 	         			 marker_0 = createMarker_map(markerOptions);
 	                     map.setCenter(myLatlng);
@@ -176,7 +177,6 @@ function cargar_datos_de_busqueda_direccion_gmaps(){
 	   });
 
 }
-
 
 
 
