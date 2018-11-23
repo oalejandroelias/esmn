@@ -13,14 +13,14 @@ jQuery('.mydatepicker').datepicker({
 // controlar fechas desde-hasta
 // http://www.dotnetqueries.com/Article/106/bootstrap-datetimepicker-startdate-enddate-validation
 $('.mydatepicker-start').on("change", function(){
-   //when chosen from_date, the end date can be from that point forward
-   var startVal = $('.mydatepicker-start').val();
-   $('.mydatepicker-end').data('datepicker').setStartDate(startVal);
+  //when chosen from_date, the end date can be from that point forward
+  var startVal = $('.mydatepicker-start').val();
+  $('.mydatepicker-end').data('datepicker').setStartDate(startVal);
 });
 $('.mydatepicker-end').on("change", function(){
-   //when chosen end_date, start can go just up until that point
-   var endVal = $('.mydatepicker-end').val();
-   $('.mydatepicker-start').data('datepicker').setEndDate(endVal);
+  //when chosen end_date, start can go just up until that point
+  var endVal = $('.mydatepicker-end').val();
+  $('.mydatepicker-start').data('datepicker').setEndDate(endVal);
 });
 
 // Basic Table
@@ -28,46 +28,46 @@ var dtable = $('#zero_config').DataTable({
   "language": {
     // "url": "/esmn/Lib/matrix-admin-bt4/assets/libs/datatables/i18n/dataTables.spanish.lang"
     "sProcessing":     "Procesando...",
-  	"sLengthMenu":     "Mostrar _MENU_ registros",
-  	"sZeroRecords":    "No se encontraron resultados",
-  	"sEmptyTable":     "Ningún dato disponible en esta tabla",
-  	"sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-  	"sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-  	"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-  	"sInfoPostFix":    "",
-  	"sSearch":         "Buscar:",
-  	"sUrl":            "",
-  	"sInfoThousands":  ",",
-  	"sLoadingRecords": "Cargando...",
-  	"oPaginate": {
-  		"sFirst":    "Primero",
-  		"sLast":     "Último",
-  		"sNext":     "Siguiente",
-  		"sPrevious": "Anterior"
-  	},
-  	"oAria": {
-  		"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-  		"sSortDescending": ": Activar para ordenar la columna de manera descendente"
-  	}
+    "sLengthMenu":     "Mostrar _MENU_ registros",
+    "sZeroRecords":    "No se encontraron resultados",
+    "sEmptyTable":     "Ningún dato disponible en esta tabla",
+    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+    "sInfoPostFix":    "",
+    "sSearch":         "Buscar:",
+    "sUrl":            "",
+    "sInfoThousands":  ",",
+    "sLoadingRecords": "Cargando...",
+    "oPaginate": {
+      "sFirst":    "Primero",
+      "sLast":     "Último",
+      "sNext":     "Siguiente",
+      "sPrevious": "Anterior"
+    },
+    "oAria": {
+      "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+      "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+    }
   }
 });
 
 // mostrar filas ocultas
- function mostrarTodo(){
-   // determinar registros inactivos o deshabilitados, y ocultarlos
-   dtable.rows().eq(0).each( function ( index ) {
-      var row = dtable.row( index );
-      var rowNode = row.node();
-      var activo = $(rowNode).attr('data-activo');
-      if (typeof activo !== typeof undefined && activo !== false && activo!=1) {
-        $(row.node()).toggleClass("d-none");
-      }
-    });
- }
- //if ($.fn.DataTable.isDataTable( '#zero_config' )) {
- if (dtable.rows().length>0) {
-   mostrarTodo();
- }
+function mostrarTodo(){
+  // determinar registros inactivos o deshabilitados, y ocultarlos
+  dtable.rows().eq(0).each( function ( index ) {
+    var row = dtable.row( index );
+    var rowNode = row.node();
+    var activo = $(rowNode).attr('data-activo');
+    if (typeof activo !== typeof undefined && activo !== false && activo!=1) {
+      $(row.node()).toggleClass("d-none");
+    }
+  });
+}
+//if ($.fn.DataTable.isDataTable( '#zero_config' )) {
+if (dtable.rows().length>0) {
+  mostrarTodo();
+}
 
 // For select 2
 $(".select2").select2({width: 'resolve'});
@@ -129,4 +129,12 @@ function transalteDay(day,mode){
     var translation = false;
   }
   return translation;
+}
+
+// efecto 'luminoso'
+function highlight(element) {
+  element.addClass('highlight');
+  setTimeout(function() {
+    $('.highlight').removeClass('highlight');
+  }, 2000);
 }

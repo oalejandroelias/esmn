@@ -168,6 +168,18 @@ class Inscripcion_materia extends CI_Controller{
     $this->load->view('templates/footer');
   }
 
+  function cambiarCalificacion(){
+    if ($this->input->is_ajax_request() && !empty($_POST)) {
+      $id_inscripcion = $this->input->post('id_row');
+      $params = array(
+        'calificacion' => $this->input->post('calificacion'),
+      );
+      $result = $this->Inscripcion_materia_model->update_inscripcion_materia($id_inscripcion,$params);
+      echo json_encode($result);
+    }
+    return false;
+  }
+
   function add_inscripcion_cursado()
   {
     $this->form_validation->set_rules('id_curso','Curso de Materia','required|integer|callback_check_carrera['.$this->input->post('id_persona').']');

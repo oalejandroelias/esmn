@@ -37,3 +37,10 @@ label a.badge{font-size: 100%;}
 
 /* text-muted a las filas inactivas o deshabilidatas */
 .row-disabled td{color:#a1aab2 !important;}
+
+/* efecto highlight */
+@keyframes highlight {
+ 	0% {background: #ffff99;}
+ 	100% {background: none;}
+}
+.highlight {animation: highlight 2s;}

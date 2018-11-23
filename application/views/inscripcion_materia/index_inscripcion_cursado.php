@@ -43,16 +43,21 @@
 													<button id="cambiarCalificacion<?= $i['id_inscripcion_materia']; ?>"
 														data-id="<?= $i['id_inscripcion_materia']; ?>"
 														data-calificacion="<?= $i['calificacion']; ?>"
-														onclick="editarCalificacion(this);"
+														data-action='editar'
+														onclick="toggleCalificacion(this);"
 														type="button" class="btn btn-outline-info btn-sm" title="Cambiar Calificación" data-toggle="modal" data-target="#editar_calificacion_modal">
 														<i class="fa fa-pencil" aria-hidden="true"></i>
 														Cambiar Calificación
 													</button>
 													<div id="btnGroupCalificacion<?= $i['id_inscripcion_materia']; ?>" class="btn-group d-none" role="group" aria-label="Cambiar Calificación">
-														<button id="guardarCalificacion<?= $i['id_inscripcion_materia']; ?>" type="button" class="btn btn-success btn-sm" title="Guardar"><i class="mdi mdi-content-save"></i></button>
+														<button id="guardarCalificacion<?= $i['id_inscripcion_materia']; ?>"
+															data-id="<?= $i['id_inscripcion_materia']; ?>"
+															type="button" class="btn btn-success btn-sm" title="Guardar"><i class="mdi mdi-content-save"></i></button>
 														<button id="cancelarCalificacion<?= $i['id_inscripcion_materia']; ?>"
 															data-id="<?= $i['id_inscripcion_materia']; ?>"
 															data-calificacion="<?= $i['calificacion']; ?>"
+															data-action='cancelar'
+															onclick="toggleCalificacion(this);"
 															type="button" class="btn btn-secondary btn-sm" title="Cancelar"><i class="mdi mdi-close"></i></button>
 													</div>
 												</td>
