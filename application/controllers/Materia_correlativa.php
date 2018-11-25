@@ -13,30 +13,6 @@ class Materia_correlativa extends CI_Controller{
     $this->load->model('Materia_correlativa_model');
   }
 
-  /*
-  * Listing of materias_correlativas
-  */
-  // function index()
-  // {
-  //   $params['limit'] = RECORDS_PER_PAGE;
-  //   $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
-  //
-  //   $config = $this->config->item('pagination');
-  //   $config['base_url'] = site_url('materia_correlativa/index?');
-  //   $config['total_rows'] = $this->Materia_correlativa_model->get_all_materias_correlativas_count();
-  //   $this->pagination->initialize($config);
-  //
-  //   $data['materias_correlativas'] = $this->Materia_correlativa_model->get_all_materias_correlativas($params);
-  //
-  //   // $data['_view'] = 'materia_correlativa/index';
-  //   // $this->load->view('layouts/main',$data);
-  //   $data['title'] = 'Materias Correlativas - ESMN';
-  //   $data['page_title'] = 'Materias Correlativas';
-  //   $this->load->view('templates/header',$data);
-  //   $this->load->view('materia_correlativa/index',$data);
-  //   $this->load->view('templates/footer');
-  // }
-
   function ver_correlativas(){
     if ($this->input->is_ajax_request() && !empty($_POST)) {
       $materias = $this->Materia_correlativa_model->get_materia_correlativa($_POST['id_materia']);

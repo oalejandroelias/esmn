@@ -12,9 +12,9 @@ class Asiste_model extends CI_Model
     }
 
     /*
-     * Get asiste by id
+     * Get all asiste
      */
-    function get_asiste($id_curso)
+    function get_all_asiste($id_curso)
     {
       $this->db->select('asiste.id,asiste.id_persona,asistencia,porcentaje,
       persona.nombre,persona.apellido,numero_documento,id_materia,id_periodo,materia.nombre AS "materia",
@@ -33,16 +33,16 @@ class Asiste_model extends CI_Model
     }
 
     /*
-     * Get all asiste
+     * Get asiste by id
      */
-    function get_all_asiste($where = array())
+    function get_asiste($id_persona,$id_curso)
     {
-        $this->db->order_by('id', 'desc');
-        if(isset($where) && !empty($where))
-        {
-          $this->db->where($where['row'], $where['value']);
-        }
-        return $this->db->get('asiste')->result_array();
+      if (!$id_persona) {
+        $query = $this->db->get_where('asiste',array('id_curso'=>$id_curso));
+      }else {
+        $query = $this->db->get_where('asiste',array('id_persona'=>$id_persona,'id_curso'=>$id_curso));
+      }
+        return $query->row_array();
     }
 
     /*

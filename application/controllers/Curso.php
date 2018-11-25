@@ -119,7 +119,7 @@ class Curso extends CI_Controller{
     if(isset($data['curso']['curso_id']))
     {
       $this->load->model('Asiste_model');
-      $data['asiste'] = $this->Asiste_model->get_all_asiste(array('row'=>'id_curso','value'=>$data['curso']['curso_id']));
+      $data['asiste'] = $this->Asiste_model->get_asiste(false,$data['curso']['curso_id']);
       $data['can_edit'] = (empty($data['asiste'])) ? true : false;
 
       if ($data['can_edit']) {

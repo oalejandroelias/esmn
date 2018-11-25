@@ -14,7 +14,7 @@ class Asiste extends CI_Controller{
       $data['title'] = 'Asistencia - ESMN';
       $data['page_title'] = 'Asistencia';
 
-      $data['asistencia'] = $this->Asiste_model->get_asiste($id_curso);
+      $data['asistencia'] = $this->Asiste_model->get_all_asiste($id_curso);
       if (empty($data['asistencia'])) {
         $this->session->set_flashdata('error', 'No existen personas inscriptas en este curso.');
         redirect('curso/index');

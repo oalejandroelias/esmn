@@ -236,7 +236,13 @@ class Persona extends CI_Controller{
             $imagen = TRUE;
           }else {
             $imagen = $this->upload->do_upload('foto_perfil');
-            $imagen_path = base_url('files/images/'.$this->upload->data('file_name'));
+            $file_name = $this->upload->data('file_name');
+            $imagen_path = base_url('files/images/'.$file_name);
+            $imagen_real_path = APPPATH.'../files/images/'.$file_name;
+
+            //include Drive library and upload file to Drive
+            $this->load->library('drive');
+            $this->drive->upload_file(array(array('file_path'=>$imagen_real_path,'file_name'=>$file_name))); //call function
           }
         }
 
@@ -318,9 +324,9 @@ class Persona extends CI_Controller{
   function ver_historial($id) {
 
     $data['persona'] = $this->Persona_model->get_persona($id);
-    
+
     $carrera= $this->input->post('id_carrera');
-    
+
     $data['js'] = array(
         'persona.js'
     );
@@ -344,7 +350,7 @@ class Persona extends CI_Controller{
     }
     $data['datos_persona'] = $this->Persona_model->get_historial_persona_curso($id, $carrera);
     $data['datos_mesas'] = $this->Persona_model->get_historial_persona_mesa($id, $carrera);
-    
+
     $data['all_tipo_documento'] = $this->Tipo_documento_model->get_all_tipo_documento();
     $data['tipo_documento']="";
     foreach ($data['all_tipo_documento'] as $tipo_doc)

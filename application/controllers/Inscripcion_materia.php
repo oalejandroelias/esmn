@@ -171,11 +171,33 @@ class Inscripcion_materia extends CI_Controller{
   function cambiarCalificacion(){
     if ($this->input->is_ajax_request() && !empty($_POST)) {
       $id_inscripcion = $this->input->post('id_row');
+      $inscripcion = $this->Inscripcion_materia_model->get_inscripcion_materia($id_inscripcion);
+      $asiste = $this->Asiste_model->get_asiste($inscripcion['id_persona'],$inscripcion['id_curso']);
+
+      $porcentaje = $asiste['porcentaje'];
+      $calificacion = $this->input->post('calificacion');
+
+      if ($calificacion >= 6) {
+        if ($porcentaje >= 70) {
+          $estado = 3; // promocion
+        } elseif ($porcentaje >= 60 && $porcentaje < 70) {
+          $estado = 2; // aprobado
+        }else {
+          $estado = 4; // libre
+        }
+      }else {
+        $estado = 4; // libre
+      }
+
+      $this->load->model('Estado_inscripcion_final_model');
+      $nombre_estado = $this->Estado_inscripcion_final_model->get_estado_inscripcion_final($estado)['nombre'];
+
       $params = array(
-        'calificacion' => $this->input->post('calificacion'),
+        'calificacion' => $calificacion,
+        'id_estado_final' => $estado,
       );
       $result = $this->Inscripcion_materia_model->update_inscripcion_materia($id_inscripcion,$params);
-      echo json_encode($result);
+      echo ($result) ? json_encode(array('id'=>$estado,'nombre'=>$nombre_estado)) : json_encode(false);
     }
     return false;
   }
@@ -183,7 +205,7 @@ class Inscripcion_materia extends CI_Controller{
   function add_inscripcion_cursado()
   {
     $this->form_validation->set_rules('id_curso','Curso de Materia','required|integer|callback_check_carrera['.$this->input->post('id_persona').']');
-    $this->form_validation->set_rules('id_persona','Persona / Alumno','required|integer|callback_check_inscripcion['.$this->input->post('id_curso').']');
+    $this->form_validation->set_rules('id_persona','Persona / Alumno','required|integer|callback_check_inscripcion['.$this->input->post('id_curso').']|callback_check_correlativa['.$this->input->post('id_curso').']');
     $this->form_validation->set_message('check_carrera','La persona no esta inscripta en la carrera del curso elegido!');
     $this->form_validation->set_message('check_inscripcion','La persona ya se encuentra registrada en este curso!');
 
@@ -195,9 +217,9 @@ class Inscripcion_materia extends CI_Controller{
         'id_curso' => $this->input->post('id_curso'),
         'id_materia' => $this->input->post('id_materia'),
         'id_mesa' => null,
-        'id_estado_inicial' => 1, // 1 = CURSANDO
+        'id_estado_inicial' => 1, // 1 = REGULAR
         'calificacion' => null,
-         'fecha' =>date('Y-m-d'),
+        'fecha' =>date('Y-m-d'),
         'id_estado_final' => null,
       );
 
@@ -244,6 +266,18 @@ class Inscripcion_materia extends CI_Controller{
   function check_inscripcion($id_persona,$id_curso){
     $query = $this->Inscripcion_materia_model->check_inscripcion($id_persona,$id_curso);
     return (!empty($query)) ? false : true;
+  }
+  // funcion comprobar si el alumno tiene aprobada la materia anterior si la seleccionada es correlativa
+  function check_correlativa($id_persona,$id_curso){
+    $id_materia = $this->Curso_model->get_curso($id_curso)['id_materia'];
+    $materias = $this->Materia_correlativa_model->get_materia_correlativa($id_materia);
+    if (!empty($materias)) {
+      foreach ($materias as $m) {
+        # code...
+      }
+    }else {
+      return true;
+    }
   }
 
   function edit_inscripcion_cursado($id)

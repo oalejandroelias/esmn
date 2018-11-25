@@ -4,6 +4,19 @@ function sendForm(form){
   return;
 }
 
+// advertencia de primero cargar asistencia antes de cargar nota
+function noCalifica(id_curso){
+  $.alert({
+      title: 'Debe cargar primero la asistencia!',
+      content: 'Puede ir al control de asistencias del curso haciendo click <a href="'+ruta+'asiste/control/'+id_curso+'">aqui</a>',
+      type: 'orange',
+      buttons: {
+          Ok: function(){}
+      }
+  });
+}
+
+// alternar botones de cambiar calificacion
 function toggleCalificacion(btn){
     var id_row = $(btn).attr('data-id'),
     calificacion_actual = $(btn).attr('data-calificacion'),
@@ -20,6 +33,7 @@ function toggleCalificacion(btn){
     }
   }
 
+// guardar cambios en la vista de la tabla y en la base de datos
   $("[id^='guardarCalificacion']").on('click', function () {
     var id_row = $(this).attr('data-id');
     var calificacion = $("#inputCalificacion"+id_row).val();
@@ -28,14 +42,18 @@ function toggleCalificacion(btn){
       type:'POST',
       url:ruta+'inscripcion_materia/cambiarCalificacion',
       data: { id_row,calificacion },
-      success:function (respuesta) {
+      success:function (respuesta) { // devuelve un estado o false
         var obj = JSON.parse(respuesta);
         // console.log(obj);
         if (obj) {
           $("#cancelarCalificacion"+id_row).attr('data-calificacion',calificacion).click();
           $("#cambiarCalificacion"+id_row).attr('data-calificacion',calificacion);
           $("#tdCalificacion"+id_row).html(calificacion);
+
+          var estado_inicial = $("#tdEstado"+id_row).attr('data-estadoinicial');
+          $("#tdEstado"+id_row).html(estado_inicial+' > '+obj.nombre);
           highlight($("#tdCalificacion"+id_row));
+          highlight($("#tdEstado"+id_row));
         }
       }, error:function () {
         alert('error');
