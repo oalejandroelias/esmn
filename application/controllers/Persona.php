@@ -314,31 +314,21 @@ class Persona extends CI_Controller{
 
 
   function ver_historial($id) {
-
     $data['persona'] = $this->Persona_model->get_persona($id);
-
     $carrera= $this->input->post('id_carrera');
 
-    $data['js'] = array(
-        'persona.js'
-    );
+    $data['js'] = array('persona.js');
 
     $data['title']='Personas - CeciliaESMN';
     $data['page_title']='Estudiante - '.$data['persona']['nombre'].' '.$data['persona']['apellido'];
     setlocale(LC_TIME,"es_ES.UTF-8"); //fechas en espaï¿½ol
 
-    $params['limit'] = RECORDS_PER_PAGE;
-    $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
-
-    $config = $this->config->item('pagination');
-    $config['base_url'] = site_url('persona/index?');
-    $config['total_rows'] = $this->Persona_model->get_all_personas_count();
-    $this->pagination->initialize($config);
-
-    $data['carreras_iscripcion'] = $this->Persona_model->get_carreras_inscriptas($id);
-    if($carrera == null)
+    $data['carreras_inscripcion'] = $this->Persona_model->get_carreras_inscriptas($id);
+    if($carrera == null && isset($data['carreras_inscripcion'][0]['id']))
     {
-        $carrera= $data['carreras_iscripcion'][0]['id'];
+        $carrera= $data['carreras_inscripcion'][0]['id'];
+    }else {
+      $carrera = false;
     }
     $data['datos_persona'] = $this->Persona_model->get_historial_persona_curso($id, $carrera);
     $data['datos_mesas'] = $this->Persona_model->get_historial_persona_mesa($id, $carrera);
@@ -362,9 +352,6 @@ class Persona extends CI_Controller{
     $this->load->view('templates/header',$data);
     $this->load->view('persona/ver_historial',$data);
     $this->load->view('templates/footer',$data);
-
-
-
   }
 
 }
