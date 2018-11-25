@@ -18,15 +18,7 @@ class Tipo_documento extends CI_Controller{
   */
   function index()
   {
-    $params['limit'] = RECORDS_PER_PAGE;
-    $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
-
-    $config = $this->config->item('pagination');
-    $config['base_url'] = site_url('tipo_documento/index?');
-    $config['total_rows'] = $this->Tipo_documento_model->get_all_tipo_documento_count();
-    $this->pagination->initialize($config);
-
-    $data['tipo_documento'] = $this->Tipo_documento_model->get_all_tipo_documento($params);
+    $data['tipo_documento'] = $this->Tipo_documento_model->get_all_tipo_documento();
 
     $data['page_title'] = 'Tipos de documento - ESMN';
     $data['title'] = 'Tipos de documento';

@@ -21,15 +21,8 @@ class Ciudad extends CI_Controller{
   {
     $data['title'] = 'Ciudades - ESMN';
     $data['page_title'] = 'Ciudades';
-    $params['limit'] = RECORDS_PER_PAGE;
-    $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
 
-    $config = $this->config->item('pagination');
-    $config['base_url'] = site_url('ciudad/index?');
-    $config['total_rows'] = $this->Ciudad_model->get_all_ciudades_count();
-    $this->pagination->initialize($config);
-
-    $data['ciudades'] = $this->Ciudad_model->get_all_ciudades($params);
+    $data['ciudades'] = $this->Ciudad_model->get_all_ciudades();
     $data['all_provincias'] = $this->Provincia_model->get_all_provincias();
 
     //Botones de acciones

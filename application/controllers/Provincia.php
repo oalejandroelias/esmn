@@ -20,15 +20,8 @@ class Provincia extends CI_Controller{
   {
     $data['title'] = 'Provincias - ESMN';
     $data['page_title'] = 'Provincias';
-    $params['limit'] = RECORDS_PER_PAGE;
-    $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
 
-    $config = $this->config->item('pagination');
-    $config['base_url'] = site_url('provincia/index?');
-    $config['total_rows'] = $this->Provincia->get_all_provincias_count();
-    $this->pagination->initialize($config);
-
-    $data['provincias'] = $this->Provincia->get_all_provincias($params);
+    $data['provincias'] = $this->Provincia->get_all_provincias();
 
     //Botones de acciones
     $data['boton_edit']=validar_botones('edit');

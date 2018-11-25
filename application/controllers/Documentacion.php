@@ -19,15 +19,7 @@ class Documentacion extends CI_Controller{
   */
   function index()
   {
-    $params['limit'] = RECORDS_PER_PAGE;
-    $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
-
-    $config = $this->config->item('pagination');
-    $config['base_url'] = site_url('documentacion/index?');
-    $config['total_rows'] = $this->Documentacion_model->get_all_documentacion_count();
-    $this->pagination->initialize($config);
-
-    $data['documentacion'] = $this->Documentacion_model->get_all_documentacion($params);
+    $data['documentacion'] = $this->Documentacion_model->get_all_documentacion();
 
     $data['title'] = 'Documentacion - ESMN';
     $data['page_title'] = 'Documentacion';

@@ -20,15 +20,7 @@ class Materia extends CI_Controller{
   */
   function index()
   {
-    $params['limit'] = RECORDS_PER_PAGE;
-    $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
-
-    $config = $this->config->item('pagination');
-    $config['base_url'] = site_url('materia/index?');
-    $config['total_rows'] = $this->Materia_model->get_all_materias_count();
-    $this->pagination->initialize($config);
-
-    $data['materias'] = $this->Materia_model->get_all_materias($params);
+    $data['materias'] = $this->Materia_model->get_all_materias();
 
     $data['title'] = 'Materias - ESMN';
     $data['page_title'] = 'Materia';
@@ -54,7 +46,7 @@ class Materia extends CI_Controller{
     // if ($this->input->post('id_carrera') && $this->input->post('nombre')) {
     $query = $this->Materia_model->get_materia_by_nombre($this->input->post('id_carrera'),$this->input->post('nombre'));
     $is_unique = (empty($query)) ? '' :'|is_unique[materia.nombre]';
-    
+
     $this->form_validation->set_rules('id_carrera','Codigo de Plan','required|max_length[11]');
     $this->form_validation->set_rules('nombre','Nombre','required|max_length[128]'.$is_unique);
     $this->form_validation->set_rules('codigo_anio','Codigo Anio','max_length[24]');

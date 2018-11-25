@@ -18,15 +18,7 @@ class Tutor extends CI_Controller{
   */
   function index()
   {
-    $params['limit'] = RECORDS_PER_PAGE;
-    $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
-
-    $config = $this->config->item('pagination');
-    $config['base_url'] = site_url('tutor/index?');
-    $config['total_rows'] = $this->Tutor_model->get_all_tutores_count();
-    $this->pagination->initialize($config);
-
-    $data['tutores'] = $this->Tutor_model->get_all_tutores($params);
+    $data['tutores'] = $this->Tutor_model->get_all_tutores();
 
     $data['page_title'] = 'Tutores - ESMN';
     $data['title'] = 'Tutores';

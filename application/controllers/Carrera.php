@@ -22,15 +22,8 @@ class Carrera extends CI_Controller{
   {
     $data['title'] = 'Carrera - ESMN';
     $data['page_title'] = 'Carrera';
-    $params['limit'] = RECORDS_PER_PAGE;
-    $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
 
-    $config = $this->config->item('pagination');
-    $config['base_url'] = site_url('carrera/index?');
-    $config['total_rows'] = $this->Carrera_model->get_all_carreras_count();
-    $this->pagination->initialize($config);
-
-    $data['carreras'] = $this->Carrera_model->get_all_carreras($params);
+    $data['carreras'] = $this->Carrera_model->get_all_carreras();
     //Botones de acciones
     $data['boton_edit']=validar_botones('edit');
     $data['boton_add']=validar_botones('add');

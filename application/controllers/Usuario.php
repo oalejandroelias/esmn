@@ -24,15 +24,8 @@ class Usuario extends CI_Controller{
   {
     $data['title']='Usuarios - ESMN';
     $data['page_title']='<span class="m-r-10 mdi mdi-account">Usuarios </span>';
-    $params['limit'] = RECORDS_PER_PAGE;
-    $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
 
-    $config = $this->config->item('pagination');
-    $config['base_url'] = site_url('usuario/index?');
-    $config['total_rows'] = $this->Usuario_model->get_all_usuarios_count();
-    $this->pagination->initialize($config);
-
-    $data['usuarios'] = $this->Usuario_model->get_all_usuarios($params);
+    $data['usuarios'] = $this->Usuario_model->get_all_usuarios();
 
     $data['boton_edit']=validar_botones('edit');
     $data['boton_add']=validar_botones('add');

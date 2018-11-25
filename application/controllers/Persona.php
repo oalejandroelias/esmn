@@ -65,15 +65,7 @@ class Persona extends CI_Controller{
     $data['page_title']='Personas';
     setlocale(LC_TIME,"es_ES.UTF-8"); //fechas en espaï¿½ol
 
-    $params['limit'] = RECORDS_PER_PAGE;
-    $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
-
-    $config = $this->config->item('pagination');
-    $config['base_url'] = site_url('persona/index?');
-    $config['total_rows'] = $this->Persona_model->get_all_personas_count();
-    $this->pagination->initialize($config);
-
-    $data['personas'] = $this->Persona_model->get_all_personas($params);
+    $data['personas'] = $this->Persona_model->get_all_personas();
     //$data['all_tipo_documento'] = $this->Tipo_documento_model->get_all_tipo_documento();
     $data['all_ciudades'] = $this->Ciudad_model->get_all_ciudades();
 
