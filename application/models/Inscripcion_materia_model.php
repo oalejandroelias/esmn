@@ -32,14 +32,15 @@ class Inscripcion_materia_model extends CI_Model
     return $this->db->get('inscripcion_materia')->result_array();
   }
 
-  function get_all_inscripcion_materia_cursado()
+  function get_all_inscripcion_materia_cursado($where = array())
   {
     $this->db->select('inscripcion_materia.id AS "id_inscripcion_materia",inscripcion_materia.fecha,
     inscripcion_materia.id_persona, inscripcion_materia.id_curso, id_carrera, tipo_catedra,
     inscripcion_materia.id_materia, estado_inscripcion_inicial.nombre as nombre_estado_inicial,
     id_estado_final, calificacion, materia.nombre AS "nombre_materia",
     persona.nombre AS "nombre_persona", persona.apellido AS "apellido_persona",
-    persona.numero_documento AS "numero_documento",estado_inscripcion_final.nombre as nombre_estado_final,
+    persona.numero_documento AS "numero_documento",estado_inscripcion_final.id as id_estado_final,
+    estado_inscripcion_final.nombre as nombre_estado_final,
     porcentaje,faltas');
     $this->db->from('inscripcion_materia');
     $this->db->join('curso', 'inscripcion_materia.id_curso = curso.id', 'left');
@@ -49,7 +50,12 @@ class Inscripcion_materia_model extends CI_Model
     $this->db->join('estado_inscripcion_inicial ', 'inscripcion_materia.id_estado_inicial  = estado_inscripcion_inicial.id', 'left');
     $this->db->join('estado_inscripcion_final ', 'inscripcion_materia.id_estado_final  = estado_inscripcion_final.id', 'left');
     $this->db->where('inscripcion_materia.id_curso IS NOT NULL');
-    //$this->db->order_by('carrera_id', 'desc');
+    if(isset($where) && !empty($where))
+    {
+      foreach ($where as $w) {
+        $this->db->where($w['row'], $w['value']);
+      }
+    }
 
     $query = $this->db->get();
     return $query->result_array();

@@ -208,6 +208,7 @@ class Inscripcion_materia extends CI_Controller{
     $this->form_validation->set_rules('id_persona','Persona / Alumno','required|integer|callback_check_inscripcion['.$this->input->post('id_curso').']|callback_check_correlativa['.$this->input->post('id_curso').']');
     $this->form_validation->set_message('check_carrera','La persona no esta inscripta en la carrera del curso elegido!');
     $this->form_validation->set_message('check_inscripcion','La persona ya se encuentra registrada en este curso!');
+    $this->form_validation->set_message('check_correlativa','La persona adeuda materias correlativas!');
 
     if($this->form_validation->run())
     {
@@ -267,17 +268,30 @@ class Inscripcion_materia extends CI_Controller{
     $query = $this->Inscripcion_materia_model->check_inscripcion($id_persona,$id_curso);
     return (!empty($query)) ? false : true;
   }
-  // funcion comprobar si el alumno tiene aprobada la materia anterior si la seleccionada es correlativa
+  // funcion comprobar si el alumno tiene aprobada la materia anterior si la seleccionada tiene correlatividad
   function check_correlativa($id_persona,$id_curso){
     $id_materia = $this->Curso_model->get_curso($id_curso)['id_materia'];
+    $this->load->model('Materia_correlativa_model');
     $materias = $this->Materia_correlativa_model->get_materia_correlativa($id_materia);
     if (!empty($materias)) {
       foreach ($materias as $m) {
-        # code...
+        $inscripcion = $this->Inscripcion_materia_model->get_all_inscripcion_materia_cursado(
+          array(
+            array('row'=>'inscripcion_materia.id_persona','value'=>$id_persona),
+            array('row'=>'inscripcion_materia.id_materia','value'=>$m->id_correlativa)
+          )
+        );
+        if (!empty($inscripcion) && isset($inscripcion[0]['id_estado_final'])) {
+          $calificacion_correlativa = $inscripcion[0]['id_estado_final'];
+          $result = ($calificacion_correlativa == 2 || $calificacion_correlativa == 3) ? true : false;
+        }else {
+          $result = false;
+        }
       }
     }else {
-      return true;
+      $result = true;
     }
+    return $result;
   }
 
   function edit_inscripcion_cursado($id)
