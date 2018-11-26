@@ -67,6 +67,11 @@ function mostrarTodo(){
 //if ($.fn.DataTable.isDataTable( '#zero_config' )) {
 if (dtable.rows().length>0) {
   mostrarTodo();
+
+  // forzar mostrar tooltip en tablas
+  $('#zero_config').on('draw.dt', function() {
+    $('[data-toggle="tooltip"]').tooltip(); // Or your function for tooltips
+  });
 }
 
 // For select 2
@@ -123,6 +128,53 @@ function transalteDay(day,mode){
     case 'sun':
     case 'sunday':
     var translation = (mode=='corto') ? 'Dom' : 'Domingo';
+    break;
+
+    default:
+    var translation = false;
+  }
+  return translation;
+}
+
+// traducir meses
+// month = numero del mes (donde 0=enero)
+function transalteMonth(month){
+  switch (month) {
+    case 0:
+    var translation = 'Enero';
+    break;
+    case 1:
+    var translation = 'Febrero';
+    break;
+    case 2:
+    var translation = 'Marzo';
+    break;
+    case 3:
+    var translation = 'Abril';
+    break;
+    case 4:
+    var translation = 'Mayo';
+    break;
+    case 5:
+    var translation = 'Junio';
+    break;
+    case 6:
+    var translation = 'Julio';
+    break;
+    case 7:
+    var translation = 'Agosto';
+    break;
+    case 8:
+    var translation = 'Septiembre';
+    break;
+    case 9:
+    var translation = 'Octubre';
+    break;
+    case 10:
+    var translation = 'Noviembre';
+    break;
+    case 11:
+    var translation = 'Diciembre';
     break;
 
     default:

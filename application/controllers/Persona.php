@@ -317,8 +317,6 @@ class Persona extends CI_Controller{
     $data['persona'] = $this->Persona_model->get_persona($id);
     $carrera= $this->input->post('id_carrera');
 
-    $data['js'] = array('persona.js');
-
     $data['title']='Personas - CeciliaESMN';
     $data['page_title']='Estudiante - '.$data['persona']['nombre'].' '.$data['persona']['apellido'];
     setlocale(LC_TIME,"es_ES.UTF-8"); //fechas en espaï¿½ol
@@ -330,13 +328,13 @@ class Persona extends CI_Controller{
     }
     $data['datos_persona'] = $this->Persona_model->get_historial_persona_curso($id, $carrera);
     $data['datos_mesas'] = $this->Persona_model->get_historial_persona_mesa($id, $carrera);
-    
+
     $cantidad=0;
     $data['promedio']=number_format(0, 2);
     $suma_notas=0.00;
     foreach ($data['datos_mesas'] as $mesa)
     {
-        
+
         if($mesa['calificacion'] !=null)
         {
             $suma_notas+=$mesa['calificacion'];
@@ -345,14 +343,14 @@ class Persona extends CI_Controller{
     }
     foreach ($data['datos_persona'] as $curso)
     {
-        
+
         if($curso['calificacion'] !=null)
         {
             $suma_notas+=$curso['calificacion'];
             $cantidad++;
         }
     }
-    
+
     //Evito la division por 0
     if($cantidad >0)
     {
@@ -370,6 +368,13 @@ class Persona extends CI_Controller{
     }
     $data['all_ciudades'] = $this->Ciudad_model->get_all_ciudades();
 
+    $data['js'] = array(
+      'persona.js',
+      '../pdfmake/pdfmake.min.js',
+      '../pdfmake/vfs_fonts.js',
+      '../matrix-admin-bt4/assets/libs/moment/min/moment.min.js'
+    );
+
     $this->load->view('templates/header',$data);
     $this->load->view('persona/ver_historial',$data);
     $this->load->view('templates/footer',$data);
@@ -378,7 +383,15 @@ class Persona extends CI_Controller{
   // obtener regularidad de la persona
   function getRegularidad(){
     if ($this->input->is_ajax_request() && !empty($_POST)) {
-      
+      $id_persona=$this->input->post('id_persona');
+      $id_carrera=$this->input->post('id_carrera');
+      $query=$this->Persona_model->check_regularidad($id_persona,$id_carrera);
+      if (!empty($query)) {
+        $respuesta=$query[0];
+      }else{
+        $respuesta=false;
+      }
+      echo json_encode($respuesta);
     }
     return false;
   }

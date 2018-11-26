@@ -184,15 +184,120 @@ function cargar_datos_de_busqueda_direccion_gmaps(){
 
   // comprobar alumno regular y generar certificado
   function getRegularidad(id_persona){
-    $.ajax({
-      type: 'POST',
-      url: ruta+'Persona/getRegularidad',
-      data: {id_persona},
-      success: function(respuesta){
+    var options = $('select[name="id_carrera"] option');
+    var content = '';
+    for (var i = 0; i < options.length; i++) {
+      content=content+'<option value='+options[i].value+'>'+options[i].innerText+'</option>';
+    }
 
-      },
-      error:function (respuesta){
-        console.log('error: '+respuesta);
+    $.confirm({
+      title: 'Seleccione una Carrera',
+      content: '' +
+      '<form class="form-horizontal">' +
+      '<div class="form-group">' +
+      '<label></label>' +
+      '<select name="id_carrera" class="form-control" required>' +
+      content +
+      '</select>' +
+      '</div>' +
+      '</form>',
+      buttons: {
+        formSubmit: {
+          text: 'Enviar',
+          btnClass: 'btn-blue',
+          action: function () {
+            var id_carrera = this.$content.find('[name="id_carrera"]').val();
+            // $.alert(id_carrera);
+            $.ajax({
+              type: 'POST',
+              url: ruta+'Persona/getRegularidad',
+              data: {id_persona,id_carrera},
+              success: function(respuesta){
+                var obj= JSON.parse(respuesta);
+                if (obj) {
+                  $.confirm({
+                    title: 'Correcto!',
+                    type: 'green',
+                    content: obj.nombre+' '+obj.apellido+' es un alumno regular. Puede imprimir el certificado a continuacion',
+                    buttons: {
+                      print:{
+                        text: 'Imprimir',
+                        btnClass: 'btn-primary',
+                        action: function () {
+                          imprimirCertificadoRegular(obj);
+                        }
+                      },
+                      Cancelar: function () {
+                      }
+                    }
+                  });
+                }else {
+                  $.alert({
+                    title: 'Error!',
+                    type: 'red',
+                    content: 'Falta cumplir requisitos para ser REGULAR en la carrera seleccionada',
+                  });
+                  // $.alert('Falta cumplir requisitos para ser REGULAR en la carrera seleccionada');
+                }
+
+              },
+              error:function (respuesta){
+                console.log('error: '+respuesta);
+              }
+            });
+          }
+        },
+        Cancelar: function () {
+          //close
+        },
       }
     });
+  }
+
+  function imprimirCertificadoRegular(obj){
+    var nombreDoc = 'Certificado_Alumno_Regular_'+obj.nombre+'_'+obj.apellido+'.pdf';
+    var year = moment().year();
+    var month = moment().month();
+    var day = moment().date();
+    if (day==1) {
+      var dia = 'Al '+day+' dia';
+    }else {
+      var dia = 'A los '+day+' dias';
+    }
+    var texto = dia+' del mes de '+month+' de '+year+' se extiende el Certificado de Alumno Regular Correspondiente '+
+    'a '+obj.nombre+' '+obj.apellido+' '+obj.tipo_documento+': '+obj.numero_documento+' que se encuentra inscripto a la carrera '+obj.carrera+
+    ' del plan: '+obj.id_carrera+' del nivel: '+obj.nivel+' cuyo estado de alumno es REGULAR para ser presentado ante quien corresponda';
+    var dd = {
+      content: [
+        {
+          text: 'Certificado de Alumno Regular',
+          style: 'header'
+        },
+        {
+          text: [texto],
+          style: 'contenido',
+        }
+      ],
+      styles: {
+        header: {
+          fontSize: 16,
+          alignment: 'center',
+          font: 'Helvetica',
+        },
+        contenido:{
+          margin: [30, 20, 30, 20],
+          fontSize: 14,
+          alignment: 'justify',
+          font: 'Helvetica',
+        }
+      }
+
+    }
+    pdfMake.fonts = { //importar fuentes desde archivo vfs
+      Helvetica: {
+        normal: 'Helvetica.ttf'
+      }
+    };
+    // console.log(dd);
+    pdfMake.createPdf(dd).download(nombreDoc);
   }

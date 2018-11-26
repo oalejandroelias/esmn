@@ -131,8 +131,20 @@ class Persona_model extends CI_Model
     }
 
     // comprobar regularidad
-    function check_regularidad($id_persona,$fecha_inicio,$fecha_fin){
+    function check_regularidad($id_persona,$id_carrera){
+      $this->db->select('persona.nombre, persona.apellido, tipo_documento.nombre as "tipo_documento",
+       persona.numero_documento, carrera.nombre as "carrera",carrera.id as "id_carrera", nivel.nombre as "nivel",inscripcion_materia.fecha');
+      $this->db->from('persona');
+      $this->db->join('tipo_documento', 'persona.id_tipo_documento = tipo_documento.id', 'inner');
+      $this->db->join('inscripcion_materia', 'inscripcion_materia.id_persona=persona.id', 'inner');
+      $this->db->join('materia', 'materia.id=inscripcion_materia.id_materia', 'inner');
+      $this->db->join('carrera', 'carrera.id=materia.id_carrera', 'inner');
+      $this->db->join('nivel', 'nivel.id=carrera.id_nivel ', 'inner');
+      $this->db->join('inscripcion_carrera', 'inscripcion_carrera.id_persona=persona.id and inscripcion_carrera.id_carrera=carrera.id', 'inner');
+      $this->db->where('persona.id='.$id_persona.' AND carrera.id='.$id_carrera.' AND (inscripcion_materia.fecha BETWEEN concat(year(curdate()),"-03-01") and curdate())');
 
+      $query = $this->db->get();
+      return $query->result_array();
     }
 
     function get_usuario_de_persona($id)
