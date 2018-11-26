@@ -343,6 +343,15 @@ class Persona extends CI_Controller{
             $cantidad++;
         }
     }
+    foreach ($data['datos_persona'] as $curso)
+    {
+        
+        if($curso['calificacion'] !=null)
+        {
+            $suma_notas+=$curso['calificacion'];
+            $cantidad++;
+        }
+    }
     
     //Evito la division por 0
     if($cantidad >0)
