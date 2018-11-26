@@ -175,3 +175,18 @@ ALTER TABLE `asiste` DROP `id_estado`;
 DROP TABLE `estado_asistencia`;
 -- agregar columna faltas a asiste
 ALTER TABLE `asiste` ADD `faltas` INT(2) NULL DEFAULT NULL AFTER `porcentaje`;
+
+
+-- 25/11/18 poblar tablas estado inscripcion
+INSERT INTO `estado_inscripcion_final` (`id`, `nombre`, `nomenclatura`, `es_cursado`, `es_mesa`) VALUES
+(1, 'Desaprobado', 'D', 1, 1),
+(2, 'Aprobado', 'A', 1, 1),
+(3, 'Promoción', 'P', 1, 0),
+(4, 'Libre', 'L', 1, 1),
+(5, 'Equivalencia', 'E', 1, 1);
+
+INSERT INTO `estado_inscripcion_inicial` (`id`, `nombre`, `nomenclatura`, `es_cursado`, `es_mesa`) VALUES
+(1, 'Regular', 'R', 1, 1),
+(2, 'Libre', 'L', 0, 1),
+(3, 'Aprobado', 'A', 0, 1),
+(4, 'Equivalencia', 'E', 0, 1);

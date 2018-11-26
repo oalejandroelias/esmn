@@ -17,7 +17,7 @@
     $this->googlemaps->add_marker($marker);
     $mapa = $this->googlemaps->create_map();
     echo $mapa['js'];
-    $mapa_mostrar = '<label class="col-sm-3 control-label"><b>Ubicaci�n</b></label><i>Puede arrastrar el marcador para posicionar exactamente la ubicaci�n</i>' . $mapa['html'];
+    $mapa_mostrar = '<label class="col-sm-3 control-label"><b>Ubicación</b></label><i>Puede arrastrar el marcador para posicionar exactamente la ubicación</i>' . $mapa['html'];
 
     ?>
 
@@ -27,7 +27,7 @@
 
 <div class="row">
 	<div class="col-md-3 col-12">
-		<div class="card" style="max-width:250px;max-height:250px">
+		<div class="card" style="max-width:250px;">
 			<div class="card text-center">
 				<div class="card-header bg-cyan text-white">
 					Foto de perfil
@@ -138,6 +138,38 @@
 						</div>
 					</div>
 				</div>
+        <div class="form-row mb-3 d-none" id="formdiv_usuario">
+          <div class="col-sm-6 col-12">
+            <label for="username" class="control-label"><span class="text-danger">*</span>Nombre de usuario</label>
+            <input type="text" maxlength="128" name="username" value="<?php echo $this->input->post('username'); ?>" class="form-control" id="username" />
+            <span class="text-danger"><?php echo form_error('username');?></span>
+          </div>
+
+          <div class="col-sm-6 col-12">
+            <label for="password" class="control-label"><span class="text-danger">*</span>Contraseña</label>
+            <input type="password" maxlength="128" name="password" value="<?php echo $this->input->post('password'); ?>" class="form-control" id="password" />
+            <span class="text-danger"><?php echo form_error('password');?></span>
+          </div>
+        </div>
+
+        <div class="form-row mb-4 d-none" id="formdiv_permisos">
+          <div class="col-sm-6 col-12">
+            <label for="id_ciudad" class="control-label"><span class="text-danger">*</span>Asignar permisos de</label>
+            <select name="id_perfil" class="form-control">
+              <option value="">Seleccionar Rol</option>
+              <?php
+              foreach($all_roles as $rol)
+              {
+                $selected = ($rol['id'] == $this->input->post('id_perfil')) ? ' selected="selected"' : "";
+
+                echo '<option value="'.$rol['id'].'" '.$selected.'>'.$rol['nombre'].'</option>';
+              }
+              ?>
+            </select>
+            <span class="text-danger"><?php echo form_error('id_perfil');?></span>
+          </div>
+        </div>
+        
 				<div class="form-group">
 					<label class="col-md-12"></label>
 					<div class="col-md-12" id="tabla_mapa">
@@ -145,37 +177,6 @@
 					</div>
 				</div>
 
-				<div class="form-row mb-3 d-none" id="formdiv_usuario">
-					<div class="col-sm-6 col-12">
-						<label for="username" class="control-label"><span class="text-danger">*</span>Nombre de usuario</label>
-						<input type="text" maxlength="128" name="username" value="<?php echo $this->input->post('username'); ?>" class="form-control" id="username" />
-						<span class="text-danger"><?php echo form_error('username');?></span>
-					</div>
-
-					<div class="col-sm-6 col-12">
-						<label for="password" class="control-label"><span class="text-danger">*</span>Contraseña</label>
-						<input type="password" maxlength="128" name="password" value="<?php echo $this->input->post('password'); ?>" class="form-control" id="password" />
-						<span class="text-danger"><?php echo form_error('password');?></span>
-					</div>
-				</div>
-
-				<div class="form-row mb-4 d-none" id="formdiv_permisos">
-					<div class="col-sm-6 col-12">
-						<label for="id_ciudad" class="control-label"><span class="text-danger">*</span>Asignar permisos de</label>
-						<select name="id_perfil" class="form-control">
-							<option value="">Seleccionar Rol</option>
-							<?php
-							foreach($all_roles as $rol)
-							{
-								$selected = ($rol['id'] == $this->input->post('id_perfil')) ? ' selected="selected"' : "";
-
-								echo '<option value="'.$rol['id'].'" '.$selected.'>'.$rol['nombre'].'</option>';
-							}
-							?>
-						</select>
-						<span class="text-danger"><?php echo form_error('id_perfil');?></span>
-					</div>
-				</div>
 
 				<div class="form-group">
 					<div class="col-sm-offset-4 col-sm-8">

@@ -10,7 +10,7 @@ class Persona_model extends CI_Model
     {
         parent::__construct();
     }
-    
+
     /*
      * Get persona by id
      */
@@ -18,7 +18,7 @@ class Persona_model extends CI_Model
     {
         return $this->db->get_where('persona',array('id'=>$id))->row_array();
     }
-    
+
     /*
      * Get all personas count
      */
@@ -27,7 +27,7 @@ class Persona_model extends CI_Model
         $this->db->from('persona');
         return $this->db->count_all_results();
     }
-    
+
     /*
      * Get all personas
      */
@@ -52,7 +52,7 @@ class Persona_model extends CI_Model
         return $query->result_array();
         // return $this->db->get('persona')->result_array();
     }
-    
+
     /*
      * function to add new persona
      */
@@ -61,7 +61,7 @@ class Persona_model extends CI_Model
         $this->db->insert('persona',$params);
         return $this->db->insert_id();
     }
-    
+
     /*
      * function to update persona
      */
@@ -70,7 +70,7 @@ class Persona_model extends CI_Model
         $this->db->where('id',$id);
         return $this->db->update('persona',$params);
     }
-    
+
     /*
      * function to delete persona
      */
@@ -78,7 +78,7 @@ class Persona_model extends CI_Model
     {
         return $this->db->delete('persona',array('id'=>$id));
     }
-    
+
     /*HISTORIAL CURSADO*/
     function get_historial_persona_curso($id, $id_carrera)
     {
@@ -92,9 +92,9 @@ class Persona_model extends CI_Model
         $this->db->join('tipo_documento', 'persona.id_tipo_documento = tipo_documento.id', 'inner');
         $this->db->join('estado_inscripcion_inicial', 'estado_inscripcion_inicial.id = inscripcion_materia.id_estado_inicial', 'left');
         $this->db->join('estado_inscripcion_final', 'estado_inscripcion_final.id = inscripcion_materia.id_estado_final', 'left');
-        
+
         $this->db->where('persona.id='.$id.' AND inscripcion_materia.id_curso IS NOT null AND materia.id_carrera LIKE "'.$id_carrera.'"');
-        
+
         //$this->db->group_by('inscripcion_materia.id ', 'desc');
         if(isset($params) && !empty($params))
         {
@@ -102,9 +102,8 @@ class Persona_model extends CI_Model
         }
         $query = $this->db->get();
         return $query->result_array();
-        // return $th
     }
-    
+
     /*HISTORIAL MESAS*/
     function get_historial_persona_mesa($id, $id_carrera)
     {
@@ -119,9 +118,9 @@ class Persona_model extends CI_Model
         $this->db->join('tipo_documento', 'persona.id_tipo_documento = tipo_documento.id', 'inner');
         $this->db->join('estado_inscripcion_inicial', 'estado_inscripcion_inicial.id = inscripcion_materia.id_estado_inicial', 'left');
         $this->db->join('estado_inscripcion_final', 'estado_inscripcion_final.id = inscripcion_materia.id_estado_final', 'left');
-        
+
         $this->db->where('persona.id='.$id.' AND inscripcion_materia.id_mesa IS NOT null AND materia.id_carrera LIKE "'.$id_carrera.'"');
-        
+
         //$this->db->group_by('inscripcion_materia.id ', 'desc');
         if(isset($params) && !empty($params))
         {
@@ -129,29 +128,33 @@ class Persona_model extends CI_Model
         }
         $query = $this->db->get();
         return $query->result_array();
-        // return $th
     }
-    
+
+    // comprobar regularidad
+    function check_regularidad($id_persona,$fecha_inicio,$fecha_fin){
+
+    }
+
     function get_usuario_de_persona($id)
     {
         $this->db->select('id, id_persona, username, password, activo');
         $this->db->from('usuario');
         $this->db->where('usuario.id_persona='.$id);
-        
+
         $query = $this->db->get();
         return $query->result_array();
     }
-    
+
     function get_carreras_inscriptas($id_persona) {
-        
+
         $this->db->select('carrera.id, carrera.id_nivel, carrera.nombre');
         $this->db->from('persona');
         $this->db->join('inscripcion_carrera', 'inscripcion_carrera.id_persona=persona.id', 'inner');
         $this->db->join('carrera', 'carrera.id=inscripcion_carrera.id_carrera', 'inner');
         $this->db->where('persona.id='.$id_persona);
-        
+
         $query = $this->db->get();
         return $query->result_array();
-        
+
     }
 }

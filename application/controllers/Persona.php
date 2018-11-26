@@ -326,7 +326,7 @@ class Persona extends CI_Controller{
     $data['carreras_inscripcion'] = $this->Persona_model->get_carreras_inscriptas($id);
     if($carrera == null && isset($data['carreras_inscripcion'][0]['id']))
     {
-        $carrera= $data['carreras_inscripcion'][0]['id'];
+      $carrera= $data['carreras_inscripcion'][0]['id'];
     }else {
       $carrera = false;
     }
@@ -337,21 +337,24 @@ class Persona extends CI_Controller{
     $data['tipo_documento']="";
     foreach ($data['all_tipo_documento'] as $tipo_doc)
     {
-        if($tipo_doc['id'] == $data['persona']['id_tipo_documento'])
-        {
-            $data['tipo_documento']=$tipo_doc['nombre'];
-        }
+      if($tipo_doc['id'] == $data['persona']['id_tipo_documento'])
+      {
+        $data['tipo_documento']=$tipo_doc['nombre'];
+      }
     }
     $data['all_ciudades'] = $this->Ciudad_model->get_all_ciudades();
-
-    //Botones de acciones
-    $data['boton_edit']=validar_botones('edit');
-    $data['boton_add']=validar_botones('add');
-    $data['boton_remove']=validar_botones('remove');
 
     $this->load->view('templates/header',$data);
     $this->load->view('persona/ver_historial',$data);
     $this->load->view('templates/footer',$data);
+  }
+
+  // obtener regularidad de la persona
+  function getRegularidad(){
+    if ($this->input->is_ajax_request() && !empty($_POST)) {
+      
+    }
+    return false;
   }
 
 }

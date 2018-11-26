@@ -1,10 +1,10 @@
 <?php echo form_open_multipart('persona/edit/'.$persona['id'],array("class"=>"form-horizontal","onsubmit"=>"return validar_form(this);")); ?>
 
-<?php 
+<?php
     $marker = array();
     $coordenadas_direccion = array();
-    
-    //Si la dirección es nula le paso como base la direccion de Neuquen
+
+    //Si la direcciï¿½n es nula le paso como base la direccion de Neuquen
     if($persona['domicilio'] ==null)
     {
         $direccion="Neuquen";
@@ -14,21 +14,21 @@
     }
     //$direccion="";
     $coordenadas_direccion= $this->googlemaps->get_lat_long_from_address($direccion);
-    
+
     $marker['position'] = $coordenadas_direccion[0].', '.$coordenadas_direccion[1];
     //$marker['position'] = '-68.0575352 , -38.9419357' ;
     $marker['draggable'] = true;
     $marker['ondragend'] = 'guardar_coordenadas(event.latLng.lat(), event.latLng.lng());';
-    
-    
-    
+
+
+
     $this->googlemaps->add_marker($marker);
     $mapa = $this->googlemaps->create_map();
     echo $mapa['js'];
-    $mapa_mostrar = '<label class="col-sm-3 control-label"><b>Ubicación</b></label><i>Puede arrastrar el marcador para posicionar exactamente la ubicación</i>' . $mapa['html'];
-    
+    $mapa_mostrar = '<label class="col-sm-3 control-label"><b>UbicaciÃ³n</b></label><i>Puede arrastrar el marcador para posicionar exactamente la ubicaciÃ³n</i>' . $mapa['html'];
+
     ?>
-        
+
         <script>
        	var datos_mapa='<?php echo $mapa_mostrar;?>';
         </script>
@@ -37,8 +37,8 @@
 
   <div class="row">
     <div class="col-md-3 col-12">
-      <div class="card" style="max-width:250px;max-height:250px">
-        <div class="card text-center">
+      <div class="card" style="max-width:250px;">
+        <div class="card text-center mb-0">
           <div class="card-header bg-cyan text-white">
             Foto de perfil
           </div>
@@ -52,6 +52,7 @@
             <!-- <?php echo $this->upload->display_errors('<span class="form-text text-danger">', '</span>'); ?> -->
           </div>
         </div>
+        <a href="<?php echo site_url('persona_tutor/relacion/'.$persona['id']); ?>" class="btn btn-outline-secondary btn">Relaciones</a>
       </div>
     </div>
 
@@ -133,11 +134,11 @@
           <label for="fecha" class="control-label"><span class="text-danger">*</span>Fecha de Nacimiento</label>
           <div class="form-row mb-3">
             <div class="col-12">
-              <input type="text" name="fecha_nacimiento" id="fecha_nacimiento" value="<?php echo ($this->input->post('fecha_nacimiento') ? $this->input->post('fecha_nacimiento') : $persona['fecha_nacimiento']); ?>"/> 
+              <input type="text" name="fecha_nacimiento" id="fecha_nacimiento" value="<?php echo ($this->input->post('fecha_nacimiento') ? $this->input->post('fecha_nacimiento') : $persona['fecha_nacimiento']); ?>"/>
               <span class="text-danger d-none" data-error="fecha_nacimiento">Complete los datos de fecha de nacimiento.</span>
             </div>
           </div>
-          
+
 <!--           <div class="form-row mb-3 d-none" id="formdiv_usuario"> -->
 <!-- 					<div class="col-sm-6 col-12"> -->
 <!-- 						<label for="username" class="control-label"><span class="text-danger">*</span>Nombre de usuario</label> -->
@@ -173,7 +174,7 @@
 				<div class="form-group">
 					<label class="col-md-12"></label>
 					<div class="col-md-12" id="tabla_mapa">
-						
+
 					</div>
 				</div>
 

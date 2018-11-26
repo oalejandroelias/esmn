@@ -4,6 +4,19 @@
 
     <h5 class="card-title"><?php echo $tipo_documento.': '. $persona['numero_documento'];?></h5>
 
+    <div class="col-md-4 col-12">
+      <div class="card">
+        <div class="card">
+          <div class="card-header bg-cyan text-white font-weight-bold">
+            Certificados
+          </div>
+          <div class="card-body">
+            <button type="button" class="btn btn-info" onclick="getRegularidad(<?= $persona['id'] ?>);">Alumno Regular</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">Cursados</h5>

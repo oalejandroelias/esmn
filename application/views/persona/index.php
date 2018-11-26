@@ -45,19 +45,19 @@
                           <td>
 
                             <?php if($boton_edit){?>
-                              <a href="<?php echo site_url('Persona/edit/'.$p['persona_id']); ?>" class="btn btn-info btn-sm" title="Editar"><i class="fas fa-pencil-alt"></i></a>
+                              <a href="<?php echo site_url('Persona/edit/'.$p['persona_id']); ?>" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="fas fa-pencil-alt"></i></a>
                             <?php }?>
                             <?php if($boton_remove){?>
-                              <a href="<?php echo site_url('Persona/remove/'.$p['persona_id']); ?>" data-confirm="remove" class="btn btn-danger btn-sm" title="Eliminar"><i class="fas fa-times"></i></a>
+                              <a href="<?php echo site_url('Persona/remove/'.$p['persona_id']); ?>" data-confirm="remove" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="bottom" title="Eliminar"><i class="fas fa-times"></i></a>
                             <?php }?>
 
                             <?php if (empty($this->Usuario_model->get_usuario_by_persona($p['persona_id']))): ?>
-                              <a href="<?php echo site_url('Usuario/add/'.$p['persona_id']); ?>" class="btn btn-primary btn-sm">Crear usuario</a>
+                              <a href="<?php echo site_url('Usuario/add/'.$p['persona_id']); ?>" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="bottom" title="Crear usuario"><i class="fas fa-user"></i></a>
                             <?php else: ?>
-                              <span title="Ya tiene un usuario creado"><a href="#" class="btn btn-primary btn-sm disabled"  tabindex="-1" role="button" aria-disabled="true">Crear usuario</a></span>
+                              <span title="Ya tiene un usuario creado" data-toggle="tooltip" data-placement="bottom"><a href="#" class="btn btn-primary btn-sm disabled" tabindex="-1" role="button" aria-disabled="true"><i class="fas fa-user"></i></a></span>
                             <?php endif; ?>
-                            <a href="<?php echo site_url('Documentacion/ver/'.$p['persona_id']); ?>" class="btn btn-outline-info btn-sm">Documentacion</a>
-                            <a href="<?php echo site_url('persona_tutor/relacion/'.$p['persona_id']); ?>" class="btn btn-outline-secondary btn-sm">Relaciones</a>
+                            <a href="<?php echo site_url('Documentacion/ver/'.$p['persona_id']); ?>" class="btn btn-outline-info btn-sm" data-toggle="tooltip" data-placement="bottom" title="Documentacion"><i class="fas fa-file-alt"></i></a>
+                            <!-- <a href="<?php echo site_url('persona_tutor/relacion/'.$p['persona_id']); ?>" class="btn btn-outline-secondary btn-sm">Relaciones</a> -->
                             <a href="<?php echo site_url('Persona/ver_historial/'.$p['persona_id']); ?>" class="btn btn-outline-secondary btn-sm">Historial</a>
                           </td>
                         </tr>
