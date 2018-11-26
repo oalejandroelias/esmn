@@ -327,11 +327,28 @@ class Persona extends CI_Controller{
     if($carrera == null && isset($data['carreras_inscripcion'][0]['id']))
     {
       $carrera= $data['carreras_inscripcion'][0]['id'];
-    }else {
-      $carrera = false;
     }
     $data['datos_persona'] = $this->Persona_model->get_historial_persona_curso($id, $carrera);
     $data['datos_mesas'] = $this->Persona_model->get_historial_persona_mesa($id, $carrera);
+    
+    $cantidad=0;
+    $data['promedio']=number_format(0, 2);
+    $suma_notas=0.00;
+    foreach ($data['datos_mesas'] as $mesa)
+    {
+        
+        if($mesa['calificacion'] !=null)
+        {
+            $suma_notas+=$mesa['calificacion'];
+            $cantidad++;
+        }
+    }
+    
+    //Evito la division por 0
+    if($cantidad >0)
+    {
+        $data['promedio']= number_format($suma_notas/$cantidad, 2);
+    }
 
     $data['all_tipo_documento'] = $this->Tipo_documento_model->get_all_tipo_documento();
     $data['tipo_documento']="";

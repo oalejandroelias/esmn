@@ -4,6 +4,7 @@
 
     <h5 class="card-title"><?php echo $tipo_documento.': '. $persona['numero_documento'];?></h5>
 
+	<div class="row 12">
     <div class="col-md-4 col-12">
       <div class="card">
         <div class="card">
@@ -16,6 +17,19 @@
         </div>
       </div>
     </div>
+     <div class="col-md-2 col-12">
+      <div class="card">
+        <div class="card">
+          <div class="card-header bg-cyan text-white font-weight-bold">
+            Promedio
+          </div>
+          <div class="card-body">
+            <h3><?php echo $promedio;?></h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
 
     <div class="card">
       <div class="card-body">
@@ -23,7 +37,7 @@
         <div class="col-sm-4 col-12 mb-3">
           <label for="id_carrera" class="control-label"><span class="text-danger">*</span>Carrera</label>
           <select name="id_carrera" required class="form-control" onchange='this.form.submit()'>
-            <option value="">Seleccionar carrera</option>
+            
             <?php
             foreach($carreras_inscripcion as $carrera)
             {
