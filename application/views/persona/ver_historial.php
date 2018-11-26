@@ -29,14 +29,14 @@
         </div>
       </div>
     </div>
-    </div>
-
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Cursados</h5>
-        <div class="col-sm-4 col-12 mb-3">
-          <label for="id_carrera" class="control-label"><span class="text-danger">*</span>Carrera</label>
-          <select name="id_carrera" required class="form-control" onchange='this.form.submit()'>
+       <div class="col-md-4 col-12">
+      <div class="card">
+        <div class="card">
+          <div class="card-header bg-cyan text-white font-weight-bold">
+            Carrera
+          </div>
+          <div class="card-body">
+             <select name="id_carrera" required class="form-control" onchange='this.form.submit()'>
             
             <?php
             foreach($carreras_inscripcion as $carrera)
@@ -48,7 +48,16 @@
             ?>
           </select>
           <span class="text-danger"><?php echo form_error('id_carrera');?></span>
+          </div>
         </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Cursados</h5>
+     
         <div class="table-responsive">
           <div id="zero_config_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
             <div class="row">
