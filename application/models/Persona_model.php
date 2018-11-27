@@ -141,7 +141,7 @@ class Persona_model extends CI_Model
       $this->db->join('carrera', 'carrera.id=materia.id_carrera', 'inner');
       $this->db->join('nivel', 'nivel.id=carrera.id_nivel ', 'inner');
       $this->db->join('inscripcion_carrera', 'inscripcion_carrera.id_persona=persona.id and inscripcion_carrera.id_carrera=carrera.id', 'inner');
-      $this->db->where('persona.id='.$id_persona.' AND carrera.id='.$id_carrera.' AND (inscripcion_materia.fecha BETWEEN concat(year(curdate()),"-03-01") and curdate())');
+      $this->db->where('persona.id='.$id_persona.' AND carrera.id="'.$id_carrera.'" AND (inscripcion_materia.fecha BETWEEN concat(year(curdate()),"-03-01") and curdate())');
 
       $query = $this->db->get();
       return $query->result_array();
