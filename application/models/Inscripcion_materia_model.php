@@ -49,7 +49,7 @@ class Inscripcion_materia_model extends CI_Model
     $this->db->join('asiste', 'asiste.id_persona = persona.id and asiste.id_curso = curso.id', 'left');
     $this->db->join('estado_inscripcion_inicial ', 'inscripcion_materia.id_estado_inicial  = estado_inscripcion_inicial.id', 'left');
     $this->db->join('estado_inscripcion_final ', 'inscripcion_materia.id_estado_final  = estado_inscripcion_final.id', 'left');
-    $this->db->where('inscripcion_materia.id_curso IS NOT NULL');
+    $this->db->where('inscripcion_materia.id_curso IS NOT NULL OR id_estado_final=5');
     if(isset($where) && !empty($where))
     {
       foreach ($where as $w) {

@@ -255,6 +255,46 @@ class Inscripcion_materia extends CI_Controller{
     }
   }
 
+  function inscripcion_equivalencia(){
+    $this->form_validation->set_rules('id_persona','Persona / Alumno','required|integer');
+    $this->form_validation->set_rules('id_materia','Materia','required|integer');
+    // $this->form_validation->set_message('check_carrera','La persona no esta inscripta en la carrera del curso elegido!');
+
+    if($this->form_validation->run())
+    {
+      $calificacion=10; //obtener
+      $params = array(
+        'id_persona' => $this->input->post('id_persona'),
+        'id_curso' => null,
+        'id_materia' => $this->input->post('id_materia'),
+        'id_mesa' => null,
+        'id_estado_inicial' => 4, // 4 = EQUIVALENCIA
+        'calificacion' => $calificacion,
+        'fecha' =>date('Y-m-d'),
+        'id_estado_final' => 5, //5 = EQUIVALENCIA
+      );
+
+      $inscripcion_materia_id = $this->Inscripcion_materia_model->add_inscripcion_materia($params);
+
+      $this->session->set_flashdata('crear', 'Inscripcion por equivalencia creada');
+      redirect('inscripcion_materia/index_inscripcion_cursado');
+    }
+    else
+    {
+      $data['title'] = 'Nueva Inscripcion- ESMN';
+      $data['page_title'] = 'Inscripcion por Equivalencia';
+
+      $data['personas'] = $this->Persona_model->get_all_personas();
+      $data['all_materias'] = $this->Materia_model->get_all_materias();
+
+      $data['js'] = array('inscripcion_equivalencia.js');
+
+      $this->load->view('templates/header',$data);
+      $this->load->view('inscripcion_materia/inscripcion_equivalencia',$data);
+      $this->load->view('templates/footer');
+    }
+  }
+
   // funcion comprobar si una persona esta inscripta en la carrera del curso elegido
   function check_carrera($id_curso,$id_persona){
     $id_materia = $this->Curso_model->get_curso($id_curso)['id_materia'];

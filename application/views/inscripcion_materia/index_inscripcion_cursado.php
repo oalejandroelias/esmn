@@ -84,6 +84,7 @@
 										<div class="pull-right">
 											<?php if ($boton_add): ?>
 												<a href="<?php echo site_url('inscripcion_materia/add_inscripcion_cursado'); ?>" class="btn btn-success">Nueva</a>
+												<a href="<?php echo site_url('inscripcion_materia/inscripcion_equivalencia'); ?>" class="btn btn-primary">Inscripcion por Equivalencia</a>
 											<?php endif; ?>
 										</div>
 									</div>
