@@ -8,7 +8,7 @@
         <div class="form-group">
           <label class="control-label">Persona / Alumno</label>
           <div class="col-sm-8 col-12">
-            <select class="select2 form-control custom-select" name="id_persona" required style="width: 100%; height:36px;">
+            <select class="select2 form-control custom-select" name="id_persona" style="width: 100%; height:36px;">
               <option value="">Buscar</option>
               <?php
               foreach($personas as $p)

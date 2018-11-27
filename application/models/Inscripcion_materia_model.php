@@ -83,6 +83,13 @@ class Inscripcion_materia_model extends CI_Model
     return $this->db->get_where('inscripcion_materia',array('id_persona'=>$id_persona,'id_curso'=>$id_curso))->row_array();
   }
 
+  // comprobar estado de aprobacion de una materia equivalente sea distinto de 1(desaprobado) o 4(libre)
+  public function check_estado($id_persona,$id_materia){
+    $this->db->where(array('id_persona'=>$id_persona,'id_materia'=>$id_materia));
+    $this->db->where_not_in('inscripcion_materia.id_estado_final',array(1,4));
+    return $this->db->get('inscripcion_materia')->row_array();
+  }
+
   /*
   * function to add new inscripcion_materia
   */

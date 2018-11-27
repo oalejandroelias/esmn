@@ -257,12 +257,15 @@ class Inscripcion_materia extends CI_Controller{
 
   function inscripcion_equivalencia(){
     $this->form_validation->set_rules('id_persona','Persona / Alumno','required|integer');
-    $this->form_validation->set_rules('id_materia','Materia','required|integer');
-    // $this->form_validation->set_message('check_carrera','La persona no esta inscripta en la carrera del curso elegido!');
+    $this->form_validation->set_rules('id_materia','Materia','required|integer|callback_check_estado['.$this->input->post('id_materia').']');
+    $this->form_validation->set_rules('id_equivalencia','Materia Equivalente','required|integer|callback_check_estado_equivalente['.$this->input->post('id_persona').']');
+    $this->form_validation->set_message('check_estado','La persona ya tiene la materia aprobada!');
+    $this->form_validation->set_message('check_estado_equivalente','La persona no tiene la materia equivalente aprobada!');
 
     if($this->form_validation->run())
     {
-      $calificacion=10; //obtener
+      $inscripcion=$this->Inscripcion_materia_model->check_estado($this->input->post('id_persona'),$this->input->post('id_equivalencia'));
+      $calificacion=$inscripcion['calificacion'];
       $params = array(
         'id_persona' => $this->input->post('id_persona'),
         'id_curso' => null,
@@ -293,6 +296,17 @@ class Inscripcion_materia extends CI_Controller{
       $this->load->view('inscripcion_materia/inscripcion_equivalencia',$data);
       $this->load->view('templates/footer');
     }
+  }
+
+  // comprobar estado de aprobacion de una materia equivalente
+  function check_estado($id_persona,$id_materia){
+    $query = $this->Inscripcion_materia_model->check_estado($id_persona,$id_materia);
+    return (empty($query)) ? true : false;
+  }
+  // comprobar estado de aprobacion de una materia equivalente
+  function check_estado_equivalente($id_equivalencia,$id_persona){
+    $query = $this->Inscripcion_materia_model->check_estado($id_persona,$id_equivalencia);
+    return (empty($query)) ? false : true;
   }
 
   // funcion comprobar si una persona esta inscripta en la carrera del curso elegido
