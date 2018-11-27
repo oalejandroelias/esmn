@@ -3,6 +3,8 @@ class Asiste extends CI_Controller{
   function __construct()
   {
     parent::__construct();
+    is_logged_in();
+    validar_acceso();
     $this->load->model('Asiste_model');
     $this->load->model('Curso_model');
   }

@@ -225,19 +225,30 @@
                             <i class="mdi mdi-book-open"></i><span class="hide-menu">Inscripciones </span>
                           </a>
                             <ul aria-expanded="false" class="collapse  first-level">
+                            
+                        		<?php if(validar_opcion('Inscripcion_carrera')){ ?>
                                 <li class="sidebar-item"><a href="<?=base_url('inscripcion_carrera')?>" class="sidebar-link">
                                   <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Carreras </span></a></li>
+                                <?php }?>
+                        		<?php if(validar_opcion('Inscripcion_materia')){ ?>
                                 <li class="sidebar-item"><a href="<?=base_url('inscripcion_materia')?>" class="sidebar-link">
                                   <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Mesas </span></a></li>
+                                <?php }?>
+                        		<?php if(validar_opcion_inscripcion_materia('index_inscripcion_cursado')){ ?>
                                 <li class="sidebar-item"><a href="<?=base_url('inscripcion_materia/index_inscripcion_cursado')?>" class="sidebar-link">
                                   <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Cursos </span></a></li>
+                                <?php }?>
                             </ul>
                         </li>
+                         
+                        <?php if(validar_opcion('Mesa')){ ?>
                         <li class="sidebar-item">
                           <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?=base_url('mesa')?>" aria-expanded="false">
                             <i class="mdi mdi-calendar"></i><span class="hide-menu">Mesas</span>
                           </a>
                         </li>
+                        <?php }?>
+                        <?php if(validar_opcion('Tipo_periodo')){ ?>
                         <li class="sidebar-item">
                           <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                             <i class="mdi mdi-book-open"></i><span class="hide-menu">Periodos </span>
@@ -249,6 +260,7 @@
                                   <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Periodo </span></a></li>
                             </ul>
                         </li>
+                         <?php }?>
                     </ul>
                 </nav>
             </div>
