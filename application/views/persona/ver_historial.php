@@ -13,6 +13,7 @@
           </div>
           <div class="card-body">
             <button type="button" class="btn btn-info" onclick="getRegularidad(<?= $persona['id'] ?>);">Alumno Regular</button>
+            <button type="button" class="btn btn-info" onclick="getConstancia(<?= $persona['id'] ?>);">Constancia de Examen</button>
           </div>
         </div>
       </div>
@@ -37,7 +38,7 @@
           </div>
           <div class="card-body">
              <select name="id_carrera" required class="form-control" onchange='this.form.submit()'>
-            
+
             <?php
             foreach($carreras_inscripcion as $carrera)
             {
@@ -57,7 +58,7 @@
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">Cursados</h5>
-     
+
         <div class="table-responsive">
           <div id="zero_config_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
             <div class="row">

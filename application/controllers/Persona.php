@@ -396,6 +396,22 @@ class Persona extends CI_Controller{
     return false;
   }
 
+  function getConstancia(){
+    if ($this->input->is_ajax_request() && !empty($_POST)) {
+      $id_persona=$this->input->post('id_persona');
+      $id_carrera=$this->input->post('id_carrera');
+      $id_materia=$this->input->post('id_materia');
+      $query=$this->Persona_model->check_ConstanciaE($id_persona,$id_carrera);
+      if (!empty($query)) {
+        $respuesta=$query[0];
+      }else{
+        $respuesta=false;
+      }
+      echo json_encode($respuesta);
+    }
+    return false;
+  }
+
 }
 
 ?>

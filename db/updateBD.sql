@@ -190,3 +190,6 @@ INSERT INTO `estado_inscripcion_inicial` (`id`, `nombre`, `nomenclatura`, `es_cu
 (2, 'Libre', 'L', 0, 1),
 (3, 'Aprobado', 'A', 0, 1),
 (4, 'Equivalencia', 'E', 0, 1);
+
+-- 26/11/18 campo bidireccional en materia equivalente
+ALTER TABLE `materia_equivalente` ADD `bidireccional` TINYINT NOT NULL DEFAULT '1' AFTER `id_equivalencia`;

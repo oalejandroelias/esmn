@@ -161,6 +161,18 @@
           </div>
         </div>
         <div class="form-group">
+          <label class="col-12"></label>
+          <div class="col-12">
+            <div class="custom-control custom-checkbox mr-sm-2">
+              <input class="custom-control-input" name="bidireccional" type="checkbox" value="1" checked id="checkbox_bidireccional">
+              <label class="custom-control-label" for="checkbox_bidireccional">Equivalencia Bidireccional
+                <i class="mdi mdi-alert-circle" data-toggle="tooltip" data-placement="bottom"
+                title="Si la materia es quivalente de un nivel superior hacia uno inferior, desmarque esta opcion."></i>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
           <div class="col-sm-offset-4 col-sm-8">
             <button type="submit" class="btn btn-success">Guardar</button>
           </div>

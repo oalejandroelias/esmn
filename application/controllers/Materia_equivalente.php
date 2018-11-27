@@ -24,6 +24,9 @@ class Materia_equivalente extends CI_Controller{
         'id_materia'=>$_POST['id_materia'],
         'id_equivalencia'=>$_POST['id_equivalencia'],
       );
+      if (!isset($_POST['bidireccional'])) {
+        $params['bidireccional']=0;
+      }
       $this->Materia_equivalente_model->add_materia_equivalente($params);
       redirect('materia/index');
     }

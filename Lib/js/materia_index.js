@@ -95,16 +95,22 @@ function ver_equivalencias(id_materia){
         // mostrar materias en lista
         $('#modal_equivalencias div[data-respuesta=""]').append('<ul class="list-group list-group-flush"></ul>');
         for (var i = 0; i < obj.length; i++) {
+          var mostrar = true;
           if (id_materia == obj[i].id_materia) {
             var nombre = obj[i].nombre_equivalencia+' ('+obj[i].carrera_equivalencia+')';
           }else {
             var nombre = obj[i].nombre_materia+' ('+obj[i].carrera_materia+')';
+            if (obj[i].bidireccional == 0) {
+              var mostrar = false;
+            }
           }
-          $('#modal_equivalencias div[data-respuesta=""] ul').append('<li class="list-group-item">'+nombre+' \
-          <button class="btn btn-danger btn-xs float-right" title="Eliminar" onclick="eliminar_equivalencia('+obj[i].id_materia+','+obj[i].id_equivalencia+',this)">\
-          <i class="fas fa-times"></i>\
-          </button>\
-          </li>');
+          if (mostrar) {
+            $('#modal_equivalencias div[data-respuesta=""] ul').append('<li class="list-group-item">'+nombre+' \
+            <button class="btn btn-danger btn-xs float-right" title="Eliminar" onclick="eliminar_equivalencia('+obj[i].id_materia+','+obj[i].id_equivalencia+',this)">\
+            <i class="fas fa-times"></i>\
+            </button>\
+            </li>');
+          }
           $('#modal_equivalencias form select option[value="'+obj[i].id_equivalencia+'"]').prop("disabled",true);//deshabilitar opcion de materia ya listada
         }
         $('#modal_equivalencias div[data-respuesta=""] ul').after('<hr>'); //separador
