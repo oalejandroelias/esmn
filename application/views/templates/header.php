@@ -101,20 +101,48 @@
                              <span class="d-block d-md-none"><i class="fa fa-plus"></i></span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="menu-administracion">
+                            	<?php if(validar_opcion('Perfil')){ ?>
                                 <a class="dropdown-item" href="<?php echo base_url('Perfil')?>">Perfiles</a>
+                                 <?php }?>
+                                <?php if(validar_opcion('Persona')){ ?>
                                 <a class="dropdown-item" href="<?php echo base_url('Persona')?>">Personas</a>
+                                <?php }?>
+                                <?php if(validar_opcion('Usuario')){ ?>
                                 <a class="dropdown-item" href="<?php echo base_url('Usuario')?>">Usuarios</a>
+                                <?php }?>
+                                <?php if(validar_opcion('Provincia')){ ?>
                                 <a class="dropdown-item" href="<?php echo base_url('Provincia')?>">Provincias</a>
+                                 <?php }?>
+                                <?php if(validar_opcion('Ciudad')){ ?>
                                 <a class="dropdown-item" href="<?php echo base_url('Ciudad')?>">Ciudades</a>
+                                 <?php }?>
+                                <?php if(validar_opcion('Nivel')){ ?>
                                 <a class="dropdown-item" href="<?php echo base_url('Nivel')?>">Niveles</a>
+                                 <?php }?>
+                                <?php if(validar_opcion('Carrera')){ ?>
                                 <a class="dropdown-item" href="<?php echo base_url('Carrera')?>">Carreras</a>
+                                 <?php }?>
+                                <?php if(validar_opcion('Materia')){ ?>
                                 <a class="dropdown-item" href="<?php echo base_url('Materia')?>">Materias</a>
+                                 <?php }?>
+                                <?php if(validar_opcion('Curso')){ ?>
                                 <a class="dropdown-item" href="<?php echo base_url('Curso')?>">Cursos</a>
+                                 <?php }?>
                                 <div class="dropdown-divider"></div>
+                                 
+                                <?php if(validar_opcion('Estado_inscripcion_inicial')){ ?>
                                 <a class="dropdown-item" href="<?php echo base_url('Estado_inscripcion_inicial')?>">Estados inscripción inicial</a>
+                                 <?php }?>
+                                <?php if(validar_opcion('Estado_inscripcion_final')){ ?>
                                 <a class="dropdown-item" href="<?php echo base_url('Estado_inscripcion_final')?>">Estados inscripción final</a>
+                                 <?php }?>
+                                <?php if(validar_opcion('Tutor')){ ?>
                                 <a class="dropdown-item" href="<?php echo base_url('Tutor')?>">Tutores</a>
+                                 <?php }?>
+                                <?php if(validar_opcion('Tipo_documento')){ ?>
                                 <a class="dropdown-item" href="<?php echo base_url('Tipo_documento')?>">Tipo Documento</a>
+                                 <?php }?>
+                                
                                 <!-- <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">Something else here</a> -->
                             </div>

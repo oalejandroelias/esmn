@@ -53,6 +53,31 @@ function validar_acceso()
     }
 }
 
+function validar_opcion($opcion)
+{
+    $CI =& get_instance();
+    $salida=false;
+    
+    
+    //$clase=$CI->uri->segments[1];
+    $clase=$opcion;
+    $accion="index";
+    
+    $permisos=json_decode($_SESSION['permisos']);
+    
+    if(isset($permisos->$clase->$accion))
+    {
+        //Si existe segments[2] es porque viene de un edit, add, etc.
+        $salida=true;
+        
+    }
+    else
+    {
+        $salida=false;
+    }
+    
+    return $salida;
+}
 
 function validar_botones($accion)
 {
