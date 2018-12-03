@@ -51,6 +51,8 @@
 <!-- <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/extra-libs/DataTables/dataTables.buttons.min.js"></script> -->
 
 <!-- custom -->
+ <!-- RUTA DEL SITIO: -->
+<script>ruta="<?= base_url();?>";</script>
 <script src="<?= base_url();?>Lib/js/globals.js"></script>
 
 <!--  Scripts cargados desde el controlador -->

@@ -93,7 +93,7 @@ class Persona_model extends CI_Model
         $this->db->join('estado_inscripcion_inicial', 'estado_inscripcion_inicial.id = inscripcion_materia.id_estado_inicial', 'left');
         $this->db->join('estado_inscripcion_final', 'estado_inscripcion_final.id = inscripcion_materia.id_estado_final', 'left');
 
-        $this->db->where('persona.id='.$id.' AND inscripcion_materia.id_curso IS NOT null AND materia.id_carrera LIKE "'.$id_carrera.'"');
+        $this->db->where('persona.id='.$id.' AND (inscripcion_materia.id_curso IS NOT null or inscripcion_materia.id_estado_final=5) AND materia.id_carrera LIKE "'.$id_carrera.'"');
 
         //$this->db->group_by('inscripcion_materia.id ', 'desc');
         if(isset($params) && !empty($params))

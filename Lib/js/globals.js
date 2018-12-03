@@ -1,6 +1,3 @@
-// RUTA DEL SITIO:
-ruta="http://localhost/esmn/";
-
 $('#menu-administracion').perfectScrollbar();
 /*datepicker*/
 jQuery('.mydatepicker').datepicker({
