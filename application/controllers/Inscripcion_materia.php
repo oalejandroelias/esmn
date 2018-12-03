@@ -147,10 +147,118 @@ class Inscripcion_materia extends CI_Controller{
     else
     show_error('The inscripcion_materia you are trying to delete does not exist.');
   }
+  
+  function add_inscripcion_cursado_alumno()
+  {
+      $carrera= $this->input->post('id_carrera');
+      //Si estoy guardando la inscripcion al cursado
+      if($this->input->post('id_curso') !=null)
+      {
+          $this->form_validation->set_rules('id_curso','Curso de Materia','required|integer|callback_check_carrera['.$this->session->userdata['persona_id'].']');
+          $this->form_validation->set_rules('id_persona','Persona / Alumno','required|integer|callback_check_inscripcion['.$this->input->post('id_curso').']|callback_check_correlativa['.$this->input->post('id_curso').']');
+          $this->form_validation->set_message('check_carrera','La persona no esta inscripta en la carrera del curso elegido!');
+          $this->form_validation->set_message('check_inscripcion','La persona ya se encuentra registrada en este curso!');
+          $this->form_validation->set_message('check_correlativa','La persona adeuda materias correlativas!');
+          $data['persona'] = $this->Persona_model->get_persona($this->session->userdata['persona_id']);
+          
+          if($this->form_validation->run())
+          {
+              $curso=$this->Curso_model->get_curso($this->input->post('id_curso'));
+              $params = array(
+                  'id_persona' => $this->session->userdata['persona_id'],
+                  'id_curso' => $this->input->post('id_curso'),
+                  'id_materia' => $this->input->post('id_materia'),
+                  'id_mesa' => null,
+                  'id_estado_inicial' => 1, // 1 = REGULAR
+                  'calificacion' => null,
+                  'fecha' =>date('Y-m-d'),
+                  'id_estado_final' => null,
+              );
+              
+              $inscripcion_materia_id = $this->Inscripcion_materia_model->add_inscripcion_materia($params);
+              
+              // crear registro de "asiste a curso"
+              $params_asiste = array(
+                  'id_curso' => $this->input->post('id_curso'),
+                  'id_persona' => $this->session->userdata['persona_id'],
+                  'porcentaje' => null,
+              );
+              $id_asiste = $this->Asiste_model->add_asiste($params_asiste);
+              
+              $this->session->set_flashdata('crear', 'Nueva inscripción a cursado creada');
+              redirect('inscripcion_materia/index_inscripcion_cursado_alumno');
+          }
+          else
+          {
+              $data['title'] = 'Nueva Inscripcion - ESMN';
+              $data['page_title'] = 'Inscribirse a curso';
+              
+              //$data['personas'] = $this->Persona_model->get_all_personas();
+              $data['carreras_inscripcion'] = $this->Persona_model->get_carreras_inscriptas($this->session->userdata['persona_id']);
+              if($carrera == null && isset($data['carreras_inscripcion'][0]['id']))
+              {
+                  $carrera= $data['carreras_inscripcion'][0]['id'];
+              }
+              $data['all_materias'] = $this->Materia_model->get_all_materias();
+              $data['all_estados_inicial'] = $this->Estado_inscripcion_inicial_model->get_all_estado_inscripcion_inicial();
+              $data['all_cursos'] = $this->Curso_model->get_cursos_de_carrera($carrera);
+              
+              $data['js'] = array('inscripcion_cursado.js');
+              
+              $this->load->view('templates/header',$data);
+              $this->load->view('inscripcion_materia/add_inscripcion_cursado_alumno',$data);
+              $this->load->view('templates/footer');
+          }
+      }
+      else
+      {
+          $data['title'] = 'Nueva Inscripcion - ESMN';
+          $data['page_title'] = 'Inscribirse a curso';
+          
+          //$data['personas'] = $this->Persona_model->get_all_personas();
+          $data['carreras_inscripcion'] = $this->Persona_model->get_carreras_inscriptas($this->session->userdata['persona_id']);
+          if($carrera == null && isset($data['carreras_inscripcion'][0]['id']))
+          {
+              $carrera= $data['carreras_inscripcion'][0]['id'];
+          }
+          $data['all_materias'] = $this->Materia_model->get_all_materias();
+          $data['all_estados_inicial'] = $this->Estado_inscripcion_inicial_model->get_all_estado_inscripcion_inicial();
+          $data['all_cursos'] = $this->Curso_model->get_cursos_de_carrera($carrera);
+          
+          $data['js'] = array('inscripcion_cursado.js');
+          
+          $this->load->view('templates/header',$data);
+          $this->load->view('inscripcion_materia/add_inscripcion_cursado_alumno',$data);
+          $this->load->view('templates/footer');
+      }
+  }
+  function index_inscripcion_cursado_alumno()
+  {
+
+      $data['title'] = 'Inscripciones a cursado de Materias - ESMN';
+      $data['page_title'] = 'Inscripciones a cursado de  Materias';
+      $data['inscripcion_materia'] = $this->Inscripcion_materia_model->get_all_inscripcion_materia_cursado($this->session->userdata['persona_id']);
+      
+      //Botones de acciones
+      $data['boton_edit']=validar_botones('edit');
+      $data['boton_add']=validar_botones('add');
+      $data['boton_remove']=validar_botones('remove');
+      
+      $data['js'] = array('inscripcion_cursado.js');
+      
+      $this->load->view('templates/header',$data);
+      $this->load->view('inscripcion_materia/index_inscripcion_cursado_alumno',$data);
+      $this->load->view('templates/footer');
+  }
 
   function index_inscripcion_cursado()
   {
     //index de inscripcion de cursados de materia
+    if($this->session->userdata['nombre_perfil'] == 'Estudiante')
+    {
+       redirect('Inscripcion_materia/index_inscripcion_cursado_alumno');
+    }
+    
     $data['title'] = 'Inscripciones a cursado de Materias - ESMN';
     $data['page_title'] = 'Inscripciones a cursado de  Materias';
 

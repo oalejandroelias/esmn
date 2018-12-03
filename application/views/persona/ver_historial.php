@@ -30,7 +30,7 @@
         </div>
       </div>
     </div>
-       <div class="col-md-4 col-12">
+      <div class="col-md-4 col-12">
       <div class="card">
         <div class="card">
           <div class="card-header bg-cyan text-white font-weight-bold">

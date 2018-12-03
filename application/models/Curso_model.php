@@ -71,4 +71,21 @@ class Curso_model extends CI_Model
     {
         return $this->db->delete('curso',array('id'=>$id));
     }
+    
+    
+    function get_cursos_de_carrera($id_carrera)
+    {
+        $this->db->select(' curso.id AS curso_id,id_materia, materia.nombre as materia_nombre, materia.id_carrera as id_carrera');
+        $this->db->from('curso');
+        $this->db->join('materia', 'materia.id = curso.id_materia', 'inner');
+        $this->db->where('materia.id_carrera LIKE "'.$id_carrera.'"');
+        
+        //$this->db->group_by('inscripcion_materia.id ', 'desc');
+        if(isset($params) && !empty($params))
+        {
+            $this->db->limit($params['limit'], $params['offset']);
+        }
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }
