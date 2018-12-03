@@ -42,6 +42,7 @@
             <span class="text-danger"><?php echo form_error('id_curso');?></span>
           </div>
           <input type="hidden" name="id_materia" value="">
+          <input type="hidden" name="id_persona" value=<?php echo $this->session->userdata['persona_id'];?>>
         </div>
 
         <div class="form-group">
