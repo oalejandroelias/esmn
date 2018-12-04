@@ -54,6 +54,7 @@
 														<div id="btnGroupCalificacion<?= $i['id_inscripcion_materia']; ?>" class="btn-group d-none" role="group" aria-label="Cambiar Calificación">
 															<button id="guardarCalificacion<?= $i['id_inscripcion_materia']; ?>"
 																data-id="<?= $i['id_inscripcion_materia']; ?>"
+																data-tipo="curso"
 																type="button" class="btn btn-success btn-sm" title="Guardar"><i class="mdi mdi-content-save"></i></button>
 																<button id="cancelarCalificacion<?= $i['id_inscripcion_materia']; ?>"
 																	data-id="<?= $i['id_inscripcion_materia']; ?>"

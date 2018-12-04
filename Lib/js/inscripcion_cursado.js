@@ -36,12 +36,13 @@ function toggleCalificacion(btn){
 // guardar cambios en la vista de la tabla y en la base de datos
   $("[id^='guardarCalificacion']").on('click', function () {
     var id_row = $(this).attr('data-id');
+    var tipo = $(this).attr('data-tipo');
     var calificacion = $("#inputCalificacion"+id_row).val();
 
     $.ajax({
       type:'POST',
       url:ruta+'inscripcion_materia/cambiarCalificacion',
-      data: { id_row,calificacion },
+      data: { id_row,calificacion,tipo },
       success:function (respuesta) { // devuelve un estado o false
         var obj = JSON.parse(respuesta);
         // console.log(obj);

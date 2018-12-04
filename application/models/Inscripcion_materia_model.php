@@ -49,7 +49,7 @@ class Inscripcion_materia_model extends CI_Model
     $this->db->join('asiste', 'asiste.id_persona = persona.id and asiste.id_curso = curso.id', 'left');
     $this->db->join('estado_inscripcion_inicial ', 'inscripcion_materia.id_estado_inicial  = estado_inscripcion_inicial.id', 'left');
     $this->db->join('estado_inscripcion_final ', 'inscripcion_materia.id_estado_final  = estado_inscripcion_final.id', 'left');
-    
+
     if($id_alumno!=null)
     {
         $this->db->where('(inscripcion_materia.id_curso IS NOT NULL OR id_estado_final=5) AND inscripcion_materia.id_persona='.$id_alumno);
@@ -71,24 +71,26 @@ class Inscripcion_materia_model extends CI_Model
 
   function get_all_inscripcion_materia_mesa($id_alumno=null)
   {
-    $this->db->select('inscripcion_materia.id as id_inscripcion_materia, id_persona, id_curso, inscripcion_materia.id_materia, id_mesa, id_estado_inicial, id_estado_final, calificacion, mesa.fecha as fecha_mesa,
-    materia.nombre as nombre_materia, persona.nombre as nombre_persona, persona.apellido as apellido_persona,
-    persona.numero_documento as numero_documento, estado_inscripcion_inicial.nombre as nombre_estado_cursado');
+    $this->db->select('inscripcion_materia.id as id_inscripcion_materia,id_persona,id_curso,id_carrera,
+    inscripcion_materia.id_materia, id_mesa,id_estado_inicial, id_estado_final, calificacion,
+    mesa.fecha as fecha_mesa,materia.nombre as nombre_materia, persona.nombre as nombre_persona,
+    persona.apellido as apellido_persona,persona.numero_documento,estado_inscripcion_inicial.nombre
+    as estado_inicial,estado_inscripcion_final.nombre as estado_final');
     $this->db->from('inscripcion_materia');
     $this->db->join('mesa', 'inscripcion_materia.id_mesa = mesa.id', 'left');
     $this->db->join('materia ', 'inscripcion_materia.id_materia  = materia.id', 'left');
     $this->db->join('persona ', 'inscripcion_materia.id_persona  = persona.id', 'left');
     $this->db->join('estado_inscripcion_inicial ', 'inscripcion_materia.id_estado_inicial  = estado_inscripcion_inicial.id', 'left');
-    //$this->db->order_by('carrera_id', 'desc');
+    $this->db->join('estado_inscripcion_final ', 'inscripcion_materia.id_estado_final  = estado_inscripcion_final.id', 'left');
     if($id_alumno!=null)
     {
         $this->db->where('(inscripcion_materia.id_mesa IS NOT NULL) AND id_persona='.$id_alumno);
     }
-    else 
+    else
     {
         $this->db->where('inscripcion_materia.id_mesa IS NOT NULL');
     }
-    
+
     $query = $this->db->get();
     return $query->result_array();
   }
