@@ -95,7 +95,7 @@
                         <!-- ============================================================== -->
                         <!-- create new -->
                         <!-- ============================================================== -->
-                         <?php  if($this->session->userdata['nombre_perfil'] == 'Administrador' || $this->session->userdata['nombre_perfil'] == 'Bedel'){ ?>
+                         <?php  if($this->session->userdata['id_perfil'] == 1 || $this->session->userdata['id_perfil'] == 2){ ?>
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                              <span class="d-none d-md-block">Administración <i class="fa fa-angle-down"></i></span>
@@ -130,7 +130,7 @@
                                 <a class="dropdown-item" href="<?php echo base_url('Curso')?>">Cursos</a>
                                  <?php }?>
                                 <div class="dropdown-divider"></div>
-                                 
+
                                 <?php if(validar_opcion('Estado_inscripcion_inicial')){ ?>
                                 <a class="dropdown-item" href="<?php echo base_url('Estado_inscripcion_inicial')?>">Estados inscripción inicial</a>
                                  <?php }?>
@@ -143,7 +143,7 @@
                                 <?php if(validar_opcion('Tipo_documento')){ ?>
                                 <a class="dropdown-item" href="<?php echo base_url('Tipo_documento')?>">Tipo Documento</a>
                                  <?php }?>
-                                
+
                                 <!-- <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">Something else here</a> -->
                             </div>
@@ -227,7 +227,7 @@
                             <i class="mdi mdi-book-open"></i><span class="hide-menu">Inscripciones </span>
                           </a>
                             <ul aria-expanded="false" class="collapse  first-level">
-                            
+
                         		<?php if(validar_opcion('Inscripcion_carrera')){ ?>
                                 <li class="sidebar-item"><a href="<?=base_url('inscripcion_carrera')?>" class="sidebar-link">
                                   <i class="mdi mdi-menu-right"></i><span class="hide-menu"> Carreras </span></a></li>
@@ -242,7 +242,7 @@
                                 <?php }?>
                             </ul>
                         </li>
-                         
+
                         <?php if(validar_opcion('Mesa')){ ?>
                         <li class="sidebar-item">
                           <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?=base_url('mesa')?>" aria-expanded="false">

@@ -43,7 +43,7 @@ class Inscripcion_materia extends CI_Controller{
   function index()
   {
 
-    if($this->session->userdata['nombre_perfil'] == 'Estudiante')
+    if($this->session->userdata['id_perfil'] == 3)
     {
       redirect('Inscripcion_materia/index_alumno');
     }
@@ -321,7 +321,7 @@ class Inscripcion_materia extends CI_Controller{
   function index_inscripcion_cursado()
   {
     //index de inscripcion de cursados de materia
-    if($this->session->userdata['nombre_perfil'] == 'Estudiante')
+    if($this->session->userdata['id_perfil'] == 3)
     {
       redirect('Inscripcion_materia/index_inscripcion_cursado_alumno');
     }
