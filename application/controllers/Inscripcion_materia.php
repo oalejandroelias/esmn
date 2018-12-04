@@ -154,15 +154,17 @@ class Inscripcion_materia extends CI_Controller{
       //Si estoy guardando la inscripcion al cursado
       if($this->input->post('id_curso') !=null)
       {
+          
           $this->form_validation->set_rules('id_curso','Curso de Materia','required|integer|callback_check_carrera['.$this->input->post('id_persona').']');
           $this->form_validation->set_rules('id_persona','Persona / Alumno','required|integer|callback_check_inscripcion['.$this->input->post('id_curso').']|callback_check_correlativa['.$this->input->post('id_curso').']');
           $this->form_validation->set_message('check_carrera','La persona no esta inscripta en la carrera del curso elegido!');
           $this->form_validation->set_message('check_inscripcion','La persona ya se encuentra registrada en este curso!');
           $this->form_validation->set_message('check_correlativa','La persona adeuda materias correlativas!');
-          $data['persona'] = $this->Persona_model->get_persona($this->session->userdata['persona_id']);
+          
           
           if($this->form_validation->run())
           {
+              $data['persona'] = $this->Persona_model->get_persona($this->session->userdata['persona_id']);
               $curso=$this->Curso_model->get_curso($this->input->post('id_curso'));
               $params = array(
                   'id_persona' => $this->session->userdata['persona_id'],

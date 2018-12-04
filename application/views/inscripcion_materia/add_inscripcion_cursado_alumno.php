@@ -19,7 +19,7 @@
             }
             ?>
           </select>
-          <span class="text-danger"><?php echo form_error('id_carrera');?></span>
+          <span class="text-danger"><?php echo form_error('id_persona');?></span>
           </div>
         </div>
 
