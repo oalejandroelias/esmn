@@ -22,8 +22,31 @@ class Inscripcion_materia extends CI_Controller{
   /*
   * Listing of inscripcion_materia
   */
+  function index_alumno()
+  {
+      //Index de inscripcion de mesas de materia
+      $data['title'] = 'Inscripciones a Mesas - ESMN';
+      $data['page_title'] = 'Inscripciones a Mesas Estudiante';
+      
+      $data['inscripcion_materia'] = $this->Inscripcion_materia_model->get_all_inscripcion_materia_mesa($this->session->userdata['persona_id']);
+      
+      //Botones de acciones
+      $data['boton_edit']=validar_botones('edit');
+      $data['boton_add']=validar_botones('add');
+      $data['boton_remove']=validar_botones('remove');
+      
+      $this->load->view('templates/header',$data);
+      $this->load->view('inscripcion_materia/index_alumno',$data);
+      $this->load->view('templates/footer');
+  }
+  
   function index()
   {
+      
+     if($this->session->userdata['nombre_perfil'] == 'Estudiante')
+    {
+        redirect('Inscripcion_materia/index_alumno');
+    }
     //Index de inscripcion de mesas de materia
     $data['title'] = 'Inscripciones a Mesas - ESMN';
     $data['page_title'] = 'Inscripciones a Mesas';
@@ -43,6 +66,47 @@ class Inscripcion_materia extends CI_Controller{
   /*
   * Adding a new inscripcion_materia
   */
+  //inscripcion a mesa de alumno
+  function add_alumno()
+  {
+      //$this->form_validation->set_rules('id_persona','Persona / Alumno','required|integer');
+      $this->form_validation->set_rules('id_mesa','Mesa','required|max_length[11]');
+      $this->form_validation->set_rules('id_estado_inicial','Estado','required|max_length[11]');
+      
+      if($this->form_validation->run())
+      {
+          
+          $mesa=$this->Mesa_model->get_mesa($this->input->post('id_mesa'));
+          $params = array(
+              'id_persona' => $this->session->userdata['persona_id'],
+              'id_curso' => null,
+              'id_materia' => $mesa['id_materia'],
+              'id_mesa' => $this->input->post('id_mesa'),
+              'id_estado_inicial' => $this->input->post('id_estado_inicial'),
+              'calificacion' => null,
+              'fecha' =>$mesa['fecha']
+          );
+          
+          $inscripcion_materia_id = $this->Inscripcion_materia_model->add_inscripcion_materia($params);
+          $this->session->set_flashdata('crear', 'Nueva inscripciÃ³n a mesa creada');
+          redirect('inscripcion_materia/index_alumno');
+      }
+      else
+      {
+          $data['title'] = 'Nueva Inscripcion - ESMN';
+          $data['page_title'] = 'Inscripción a mesa';
+          
+          $data['personas'] = $this->Persona_model->get_all_personas();
+          $data['all_mesas'] = $this->Mesa_model->get_all_mesas();
+          $data['all_materias'] = $this->Materia_model->get_all_materias();
+          $data['all_estados'] = $this->Estado_inscripcion_inicial_model->get_all_estado_inscripcion_inicial_mesa();
+          
+          $this->load->view('templates/header',$data);
+          $this->load->view('inscripcion_materia/add_alumno',$data);
+          $this->load->view('templates/footer');
+      }
+  }
+  
   function add()
   {
     $this->form_validation->set_rules('id_persona','Persona / Alumno','required|integer');
