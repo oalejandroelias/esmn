@@ -368,7 +368,7 @@ class Inscripcion_materia extends CI_Controller{
         }
 
       }elseif ($tipo=='mesa') {
-        if ($calificacion <= 4) {
+        if ($calificacion < 4) {
           $estado = 1;
         }else {
           $estado = 2;

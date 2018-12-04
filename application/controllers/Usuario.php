@@ -66,7 +66,7 @@ class Usuario extends CI_Controller{
         $params_perfil_usuario=array(
           'id_usuario' => $usuario_id,
           'id_perfil' => $this->input->post('id_perfil',TRUE),
-          'permisos' => $permisos,
+          // 'permisos' => $permisos,
         );
 
         $this->Perfil_usuario_model->add_perfil_usuario($params_perfil_usuario);
