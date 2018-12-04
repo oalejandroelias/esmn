@@ -400,8 +400,8 @@ class Persona extends CI_Controller{
     if ($this->input->is_ajax_request() && !empty($_POST)) {
       $id_persona=$this->input->post('id_persona');
       $id_carrera=$this->input->post('id_carrera');
-      $id_materia=$this->input->post('id_materia');
-      $query=$this->Persona_model->check_ConstanciaE($id_persona,$id_carrera);
+      // $id_materia=$this->input->post('id_materia');
+      $query=$this->Persona_model->get_historial_persona_mesa($id_persona,$id_carrera,true);
       if (!empty($query)) {
         $respuesta=$query[0];
       }else{

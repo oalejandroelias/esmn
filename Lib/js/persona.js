@@ -233,7 +233,7 @@ function cargar_datos_de_busqueda_direccion_gmaps(){
                   });
                 }else {
                   $.alert({
-                    title: 'Error!',
+                    title: 'Atencion!',
                     type: 'red',
                     content: 'Falta cumplir requisitos para ser REGULAR en la carrera seleccionada',
                   });
@@ -264,7 +264,8 @@ function cargar_datos_de_busqueda_direccion_gmaps(){
     }else {
       var dia = 'A los '+day+' dias';
     }
-    var texto = dia+' del mes de '+month+' de '+year+' se extiende el Certificado de Alumno Regular Correspondiente '+
+    var mes = transalteMonth(month);
+    var texto = dia+' del mes de '+mes+' de '+year+' se extiende el Certificado de Alumno Regular Correspondiente '+
     'a '+obj.nombre+' '+obj.apellido+' '+obj.tipo_documento+': '+obj.numero_documento+' que se encuentra inscripto a la carrera '+obj.carrera+
     ' del plan: '+obj.id_carrera+' del nivel: '+obj.nivel+' cuyo estado de alumno es REGULAR para ser presentado ante quien corresponda';
     var dd = {
@@ -303,124 +304,125 @@ function cargar_datos_de_busqueda_direccion_gmaps(){
   }
 
 
-  // function getConstancia(id_persona){
-  //   var options = $('select[name="id_carrera"] option');
-  //   var content = '';
-  //   for (var i = 0; i < options.length; i++) {
-  //     content=content+'<option value='+options[i].value+'>'+options[i].innerText+'</option>';
-  //   }
-  //
-  //   $.confirm({
-  //     title: 'Seleccione una Carrera',
-  //     content: '' +
-  //     '<form class="form-horizontal">' +
-  //     '<div class="form-group">' +
-  //     '<label></label>' +
-  //     '<select name="id_carrera" class="form-control" required>' +
-  //     content +
-  //     '</select>' +
-  //     '</div>' +
-  //     '</form>',
-  //     buttons: {
-  //       formSubmit: {
-  //         text: 'Enviar',
-  //         btnClass: 'btn-blue',
-  //         action: function () {
-  //           var id_carrera = this.$content.find('[name="id_carrera"]').val();
-  //           // $.alert(id_carrera);
-  //           $.ajax({
-  //             type: 'POST',
-  //             url: ruta+'Persona/getRegularidad',
-  //             data: {id_persona,id_carrera},
-  //             success: function(respuesta){
-  //               var obj= JSON.parse(respuesta);
-  //               if (obj) {
-  //                 $.confirm({
-  //                   title: 'Correcto!',
-  //                   type: 'green',
-  //                   content: obj.nombre+' '+obj.apellido+' es un alumno regular. Puede imprimir el certificado a continuacion',
-  //                   buttons: {
-  //                     print:{
-  //                       text: 'Imprimir',
-  //                       btnClass: 'btn-primary',
-  //                       action: function () {
-  //                         imprimirCertificadoRegular(obj);
-  //                       }
-  //                     },
-  //                     Cancelar: function () {
-  //                     }
-  //                   }
-  //                 });
-  //               }else {
-  //                 $.alert({
-  //                   title: 'Error!',
-  //                   type: 'red',
-  //                   content: 'Falta cumplir requisitos para ser REGULAR en la carrera seleccionada',
-  //                 });
-  //                 // $.alert('Falta cumplir requisitos para ser REGULAR en la carrera seleccionada');
-  //               }
-  //
-  //             },
-  //             error:function (respuesta){
-  //               console.log('error: '+respuesta);
-  //             }
-  //           });
-  //         }
-  //       },
-  //       Cancelar: function () {
-  //         //close
-  //       },
-  //     }
-  //   });
-  // }
+  function getConstancia(id_persona){
+    var opt = $('select[name="id_carrera"] option');
+    var options = '';
+    for (var i = 0; i < opt.length; i++) {
+      options=options+'<option value='+opt[i].value+'>'+opt[i].innerText+'</option>';
+    }
 
-  // function imprimirCertificadoRegular(obj){
-  //   var nombreDoc = 'Constancia_Examen'+obj.nombre+'_'+obj.apellido+'.pdf';
-  //   var year = moment().year();
-  //   var month = moment().month();
-  //   var day = moment().date();
-  //   if (day==1) {
-  //     var dia = 'Al '+day+' dia';
-  //   }else {
-  //     var dia = 'A los '+day+' dias';
-  //   }
-  //   var texto = dia+' del mes de '+month+' de '+year+' se extiende el Constancia de Examen Correspondiente '+
-  //   'a alumno/a'+obj.nombre+' '+obj.apellido+' '+obj.tipo_documento+': '+obj.numero_documento+' que se encuentra inscripto a la carrera '+obj.carrera+
-  //   ' del plan: '+obj.id_carrera+' del nivel: '+obj.nivel+' que rindio el examen final de la materia: '+obj.materia;
-  //   var dd = {
-  //     content: [
-  //       {
-  //         text: 'Constancia de Examen',
-  //         style: 'header'
-  //       },
-  //       {
-  //         text: [texto],
-  //         style: 'contenido',
-  //       }
-  //     ],
-  //     styles: {
-  //       header: {
-  //         fontSize: 16,
-  //         alignment: 'center',
-  //         font: 'Helvetica',
-  //       },
-  //       contenido:{
-  //         margin: [30, 20, 30, 20],
-  //         fontSize: 14,
-  //         alignment: 'justify',
-  //         font: 'Helvetica',
-  //       }
-  //     }
-  //
-  //   }
-  //   pdfMake.fonts = { //importar fuentes desde archivo vfs
-  //     Helvetica: {
-  //       normal: 'Helvetica.ttf'
-  //     }
-  //   };
-  //   // console.log(dd);
-  //   pdfMake.createPdf(dd).download(nombreDoc);
-  // }
+    $.confirm({
+      title: 'Seleccione una Carrera',
+      content: '' +
+      '<form class="form-horizontal">' +
+      '<div class="form-group">' +
+      '<label></label>' +
+      '<select name="id_carrera" class="form-control" required>' +
+      options +
+      '</select>' +
+      '</div>' +
+      '</form>',
+      buttons: {
+        formSubmit: {
+          text: 'Enviar',
+          btnClass: 'btn-blue',
+          action: function () {
+            var id_carrera = this.$content.find('[name="id_carrera"]').val();
+            // $.alert(id_carrera);
+            $.ajax({
+              type: 'POST',
+              url: ruta+'Persona/getConstancia',
+              data: {id_persona,id_carrera},
+              success: function(respuesta){
+                var obj= JSON.parse(respuesta);
+                // console.log(obj);
+                if (obj) {
+                  $.confirm({
+                    title: 'Correcto!',
+                    type: 'green',
+                    content: obj.nombre+' '+obj.apellido+' Puede imprimir la constancia a continuacion',
+                    buttons: {
+                      print:{
+                        text: 'Imprimir',
+                        btnClass: 'btn-primary',
+                        action: function () {
+                          imprimirConstanciaExamen(obj);
+                        }
+                      },
+                      Cancelar: function () {
+                      }
+                    }
+                  });
+                }else {
+                  $.alert({
+                    title: 'No se puede emitir la constancia.',
+                    type: 'red',
+                    content: 'El alumno no asistio a la mesa.',
+                  });
+                }
+
+              },
+              error:function (respuesta){
+                console.log('error: '+respuesta);
+              }
+            });
+          }
+        },
+        Cancelar: function () {
+          //close
+        },
+      }
+    });
+  }
+
+  function imprimirConstanciaExamen(obj){
+    var nombreDoc = 'Constancia_Examen'+obj.nombre+'_'+obj.apellido+'.pdf';
+    var year = moment().year();
+    var month = moment().month();
+    var day = moment().date();
+    if (day==1) {
+      var dia = 'Al '+day+' dia';
+    }else {
+      var dia = 'A los '+day+' dias';
+    }
+    var mes = transalteMonth(month);
+    var texto = dia+' del mes de '+mes+' de '+year+' se extiende el Constancia de Examen Correspondiente '+
+    'a alumno/a '+obj.nombre+' '+obj.apellido+' '+obj.tipo_documento+': '+obj.numero_documento+' que se encuentra inscripto a la carrera '+obj.carrera+
+    ' del plan: '+obj.id_carrera+' del nivel: '+obj.nivel+' que rindio el examen final de la materia: '+obj.materia_nombre;
+    var dd = {
+      content: [
+        {
+          text: 'Constancia de Examen',
+          style: 'header'
+        },
+        {
+          text: [texto],
+          style: 'contenido',
+        }
+      ],
+      styles: {
+        header: {
+          fontSize: 16,
+          alignment: 'center',
+          font: 'Helvetica',
+        },
+        contenido:{
+          margin: [30, 20, 30, 20],
+          fontSize: 14,
+          alignment: 'justify',
+          font: 'Helvetica',
+        }
+      }
+
+    }
+    pdfMake.fonts = { //importar fuentes desde archivo vfs
+      Helvetica: {
+        normal: 'Helvetica.ttf'
+      }
+    };
+    // console.log(dd);
+    pdfMake.createPdf(dd).download(nombreDoc);
+  }
 
   function getAnalitico(id_persona){
     var opt = $('select[name="id_carrera"] option');
