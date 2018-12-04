@@ -412,6 +412,25 @@ class Persona extends CI_Controller{
     return false;
   }
 
+  // obtener analitico de la persona
+    function getAnalitico(){
+    if ($this->input->is_ajax_request() && !empty($_POST)) {
+      $id_persona=$this->input->post('id_persona');
+      $id_carrera=$this->input->post('id_carrera');
+
+      $this->load->model('Materia_model');
+      $materias_carrera=$this->Materia_model->get_all_materias(array(),array('row'=>'id_carrera','value'=>$id_carrera));
+      $materias_inscripcion=$this->Persona_model->get_historial_persona_curso($id_persona,$id_carrera,false,true);
+
+      if (count($materias_carrera) == count($materias_inscripcion)) { // todas las materias aprobadas
+        echo json_encode($materias_inscripcion);
+      }else {
+        echo json_encode(false);
+      }
+    }
+    return false;
+  }
+
 }
 
 ?>

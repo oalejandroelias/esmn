@@ -80,25 +80,36 @@ class Persona_model extends CI_Model
     }
 
     /*HISTORIAL CURSADO*/
-    function get_historial_persona_curso($id, $id_carrera)
+    function get_historial_persona_curso($id, $id_carrera = false, $id_nivel = false,$estado = false)
     {
-        $this->db->select('persona.id AS persona_id, inscripcion_materia.id as inscripcion_materia_id, materia.nombre as materia_nombre,
+        $this->db->select('persona.id AS persona_id,persona.nombre,apellido,numero_documento,tipo_documento.nombre as tipo_documento,
+                            inscripcion_materia.id as inscripcion_materia_id, materia.nombre as materia_nombre,
                             materia.id_carrera as id_carrera, estado_inscripcion_inicial.nombre as nombre_inicial, inscripcion_materia.calificacion,
-                            estado_inscripcion_final.nombre as final_nombre, inscripcion_materia.fecha');
+                            estado_inscripcion_final.nombre as final_nombre, inscripcion_materia.fecha,
+                            nivel.nombre as nivel, carrera.nombre as carrera');
         $this->db->from('inscripcion_materia');
         $this->db->join('persona', 'inscripcion_materia.id_persona=persona.id', 'inner');
-        $this->db->join('curso', 'curso.id=inscripcion_materia.id_curso', 'inner');
-        $this->db->join('materia', 'materia.id = curso.id_materia', 'inner');
+        if ($id_carrera) {
+          $this->db->join('curso', 'curso.id=inscripcion_materia.id_curso', 'inner');
+          $this->db->join('materia', 'materia.id = curso.id_materia', 'inner');
+        }else {
+          $this->db->join('materia', 'materia.id = inscripcion_materia.id_materia', 'inner');
+        }
+        $this->db->join('carrera', 'carrera.id = materia.id_carrera', 'inner');
+        $this->db->join('nivel', 'nivel.id = carrera.id_nivel', 'inner');
         $this->db->join('tipo_documento', 'persona.id_tipo_documento = tipo_documento.id', 'inner');
         $this->db->join('estado_inscripcion_inicial', 'estado_inscripcion_inicial.id = inscripcion_materia.id_estado_inicial', 'left');
         $this->db->join('estado_inscripcion_final', 'estado_inscripcion_final.id = inscripcion_materia.id_estado_final', 'left');
 
-        $this->db->where('persona.id='.$id.' AND (inscripcion_materia.id_curso IS NOT null or inscripcion_materia.id_estado_final=5) AND materia.id_carrera LIKE "'.$id_carrera.'"');
-
-        //$this->db->group_by('inscripcion_materia.id ', 'desc');
-        if(isset($params) && !empty($params))
-        {
-            $this->db->limit($params['limit'], $params['offset']);
+        $this->db->where('persona.id='.$id.' AND (inscripcion_materia.id_curso IS NOT null or inscripcion_materia.id_estado_final=5)');
+        if ($id_carrera) {
+          $this->db->where('materia.id_carrera LIKE "'.$id_carrera.'"');
+        }
+        if ($id_nivel) {
+          $this->db->where('nivel.id', $id_nivel);
+        }
+        if ($estado) {
+          $this->db->where_in('inscripcion_materia.id_estado_final', array(2,3,5));
         }
         $query = $this->db->get();
         return $query->result_array();

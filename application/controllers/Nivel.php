@@ -22,7 +22,7 @@ class Nivel extends CI_Controller{
   {
     $data['title'] = 'Niveles - ESMN';
     $data['page_title'] = 'Nivel';
-    
+
     $data['niveles'] = $this->Nivel_model->get_all_niveles();
 
     //Botones de acciones
@@ -121,6 +121,16 @@ class Nivel extends CI_Controller{
     }
     else
     show_error('No existe el nivel que quiere eliminar.');
+  }
+
+  function getNiveles(){
+    if ($this->input->is_ajax_request() && !empty($_POST)) {
+      $id_persona=$this->input->post('id_persona');
+      $query=$this->Nivel_model->getNiveles($id_persona);
+      echo json_encode($query);
+    }
+    return false;
+
   }
 
 }

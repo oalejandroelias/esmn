@@ -14,6 +14,7 @@
           <div class="card-body">
             <button type="button" class="btn btn-info" onclick="getRegularidad(<?= $persona['id'] ?>);">Alumno Regular</button>
             <button type="button" class="btn btn-info" onclick="getConstancia(<?= $persona['id'] ?>);">Constancia de Examen</button>
+            <button type="button" class="btn btn-info" onclick="getAnalitico(<?= $persona['id'] ?>);">Analitico</button>
           </div>
         </div>
       </div>
