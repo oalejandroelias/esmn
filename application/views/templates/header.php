@@ -95,6 +95,7 @@
                         <!-- ============================================================== -->
                         <!-- create new -->
                         <!-- ============================================================== -->
+                         <?php  if($this->session->userdata['nombre_perfil'] == 'Administrador' || $this->session->userdata['nombre_perfil'] == 'Bedel'){ ?>
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                              <span class="d-none d-md-block">Administración <i class="fa fa-angle-down"></i></span>
@@ -147,6 +148,7 @@
                                 <a class="dropdown-item" href="#">Something else here</a> -->
                             </div>
                         </li>
+                        <?php }?>
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
