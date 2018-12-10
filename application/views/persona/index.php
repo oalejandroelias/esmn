@@ -50,7 +50,6 @@
                             <?php if($boton_remove){?>
                               <a href="<?php echo site_url('Persona/remove/'.$p['persona_id']); ?>" data-confirm="remove" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="bottom" title="Eliminar"><i class="fas fa-times"></i></a>
                             <?php }?>
-
                             <?php if (empty($this->Usuario_model->get_usuario_by_persona($p['persona_id']))): ?>
                               <a href="<?php echo site_url('Usuario/add/'.$p['persona_id']); ?>" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="bottom" title="Crear usuario"><i class="fas fa-user"></i></a>
                             <?php else: ?>

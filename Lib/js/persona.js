@@ -1,9 +1,9 @@
 // al checkear "generar usuario" aparecen campos de usuario y un selector de permisos,
 // si se quita, desaparecen los campos
-function box_checked(){
+function box_checked(checkbox){
   $('#formdiv_permisos').toggleClass('d-none');
   $('#formdiv_usuario').toggleClass('d-none');
-  if ($(this).is(':checked')) {
+  if (checkbox.is(':checked')) {
     $('#formdiv_permisos select').attr('required',true);
     $('#formdiv_usuario input').attr('required',true);
   }else {
@@ -12,7 +12,7 @@ function box_checked(){
   }
 }
 $('#checkbox_generar_usuario').change(function(){
-  box_checked();
+  box_checked($(this));
 });
 
 // crear select de fecha nacimiento

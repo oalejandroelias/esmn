@@ -34,7 +34,7 @@ function toggleCalificacion(btn){
   }
 
 // guardar cambios en la vista de la tabla y en la base de datos
-  $("[id^='guardarCalificacion']").on('click', function () {
+$('#zero_config').on('click','button[id^="guardarCalificacion"]',function(){
     var id_row = $(this).attr('data-id');
     var tipo = $(this).attr('data-tipo');
     var calificacion = $("#inputCalificacion"+id_row).val();

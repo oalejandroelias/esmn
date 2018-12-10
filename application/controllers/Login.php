@@ -57,6 +57,10 @@ class Login extends CI_Controller {
     if (isset($_GET['code'])) { //si se obtuvo el codigo de acceso, se cargan los datos de sesion
       $client->authenticate($_GET['code']);
       $userData = $objOAuthService->userinfo->get();
+
+      $this->load->model('perfil_model', 'perfil', TRUE);
+      $perfil = $this->perfil->get_perfil(4); //4 = invitado
+
       $dataSession = array(
         'is_logued_in' => TRUE,
         'access_token' => $client->getAccessToken(),
@@ -64,6 +68,9 @@ class Login extends CI_Controller {
         'nombre' => $userData->givenName,
         'apellido' => $userData->familyName,
         'email' => $userData->email,
+        'id_perfil' => $perfil['id'], //invitado
+        'nombre_perfil' => $perfil['nombre'], 
+        'permisos' => $perfil['permisos']
       );
       $this->session->set_userdata($dataSession);
     }

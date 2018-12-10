@@ -90,16 +90,20 @@ class Persona extends CI_Controller{
     $this->cargar_y_configurar_googlemaps_library($data_vista);
 
     $this->form_validation->set_rules('id_tipo_documento','Id Tipo Documento','required|integer');
-    $this->form_validation->set_rules('numero_documento','Numero Documento','required|max_length[11]|integer');
+    $this->form_validation->set_rules('numero_documento','Numero Documento','required|max_length[11]|integer|is_unique[persona.numero_documento]');
     $this->form_validation->set_rules('nombre','Nombre','required|max_length[128]');
     $this->form_validation->set_rules('apellido','Apellido','required|max_length[128]');
     $this->form_validation->set_rules('domicilio','Domicilio','max_length[128]');
     $this->form_validation->set_rules('id_ciudad','Id Ciudad','integer');
     $this->form_validation->set_rules('telefono','Telefono','max_length[128]');
-    $this->form_validation->set_rules('email','Email','max_length[128]|valid_email');
+    $this->form_validation->set_rules('email','Email','max_length[128]|valid_email|is_unique[persona.email]');
     $this->form_validation->set_rules('fecha_nacimiento','Fecha de nacimiento','required');
     //para creacion de usuario:
-    $this->form_validation->set_rules('username','Nombre de usuario','max_length[128]|is_unique[usuario.username]');
+    if(isset($_POST['generar_usuario'])){
+      $this->form_validation->set_rules('username','Nombre de usuario','required|max_length[128]|is_unique[usuario.username]');
+      $this->form_validation->set_rules('password','Contraseña','required');
+      $this->form_validation->set_rules('id_perfil','Perfil','integer|required');
+    }
 
     $config['upload_path']= './files/images/';
     $config['allowed_types']= 'gif|jpg|png|jpeg';
@@ -139,7 +143,6 @@ class Persona extends CI_Controller{
       if (isset($imagen_path)) {$params['foto']= $imagen_path;}
 
       if ($params['id_ciudad']=='') {$params['id_ciudad']=NULL;}
-      // var_dump($params);exit;
 
       $persona_id = $this->Persona_model->add_persona($params);
 
@@ -204,17 +207,28 @@ class Persona extends CI_Controller{
     if(isset($data['persona']['id']))
     {
       if ($this->session->userdata('usuario_id')=='1' || $this->session->userdata('persona_id')==$id) {
-
-        $this->form_validation->set_rules('id_tipo_documento','Id Tipo Documento','required|integer');
-        $this->form_validation->set_rules('numero_documento','Numero Documento','required|max_length[11]|integer');
+        $numero_documento = $data['persona']['numero_documento'];
+        if($this->input->post('numero_documento') != $numero_documento) {
+           $is_unique_numero_documento =  '|is_unique[persona.numero_documento]';
+        } else {
+           $is_unique_numero_documento =  '';
+        }
+        $email = $data['persona']['email'];
+        if($this->input->post('email') != $email) {
+           $is_unique_email =  '|is_unique[persona.email]';
+        } else {
+           $is_unique_email =  '';
+        }
+        $this->form_validation->set_rules('id_tipo_documento','Tipo Documento','required|integer');
+        $this->form_validation->set_rules('numero_documento','Numero Documento','required|max_length[11]|integer'.$is_unique_numero_documento);
         $this->form_validation->set_rules('nombre','Nombre','required|max_length[128]');
         $this->form_validation->set_rules('apellido','Apellido','required|max_length[128]');
         $this->form_validation->set_rules('domicilio','Domicilio','max_length[128]');
         $this->form_validation->set_rules('id_ciudad','Id Ciudad','integer');
         $this->form_validation->set_rules('telefono','Telefono','max_length[128]');
-        $this->form_validation->set_rules('email','Email','max_length[128]|valid_email');
+        $this->form_validation->set_rules('email','Email','max_length[128]|valid_email'.$is_unique_email);
         $this->form_validation->set_rules('fecha_nacimiento','Fecha de nacimiento','required');
-        $this->form_validation->set_rules('username','Nombre de usuario','max_length[128]|is_unique[usuario.username]');
+        // $this->form_validation->set_rules('username','Nombre de usuario','max_length[128]|is_unique[usuario.username]');
 
         $config['upload_path']= './files/images/';
         $config['allowed_types']= 'gif|jpg|png|jpeg';
