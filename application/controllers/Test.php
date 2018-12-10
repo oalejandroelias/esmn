@@ -5,20 +5,7 @@ class Test extends CI_Controller {
 
 	public function index()
 	{
-		$data['title']='test';
-		// $this->load->view('templates/header',$data);
-		// $this->load->view('test',$data);
-		setlocale(LC_TIME,"es_ES.UTF-8");
-		echo iconv('ISO-8859-2', 'UTF-8', strftime("%d de %B de %Y", strtotime('1992-12-10')));
-		// $this->load->view('templates/footer',$data);
-	}
-
-	public function get_all_methods(){
-
-	}
-	public function files(){
-		$file_path=APPPATH.'../files/images/5840913713_a1943b3afd_b2.jpg';
-		// var_dump(filetype($file_path));
-		var_dump(finfo_file(finfo_open(FILEINFO_MIME_TYPE), $file_path));
+		  $this->load->model('Persona_model');
+		print_r($this->Persona_model->get_historial_persona_mesa(1,false,13,"2018-12-10",true));
 	}
 }

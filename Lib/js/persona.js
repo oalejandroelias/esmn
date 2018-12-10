@@ -311,7 +311,7 @@ function cargar_datos_de_busqueda_direccion_gmaps(){
       data: {id_persona,id_materia,fecha},
       success: function(respuesta){
         var obj= JSON.parse(respuesta);
-        console.log(obj);
+        // console.log(obj);
         if (obj) {
           $.confirm({
             title: 'Correcto!',
@@ -347,17 +347,21 @@ function cargar_datos_de_busqueda_direccion_gmaps(){
   function imprimirConstanciaExamen(obj){
     var nombreDoc = 'Constancia_Examen'+obj.nombre+'_'+obj.apellido+'.pdf';
     var year = moment().year();
-    var month = moment().month();
+    var month = transalteMonth(moment().month());
     var day = moment().date();
     if (day==1) {
       var dia = 'Al '+day+' dia';
     }else {
       var dia = 'A los '+day+' dias';
     }
-    var mes = transalteMonth(month);
-    var texto = dia+' del mes de '+mes+' de '+year+' se extiende el Constancia de Examen Correspondiente '+
+
+    var year_mesa = moment(obj.fecha).year();
+    var month_mesa = transalteMonth(moment(obj.fecha).month());
+    var day_mesa = moment(obj.fecha).date();
+
+    var texto = dia+' del mes de '+month+' de '+year+' se extiende el Constancia de Examen Correspondiente '+
     'a alumno/a '+obj.nombre+' '+obj.apellido+' '+obj.tipo_documento+': '+obj.numero_documento+' que se encuentra inscripto a la carrera '+obj.carrera+
-    ' del plan: '+obj.id_carrera+' del nivel: '+obj.nivel+' que rindio el examen final de la materia: '+obj.materia_nombre;
+    ' del plan: '+obj.id_carrera+' del nivel: '+obj.nivel+' que rindio el examen final de la materia: '+obj.materia_nombre+' el dia '+day_mesa+' del mes de '+month_mesa+' de '+year_mesa;
     var dd = {
       content: [
         {
