@@ -107,6 +107,35 @@ class Inscripcion_materia_model extends CI_Model
     return $this->db->get('inscripcion_materia')->row_array();
   }
 
+  public function get_inscripcion_mesa($id,$id_materia,$estado = false,$fecha = false)
+  {
+      $this->db->select('persona.id AS persona_id,persona.nombre,apellido,numero_documento,
+                        tipo_documento.nombre as tipo_documento,inscripcion_materia.id,
+                        materia.nombre as materia,materia.id_carrera as id_carrera,inscripcion_materia.calificacion,
+                        estado_inscripcion_inicial.nombre as estado_inicial,estado_inscripcion_final.nombre as estado_final,
+                        inscripcion_materia.fecha,nivel.nombre as nivel, carrera.nombre as carrera');
+      $this->db->from('inscripcion_materia');
+      $this->db->join('persona', 'inscripcion_materia.id_persona=persona.id', 'inner');
+      $this->db->join('mesa', 'mesa.id=inscripcion_materia.id_mesa', 'inner');
+      $this->db->join('materia', 'materia.id = mesa.id_materia', 'inner');
+      $this->db->join('carrera', 'carrera.id = materia.id_carrera', 'inner');
+      $this->db->join('nivel', 'nivel.id = carrera.id_nivel', 'inner');
+      $this->db->join('tipo_documento', 'persona.id_tipo_documento = tipo_documento.id', 'inner');
+      $this->db->join('estado_inscripcion_inicial', 'estado_inscripcion_inicial.id = inscripcion_materia.id_estado_inicial', 'left');
+      $this->db->join('estado_inscripcion_final', 'estado_inscripcion_final.id = inscripcion_materia.id_estado_final', 'left');
+
+      $this->db->where('persona.id='.$id.' AND materia.id="'.$id_materia.'"');
+      if ($estado) {
+        $this->db->where('inscripcion_materia.id_estado_final IS NOT null');
+      }
+      if ($fecha) {
+        $this->db->where('inscripcion_materia.fecha="'.$fecha.'"');
+      }
+
+      $query = $this->db->get();
+      return $query->result_array();
+  }
+
   /*
   * function to add new inscripcion_materia
   */
