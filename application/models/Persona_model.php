@@ -116,12 +116,12 @@ class Persona_model extends CI_Model
     }
 
     /*HISTORIAL MESAS*/
-    function get_historial_persona_mesa($id, $id_carrera,$estado = false)
+    function get_historial_persona_mesa($id, $id_carrera,$id_materia = false,$fecha = false)
     {
         $this->db->select('persona.id AS persona_id,persona.nombre,apellido,numero_documento,tipo_documento.nombre as tipo_documento,
                           inscripcion_materia.id as inscripcion_materia_id, materia.nombre as materia_nombre,
                           materia.id_carrera as id_carrera, estado_inscripcion_inicial.nombre as nombre_inicial, inscripcion_materia.calificacion,
-                          estado_inscripcion_final.nombre as final_nombre, inscripcion_materia.fecha,
+                          estado_inscripcion_final.nombre as final_nombre, inscripcion_materia.fecha,materia.id as id_materia,
                           nivel.nombre as nivel, carrera.nombre as carrera');
         $this->db->from('inscripcion_materia');
         $this->db->join('persona', 'inscripcion_materia.id_persona=persona.id', 'inner');
@@ -136,12 +136,16 @@ class Persona_model extends CI_Model
 
         $this->db->where('persona.id='.$id.' AND inscripcion_materia.id_mesa IS NOT null AND materia.id_carrera LIKE "'.$id_carrera.'"');
 
-        if ($estado) {
-          $this->db->where('inscripcion_materia.id_estado_final IS NOT null');
+        if ($id_materia) {
+          $this->db->where('materia.id='.$id_materia);
+        }
+        if ($fecha) {
+          $this->db->where('inscripcion_materia.fecha="'.$fecha.'"');
         }
 
         $query = $this->db->get();
-        return $query->result_array();
+        echo $this->db->last_query();
+        // return $query->result_array();
     }
 
     // comprobar regularidad

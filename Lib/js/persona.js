@@ -304,73 +304,42 @@ function cargar_datos_de_busqueda_direccion_gmaps(){
   }
 
 
-  function getConstancia(id_persona){
-    var opt = $('select[name="id_carrera"] option');
-    var options = '';
-    for (var i = 0; i < opt.length; i++) {
-      options=options+'<option value='+opt[i].value+'>'+opt[i].innerText+'</option>';
-    }
-
-    $.confirm({
-      title: 'Seleccione una Carrera',
-      content: '' +
-      '<form class="form-horizontal">' +
-      '<div class="form-group">' +
-      '<label></label>' +
-      '<select name="id_carrera" class="form-control" required>' +
-      options +
-      '</select>' +
-      '</div>' +
-      '</form>',
-      buttons: {
-        formSubmit: {
-          text: 'Enviar',
-          btnClass: 'btn-blue',
-          action: function () {
-            var id_carrera = this.$content.find('[name="id_carrera"]').val();
-            // $.alert(id_carrera);
-            $.ajax({
-              type: 'POST',
-              url: ruta+'Persona/getConstancia',
-              data: {id_persona,id_carrera},
-              success: function(respuesta){
-                var obj= JSON.parse(respuesta);
-                // console.log(obj);
-                if (obj) {
-                  $.confirm({
-                    title: 'Correcto!',
-                    type: 'green',
-                    content: obj.nombre+' '+obj.apellido+' Puede imprimir la constancia a continuacion',
-                    buttons: {
-                      print:{
-                        text: 'Imprimir',
-                        btnClass: 'btn-primary',
-                        action: function () {
-                          imprimirConstanciaExamen(obj);
-                        }
-                      },
-                      Cancelar: function () {
-                      }
-                    }
-                  });
-                }else {
-                  $.alert({
-                    title: 'No se puede emitir la constancia.',
-                    type: 'red',
-                    content: 'El alumno no asistio a la mesa.',
-                  });
+  function getConstancia(id_persona,id_materia,fecha){
+    $.ajax({
+      type: 'POST',
+      url: ruta+'Persona/getConstancia',
+      data: {id_persona,id_materia,fecha},
+      success: function(respuesta){
+        var obj= JSON.parse(respuesta);
+        console.log(obj);
+        if (obj) {
+          $.confirm({
+            title: 'Correcto!',
+            type: 'green',
+            content: obj.nombre+' '+obj.apellido+' Puede imprimir la constancia a continuacion',
+            buttons: {
+              print:{
+                text: 'Imprimir',
+                btnClass: 'btn-primary',
+                action: function () {
+                  imprimirConstanciaExamen(obj);
                 }
-
               },
-              error:function (respuesta){
-                console.log('error: '+respuesta);
+              Cancelar: function () {
               }
-            });
-          }
-        },
-        Cancelar: function () {
-          //close
-        },
+            }
+          });
+        }else {
+          $.alert({
+            title: 'No se puede emitir la constancia.',
+            type: 'red',
+            content: 'El alumno no asistio a la mesa.',
+          });
+        }
+
+      },
+      error:function (respuesta){
+        console.log('error: '+respuesta);
       }
     });
   }
@@ -557,9 +526,9 @@ function cargar_datos_de_busqueda_direccion_gmaps(){
         font: 'Helvetica',
       },
       table: {
-          font: 'Helvetica',
-          margin: [0, 0, 0, 15],
-        },
+        font: 'Helvetica',
+        margin: [0, 0, 0, 15],
+      },
     }
 
   }

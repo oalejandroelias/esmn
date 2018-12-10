@@ -415,7 +415,8 @@ class Persona extends CI_Controller{
       $id_persona=$this->input->post('id_persona');
       $id_materia=$this->input->post('id_materia');
       $fecha=$this->input->post('fecha');
-      $query=$this->Persona_model->get_historial_persona_mesa($id_persona,$id_materia,true,$fecha);
+      $query=$this->Persona_model->get_historial_persona_mesa($id_persona,true,$id_materia,$fecha);
+      echo json_encode($query);exit;
       if (!empty($query)) {
         $respuesta=$query[0];
       }else{

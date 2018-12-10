@@ -13,7 +13,6 @@
           </div>
           <div class="card-body">
             <button type="button" class="btn btn-info" onclick="getRegularidad(<?= $persona['id'] ?>);">Alumno Regular</button>
-            <button type="button" class="btn btn-info" onclick="getConstancia(<?= $persona['id'] ?>);">Constancia de Examen</button>
             <button type="button" class="btn btn-info" onclick="getAnalitico(<?= $persona['id'] ?>);">Analitico</button>
           </div>
         </div>
@@ -144,6 +143,8 @@
                           <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Fecha</th>
                           <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Nota</th>
                           <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Estado de aprobación</th>
+                          <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Accion</th>
+
                         </tr>
 
                       </thead>
@@ -159,7 +160,9 @@
                             <td><?php echo $dato['fecha']; ?></td>
                             <td><?php echo $dato['calificacion']; ?></td>
                             <td><?php echo $dato['final_nombre']; ?></td>
+                            <td><button type="button" class="btn btn-info" onclick="getConstancia(<?= $persona['id'].','.$dato['id_materia'].',\''.$dato['fecha'].'\''; ?>);">Constancia de Examen</button></td>
                           </tr>
+
 
                         <?php } ?>
 
@@ -178,6 +181,7 @@
                           <th rowspan="1" colspan="1">Fecha</th>
                           <th rowspan="1" colspan="1">Nota</th>
                           <th rowspan="1" colspan="1">Estado de aprobación</th>
+                          <th rowspan="1" colspan="1">Acción</th>
                         </tr>
                       </tfoot>
 
