@@ -1,10 +1,10 @@
-<table class="table-responsive tabla-dias-cursado" style="border:1px solid" border="1">
+<table style="border:1px solid" border="1">
 	<thead>
-		<th class="align-bottom text-center">Alumno</th>
+		<th>Alumno</th>
 		<?php foreach ($diascursado as $dia): ?>
-			<th class="text-center rotate">
+			<th>
 				<div>
-					<span class="font-weight-bold"><?= $dia->date.' '.$dia->day; ?></span>
+					<span><?= $dia->date.' '.$dia->day; ?></span>
 				</div>
 			</th>
 		<?php endforeach; ?>
@@ -18,11 +18,11 @@
 			}
 			?>
 			<tr>
-				<td data-asistencia='<?= json_encode($dc); ?>' data-idpersona="<?= $row['id_persona']; ?>" onclick="check_all(this);">
+				<td>
 					<?= $row['nombre'].' '.$row['apellido'].' ('.$row['numero_documento'].')'; ?>
 				</td>
 				<?php foreach ($dc as $dia) { ?>
-				<td><?= $dia->state_description; ?>"
+				<td><?= $dia->state_description; ?>
 				</td>
 			<?php } ?>
 		</tr>
