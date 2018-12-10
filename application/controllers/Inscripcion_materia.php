@@ -26,7 +26,7 @@ class Inscripcion_materia extends CI_Controller{
   {
     //Index de inscripcion de mesas de materia
     $data['title'] = 'Inscripciones a Mesas - ESMN';
-    $data['page_title'] = 'Inscripciones a Mesas Estudiante';
+    $data['page_title'] = 'Inscripciones a Mesas';
 
     $data['inscripcion_materia'] = $this->Inscripcion_materia_model->get_all_inscripcion_materia_mesa($this->session->userdata['persona_id']);
 
@@ -223,7 +223,7 @@ class Inscripcion_materia extends CI_Controller{
       $this->form_validation->set_rules('id_curso','Curso de Materia','required|integer|callback_check_carrera['.$this->input->post('id_persona').']');
       $this->form_validation->set_rules('id_persona','Persona / Alumno','required|integer|callback_check_inscripcion['.$this->input->post('id_curso').']|callback_check_correlativa['.$this->input->post('id_curso').']');
       $this->form_validation->set_message('check_carrera','La persona no esta inscripta en la carrera del curso elegido!');
-      $this->form_validation->set_message('check_inscripcion','La persona ya se encuentra registrada en este curso!');
+      $this->form_validation->set_message('check_inscripcion','Ya se encuentra registrado/a en este curso!');
       $this->form_validation->set_message('check_correlativa','La persona adeuda materias correlativas!');
 
 

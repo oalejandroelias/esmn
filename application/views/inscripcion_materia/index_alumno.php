@@ -24,7 +24,7 @@
 											<tr>
 												<td><?php echo $i['id_materia'].' - '.$i['nombre_materia']; ?></td>
 												<td><?php echo $i['fecha_mesa']; ?></td>
-												<td><?php echo $i['nombre_estado_cursado']; ?></td>
+												<td><?php echo $i['estado_inicial']; ?></td>
                         						
 											</tr>
 										<?php } ?>
