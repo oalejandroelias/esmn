@@ -397,7 +397,7 @@ function cargar_datos_de_busqueda_direccion_gmaps(){
     pdfMake.createPdf(dd).download(nombreDoc);
   }
 
-  function getAnalitico(id_persona){
+  function getRendimiento(id_persona,tipo){
     var opt = $('select[name="id_carrera"] option');
     var options = '';
     for (var i = 0; i < opt.length; i++) {
@@ -423,13 +423,13 @@ function cargar_datos_de_busqueda_direccion_gmaps(){
             // $.alert(id_carrera);
             $.ajax({
               type: 'POST',
-              url: ruta+'Persona/getAnalitico',
-              data: {id_persona,id_carrera},
+              url: ruta+'Persona/getRendimiento',
+              data: {id_persona,id_carrera,tipo},
               success: function(respuesta){
                 var obj= JSON.parse(respuesta);
                 // console.log(obj);
                 if (obj) {
-                  imprimirAnalitico(obj);
+                  imprimirRendimiento(obj,tipo);
                 }else {
                   $.alert('El alumno no tiene todas las materias aprobadas!');
                 }
@@ -448,7 +448,7 @@ function cargar_datos_de_busqueda_direccion_gmaps(){
     });
   }
 
-  function imprimirAnalitico(obj){
+  function imprimirRendimiento(obj,tipo){
     // console.log(obj);
     var body = [];
     var row = new Array();
@@ -470,7 +470,7 @@ function cargar_datos_de_busqueda_direccion_gmaps(){
       }
     }
 
-    var nombreDoc = 'Analitico_'+obj[0].nombre+'_'+obj[0].apellido+'.pdf';
+    var nombreDoc = tipo.toUpperCase()+'_'+obj[0].nombre+'_'+obj[0].apellido+'.pdf';
     var year = moment().year();
     var month = moment().month();
     var day = moment().date();
@@ -544,3 +544,149 @@ function cargar_datos_de_busqueda_direccion_gmaps(){
   // console.log(dd);
   pdfMake.createPdf(dd).download(nombreDoc);
 }
+// function getRendimiento(id_persona){
+//   var opt = $('select[name="id_carrera"] option');
+//   var options = '';
+//   for (var i = 0; i < opt.length; i++) {
+//     options=options+'<option value='+opt[i].value+'>'+opt[i].innerText+'</option>';
+//   }
+//   $.confirm({
+//     title: 'Seleccione una carrera',
+//     content: '' +
+//     '<form class="form-horizontal">' +
+//     '<div class="form-group">' +
+//     '<label></label>' +
+//     '<select name="id_carrera" class="form-control" required>' +
+//     options +
+//     '</select>' +
+//     '</div>' +
+//     '</form>',
+//     buttons: {
+//       formSubmit: {
+//         text: 'Enviar',
+//         btnClass: 'btn-blue',
+//         action: function () {
+//           var id_carrera = this.$content.find('[name="id_carrera"]').val();
+//           // $.alert(id_carrera);
+//           $.ajax({
+//             type: 'POST',
+//             url: ruta+'Persona/getRendimiento',
+//             data: {id_persona,id_carrera},
+//             success: function(respuesta){
+//               var obj= JSON.parse(respuesta);
+//               // console.log(obj);
+//               if (obj) {
+//                 imprimirRendimiento(obj);
+//               }else {
+//                 $.alert('El alumno no tiene materias aprobadas!');
+//               }
+//
+//             },
+//             error:function (respuesta){
+//               console.log('error: '+respuesta);
+//             }
+//           });
+//         }
+//       },
+//       Cancelar: function () {
+//         //close
+//       },
+//     }
+//   });
+// }
+// function imprimirRendimiento(obj){
+//   // console.log(obj);
+//   var body = [];
+//   var row = new Array();
+//   row.push({text: 'Materia', style: 'head'});
+//   row.push({text: 'Estado', style: 'head'});
+//   row.push({text: 'Calificacion', style: 'head'});
+//   body.push(row);
+//
+//   for (var key in obj) //la variable fue creada en el controlador
+//   {
+//     if (obj.hasOwnProperty(key))
+//     {
+//       var data = obj[key];
+//       var row = new Array();
+//       row.push({text: data.materia_nombre.toString(), style: 'body'});
+//       row.push({text: data.final_nombre.toString(), style: 'body'});
+//       row.push({text: data.calificacion.toString(), style: 'body'});
+//       body.push(row);
+//     }
+//   }
+//
+//   var nombreDoc = 'Rendimiento_'+obj[0].nombre+'_'+obj[0].apellido+'.pdf';
+//   var year = moment().year();
+//   var month = moment().month();
+//   var day = moment().date();
+//   var dd = {
+//     content: [
+//       {
+//         text: 'Neuquen, '+day+' de '+month+' de '+year+'.-',
+//         style: 'header'
+//       },
+//       {
+//         text: 'Ref.: Certificado de Estudios',
+//         style: 'header'
+//       },
+//       {
+//         text: 'Res.: '+obj[0].id_carrera,
+//         style: 'header'
+//       },
+//       {
+//         style: 'contenido',
+//         text: ['La Dirección de la Escuela Superior de Música del Neuquén, deja constancia que el/la ',
+//         'alumno/a '+obj[0].nombre+' '+obj[0].apellido+' '+obj[0].tipo_documento+': '+obj[0].numero_documento+', ha cursado y  aprobado  en este Establecimiento ',
+//         'las asignaturas correspondientes al Nivel '+obj[0].nivel+', que se detallan:'
+//       ]
+//     },
+//     {
+//       style: 'table',
+//       table: {
+//         widths: ['*','*','*'], //ancho de las columnas
+//         body: body //array creado mas arriba
+//       },
+//       layout: {
+//         hLineWidth: function (i, node) { // layout provista por pdfmake:
+//           return (i === 0 || i === node.table.body.length) ? 1 : 0.5;
+//         },
+//         vLineWidth: function (i, node) {
+//           return (i === 0 || i === node.table.widths.length) ? 1 : 0.5;
+//         },
+//         hLineColor: function (i, node) {
+//           return (i === 0 || i === node.table.body.length) ? 'black' : 'gray';
+//         },
+//         vLineColor: function (i, node) {
+//           return (i === 0 || i === node.table.widths.length) ? 'black' : 'gray';
+//         },
+//       }
+//     }
+//   ],
+//   styles: {
+//     header: {
+//       fontSize: 16,
+//       alignment: 'center',
+//       font: 'Helvetica',
+//     },
+//     contenido:{
+//       margin: [30, 20, 30, 20],
+//       fontSize: 14,
+//       alignment: 'justify',
+//       font: 'Helvetica',
+//     },
+//     table: {
+//       font: 'Helvetica',
+//       margin: [0, 0, 0, 15],
+//     },
+//   }
+//
+// }
+// pdfMake.fonts = { //importar fuentes desde archivo vfs
+//   Helvetica: {
+//     normal: 'Helvetica.ttf'
+//   }
+// };
+// // console.log(dd);
+// pdfMake.createPdf(dd).download(nombreDoc);
+// }

@@ -13,7 +13,8 @@
           </div>
           <div class="card-body">
             <button type="button" class="btn btn-info" onclick="getRegularidad(<?= $persona['id'] ?>);">Alumno Regular</button>
-            <button type="button" class="btn btn-info" onclick="getAnalitico(<?= $persona['id'] ?>);">Analitico</button>
+            <button type="button" class="btn btn-info" onclick="getRendimiento(<?= $persona['id'] ?>,'analitico');">Analitico</button>
+            <button type="button" class="btn btn-info" onclick="getRendimiento(<?= $persona['id'] ?>,'rendimiento');">Rendimiento Academico</button>
           </div>
         </div>
       </div>
