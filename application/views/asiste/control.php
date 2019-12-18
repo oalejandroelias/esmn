@@ -79,6 +79,7 @@
         <div class="col-sm-offset-4 col-sm-8">
           <input type="hidden" name="id_curso" value="<?= $curso['id']; ?>">
           <button type="button" class="btn btn-success" onclick="guardar();" data-modify='' disabled>Guardar</button>
+          <a href="<?= base_url('asiste/imprimir_asistencia/'.$curso['id']) ?>" target="_blank" type="button" class="btn btn-primary">Imprimir Planilla</a>
           <a href="<?=site_url('curso/index'); ?>" class="btn btn-danger">Cancelar</a>
         </div>
       </div>

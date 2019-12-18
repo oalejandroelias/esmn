@@ -418,7 +418,7 @@ class Persona extends CI_Controller{
       $id_persona=$this->input->post('id_persona');
       $id_materia=$this->input->post('id_materia');
       $fecha=$this->input->post('fecha');
-      $query=$this->Persona_model->get_historial_persona_mesa($id_persona,$id_materia,true,$fecha);
+      $query=$this->Persona_model->get_historial_persona_mesa($id_persona,false,$id_materia,$fecha,true);
       if (!empty($query)) {
         $respuesta=$query[0];
       }else{
@@ -429,17 +429,19 @@ class Persona extends CI_Controller{
     return false;
   }
 
-  // obtener analitico de la persona
-    function getAnalitico(){
+  // obtener rendimiento/analitico de la persona
+    function getRendimiento(){
     if ($this->input->is_ajax_request() && !empty($_POST)) {
+      $tipo = $this->input->post('tipo');
+      $estado = ($tipo=='rendimiento') ? false : true;
       $id_persona=$this->input->post('id_persona');
       $id_carrera=$this->input->post('id_carrera');
 
       $this->load->model('Materia_model');
       $materias_carrera=$this->Materia_model->get_all_materias(array(),array('row'=>'id_carrera','value'=>$id_carrera));
-      $materias_inscripcion=$this->Persona_model->get_historial_persona_curso($id_persona,$id_carrera,false,true);
+      $materias_inscripcion=$this->Persona_model->get_historial_persona_curso($id_persona,$id_carrera,false,$estado);
 
-      if (count($materias_carrera) == count($materias_inscripcion)) { // todas las materias aprobadas
+      if (count($materias_carrera) == count($materias_inscripcion) or $tipo == 'rendimiento') { // todas las materias aprobadas
         echo json_encode($materias_inscripcion);
       }else {
         echo json_encode(false);

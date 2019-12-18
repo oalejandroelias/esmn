@@ -135,17 +135,6 @@ const socket = io.connect('https://192.168.0.114:8080', {
 //   });
 // }
 
-function convertToPlaintext() {
-  var textContent = this.textContent;
-  this.innerHTML = "";
-  this.textContent = textContent;
-}
-
-var contentEditableNodes = document.querySelectorAll('[contenteditable]');
-
-[].forEach.call(contentEditableNodes, function(div) {
-  div.addEventListener("input", convertToPlaintext, false);
-});
 
 // enviar mensaje
 function sendMessage(){

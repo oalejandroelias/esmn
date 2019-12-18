@@ -16,15 +16,12 @@
 
     $this->googlemaps->add_marker($marker);
     $mapa = $this->googlemaps->create_map();
-    echo $mapa['js'];
-    $mapa_mostrar = '<label class="col-sm-3 control-label"><b>Ubicación</b></label><i>Puede arrastrar el marcador para posicionar exactamente la ubicación</i>' . $mapa['html'];
+   // echo $mapa['js'];
+   // $mapa_mostrar = '<label class="col-sm-3 control-label"><b>Ubicación</b></label><i>Puede arrastrar el marcador para posicionar exactamente la ubicación</i>' . $mapa['html'];
 
     ?>
 
-        <script>
-       	var datos_mapa='<?php echo $mapa_mostrar;?>';
-        </script>
-
+    
 <div class="row">
 	<div class="col-md-3 col-12">
 		<div class="card" style="max-width:250px;">
@@ -189,5 +186,15 @@
 		</div>
 	</div>
 </div>
+
+<?php 
+ echo $mapa['js'];
+    $mapa_mostrar = '<label class="col-sm-3 control-label"><b>Ubicación</b></label><i>Puede arrastrar el marcador para posicionar exactamente la ubicación</i>' . $mapa['html'];
+
+    ?>
+
+        <script>
+       	var datos_mapa='<?php echo $mapa_mostrar;?>';
+        </script>
 
 <?php echo form_close(); ?>

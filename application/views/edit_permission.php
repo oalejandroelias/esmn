@@ -14,18 +14,7 @@
                 <div class="custom-control custom-checkbox mr-sm-2">
                   <input class="custom-control-input" name="permisos[<?=$class; ?>][<?=$method; ?>]"
                     id="customControlAutosizing<?=$class.$x;?>" type="checkbox" value="1" <?= $value; ?>>
-                    <?php if($method == 'index'){?>
-                  <label class="custom-control-label" for="customControlAutosizing<?=$class.$x;?>"><?="Inicio"; ?></label>
-                  <?php }elseif($method == 'add'){?>
-                  <label class="custom-control-label" for="customControlAutosizing<?=$class.$x;?>"><?="Crear"; ?></label>
-                  <?php }elseif($method == 'edit'){?>
-                  <label class="custom-control-label" for="customControlAutosizing<?=$class.$x;?>"><?="Editar"; ?></label>
-                  <?php }elseif($method == 'remove'){?>
-                  <label class="custom-control-label" for="customControlAutosizing<?=$class.$x;?>"><?="Eliminar"; ?></label>
-                  <?php }else{?>
                   <label class="custom-control-label" for="customControlAutosizing<?=$class.$x;?>"><?=$method; ?></label>
-                  <?php }?>
-                  
                 </div>
                 <?php $x++; ?>
               <?php endforeach; ?>
