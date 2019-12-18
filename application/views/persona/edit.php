@@ -49,6 +49,7 @@
               <i class="fa fa-upload"></i> Subir foto
             </label>
             <span class="form-text text-danger"><?= $this->upload->display_errors(); ?></span>
+            <span class="form-text text-danger"><?= $error; ?></span>
             <!-- <?php echo $this->upload->display_errors('<span class="form-text text-danger">', '</span>'); ?> -->
           </div>
         </div>

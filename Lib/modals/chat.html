@@ -1,0 +1,49 @@
+<div class="contacts-container d-none">
+  <div class="div-contact">
+    <div class="contacts">
+
+    </div>
+    <div class="contact-search-box position-absolute w-100 p-1 bg-light border-top border-secondary"></div>
+    <div class="contact-footer">
+      <div class="contact-search">
+        <div class="contact-search-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <input type="text" name="" value="" placeholder="Buscar...">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="toggle-chat">
+  <i class="fa fa-2x fa-comment-slash pointer waves-effect waves-light"
+    data-toggle="tooltip" data-placement="top" title=""
+  onclick="toggleChat(this);"></i>
+</div>
+
+<div class="chat-container chat-container-close">
+  <div class="chat-contact pointer">
+    <img class="contact-image" src="" alt="">
+    <p class="contact-person"></p>
+    <div class="chat-contact-close">
+      <i class="fa fa-times pointer"></i>
+    </div>
+  </div>
+  <div class="div-chat-content" >
+    <div class="div-chat">
+
+      </div>
+    </div>
+
+    <!-- scroll arrow -->
+    <div class="scrolldown-chat" onclick="scrollDownChat();"><i class="fa fa-angle-double-down"></i></div>
+
+    <div class="input-chat-content">
+      <div class="input-chat">
+
+        <p contenteditable="true" data-placeholder='Escribe algo...'></p>
+      </div>
+      <div class="send-chat">
+        <i class="fa fa-play pointer" onclick="sendMessage();"></i>
+      </div>
+    </div>
+  </div>

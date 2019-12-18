@@ -10,7 +10,9 @@ class Usuario extends CI_Controller{
   {
     parent::__construct();
     is_logged_in();
-    validar_acceso();
+    if(!$this->input->is_ajax_request()){
+      validar_acceso();
+    }
     $this->load->model('Usuario_model');
     $this->load->model('Persona_model');
     $this->load->model('Perfil_model');
@@ -34,6 +36,15 @@ class Usuario extends CI_Controller{
     $this->load->view('templates/header',$data);
     $this->load->view('usuario/index',$data);
     $this->load->view('templates/footer',$data);
+  }
+
+  function get_usuario(){
+    if($this->input->is_ajax_request()){
+      $id = $this->input->post('id');
+      $params = $this->input->post('params');
+      $result = $this->Usuario_model->get_usuario($id, $params);
+      echo json_encode($result);
+    }
   }
 
   /*

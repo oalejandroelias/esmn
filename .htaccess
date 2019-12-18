@@ -2,3 +2,23 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php/$1 [L]
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Cabecera X-Frame-Options para mejorar la seguridad
+Header always append X-Frame-Options SAMEORIGIN
+
+# Cabecera Strict-Transport-Security para indicar la duración de la cabecera HSTS
+Header add Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+
+# Cabecera X-XSS-Protection para evitar ataques XSS en IE y Chrome
+Header set X-XSS-Protection "1; mode=block"
+
+# Cabecera X-Content-Type-Options para evitar que se carguen hojas de estilo o scripts maliciosos
+Header set X-Content-Type-Options "nosniff"
+
+# Cabecera Referer-Policy
+Header set Referrer-Policy no-referrer-when-downgrade
+
+# Cabecera Feature-Policy
+Header set Feature-Policy "accelerometer 'none'; camera 'none'; geolocation 'none'; gyroscope 'none'; magnetometer 'none'; microphone 'none'; payment 'none'; usb 'none'"

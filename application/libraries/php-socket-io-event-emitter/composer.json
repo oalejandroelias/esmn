@@ -1,0 +1,10 @@
+{
+    "name": "touskar/php-socket-io-event-emitter",
+    "authors": [
+        {
+            "name": "Moussa Ndour",
+            "email": "moussa_ndour@hotmail.fr"
+        }
+    ],
+    "require": {}
+}

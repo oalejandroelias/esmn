@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="es">
 <head>
+    <meta http-equiv="refresh" content="28800;url=<?= base_url('login/logout'); ?>" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
@@ -8,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url('files/images/logo_esmn.png')?>">
+    <link rel="icon" type="image/png" size="16x16" href="<?= base_url();?>files/images/logo_esmn.png">
     <title><?= $title ?></title>
    <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/select2/dist/css/select2.min.css">

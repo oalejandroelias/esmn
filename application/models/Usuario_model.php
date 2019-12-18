@@ -23,16 +23,26 @@ class Usuario_model extends CI_Model
   /*
   * Get usuario by id
   */
-  function get_usuario($id)
+  function get_usuario($id, $params = '')
   {
     // return $this->db->get_where('usuario',array('id'=>$id))->row_array();
-    $this->db->select('persona.id AS "persona_id",persona.nombre,apellido,usuario.id AS "usuario_id",
-                      username,usuario.activo');
+    $this->db->select('persona.id AS "persona_id",persona.nombre,apellido,persona.foto,usuario.id AS "usuario_id",
+                      username,usuario.activo,usuario.online,usuario.id_socket');
     $this->db->from('usuario');
     $this->db->join('persona', 'persona.id = usuario.id_persona', 'inner');
-    $this->db->where('usuario.id',$id);
+    if (isset($params) && $params != '') {
+      $this->db->like('nombre', $params);
+      $this->db->or_like('apellido', $params);
+      $this->db->limit(6);
+      $method = "result_array";
+    }else {
+      $this->db->where('usuario.id',$id);
+      $method = "row_array";
+    }
+    $this->db->order_by('usuario_id', 'desc');
     $query = $this->db->get();
-    return $query->row_array();
+    // return $this->db->last_query();
+    return $query->$method();
   }
 
   /*

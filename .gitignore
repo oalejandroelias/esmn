@@ -22,3 +22,15 @@ application/config/google.php
 /.project
 /.buildpath
 /.gitignore
+
+#certificados
+dhparam.pem
+apache-selfsigned.key
+apache-selfsigned.pem
+apache-selfsigned.crt
+
+#node
+package.json
+package-lock.json
+nodeout
+nodepid

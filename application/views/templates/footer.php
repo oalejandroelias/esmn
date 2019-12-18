@@ -9,6 +9,9 @@
 </footer>
 </div>
 </div>
+<div id="chat">
+
+</div>
 <!-- ============================================================== -->
 <!-- End Wrapper -->
 <!-- ============================================================== -->
@@ -16,8 +19,10 @@
 <!-- All Jquery -->
 <!-- ============================================================== -->
 <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/jquery/dist/jquery.min.js"></script>
+<script src="<?= base_url();?>Lib/matrix-admin-bt4/dist/js/jquery-ui.min.js"></script>
 <!-- Bootstrap tether Core JavaScript -->
 <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+<!-- <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/popper.js/dist/umd/tooltip.min.js"></script> -->
 <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- slimscrollbar scrollbar JavaScript -->
 <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
@@ -51,9 +56,41 @@
 <!-- <script src="<?= base_url();?>Lib/matrix-admin-bt4/assets/extra-libs/DataTables/dataTables.buttons.min.js"></script> -->
 
 <!-- custom -->
+<script type="text/javascript">
+const idPersonaActual = <?= $this->session->userdata('persona_id'); ?>;
+const idUsuarioActual = <?= $this->session->userdata('usuario_id'); ?>;
+</script>
+
+<?php if ( $this->session->has_userdata('sessionStorage') ): ?>
+  <script type="text/javascript">
+  function setSessionToken(token){
+    if (typeof(Storage) !== "undefined") {
+      sessionStorage.setItem('token', token);
+      return
+    }else {
+      return $.alert({
+        title: 'Alerta!',
+        content: 'El navegador no soporta Storage. Chat inhabilitado. Mas info en <a href="https://www.w3schools.com/html/html5_webstorage.asp">w3schools.com</a>',
+        type: 'orange',
+        buttons: {
+          Ok: function(){}
+        }
+      });
+    }
+  }
+  setSessionToken("<?= $this->session->userdata('sessionStorage'); ?>");
+  sessionStorage.setItem('chatClass','chat-close');
+  </script>
+<?php endif; ?>
+
  <!-- RUTA DEL SITIO: -->
 <script>ruta="<?= base_url();?>";</script>
-<script src="<?= base_url();?>Lib/js/globals.js"></script>
+
+<!-- global -->
+<script src="<?= base_url();?>Lib/js/globals.js?v=1"></script>
+<!-- chat -->
+<script src="<?= base_url();?>node_modules/socket.io-client/dist/socket.io.js"></script>
+<script src="<?= base_url();?>Lib/js/chat.js?v=1"></script>
 
 <!--  Scripts cargados desde el controlador -->
 <?php if (isset($js)) : ?>

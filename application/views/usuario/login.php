@@ -10,7 +10,7 @@
   <!-- meta de google-api -->
   <meta name="google-signin-client_id" content="402569257873-i0ndfm0g7mtght08bvk2d7d2a1iopr8v.apps.googleusercontent.com">
   <!-- Favicon icon -->
-  <link rel="icon" type="image/png" sizes="16x16" href="">
+  <link rel="icon" type="image/png" size="16x16" href="<?= base_url();?>files/images/logo_esmn.png">
   <title><?= $title ?></title>
   <!-- Custom CSS -->
   <link href="<?= base_url();?>Lib/matrix-admin-bt4/dist/css/style.min.css" rel="stylesheet">

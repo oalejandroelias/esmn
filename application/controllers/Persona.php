@@ -122,8 +122,8 @@ class Persona extends CI_Controller{
         $imagen_real_path = APPPATH.'../files/images/'.$file_name;
 
         //include Drive library and upload file to Drive
-        $this->load->library('drive');
-        $this->drive->upload_file(array(array('file_path'=>$imagen_real_path,'file_name'=>$file_name))); //call function
+        // $this->load->library('drive');
+        // $this->drive->upload_file(array(array('file_path'=>$imagen_real_path,'file_name'=>$file_name))); //call function
       }
     }
 
@@ -239,7 +239,9 @@ class Persona extends CI_Controller{
 
         if (!empty($_FILES)) {
           if ($_FILES['foto_perfil']['error']!==0) {
-            $imagen = TRUE;
+            $this->load->library('file_upload');
+            $data['error'] = $this->file_upload->upload_exeption($_FILES['foto_perfil']['error'])['msg'];
+            $imagen = FALSE;
           }else {
             $imagen = $this->upload->do_upload('foto_perfil');
             $file_name = $this->upload->data('file_name');
@@ -247,11 +249,12 @@ class Persona extends CI_Controller{
             $imagen_real_path = APPPATH.'../files/images/'.$file_name;
 
             //include Drive library and upload file to Drive
-            $this->load->library('drive');
-            $this->drive->upload_file(array(array('file_path'=>$imagen_real_path,'file_name'=>$file_name))); //call function
+            // $this->load->library('drive');
+            // $this->drive->upload_file(array(array('file_path'=>$imagen_real_path,'file_name'=>$file_name))); //call function
           }
+        }else {
+          $imagen = TRUE;
         }
-
         if($this->form_validation->run() && $imagen)
         {
           $params = array(

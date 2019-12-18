@@ -1,13 +1,32 @@
 <?php
+use ElephantIO\Client;
+use ElephantIO\Engine\SocketIO\Version2X;
+
 class Login extends CI_Controller {
+
+  const CONTEXT = [
+    'context' => [
+      'ssl' => [
+        'verify_peer' => false,
+        'verify_peer_name' => false
+      ]
+    ]
+  ];
+
+  private $version;
+  private $client;
 
   public function __construct(){
     parent::__construct();
+    include_once APPPATH . "libraries/vendor/autoload.php";
     $this->config->load('google'); //config de parametros de google
     $this->load->model('usuario_model', 'usuario', TRUE);
     $this->load->helper('security');
+
+    $this->version = new Version2X('https://192.168.0.114:8080',$this::CONTEXT);
+    $this->client = new Client($this->version);
   }
-  public function index($request_uri=""){
+  public function index($request_uri="",$auto_logout = false){
     is_logged_in_login();//comprobar si ya se esta logeado en este controlador
 
     // Login con API de google
@@ -33,8 +52,10 @@ class Login extends CI_Controller {
 
     $data['title'] = 'Login - ESMN';
     $data['token'] = $this->token(); //token para form de usuario registrado
+    $this->session->set_userdata('ci_token',$data['token']);
     $data['css'] = array('login.css');
     $data['request_uri'] = $request_uri;
+    $data['auto_logout'] = $auto_logout;
     $this->load->view('usuario/login',$data);
   }
 
@@ -69,7 +90,7 @@ class Login extends CI_Controller {
         'apellido' => $userData->familyName,
         'email' => $userData->email,
         'id_perfil' => $perfil['id'], //invitado
-        'nombre_perfil' => $perfil['nombre'], 
+        'nombre_perfil' => $perfil['nombre'],
         'permisos' => $perfil['permisos']
       );
       $this->session->set_userdata($dataSession);
@@ -82,9 +103,9 @@ class Login extends CI_Controller {
     redirect(base_url());
   }
 
-// login para usuarios registrados. Carga datos del usuario en variable de sesion en caso de exito y redirige.
+  // login para usuarios registrados. Carga datos del usuario en variable de sesion en caso de exito y redirige.
   public function login(){
-    if($this->input->post('token') && $this->input->post('token') == $this->session->userdata('token')){
+    if($this->input->post('token') && $this->input->post('token') == $this->session->userdata('ci_token')){
       $this->form_validation->set_rules('username', 'Usuario', 'required|trim|max_length[128]');
       $this->form_validation->set_rules('password', 'Contraseña', 'required|trim|max_length[128]');
       $request_uri = $this->input->post('request_uri',TRUE);
@@ -118,6 +139,21 @@ class Login extends CI_Controller {
           );
           $this->session->set_userdata($data);
 
+          // actualizar estado 'online' y 'ci_token':
+          $params = array('online'=>1,'ci_token'=>$this->session->userdata('ci_token'));
+          $result = $this->usuario->update_usuario($check_user->usuario_id, $params);
+
+          $this->client->initialize();
+          $session_token = $this->token();
+          $this->client->emit("token", [
+            'id_usuario' => $check_user->usuario_id,
+            'token' => $session_token
+          ]
+        );
+          $this->client->close();
+
+          $this->session->set_flashdata('sessionStorage', $session_token);
+
           if ($request_uri!="") { // redirige al usuario a la pagina en la que estaba (si la sesion se cerro por inactividad)
             $request_uri = str_replace('-','/',$request_uri);
             redirect($request_uri);
@@ -135,18 +171,22 @@ class Login extends CI_Controller {
     }
   }
 
-// token para el formulario. Esto evita que usuarios no autorizados intenten loguearse a traves de otro dominio.
+  // token para el formulario. Esto evita que usuarios no autorizados intenten loguearse a traves de otro dominio.
   public function token(){
     $token = md5(uniqid(rand(),true));
-    $this->session->set_userdata('token',$token);
+    // $this->session->set_userdata('token',$token);
     return $token;
   }
 
-// destruir sesion
-  public function logout(){
+  // destruir sesion
+  public function logout($request_uri = ''){
+    $this->client->initialize();
+    $this->client->emit("untoken", ['id_usuario' => $this->session->userdata('usuario_id')]);
+    $this->client->close();
+
     $this->session->sess_destroy();
     session_write_close();
-    redirect(base_url('login/index'));
+    redirect('login/index/'.$request_uri);
   }
 
 }
