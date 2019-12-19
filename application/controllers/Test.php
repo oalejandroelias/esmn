@@ -26,12 +26,13 @@ class Test extends CI_Controller {
 		$this->load->model('Usuario_model');
 		$this->load->model('Persona_model');
 
-		$this->version = new Version2X('https://192.168.0.114:8080',$this::CONTEXT);
+		$this->version = new Version2X(URL.':8080',$this::CONTEXT);
 		$this->client = new Client($this->version);
 	}
 
 	public function index()
 	{
+		echo $_SERVER['SERVER_ADDR'];
 		// Start node server
 		// $proc_exist = exec('ps -C node -o command|grep server.js', $output, $return_var);
 		// if ($return_var != 0) {

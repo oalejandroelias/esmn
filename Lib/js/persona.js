@@ -155,7 +155,7 @@ $(document).ready(function(){
 function cargar_datos_de_busqueda_direccion_gmaps(){
   $.ajax({
     type: 'POST',
-    url: ruta+'Persona/obtener_latlong_de_direccion',
+    url: RUTA+'Persona/obtener_latlong_de_direccion',
     data: {direccion: $('#field-PER_CALLE').val()},
     dataType: 'html',
     success: function(data){
@@ -210,7 +210,7 @@ function cargar_datos_de_busqueda_direccion_gmaps(){
             // $.alert(id_carrera);
             $.ajax({
               type: 'POST',
-              url: ruta+'Persona/getRegularidad',
+              url: RUTA+'Persona/getRegularidad',
               data: {id_persona,id_carrera},
               success: function(respuesta){
                 var obj= JSON.parse(respuesta);
@@ -307,7 +307,7 @@ function cargar_datos_de_busqueda_direccion_gmaps(){
   function getConstancia(id_persona,id_materia,fecha){
     $.ajax({
       type: 'POST',
-      url: ruta+'Persona/getConstancia',
+      url: RUTA+'Persona/getConstancia',
       data: {id_persona,id_materia,fecha},
       success: function(respuesta){
         var obj= JSON.parse(respuesta);
@@ -423,7 +423,7 @@ function cargar_datos_de_busqueda_direccion_gmaps(){
             // $.alert(id_carrera);
             $.ajax({
               type: 'POST',
-              url: ruta+'Persona/getRendimiento',
+              url: RUTA+'Persona/getRendimiento',
               data: {id_persona,id_carrera,tipo},
               success: function(respuesta){
                 var obj= JSON.parse(respuesta);
@@ -570,7 +570,7 @@ function cargar_datos_de_busqueda_direccion_gmaps(){
 //           // $.alert(id_carrera);
 //           $.ajax({
 //             type: 'POST',
-//             url: ruta+'Persona/getRendimiento',
+//             url: RUTA+'Persona/getRendimiento',
 //             data: {id_persona,id_carrera},
 //             success: function(respuesta){
 //               var obj= JSON.parse(respuesta);

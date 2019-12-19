@@ -3,7 +3,7 @@ $("select[name='id_materia']").change(function(){
   if (id_materia) {
     $.ajax({
       type:'POST',
-      url:ruta+'materia_equivalente/ver_equivalencias',
+      url:RUTA+'materia_equivalente/ver_equivalencias',
       data: {id_materia},
       success:function (respuesta){
         // console.log(respuesta);

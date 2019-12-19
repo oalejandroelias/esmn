@@ -1,4 +1,6 @@
 <?php
+// ruta del sitio
+define('URL', 'https://192.168.0.114');
 
 // aqui se define la variable RECORDS_PER_PAGE , que son los registros x pagina
 define('RECORDS_PER_PAGE', 15);

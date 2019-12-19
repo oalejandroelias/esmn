@@ -8,7 +8,7 @@ $( "#messageForm" ).submit( function() {
 
 	// Ajax call for saving datas
 	$.ajax({
-		url: ruta+"Test/send_message",
+		url: RUTA+"Test/send_message",
 		type: "POST",
 		data: { name: nameVal, message: msg },
 		success: function(data) {

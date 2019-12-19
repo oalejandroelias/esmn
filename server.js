@@ -4,6 +4,7 @@ const express = require( 'express' );
 const https = require( 'https' );
 const mysql = require( 'mysql' );
 const logFile = '/var/www/html/esmn/server.js.log';
+const URL = '192.168.0.114';
 
 function clockTick() {
   var currentTime = new Date(),
@@ -153,4 +154,4 @@ io.sockets.on( 'connection', function( client ) {
 
 io.sockets.on('error', function (e) {console.log(clockTick() + '- IO error: ' + e);});
 
-server.listen( 8080, '192.168.0.114' );
+server.listen( 8080, URL );

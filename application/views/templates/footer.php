@@ -84,7 +84,8 @@ const idUsuarioActual = <?= $this->session->userdata('usuario_id'); ?>;
 <?php endif; ?>
 
  <!-- RUTA DEL SITIO: -->
-<script>ruta="<?= base_url();?>";</script>
+<script>RUTA="<?= base_url();?>";</script>
+<script>URL="<?= URL;?>";</script>
 
 <!-- global -->
 <script src="<?= base_url();?>Lib/js/globals.js?v=1"></script>

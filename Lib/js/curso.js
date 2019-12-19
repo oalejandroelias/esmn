@@ -3,7 +3,7 @@
 function getDaysPeriod(fecha_inicio,fecha_fin,daysWeek){
   return $.ajax({
     type:'POST',
-    url:ruta+'curso/get_days_period',
+    url:RUTA+'curso/get_days_period',
     data: {fecha_inicio,fecha_fin,daysWeek},
     // async: false,
     success:function (respuesta){

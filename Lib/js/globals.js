@@ -79,7 +79,7 @@ $(".select2-selection.select2-selection--single").children().css("height",'34px'
 // cargar modal de confirmacion de borrado para etiquetas <a>
 $('#zero_config').on('click','a[data-confirm="remove"]',function(){
   var action_url = this.href;
-  $('div[data-modal="remove"]').load(ruta+"Lib/modals/modal_remove.html",function(result){
+  $('div[data-modal="remove"]').load(RUTA+"Lib/modals/modal_remove.html",function(result){
     $("#modal_remove").modal();
     $('#modal_remove button.btn-danger').attr('onclick',"location.href='"+action_url+"'");
   });

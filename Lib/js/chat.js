@@ -1,8 +1,9 @@
-url_get_message = ruta+'test/get_message';
-url_get_chat_contact = ruta+'test/get_chat_contact';
-url_get_usuario = ruta+'usuario/get_usuario';
+url_get_message = RUTA+'chat/get_message';
+url_send_message = RUTA+'chat/send_message';
+url_get_chat_contact = RUTA+'chat/get_chat_contact';
+url_get_usuario = RUTA+'usuario/get_usuario';
 
-$("#chat").load(ruta+"Lib/modals/chat.html",function(result){
+$("#chat").load(RUTA+"Lib/modals/chat.html",function(result){
   var chatStatus = sessionStorage.getItem('chatClass');
   getChatContact().done(function(){
     divChatContent = $('.div-chat-content');
@@ -114,7 +115,7 @@ $("#chat").load(ruta+"Lib/modals/chat.html",function(result){
 })(jQuery);
 
 // conectar a socket
-const socket = io.connect('https://192.168.0.114:8080', {
+const socket = io.connect(URL+':8080', {
   secure: true,
   reconnection: true,
   reconnectionDelay: 1000,
@@ -145,7 +146,7 @@ function sendMessage(){
     var divChat = $('.div-chat-content');
 
     $.ajax({
-      url: ruta+"Test/send_message",
+      url: url_send_message,
       type: "POST",
       data: { msg, idUsuario, idSocket: socket.id },
       success: function(data) {
@@ -176,7 +177,7 @@ socket.on( 'errorMsg', function( data ) {
   console.log(data);
   switch (data.type) {
     case 'token':console.log('logout');
-      if (data.action == 'logout') { window.location = ruta+'login/logout' }
+      if (data.action == 'logout') { window.location = RUTA+'login/logout' }
       break;
     default:
 
@@ -185,7 +186,7 @@ socket.on( 'errorMsg', function( data ) {
 
 // evento de mensajes
 socket.on( 'message', function( data ) {
-  console.log(data);
+  // console.log(data);
   var actualContent = $( ".div-chat" );
   var idUsuario = $('.chat-contact').attr('data-idusuario');
   var today = new Date();
@@ -283,7 +284,7 @@ function getChatContact(){
 function makeContact(id_usuario, nombre, apellido, foto, newMsg=false){
   var iHtml = (newMsg) ? '<i class="fa fa-circle text-info" style="margin-top: 8px;"></i>' : '';
   if (foto == null || foto == '') {
-    foto = ruta+'/files/images/index.png';
+    foto = RUTA+'/files/images/index.png';
   }
   return '<div class="contact pointer" \
   data-idusuario="'+id_usuario+'"\

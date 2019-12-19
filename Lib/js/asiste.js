@@ -79,7 +79,7 @@ function guardar(){
 
     $.ajax({
       type:'POST',
-      url:ruta+'asiste/guardar',
+      url:RUTA+'asiste/guardar',
       data: {id_persona,id_curso,diascursado},
       success:function (respuesta){
         // respuestaAjaxSave = JSON.parse(respuesta);
@@ -98,7 +98,7 @@ function guardar(){
         back:{
           text: 'Volver a cursos',
           btnClass: 'btn-success',
-          action: function(){location.href = ruta+'curso';}
+          action: function(){location.href = RUTA+'curso';}
         },
         continue: {
           text: 'Seguir editando',

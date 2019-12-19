@@ -8,7 +8,7 @@ function sendForm(form){
 function noCalifica(id_curso){
   $.alert({
       title: 'Debe cargar primero la asistencia!',
-      content: 'Puede ir al control de asistencias del curso haciendo click <a href="'+ruta+'asiste/control/'+id_curso+'">aqui</a>',
+      content: 'Puede ir al control de asistencias del curso haciendo click <a href="'+RUTA+'asiste/control/'+id_curso+'">aqui</a>',
       type: 'orange',
       buttons: {
           Ok: function(){}
@@ -41,7 +41,7 @@ $('#zero_config').on('click','button[id^="guardarCalificacion"]',function(){
 
     $.ajax({
       type:'POST',
-      url:ruta+'inscripcion_materia/cambiarCalificacion',
+      url:RUTA+'inscripcion_materia/cambiarCalificacion',
       data: { id_row,calificacion,tipo },
       success:function (respuesta) { // devuelve un estado o false
         var obj = JSON.parse(respuesta);

@@ -2,7 +2,7 @@
 function ver_correlativas(id_materia){
   $.ajax({
     type:'POST',
-    url:ruta+'materia_correlativa/ver_correlativas',
+    url:RUTA+'materia_correlativa/ver_correlativas',
     data: {id_materia},
     success:function (respuesta){
       // console.log(respuesta);
@@ -59,7 +59,7 @@ function eliminar_correlativa(id_materia,id_correlativa,btn){
         action: function () {
           $.ajax({
             type:'POST',
-            url:ruta+'materia_correlativa/remove',
+            url:RUTA+'materia_correlativa/remove',
             data: {id_materia,id_correlativa},
             success:function (respuesta){
               btn.parentElement.remove(); //eliminar <li>
@@ -78,7 +78,7 @@ function eliminar_correlativa(id_materia,id_correlativa,btn){
 function ver_equivalencias(id_materia){
   $.ajax({
     type:'POST',
-    url:ruta+'materia_equivalente/ver_equivalencias',
+    url:RUTA+'materia_equivalente/ver_equivalencias',
     data: {id_materia},
     success:function (respuesta){
       // console.log(respuesta);
@@ -146,7 +146,7 @@ function eliminar_equivalencia(id_materia,id_equivalencia,btn){
         action: function () {
           $.ajax({
             type:'POST',
-            url:ruta+'materia_equivalente/remove',
+            url:RUTA+'materia_equivalente/remove',
             data: {id_materia,id_equivalencia},
             success:function (respuesta){
               // console.log(respuesta);

@@ -23,7 +23,7 @@ class Login extends CI_Controller {
     $this->load->model('usuario_model', 'usuario', TRUE);
     $this->load->helper('security');
 
-    $this->version = new Version2X('https://192.168.0.114:8080',$this::CONTEXT);
+    $this->version = new Version2X(URL.':8080',$this::CONTEXT);
     $this->client = new Client($this->version);
   }
   public function index($request_uri="",$auto_logout = false){
